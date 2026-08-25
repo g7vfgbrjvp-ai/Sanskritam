@@ -1,409 +1,306 @@
 <!DOCTYPE html>
-
 <html lang="gu">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>SANSKRITAM 🪷</title>
 
 <style>
-
 *{box-sizing:border-box}
 
 body{
-
-margin:0;
-
-font-family:Georgia,serif;
-
-background:#f7f0df;
-
-color:#342719;
-
+  margin:0;
+  font-family:Georgia,serif;
+  background:#f7f0df;
+  color:#342719;
 }
 
 .app{
-
-max-width:430px;
-
-margin:auto;
-
-min-height:100vh;
-
-background:#f7f0df;
-
+  max-width:430px;
+  margin:auto;
+  min-height:100vh;
+  background:#f7f0df;
 }
 
 header{
-
-text-align:center;
-
-padding:25px 15px 15px;
-
+  text-align:center;
+  padding:25px 15px 15px;
 }
 
 .logo{
-
-font-size:30px;
-
-font-weight:bold;
-
-letter-spacing:2px;
-
+  font-size:30px;
+  font-weight:bold;
+  letter-spacing:2px;
 }
 
 .tag{
-
-color:#b87909;
-
-font:14px Arial;
-
-margin-top:5px;
-
+  color:#b87909;
+  font:14px Arial;
+  margin-top:5px;
 }
 
 main{
-
-padding:15px 16px 90px;
-
+  padding:15px 16px 90px;
 }
 
 .search{
-
-background:#fffaf0;
-
-border:1px solid #e7d9bc;
-
-border-radius:28px;
-
-padding:14px;
-
-margin-bottom:16px;
-
+  background:#fffaf0;
+  border:1px solid #e7d9bc;
+  border-radius:28px;
+  padding:14px;
+  margin-bottom:16px;
 }
 
 .search input{
-
-border:0;
-
-outline:0;
-
-background:transparent;
-
-width:88%;
-
-font-size:15px;
-
+  border:0;
+  outline:0;
+  background:transparent;
+  width:88%;
+  font-size:15px;
 }
 
 .card{
-
-background:#fffaf0;
-
-border:1px solid #e7d9bc;
-
-border-radius:18px;
-
-padding:18px;
-
-margin-bottom:14px;
-
-box-shadow:0 5px 18px #00000012;
-
+  background:#fffaf0;
+  border:1px solid #e7d9bc;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:0 5px 18px #00000012;
 }
 
 .shlok{
-
-font-size:20px;
-
-line-height:1.7;
-
+  font-size:20px;
+  line-height:1.7;
 }
 
 .source{
-
-font:13px Arial;
-
-color:#786b5a;
-
-margin-top:8px;
-
+  font:13px Arial;
+  color:#786b5a;
+  margin-top:8px;
 }
 
 .grid{
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:10px;
-
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
 }
 
 .tile{
-
-background:#fffaf0;
-
-border:1px solid #e7d9bc;
-
-border-radius:16px;
-
-padding:15px 5px;
-
-text-align:center;
-
-cursor:pointer;
-
+  background:#fffaf0;
+  border:1px solid #e7d9bc;
+  border-radius:16px;
+  padding:15px 5px;
+  text-align:center;
+  cursor:pointer;
 }
 
 .tile b{
-
-display:block;
-
-font:600 12px Arial;
-
-margin-top:7px;
-
+  display:block;
+  font:600 12px Arial;
+  margin-top:7px;
 }
 
 .ico{
-
-font-size:25px;
-
+  font-size:25px;
 }
 
 button{
-
-border:0;
-
-border-radius:12px;
-
-padding:11px 14px;
-
-margin:4px;
-
-background:#fff3d6;
-
-color:#342719;
-
-font-weight:bold;
-
-cursor:pointer;
-
+  border:0;
+  border-radius:12px;
+  padding:11px 14px;
+  margin:4px;
+  background:#fff3d6;
+  color:#342719;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .primary{
-
-background:#b87909;
-
-color:white;
-
+  background:#b87909;
+  color:white;
 }
 
 .view{
-
-display:none;
-
+  display:none;
 }
 
 .view.active{
-
-display:block;
-
+  display:block;
 }
 
 .back{
-
-color:#b87909;
-
-font:14px Arial;
-
-margin-bottom:15px;
-
-cursor:pointer;
-
+  color:#b87909;
+  font:14px Arial;
+  margin-bottom:15px;
+  cursor:pointer;
 }
 
 .poster{
-
-background:
-
-linear-gradient(
-
-160deg,
-
-#d9b66b,
-
-#75603c,
-
-#302b25
-
-);
-
-color:white;
-
-border-radius:16px;
-
-padding:35px 20px;
-
-text-align:center;
-
-min-height:250px;
-
+  background:
+  linear-gradient(
+    160deg,
+    #d9b66b,
+    #75603c,
+    #302b25
+  );
+  color:white;
+  border-radius:16px;
+  padding:35px 20px;
+  text-align:center;
+  min-height:250px;
 }
 
 .meaning{
-
-font:14px Arial;
-
-line-height:1.6;
-
-margin-top:15px;
-
+  font:14px Arial;
+  line-height:1.6;
+  margin-top:15px;
 }
 
 .chapter{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .chapterNo{
-
-width:42px;
-
-height:42px;
-
-border-radius:50%;
-
-background:#b87909;
-
-color:white;
-
-display:grid;
-
-place-items:center;
-
-font:bold 14px Arial;
-
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#b87909;
+  color:white;
+  display:grid;
+  place-items:center;
+  font:bold 14px Arial;
 }
 
 .chapterTitle{
-
-font-size:17px;
-
-font-weight:bold;
-
+  font-size:17px;
+  font-weight:bold;
 }
 
 .chapterSub{
-
-font:12px Arial;
-
-color:#786b5a;
-
-margin-top:4px;
-
+  font:12px Arial;
+  color:#786b5a;
+  margin-top:4px;
 }
 
 select{
-
-padding:7px;
-
-border-radius:10px;
-
-border:1px solid #e7d9bc;
-
-background:#fffaf0;
-
+  padding:7px;
+  border-radius:10px;
+  border:1px solid #e7d9bc;
+  background:#fffaf0;
 }
 
 textarea{
-
-border:1px solid #e7d9bc;
-
-border-radius:10px;
-
-font-family:Arial;
-
+  border:1px solid #e7d9bc;
+  border-radius:10px;
+  font-family:Arial;
 }
 
 nav{
-
-position:fixed;
-
-bottom:0;
-
-left:50%;
-
-transform:translateX(-50%);
-
-width:min(430px,100%);
-
-background:#fffaf0;
-
-border-top:1px solid #e7d9bc;
-
-display:flex;
-
-justify-content:space-around;
-
-padding:8px 3px;
-
-z-index:5;
-
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(430px,100%);
+  background:#fffaf0;
+  border-top:1px solid #e7d9bc;
+  display:flex;
+  justify-content:space-around;
+  padding:8px 3px;
+  z-index:50;
 }
 
 nav button{
-
-background:none;
-
-font-size:11px;
-
-margin:0;
-
+  background:none;
+  font-size:11px;
+  margin:0;
 }
 
 .empty{
-
-font:14px Arial;
-
-color:#786b5a;
-
-text-align:center;
-
-padding:20px;
-
+  font:14px Arial;
+  color:#786b5a;
+  text-align:center;
+  padding:20px;
 }
 
+/* GITA */
+
+#gita700List{
+  margin-top:15px;
+}
+
+.gita700-status,
+.gita700-reader,
+.gita700-chapter{
+  background:#fffaf0;
+  border:1px solid #e7d9bc;
+  border-radius:18px;
+  padding:16px;
+  margin:14px 0;
+  box-shadow:0 5px 18px #00000012;
+}
+
+.gita700-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.gita700-btn{
+  border:0;
+  border-radius:12px;
+  padding:10px 5px;
+  background:#b87909;
+  color:#fff;
+  font-weight:bold;
+}
+
+.gita700-sanskrit{
+  font-size:22px;
+  line-height:1.75;
+  white-space:pre-line;
+}
+
+.gita700-meaning{
+  font:16px Arial;
+  line-height:1.7;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #e7d9bc;
+  margin:18px 0;
+}
+
+@media(max-width:360px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .gita700-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
 </style>
 
 </head>
+
 
 <body>
 
 <div class="app">
 
+
 <header>
 
 <div class="logo">
-
 🪷 SANSKRITAM
-
 </div>
 
 <div class="tag">
-
 Discover the Wisdom of Sanskrit
-
 </div>
 
 <div style="margin-top:15px">
@@ -413,9 +310,7 @@ Discover the Wisdom of Sanskrit
 <select id="language">
 
 <option>ગુજરાતી</option>
-
 <option>English</option>
-
 <option>हिन्दी</option>
 
 </select>
@@ -424,9 +319,11 @@ Discover the Wisdom of Sanskrit
 
 </header>
 
+
 <main>
 
-<!-- HOME -->
+
+<!-- ================= HOME ================= -->
 
 <section id="home" class="view active">
 
@@ -435,23 +332,18 @@ Discover the Wisdom of Sanskrit
 🔍
 
 <input
-
 id="searchBox"
-
 oninput="searchAll()"
-
-placeholder="Search Shloka, Chapter..."
-
+placeholder="શ્લોક, ગ્રંથ, સુભાષિત શોધો..."
 >
 
 </div>
 
+
 <div class="card">
 
 <h3>
-
 ☀️ SHLOKA OF THE DAY
-
 </h3>
 
 <div class="shlok">
@@ -461,21 +353,15 @@ placeholder="Search Shloka, Chapter..."
 </div>
 
 <div class="source">
-
 — Bhagavad Gita 2.47
-
 </div>
 
 <button onclick="show('detail')">
-
 Read Meaning
-
 </button>
 
 <button
-
 class="primary"
-
 onclick="show('poster')">
 
 🖼 Create Poster
@@ -484,34 +370,22 @@ onclick="show('poster')">
 
 </div>
 
-<!-- STD 10 -->
 
 <div class="card">
 
 <h3>
-
 🎓 GSEB Std. 10 Sanskrit
-
 </h3>
 
-<p style="
-
-font:14px Arial;
-
-line-height:1.6;
-
-">
+<p style="font:14px Arial;line-height:1.6">
 
 ધોરણ 10 સંસ્કૃતના પાઠ, શ્લોક,
-
 ગુજરાતી અર્થ અને અભ્યાસ.
 
 </p>
 
 <button
-
 class="primary"
-
 onclick="show('std10')">
 
 📚 Open Std. 10
@@ -520,142 +394,112 @@ onclick="show('std10')">
 
 </div>
 
-<!-- GRID -->
 
 <div class="grid">
 
+
 <div
-
 class="tile"
-
 onclick="show('shlokas')">
 
 <span class="ico">
-
 📖
-
 </span>
 
 <b>
-
 Shlokas
-
 </b>
 
 </div>
 
+
 <div
-
 class="tile"
-
 onclick="show('granthas')">
 
 <span class="ico">
-
 📚
-
 </span>
 
 <b>
-
 Granthas
-
 </b>
 
 </div>
 
+
 <div
-
 class="tile"
-
 onclick="show('subhashita')">
 
 <span class="ico">
-
 🌿
-
 </span>
 
 <b>
-
 Subhashitas
-
 </b>
 
 </div>
 
+
 <div
-
 class="tile"
-
 onclick="show('poster')">
 
 <span class="ico">
-
 🖼️
-
 </span>
 
 <b>
-
 Poster
-
 </b>
 
 </div>
 
+
 <div
-
 class="tile"
-
 onclick="show('favorites')">
 
 <span class="ico">
-
 ❤️
-
 </span>
 
 <b>
-
 Favorites
-
 </b>
 
 </div>
 
+
 <div
-
 class="tile"
-
 onclick="show('suggest')">
 
 <span class="ico">
-
 ➕
-
 </span>
 
 <b>
-
 Suggest
-
 </b>
 
 </div>
+
 
 </div>
 
 </section>
 
-<!-- STD 10 -->
+
+
+<!-- ================= STD 10 ================= -->
 
 <section id="std10" class="view">
 
 <div
-
 class="back"
-
 onclick="show('home')">
 
 ← Home
@@ -663,25 +507,21 @@ onclick="show('home')">
 </div>
 
 <h2>
-
 🎓 Std. 10 Sanskrit
-
 </h2>
 
-<div id="chapterList">
-
-</div>
+<div id="chapterList"></div>
 
 </section>
 
-<!-- CHAPTER -->
+
+
+<!-- ================= CHAPTER ================= -->
 
 <section id="chapter" class="view">
 
 <div
-
 class="back"
-
 onclick="show('std10')">
 
 ← Std. 10
@@ -690,26 +530,22 @@ onclick="show('std10')">
 
 <div class="card">
 
-<h2 id="chapterHeading">
+<h2 id="chapterHeading"></h2>
 
-</h2>
-
-<div id="chapterContent">
-
-</div>
+<div id="chapterContent"></div>
 
 </div>
 
 </section>
 
-<!-- SHLOKAS -->
+
+
+<!-- ================= SHLOKAS ================= -->
 
 <section id="shlokas" class="view">
 
 <div
-
 class="back"
-
 onclick="show('home')">
 
 ← Home
@@ -717,17 +553,15 @@ onclick="show('home')">
 </div>
 
 <h2>
-
 📖 Shlokas
-
 </h2>
+
 
 <div class="card">
 
 <div class="shlok">
 
-योगस्थः कुरु कर्माणि
-
+योगस्थः कुरु कर्माणि<br>
 सङ्गं त्यक्त्वा धनञ्जय।
 
 </div>
@@ -738,21 +572,12 @@ Bhagavad Gita 2.48
 
 </div>
 
-<button
-
-onclick="show('detail')">
-
+<button onclick="show('detail')">
 Open
-
 </button>
 
 <button
-
-onclick="addFavorite(
-
-'योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।'
-
-)">
+onclick="addFavorite('योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।')">
 
 ❤️ Favorite
 
@@ -760,29 +585,22 @@ onclick="addFavorite(
 
 </div>
 
+
 <div class="card">
 
 <div class="shlok">
 
-विद्या ददाति विनयं
-
+विद्या ददाति विनयं<br>
 विनयाद् याति पात्रताम्।
 
 </div>
 
 <div class="source">
-
 Subhashita
-
 </div>
 
 <button
-
-onclick="addFavorite(
-
-'विद्या ददाति विनयं विनयाद् याति पात्रताम्।'
-
-)">
+onclick="addFavorite('विद्या ददाति विनयं विनयाद् याति पात्रताम्।')">
 
 ❤️ Favorite
 
@@ -792,14 +610,14 @@ onclick="addFavorite(
 
 </section>
 
-<!-- DETAIL -->
+
+
+<!-- ================= DETAIL ================= -->
 
 <section id="detail" class="view">
 
 <div
-
 class="back"
-
 onclick="show('home')">
 
 ← Home
@@ -810,68 +628,52 @@ onclick="show('home')">
 
 <div class="shlok">
 
-योगस्थः कुरु कर्माणि
-
+योगस्थः कुरु कर्माणि<br>
 सङ्गं त्यक्त्वा धनञ्जय।<br>
-
-सिद्ध्यसिद्ध्योः समो भूत्वा
-
+सिद्ध्यसिद्ध्योः समो भूत्वा<br>
 समत्वं योग उच्यते॥
 
 </div>
 
 <div class="source">
-
 — Bhagavad Gita 2.48
-
 </div>
 
 <h3>
-
 English Meaning
-
 </h3>
 
 <p>
 
 Perform your duty with a balanced mind,
-
 free from attachment to success or failure.
 
 </p>
 
 <h3>
-
 ગુજરાતી અર્થ
-
 </h3>
 
 <p>
 
 ફળની આસક્તિ છોડીને
-
 સમતાભાવથી કર્તવ્ય કરો.
 
 </p>
 
 <h3>
-
 हिन्दी अर्थ
-
 </h3>
 
 <p>
 
 फल की आसक्ति छोड़कर कर्तव्य करो और
-
 सफलता-असफलता में समान भाव रखो।
 
 </p>
 
 <button
-
 class="primary"
-
 onclick="show('poster')">
 
 🖼 Create Poster
@@ -879,12 +681,7 @@ onclick="show('poster')">
 </button>
 
 <button
-
-onclick="addFavorite(
-
-'योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।'
-
-)">
+onclick="addFavorite('योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।')">
 
 ❤️ Add to Favorites
 
@@ -894,14 +691,14 @@ onclick="addFavorite(
 
 </section>
 
-<!-- POSTER -->
+
+
+<!-- ================= POSTER ================= -->
 
 <section id="poster" class="view">
 
 <div
-
 class="back"
-
 onclick="show('home')">
 
 ← Home
@@ -909,23 +706,18 @@ onclick="show('home')">
 </div>
 
 <h2>
-
 🖼️ Meaning-Based Poster
-
 </h2>
 
 <div class="poster">
 
 <small>
-
 SANSKRITAM
-
 </small>
 
 <div class="shlok">
 
-योगस्थः कुरु कर्माणि
-
+योगस्थः कुरु कर्माणि<br>
 सङ्गं त्यक्त्वा धनञ्जय।
 
 </div>
@@ -933,9 +725,7 @@ SANSKRITAM
 <div class="meaning">
 
 Perform your duty with a calm
-
 and balanced mind,
-
 free from attachment.
 
 </div>
@@ -944,18 +734,12 @@ free from attachment.
 
 <br>
 
-<button
-
-onclick="window.print()">
-
+<button onclick="window.print()">
 🖨 Save / Print
-
 </button>
 
 <button
-
 class="primary"
-
 onclick="sharePoster()">
 
 📤 Share
@@ -964,490 +748,14 @@ onclick="sharePoster()">
 
 </section>
 
-<!-- GRANTHAS -->
-<!-- GRANTHAS -->
+
+
+<!-- ================= GRANTHAS ================= -->
+
 <section id="granthas" class="view">
 
-<div class="back" onclick="show('home')">
-← Home
-</div>
-
-<h2>📚 Granth Library</h2>
-
-<div class="card">
-
-<h3>🕉️ Bhagavad Gita</h3>
-<p>18 Chapters • 700 Shlokas</p>
-<button class="primary" onclick="show('gita')">
-Open Granth
-</button>
-
-<hr>
-
-<h3>🚩 Ramayana</h3>
-<p>Valmiki Ramayana</p>
-<button class="primary" onclick="show('ramayana')">
-Open Granth
-</button>
-
-<hr>
-
-<h3>⚔️ Mahabharata</h3>
-<p>The great epic of Bharat</p>
-<button class="primary" onclick="show('mahabharata')">
-Open Granth
-</button>
-
-<hr>
-
-<h3>📖 Upanishads</h3>
-<p>Principal Upanishads</p>
-<button class="primary" onclick="show('upanishads')">
-Open Granth
-</button>
-
-<hr>
-
-<h3>🌿 Vedas</h3>
-<p>Rigveda • Yajurveda • Samaveda • Atharvaveda</p>
-<button class="primary" onclick="show('vedas')">
-Open Granth
-</button>
-
-<hr>
-
-<h3>🌺 Puranas</h3>
-<p>18 Major Puranas</p>
-<button class="primary" onclick="show('puranas')">
-Open Granth
-</button>
-
-</div>
-</section>
-
-
-<!-- BHAGAVAD GITA -->
-<section id="gita" class="view">
-
-<div class="back" onclick="show('granthas')">
-← Granthas
-</div>
-
-<h2>🕉️ Bhagavad Gita</h2>
-
-<div class="card">
-
-<h3>Chapter 2 • सांख्ययोग</h3>
-
-<button class="primary" onclick="show('gita247')">
-श्लोक 2.47
-</button>
-
-<button class="primary" onclick="show('gita248')">
-श्लोक 2.48
-</button>
-<button class="primary" onclick="show('gita249')">શ્લોક 2.49</button>
-<button class="primary" onclick="show('gita250')">શ્લોક 2.50</button>
-<button class="primary" onclick="show('gita251')">શ્લોક 2.51</button>
-<button class="primary" onclick="show('gita252')">શ્લોક 2.52</button>
-<button class="primary" onclick="show('gita253')">શ્લોક 2.53</button>
-<button class="primary" onclick="show('gita254')">શ્લોક 2.54</button>
-<button class="primary" onclick="show('gita255')">શ્લોક 2.55</button>
-</div>
-
-</section>
-
-
-<!-- GITA 2.47 -->
-<section id="gita247" class="view">
-
-<div class="back" onclick="show('gita')">
-← Bhagavad Gita
-</div>
-
-<div class="card">
-
-<h2>📖 Bhagavad Gita 2.47</h2>
-
-<div class="shlok">
-कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>
-मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥
-</div>
-
-<hr>
-
-<h3>🇬🇧 English</h3>
-<p>
-You have a right to perform your prescribed duties,
-but you are not entitled to the fruits of your actions.
-Do not let the results of your actions be your motive,
-and do not become attached to inaction.
-</p>
-
-<h3>🇮🇳 ગુજરાતી</h3>
-<p>
-તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.
-કર્મના ફળને તારો હેતુ ન બનાવ અને કર્મ ન કરવાના માર્ગમાં
-પણ આસક્ત ન થા.
-</p>
-
-<h3>🇮🇳 हिन्दी</h3>
-<p>
-तुम्हारा अधिकार केवल कर्म करने में है, उसके फलों में कभी नहीं।
-कर्मफल को अपना उद्देश्य मत बनाओ और कर्म न करने में भी
-आसक्त मत हो।
-</p>
-
-</div>
-</section>
-
-
-<!-- GITA 2.48 -->
-<section id="gita248" class="view">
-
-<div class="back" onclick="show('gita')">
-← Bhagavad Gita
-</div>
-
-<div class="card">
-
-<h2>📖 Bhagavad Gita 2.48</h2>
-
-<div class="shlok">
-योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।<br>
-सिद्ध्यसिद्ध्योः समो भूत्वा समत्वं योग उच्यते॥
-</div>
-
-<hr>
-
-<h3>🇬🇧 English</h3>
-<p>
-Perform your duties with a balanced mind,
-giving up attachment to success and failure.
-Such equanimity is called Yoga.
-</p>
-
-<h3>🇮🇳 ગુજરાતી</h3>
-<p>
-હે ધનંજય! આસક્તિ છોડીને સમતાભાવથી કર્મ કર.
-સફળતા અને નિષ્ફળતામાં સમાન ભાવ રાખવો એ જ યોગ કહેવાય છે.
-</p>
-
-<h3>🇮🇳 हिन्दी</h3>
-<p>
-हे धनंजय! आसक्ति को त्यागकर समभाव से कर्म करो।
-सफलता और असफलता में समान भाव रखना ही योग कहलाता है।
-</p>
-
-</div>
-</section>
-
-
-<!-- RAMAYANA -->
-<section id="ramayana" class="view">
-
-<div class="back" onclick="show('granthas')">
-← Granthas
-</div>
-
-<div class="card">
-
-<h2>🚩 Ramayana</h2>
-
-<h3>बालकाण्ड</h3>
-
-<p>Valmiki Ramayana • Sanskrit Shlokas</p>
-
-<button class="primary">
-Coming Soon
-</button>
-
-</div>
-</section>
-
-
-<!-- MAHABHARATA -->
-<section id="mahabharata" class="view">
-
-<div class="back" onclick="show('granthas')">
-← Granthas
-</div>
-
-<div class="card">
-
-<h2>⚔️ Mahabharata</h2>
-
-<p>
-महाभारत के संस्कृत श्लोक और તેમના અર્થ અહીં ઉમેરવામાં આવશે.
-</p>
-
-<button class="primary">
-Coming Soon
-</button>
-
-</div>
-</section>
-
-
-<!-- UPANISHADS -->
-<section id="upanishads" class="view">
-
-<div class="back" onclick="show('granthas')">
-← Granthas
-</div>
-
-<div class="card">
-
-<h2>📖 Upanishads</h2>
-
-<p>
-Principal Upanishads અને તેમના શ્લોકો અહીં ઉમેરવામાં આવશે.
-</p>
-
-<button class="primary">
-Coming Soon
-</button>
-
-</div>
-</section>
-
-
-<!-- VEDAS -->
-<section id="vedas" class="view">
-
-<div class="back" onclick="show('granthas')">
-← Granthas
-</div>
-
-<div class="card">
-
-<h2>🌿 Vedas</h2>
-
-<p>
-Rigveda • Yajurveda • Samaveda • Atharvaveda
-</p>
-
-<button class="primary">
-Coming Soon
-</button>
-
-</div>
-</section>
-
-
-<!-- PURANAS -->
-<section id="puranas" class="view">
-
-<div class="back" onclick="show('granthas')">
-← Granthas
-</div>
-
-<div class="card">
-
-<h2>🌺 Puranas</h2>
-
-<p>
-18 Major Puranas અને તેમના શ્લોકો અહીં ઉમેરવામાં આવશે.
-</p>
-
-<button class="primary">
-Coming Soon
-</button>
-
-</div>
-</section>
-
-</section>
-<!-- BHAGAVAD GITA -->
-
-<section id="gita" class="view">
-
-<div class="back" onclick="show('granthas')">
-
-← Granth Library
-
-</div>
-
-<h2>🕉️ Bhagavad Gita</h2>
-
-<div class="card">
-
-<h3>📖 અધ્યાય પસંદ કરો</h3>
-
-<button class="primary" onclick="show('gita1')">
-
-અધ્યાય 1 — अर्जुनविषादयोग
-
-</button>
-
-<button class="primary" onclick="show('gita247')">
-
-અધ્યાય 2 – સાંખ્યયોગ
-
-</button>
-<!-- GITA SHLOKA 2.47 -->
-
-<section id="gita247" class="view">
-
-<div class="back" onclick="show('gita')">
-← Bhagavad Gita
-</div>
-
-<div class="card">
-
-<h2>📖 Bhagavad Gita 2.47</h2>
-
-<div class="shlok">
-
-कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>
-मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥
-
-</div>
-
-<hr>
-
-<h3>🇬🇧 English Meaning</h3>
-
-<p>
-You have the right to perform your prescribed duties,
-but you are not entitled to the fruits of your actions.
-Do not let the fruits of action be your motive,
-and do not become attached to inaction.
-</p>
-
-<h3>🇮🇳 ગુજરાતી અર્થ</h3>
-
-<p>
-તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.
-કર્મના ફળને તારો હેતુ ન બનાવ અને કર્મ ન કરવાના માર્ગમાં
-પણ આસક્ત ન થા.
-</p>
-
-<h3>🇮🇳 हिन्दी अर्थ</h3>
-
-<p>
-तुम्हारा अधिकार केवल कर्म करने में है, उसके फलों में कभी नहीं।
-कर्मफल को अपना उद्देश्य मत बनाओ और कर्म न करने में भी
-आसक्त मत हो।
-</p>
-
-</div>
-
-</section>
-
-</button>
-
-<button onclick="alert('અધ્યાય 3 ટૂંક સમયમાં ઉમેરાશે')">
-
-અધ્યાય 3 — कर्मयोग
-
-</button>
-
-<button onclick="alert('અધ્યાય 4 ટૂંક સમયમાં ઉમેરાશે')">
-
-અધ્યાય 4 — ज्ञानकर्मसंन्यासयोग
-
-</button>
-
-<button onclick="alert('અધ્યાય 5 ટૂંક સમયમાં ઉમેરાશે')">
-
-અધ્યાય 5 — कर्मसंन्यासयोग
-
-</button>
-
-<button onclick="alert('અધ્યાય 6 ટૂંક સમયમાં ઉમેરાશે')">
-
-અધ્યાય 6 — आत्मसंयमयोग
-
-</button>
-
-</div>
-
-</section>
-
-<!-- GITA CHAPTER 1 -->
-
-<section id="gita1" class="view">
-
-<div class="back" onclick="show('gita')">
-
-← Bhagavad Gita
-
-</div>
-
-<h2>📖 અધ્યાય 1</h2>
-
-<div class="card">
-
-<h3>अर्जुनविषादयोग</h3>
-
-<div class="shlok">
-
-धृतराष्ट्र उवाच।<br><br>
-
-धर्मक्षेत्रे कुरुक्षेत्रे
-
-समवेता युयुत्सवः।<br>
-
-मामकाः पाण्डवाश्चैव
-
-किमकुर्वत सञ्जय॥
-
-</div>
-
-<div class="source">
-
-भगवद्गीता — अध्याय 1, श्लोक 1
-
-</div>
-
-<h3>ગુજરાતી અર્થ</h3>
-
-<p>
-
-ધૃતરાષ્ટ્રે કહ્યું — હે સંજય!
-
-ધર્મભૂમિ કુરુક્ષેત્રમાં યુદ્ધ કરવાની
-
-ઇચ્છાથી ભેગા થયેલા મારા પુત્રો
-
-અને પાંડવો શું કરી રહ્યા છે?
-
-</p>
-
-<h3>English Meaning</h3>
-
-<p>
-
-Dhritarashtra asked Sanjaya what
-
-his sons and the Pandavas were
-
-doing after assembling at Kurukshetra
-
-for battle.
-
-</p>
-
-<button class="primary"
-
-onclick="alert('શ્લોક Favorite માં ઉમેરાયો')">
-
-❤️ Favorite
-
-</button>
-
-</div>
-
-</section>
-<!-- SUBHASHITA -->
-
-<section id="subhashita" class="view">
-
 <div
-
 class="back"
-
 onclick="show('home')">
 
 ← Home
@@ -1455,17 +763,357 @@ onclick="show('home')">
 </div>
 
 <h2>
+📚 Granth Library
+</h2>
 
+
+<div class="card">
+
+
+<h3>
+🕉️ Bhagavad Gita
+</h3>
+
+<p>
+18 Chapters • 700 Shlokas
+</p>
+
+<button
+class="primary"
+onclick="show('gita')">
+
+Open Granth
+
+</button>
+
+
+<hr>
+
+
+<h3>
+🚩 Ramayana
+</h3>
+
+<p>
+Valmiki Ramayana
+</p>
+
+<button
+class="primary"
+onclick="show('ramayana')">
+
+Open Granth
+
+</button>
+
+
+<hr>
+
+
+<h3>
+⚔️ Mahabharata
+</h3>
+
+<p>
+The great epic of Bharat
+</p>
+
+<button
+class="primary"
+onclick="show('mahabharata')">
+
+Open Granth
+
+</button>
+
+
+<hr>
+
+
+<h3>
+📖 Upanishads
+</h3>
+
+<p>
+Principal Upanishads
+</p>
+
+<button
+class="primary"
+onclick="show('upanishads')">
+
+Open Granth
+
+</button>
+
+
+<hr>
+
+
+<h3>
+🌿 Vedas
+</h3>
+
+<p>
+Rigveda • Yajurveda • Samaveda • Atharvaveda
+</p>
+
+<button
+class="primary"
+onclick="show('vedas')">
+
+Open Granth
+
+</button>
+
+
+<hr>
+
+
+<h3>
+🌺 Puranas
+</h3>
+
+<p>
+18 Major Puranas
+</p>
+
+<button
+class="primary"
+onclick="show('puranas')">
+
+Open Granth
+
+</button>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= BHAGAVAD GITA ================= -->
+
+<section id="gita" class="view">
+
+<div
+class="back"
+onclick="show('granthas')">
+
+← Granthas
+
+</div>
+
+<h2>
+🕉️ Bhagavad Gita
+</h2>
+
+<div
+id="gita700List">
+
+</div>
+
+</section>
+
+
+
+<!-- ================= RAMAYANA ================= -->
+
+<section id="ramayana" class="view">
+
+<div
+class="back"
+onclick="show('granthas')">
+
+← Granthas
+
+</div>
+
+<div class="card">
+
+<h2>
+🚩 Ramayana
+</h2>
+
+<h3>
+बालकाण्ड
+</h3>
+
+<p>
+Valmiki Ramayana • Sanskrit Shlokas
+</p>
+
+<button class="primary">
+Coming Soon
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= MAHABHARATA ================= -->
+
+<section id="mahabharata" class="view">
+
+<div
+class="back"
+onclick="show('granthas')">
+
+← Granthas
+
+</div>
+
+<div class="card">
+
+<h2>
+⚔️ Mahabharata
+</h2>
+
+<p>
+
+મહાભારતના સંસ્કૃત શ્લોકો
+અને તેમના અર્થ અહીં ઉમેરવામાં આવશે.
+
+</p>
+
+<button class="primary">
+Coming Soon
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= UPANISHADS ================= -->
+
+<section id="upanishads" class="view">
+
+<div
+class="back"
+onclick="show('granthas')">
+
+← Granthas
+
+</div>
+
+<div class="card">
+
+<h2>
+📖 Upanishads
+</h2>
+
+<p>
+
+Principal Upanishads
+અને તેમના શ્લોકો અહીં ઉમેરવામાં આવશે.
+
+</p>
+
+<button class="primary">
+Coming Soon
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= VEDAS ================= -->
+
+<section id="vedas" class="view">
+
+<div
+class="back"
+onclick="show('granthas')">
+
+← Granthas
+
+</div>
+
+<div class="card">
+
+<h2>
+🌿 Vedas
+</h2>
+
+<p>
+
+Rigveda • Yajurveda • Samaveda • Atharvaveda
+
+</p>
+
+<button class="primary">
+Coming Soon
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= PURANAS ================= -->
+
+<section id="puranas" class="view">
+
+<div
+class="back"
+onclick="show('granthas')">
+
+← Granthas
+
+</div>
+
+<div class="card">
+
+<h2>
+🌺 Puranas
+</h2>
+
+<p>
+
+18 Major Puranas
+અને તેમના શ્લોકો અહીં ઉમેરવામાં આવશે.
+
+</p>
+
+<button class="primary">
+Coming Soon
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= SUBHASHITA ================= -->
+
+<section id="subhashita" class="view">
+
+<div
+class="back"
+onclick="show('home')">
+
+← Home
+
+</div>
+
+<h2>
 🌿 Subhashitas
-
 </h2>
 
 <div class="card">
 
 <div class="shlok">
 
-विद्या ददाति विनयं
-
+विद्या ददाति विनयं<br>
 विनयाद् याति पात्रताम्।
 
 </div>
@@ -1473,18 +1121,12 @@ onclick="show('home')">
 <p>
 
 Knowledge gives humility;
-
 humility leads to worthiness.
 
 </p>
 
 <button
-
-onclick="addFavorite(
-
-'विद्या ददाति विनयं विनयाद् याति पात्रताम्।'
-
-)">
+onclick="addFavorite('विद्या ददाति विनयं विनयाद् याति पात्रताम्।')">
 
 ❤️ Favorite
 
@@ -1494,14 +1136,14 @@ onclick="addFavorite(
 
 </section>
 
-<!-- FAVORITES -->
+
+
+<!-- ================= FAVORITES ================= -->
 
 <section id="favorites" class="view">
 
 <div
-
 class="back"
-
 onclick="show('home')">
 
 ← Home
@@ -1509,29 +1151,25 @@ onclick="show('home')">
 </div>
 
 <h2>
-
 ❤️ My Favorites
-
 </h2>
 
 <div
-
 id="favoriteList"
-
 class="card">
 
 </div>
 
 </section>
 
-<!-- SUGGEST -->
+
+
+<!-- ================= SUGGEST ================= -->
 
 <section id="suggest" class="view">
 
 <div
-
 class="back"
-
 onclick="show('home')">
 
 ← Home
@@ -1539,37 +1177,21 @@ onclick="show('home')">
 </div>
 
 <h2>
-
 ➕ Suggest a Shloka
-
 </h2>
 
 <div class="card">
 
 <textarea
-
 id="suggestText"
-
 placeholder="Paste or type a Sanskrit shloka..."
-
-style="
-
-width:100%;
-
-height:120px;
-
-padding:12px;
-
-">
-
-</textarea>
+style="width:100%;height:120px;padding:12px"
+></textarea>
 
 <br>
 
 <button
-
 class="primary"
-
 onclick="submitSuggestion()">
 
 Submit for Review
@@ -1580,160 +1202,130 @@ Submit for Review
 
 </section>
 
+
 </main>
 
-<!-- NAVIGATION -->
+
+
+<!-- ================= NAVIGATION ================= -->
 
 <nav>
 
 <button onclick="show('home')">
-
 🏠<br>Home
-
 </button>
 
 <button onclick="show('std10')">
-
 📖<br>Std.10
-
 </button>
 
 <button onclick="show('granthas')">
-
 📚<br>Granthas
-
 </button>
 
 <button onclick="show('favorites')">
-
 ❤️<br>Favorites
-
 </button>
 
 <button onclick="show('suggest')">
-
 ➕<br>Suggest
-
 </button>
 
 </nav>
 
 </div>
 
-<script>
 
-/* CHAPTER DATA */
+
+<!-- ================= MAIN JAVASCRIPT ================= -->
+
+<script>
 
 const chapters = [
 
 ["1","सं वदध्वम्"],
-
 ["2","यद्भविष्यो विनश्यति"],
-
 ["3","स्वस्थवृत्तं समाचर"],
-
 ["4","जनार्दनस्य पश्चिमः सन्देशः"],
-
 ["5","गुणवती कन्या"],
-
 ["6","काष्ठखण्डः"],
-
 ["7","सुभाषितकुसुमानि"],
-
 ["8","साक्षिभूतः मनुष्यः"],
-
 ["9","चक्षुष्मान् अन्ध एव"],
-
 ["10","त्वमेका भवानी"],
-
 ["11","यस्य जननं तस्य मरणम्"],
-
 ["12","कलिकालसर्वज्ञो हेमचन्द्रः"],
-
 ["13","गीतामृतम्"],
-
 ["14","क इदं दुष्करं कुर्यात्"],
-
 ["15","जयः पराजयो वा"],
-
 ["16","अद्भुतं युद्धम्"],
-
 ["17","स्वाभाविकं सादृश्यम्"],
-
 ["18","मुक्तानि मुक्तकानि"],
-
 ["19","सत्यं मयूरः"],
-
 ["20","तथैव तिष्ठति"]
 
 ];
 
-/* PAGE SHOW */
 
 function show(id){
 
 document
-
-.querySelectorAll('.view')
-
+.querySelectorAll(".view")
 .forEach(function(v){
 
-v.classList.remove('active');
+v.classList.remove("active");
 
 });
 
-document
+const target =
+document.getElementById(id);
 
-.getElementById(id)
+if(!target){
 
-.classList.add('active');
+console.error("Section not found:",id);
+return;
+
+}
+
+target.classList.add("active");
 
 window.scrollTo(0,0);
 
-if(id === 'favorites'){
-
+if(id==="favorites"){
 renderFavorites();
-
 }
 
 }
 
-/* CHAPTER LIST */
 
 function renderChapters(){
 
 const box =
+document.getElementById("chapterList");
 
-document.getElementById('chapterList');
+if(!box)return;
 
-box.innerHTML = chapters.map(function(c){
+box.innerHTML =
+chapters.map(function(c){
 
 return `
 
 <div
-
 class="card chapter"
-
 onclick="openChapter('${c[0]}')">
 
 <div class="chapterNo">
-
 ${c[0]}
-
 </div>
 
 <div>
 
 <div class="chapterTitle">
-
 ${c[1]}
-
 </div>
 
 <div class="chapterSub">
-
 પાઠ ખોલવા માટે Tap કરો
-
 </div>
 
 </div>
@@ -1742,74 +1334,46 @@ ${c[1]}
 
 `;
 
-}).join('');
+}).join("");
 
 }
 
-renderChapters();
-
-/* OPEN CHAPTER */
 
 function openChapter(number){
 
 const chapter =
-
 chapters.find(function(c){
 
-return c[0] === number;
+return c[0]===number;
 
 });
 
+if(!chapter)return;
+
 document
-
-.getElementById('chapterHeading')
-
+.getElementById("chapterHeading")
 .textContent =
-
-'પાઠ ' +
-
-chapter[0] +
-
-' — ' +
-
-chapter[1];
+"પાઠ "+chapter[0]+" — "+chapter[1];
 
 document
-
-.getElementById('chapterContent')
-
+.getElementById("chapterContent")
 .innerHTML = `
 
 <h3>
-
 📖 પાઠનો વિભાગ
-
 </h3>
 
-<p
-
-style="
-
-font:14px Arial;
-
-line-height:1.7;
-
-">
+<p style="font:14px Arial;line-height:1.7">
 
 આ પાઠ માટે સંસ્કૃત શ્લોક,
-
 ગુજરાતી અર્થ,
-
 પ્રશ્નોત્તરી અને
-
 અભ્યાસ સામગ્રી અહીં મળશે.
 
 </p>
 
 <button
-
 class="primary"
-
 onclick="show('poster')">
 
 🖼 Create Poster
@@ -1818,71 +1382,52 @@ onclick="show('poster')">
 
 `;
 
-show('chapter');
+show("chapter");
 
 }
 
-/* FAVORITES */
+
+renderChapters();
+
+
 
 function addFavorite(text){
 
 let favorites =
-
 JSON.parse(
-
-localStorage.getItem(
-
-'sanskritamFavorites'
-
-) || '[]'
-
+localStorage.getItem("sanskritamFavorites")||"[]"
 );
 
 if(!favorites.includes(text)){
-
 favorites.push(text);
-
 }
 
 localStorage.setItem(
-
-'sanskritamFavorites',
-
+"sanskritamFavorites",
 JSON.stringify(favorites)
-
 );
 
-alert('❤️ Favorite Saved');
+alert("❤️ Favorite Saved");
 
 }
 
-/* DISPLAY FAVORITES */
+
 
 function renderFavorites(){
 
 let favorites =
-
 JSON.parse(
-
-localStorage.getItem(
-
-'sanskritamFavorites'
-
-) || '[]'
-
+localStorage.getItem("sanskritamFavorites")||"[]"
 );
 
 const box =
+document.getElementById("favoriteList");
 
-document.getElementById(
+if(!box)return;
 
-'favoriteList'
+if(favorites.length===0){
 
-);
-
-if(favorites.length === 0){
-
-box.innerHTML = `
+box.innerHTML=`
 
 <div class="empty">
 
@@ -1897,192 +1442,208 @@ return;
 }
 
 box.innerHTML =
-
 favorites.map(function(text){
 
 return `
 
-<div
-
-style="
-
+<div style="
 font-size:18px;
-
 line-height:1.7;
-
 margin-bottom:15px;
-
 ">
 
-❤️ ${text}
+❤️ ${escapeHtml(text)}
 
 </div>
 
 `;
 
-}).join('');
+}).join("");
 
 }
 
-/* SEARCH */
+
+
+function escapeHtml(value){
+
+return String(value)
+
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
 
 function searchAll(){
 
+const input =
+document.getElementById("searchBox");
+
+if(!input)return;
+
 const q =
+input.value.trim().toLowerCase();
 
-document
-
-.getElementById('searchBox')
-
-.value
-
-.trim()
-
-.toLowerCase();
-
-if(!q){
-
-return;
-
-}
+if(!q)return;
 
 const chapter =
-
 chapters.find(function(c){
 
 return c[1]
-
 .toLowerCase()
-
 .includes(q);
 
 });
 
 if(chapter){
-
-show('std10');
-
+show("std10");
 }
 
 }
 
-/* SUGGESTION */
+
 
 function submitSuggestion(){
 
+const textarea =
+document.getElementById("suggestText");
+
 const text =
-
-document
-
-.getElementById('suggestText')
-
-.value
-
-.trim();
+textarea.value.trim();
 
 if(!text){
 
-alert('કૃપા કરીને શ્લોક લખો.');
-
+alert("કૃપા કરીને શ્લોક લખો.");
 return;
 
 }
 
 localStorage.setItem(
-
-'lastSuggestion',
-
+"lastSuggestion",
 text
-
 );
 
 alert(
-
-'✅ Suggestion saved successfully!'
-
+"✅ Suggestion saved successfully!"
 );
 
-document
-
-.getElementById('suggestText')
-
-.value = '';
+textarea.value="";
 
 }
 
-/* SHARE */
+
 
 async function sharePoster(){
 
 if(navigator.share){
 
+try{
+
 await navigator.share({
 
-title:'Sanskritam',
-
-text:'Sanskrit Shloka'
+title:"Sanskritam",
+text:"Sanskrit Shloka"
 
 });
 
+}catch(error){
+
+console.log("Share cancelled");
+
 }
 
-else{
+}else{
 
 alert(
-
-'Share supported નથી. Print → Save as PDF ઉપયોગ કરો.'
-
+"Share supported નથી. Print → Save as PDF ઉપયોગ કરો."
 );
 
 }
 
 }
 
+
+
+/* ================= LANGUAGE ================= */
+
+const languageSelect =
+document.getElementById("language");
+
+if(languageSelect){
+
+languageSelect.addEventListener(
+"change",
+function(){
+
+const lang=this.value;
+
+const tag =
+document.querySelector(".tag");
+
+const input =
+document.getElementById("searchBox");
+
+
+if(lang==="ગુજરાતી"){
+
+document.documentElement.lang="gu";
+
+if(tag)
+tag.textContent=
+"સંસ્કૃતના જ્ઞાનની શોધ કરો";
+
+if(input)
+input.placeholder=
+"શ્લોક, ગ્રંથ, સુભાષિત શોધો...";
+
+}
+
+
+else if(lang==="हिन्दी"){
+
+document.documentElement.lang="hi";
+
+if(tag)
+tag.textContent=
+"संस्कृत के ज्ञान की खोज करें";
+
+if(input)
+input.placeholder=
+"श्लोक, ग्रंथ, सुभाषित खोजें...";
+
+}
+
+
+else{
+
+document.documentElement.lang="en";
+
+if(tag)
+tag.textContent=
+"Discover the Wisdom of Sanskrit";
+
+if(input)
+input.placeholder=
+"Search Shloka, Granth, Subhashita...";
+
+}
+
+});
+
+}
+
 </script>
 
-// LANGUAGE SYSTEM
-const languageSelect = document.querySelector("select");
 
-languageSelect.addEventListener("change", function () {
 
-    const lang = this.value;
-
-    if (lang === "ગુજરાતી") {
-        document.documentElement.lang = "gu";
-
-        document.querySelector(".tag").textContent =
-            "સંસ્કૃતના જ્ઞાનની શોધ કરો";
-
-        document.querySelector("input").placeholder =
-            "શ્લોક, ગ્રંથ, સુભાષિત શોધો...";
-
-    } 
-    
-    else if (lang === "हिन्दी") {
-        document.documentElement.lang = "hi";
-
-        document.querySelector(".tag").textContent =
-            "संस्कृत के ज्ञान की खोज करें";
-
-        document.querySelector("input").placeholder =
-            "श्लोक, ग्रंथ, सुभाषित खोजें...";
-
-    } 
-    
-    else {
-        document.documentElement.lang = "en";
-
-        document.querySelector(".tag").textContent =
-            "Discover the Wisdom of Sanskrit";
-
-        document.querySelector("input").placeholder =
-            "Search Shloka, Granth, Subhashita...";
-    }
+<!-- ================= GITA ENGINE ================= -->
 
 <script src="gita.js"></script>
 
 
-</script>
 </body>
-
 </html>
