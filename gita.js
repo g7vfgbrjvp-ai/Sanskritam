@@ -1176,25 +1176,23 @@ function renderGita(){
 
 /* =========================================================
    GUJARATI TRANSLATION
+   Google + MyMemory Fallback
    ========================================================= */
 
 async function translateGujarati(key){
 
-    const verse =
-        gita[key];
-
+    const verse = gita[key];
 
     const target =
-        document.getElementById(
-            "gu-" + key
-        );
-
+        document.getElementById("gu-" + key);
 
     if(!verse || !target){
-
         return;
-
     }
+
+
+    target.textContent =
+        "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
 
 
     if(!verse.english){
@@ -1205,6 +1203,173 @@ async function translateGujarati(key){
         return;
 
     }
+
+
+    /* =====================================================
+       METHOD 1 — GOOGLE TRANSLATE
+       ===================================================== */
+
+    try{
+
+        const googleURL =
+            "https://translate.googleapis.com/translate_a/single" +
+            "?client=gtx" +
+            "&sl=en" +
+            "&tl=gu" +
+            "&dt=t" +
+            "&q=" +
+            encodeURIComponent(
+                verse.english
+            );
+
+
+        const response =
+            await fetch(
+                googleURL,
+                {
+                    method:"GET",
+                    cache:"no-cache"
+                }
+            );
+
+
+        if(response.ok){
+
+            const data =
+                await response.json();
+
+
+            let gujarati = "";
+
+
+            if(
+                Array.isArray(data) &&
+                Array.isArray(data[0])
+            ){
+
+                gujarati =
+                    data[0]
+                    .map(function(part){
+
+                        return (
+                            part &&
+                            part[0]
+                        )
+                        ?
+                        part[0]
+                        :
+                        "";
+
+                    })
+                    .join("");
+
+            }
+
+
+            if(
+                gujarati &&
+                gujarati.trim()
+            ){
+
+                target.textContent =
+                    gujarati.trim();
+
+                return;
+
+            }
+
+        }
+
+    }
+
+    catch(error){
+
+        console.warn(
+            "Google Gujarati translation failed:",
+            error
+        );
+
+    }
+
+
+    /* =====================================================
+       METHOD 2 — MYMEMORY FALLBACK
+       ===================================================== */
+
+    try{
+
+        target.textContent =
+            "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
+
+
+        const myMemoryURL =
+            "https://api.mymemory.translated.net/get" +
+            "?q=" +
+            encodeURIComponent(
+                verse.english
+            ) +
+            "&langpair=en|gu";
+
+
+        const response =
+            await fetch(
+                myMemoryURL,
+                {
+                    method:"GET",
+                    cache:"no-cache"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "MyMemory HTTP Error"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const gujarati =
+            data?.responseData?.translatedText || "";
+
+
+        if(
+            gujarati &&
+            gujarati.trim()
+        ){
+
+            target.textContent =
+                gujarati.trim();
+
+            return;
+
+        }
+
+
+        throw new Error(
+            "Gujarati translation empty"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Gujarati Translation Error:",
+            error
+        );
+
+
+        target.textContent =
+            "ગુજરાતી અર્થ હાલમાં મેળવી શકાયો નથી. Internet ચાલુ રાખીને ફરી પ્રયાસ કરો.";
+
+    }
+
 
 
     target.textContent =
