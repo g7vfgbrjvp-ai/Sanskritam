@@ -1,320 +1,249 @@
- /* SANSKRITAM - Bhagavad Gita 700 Shloka Loader
-   Source: TheAum Bhagavad Gita API (Sanskrit + Hindi + English)
-   Gujarati meaning is generated on demand from the Hindi meaning.
+/*
+ SANSKRITAM - Bhagavad Gita 700 Verse Engine
+
+ Sanskrit + English source:
+ https://github.com/ChiragMirani/gita-quotes
+ Hindi source:
+ https://github.com/kashishkhullar/gita_json
+
+ Note:
+ The source dataset contains 701 records because it includes BG 13.1
+ in an edition where that verse is separately numbered. This app
+ intentionally excludes BG 13.1 so the displayed total is 700.
 */
 
-const GITA_API = "https://bhagavadgita.theaum.org";
-const GUJARATI_API = "https://translate.googleapis.com/translate_a/single";
+const GITA_EN_URL =
+"https://raw.githubusercontent.com/ChiragMirani/gita-quotes/main/docs/data.json";
 
-const GITA_CHAPTERS_FULL = [
-  [1,"अर्जुनविषादयोग",47],[2,"सांख्ययोग",72],[3,"कर्मयोग",43],
-  [4,"ज्ञानकर्मसंन्यासयोग",42],[5,"कर्मसंन्यासयोग",29],[6,"आत्मसंयमयोग",47],
-  [7,"ज्ञानविज्ञानयोग",30],[8,"अक्षरब्रह्मयोग",28],[9,"राजविद्याराजगुह्ययोग",34],
-  [10,"विभूतियोग",42],[11,"विश्वरूपदर्शनयोग",55],[12,"भक्तियोग",20],
-  [13,"क्षेत्रक्षेत्रज्ञविभागयोग",34],[14,"गुणत्रयविभागयोग",27],[15,"पुरुषोत्तमयोग",20],
-  [16,"दैवासुरसम्पद्विभागयोग",24],[17,"श्रद्धात्रयविभागयोग",28],[18,"मोक्षसंन्यासयोग",78]
+const GITA_HI_URL =
+"https://raw.githubusercontent.com/kashishkhullar/gita_json/master/dataset_hindi.json";
+
+const chapterNames = [
+"अर्जुनविषादयोग","सांख्ययोग","कर्मयोग","ज्ञानकर्मसंन्यासयोग",
+"कर्मसंन्यासयोग","आत्मसंयमयोग","ज्ञानविज्ञानयोग","अक्षरब्रह्मयोग",
+"राजविद्याराजगुह्ययोग","विभूतियोग","विश्वरूपदर्शनयोग","भक्तियोग",
+"क्षेत्रक्षेत्रज्ञविभागयोग","गुणत्रयविभागयोग","पुरुषोत्तमयोग",
+"दैवासुरसम्पद्विभागयोग","श्रद्धात्रयविभागयोग","मोक्षसंन्यासयोग"
 ];
 
-const gitaVerseCount = GITA_CHAPTERS_FULL.map(x => x[2]);
+let gita = {};
+let hindiData = null;
+let allVerses = [];
+let currentLang = "gu";
 
-if (typeof gita === "undefined") {
-  var gita = {};
+const canonicalCounts = [
+47,72,43,42,29,47,30,28,34,42,55,20,34,27,20,24,28,78
+];
+
+async function loadGita(){
+
+ const status=document.getElementById("loadStatus");
+
+ try{
+   const [enRes,hiRes]=await Promise.all([
+     fetch(GITA_EN_URL),
+     fetch(GITA_HI_URL)
+   ]);
+
+   if(!enRes.ok) throw new Error("English dataset failed");
+
+   const en=await enRes.json();
+
+   if(hiRes.ok) hindiData=await hiRes.json();
+
+   const rows=en.verses.filter(v =>
+     !(v.chapter===13 && v.verse===1)
+   );
+
+   allVerses=rows;
+
+   rows.forEach(v=>{
+     const key=`${v.chapter}-${v.verse}`;
+     gita[key]={
+       chapter:v.chapter,
+       verse:v.verse,
+       sanskrit:v.sanskrit || "",
+       english:(v.english_alt || v.english || "").replace(/^\d+\.\d+\s*/,""),
+       hindi:getHindi(v.chapter,v.verse)
+     };
+   });
+
+   buildChapters();
+
+   status.innerHTML=
+     `✅ <b>${rows.length} શ્લોક તૈયાર છે</b><br>
+      18 અધ્યાય • Sanskrit • English • हिन्दी<br>
+      ગુજરાતી અર્થ શ્લોક ખોલતી વખતે તૈયાર થશે.`;
+
+ }catch(err){
+   console.error(err);
+   status.innerHTML=
+     `❌ શ્લોક data લોડ થઈ શક્યો નથી.<br>
+      Internet connection તપાસો અને page ફરી ખોલો.`;
+ }
 }
 
-function escHtml(value) {
-  return String(value ?? "")
-    .replace(/&/g,"&amp;").replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;").replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+function getHindi(ch,vs){
+
+ if(!hindiData || !hindiData.chapters) return "";
+
+ const c=hindiData.chapters[String(ch)];
+ if(!c || !c.verses) return "";
+
+ const v=c.verses[String(vs)];
+ if(!v) return "";
+
+ return v.meaning || v.verse_meaning_hindi || "";
 }
 
-function gitaSection() {
-  return document.querySelector('section[id="gita"]');
-}
+function buildChapters(){
 
-function buildFullGitaLibrary() {
-  const section = gitaSection();
-  if (!section) return;
+ const box=document.getElementById("chapterList");
+ box.innerHTML="";
 
-  let box = document.getElementById("fullGitaLibrary");
-  if (!box) {
-    box = document.createElement("div");
-    box.id = "fullGitaLibrary";
-    const heading = section.querySelector("h2");
-    const card = section.querySelector(".card");
-    if (card) card.after(box);
-    else if (heading) heading.after(box);
-    else section.appendChild(box);
-  }
+ for(let ch=1;ch<=18;ch++){
 
-  box.innerHTML = `
-    <div class="card">
-      <h3>📚 ભગવદ્ ગીતા — 18 અધ્યાય • 700 શ્લોક</h3>
-      <p style="font:14px Arial;line-height:1.6">
-        કોઈપણ અધ્યાય પસંદ કરો. પછી શ્લોક નંબર દબાવતા Sanskrit,
-        English, हिन्दी અને ગુજરાતી અર્થ ખુલશે.
-      </p>
-      <div id="gitaChapterButtons"></div>
+   const verses=allVerses.filter(v=>v.chapter===ch);
+
+   const card=document.createElement("div");
+   card.className="card";
+
+   card.innerHTML=`
+    <div class="chapter">
+      <div class="chapterNo">${ch}</div>
+      <div>
+       <div class="chapterTitle">
+        અધ્યાય ${ch} — ${chapterNames[ch-1]}
+       </div>
+       <div class="chapterSub">
+        ${verses.length} શ્લોક
+       </div>
+      </div>
     </div>
-  `;
+    <div class="verseGrid"></div>
+   `;
 
-  const chaptersBox = document.getElementById("gitaChapterButtons");
+   box.appendChild(card);
 
-  GITA_CHAPTERS_FULL.forEach(([ch,name,count]) => {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.style.marginBottom = "10px";
+   const grid=card.querySelector(".verseGrid");
 
-    card.innerHTML = `
-      <div class="chapter">
-        <div class="chapterNo">${ch}</div>
-        <div>
-          <div class="chapterTitle">અધ્યાય ${ch} — ${escHtml(name)}</div>
-          <div class="chapterSub">${count} શ્લોક</div>
-        </div>
-      </div>
-      <div class="gitaVerseGrid" id="gitaGrid${ch}"
-           style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px"></div>
-    `;
-
-    chaptersBox.appendChild(card);
-
-    const grid = card.querySelector(`#gitaGrid${ch}`);
-
-    for (let v = 1; v <= count; v++) {
-      const btn = document.createElement("button");
-      btn.className = "primary";
-      btn.style.margin = "2px";
-      btn.style.padding = "9px 5px";
-      btn.textContent = `${ch}.${v}`;
-      btn.onclick = () => openGitaVerseByNumber(ch, v);
-      grid.appendChild(btn);
-    }
-  });
+   verses.forEach(v=>{
+     const b=document.createElement("button");
+     b.className="primary";
+     b.textContent=`${ch}.${v.verse}`;
+     b.onclick=()=>openVerse(ch,v.verse);
+     grid.appendChild(b);
+   });
+ }
 }
 
-async function getGitaData(chapter, verse) {
-  const cacheKey = `sanskritam_gita_${chapter}_${verse}`;
+async function openVerse(ch,vs){
 
-  try {
-    const cached = localStorage.getItem(cacheKey);
-    if (cached) return JSON.parse(cached);
-  } catch (_) {}
+ const key=`${ch}-${vs}`;
+ const v=gita[key];
 
-  const [textRes, translationRes] = await Promise.all([
-    fetch(`${GITA_API}/text/${chapter}/${verse}`),
-    fetch(`${GITA_API}/text/translations/${chapter}/${verse}`)
-  ]);
+ if(!v){
+   alert("આ શ્લોક ઉપલબ્ધ નથી.");
+   return;
+ }
 
-  if (!textRes.ok || !translationRes.ok) {
-    throw new Error("Gita API unavailable");
-  }
+ show("verse");
 
-  const textJson = await textRes.json();
-  const transJson = await translationRes.json();
-  const text = textJson.data?.[0];
-  const translations = transJson.data || [];
+ document.getElementById("verseTitle").textContent=
+   `📖 Bhagavad Gita ${ch}.${vs}`;
 
-  const hindi =
-    translations.find(x => x.lang === "hi" &&
-      /Tejomayananda|Ramsukhdas/i.test(x.name || "")) ||
-    translations.find(x => x.lang === "hi");
+ document.getElementById("verseSource").textContent=
+   `અધ્યાય ${ch} • શ્લોક ${vs}`;
 
-  const english =
-    translations.find(x => x.lang === "en" &&
-      /Sivananda|Purohit/i.test(x.name || "")) ||
-    translations.find(x => x.lang === "en");
+ document.getElementById("verseSanskrit").textContent=v.sanskrit;
+ document.getElementById("verseEnglish").textContent=v.english;
+ document.getElementById("verseHindi").textContent=v.hindi || "हिन्दी अर्थ उपलब्ध नहीं है।";
 
-  const result = {
-    chapter,
-    verse,
-    sanskrit: text?.shloka || "",
-    hindi: hindi?.translation || "",
-    english: english?.translation || ""
-  };
+ document.getElementById("verseGujarati").textContent=
+   "⏳ ગુજરાતી અર્થ તૈયાર થઈ રહ્યો છે...";
 
-  try {
-    localStorage.setItem(cacheKey, JSON.stringify(result));
-  } catch (_) {}
+ try{
+   const gu=await translateToGujarati(v.hindi || v.english);
+   document.getElementById("verseGujarati").textContent=gu;
+ }catch(e){
+   document.getElementById("verseGujarati").textContent=
+     "ગુજરાતી અર્થ માટે Internet connection જરૂરી છે.";
+ }
 
-  return result;
+ document.getElementById("favoriteBtn").onclick=
+   ()=>addFavorite(v.sanskrit);
 }
 
-async function translateHindiToGujarati(hindiText) {
-  if (!hindiText) return "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+async function translateToGujarati(text){
 
-  const cacheKey = "sanskritam_gu_" +
-    btoa(unescape(encodeURIComponent(hindiText))).slice(0,80);
+ if(!text) return "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
 
-  try {
-    const cached = localStorage.getItem(cacheKey);
-    if (cached) return cached;
-  } catch (_) {}
+ const cacheKey="gujarati_"+btoa(unescape(encodeURIComponent(text))).slice(0,80);
 
-  const url =
-    `${GUJARATI_API}?client=gtx&sl=hi&tl=gu&dt=t&q=${encodeURIComponent(hindiText)}`;
+ const old=localStorage.getItem(cacheKey);
+ if(old)return old;
 
-  const res = await fetch(url);
+ const url=
+ "https://translate.googleapis.com/translate_a/single?client=gtx&sl=hi&tl=gu&dt=t&q="+
+ encodeURIComponent(text);
 
-  if (!res.ok) {
-    throw new Error("Gujarati translation unavailable");
-  }
+ const res=await fetch(url);
 
-  const data = await res.json();
+ if(!res.ok) throw new Error("translation failed");
 
-  const translated = (data?.[0] || [])
-    .map(x => x?.[0] || "")
-    .join("")
-    .trim();
+ const data=await res.json();
 
-  if (!translated) {
-    throw new Error("Empty Gujarati translation");
-  }
+ const result=(data[0]||[]).map(x=>x[0]||"").join("").trim();
 
-  try {
-    localStorage.setItem(cacheKey, translated);
-  } catch (_) {}
+ if(!result) throw new Error("empty translation");
 
-  return translated;
+ localStorage.setItem(cacheKey,result);
+
+ return result;
 }
 
-async function openGitaVerseByNumber(chapter, verseNumber) {
-  let section = document.getElementById("dynamicGitaVerse");
+function searchGita(){
 
-  if (!section) {
-    section = document.createElement("section");
-    section.id = "dynamicGitaVerse";
-    section.className = "view";
-    document.querySelector("main")?.appendChild(section);
-  }
+ const q=document.getElementById("searchBox").value.trim().toLowerCase();
 
-  document.querySelectorAll(".view")
-    .forEach(v => v.classList.remove("active"));
+ if(!q){
+   document.getElementById("chapterList").style.display="";
+   return;
+ }
 
-  section.classList.add("active");
-  window.scrollTo(0,0);
+ const matches=allVerses.filter(v=>{
+   const key=`${v.chapter}.${v.verse}`;
+   return key.includes(q) ||
+          v.sanskrit.toLowerCase().includes(q) ||
+          (v.english||"").toLowerCase().includes(q);
+ });
 
-  section.innerHTML = `
-    <div class="back" onclick="show('gita')">
-      ← Bhagavad Gita
-    </div>
+ const box=document.getElementById("chapterList");
+ box.innerHTML="";
 
-    <div class="card">
-      <h2>📖 Bhagavad Gita ${chapter}.${verseNumber}</h2>
-      <div class="empty">⏳ શ્લોક લોડ થઈ રહ્યો છે...</div>
-    </div>
-  `;
+ if(!matches.length){
+   box.innerHTML='<div class="card empty">કોઈ શ્લોક મળ્યો નથી.</div>';
+   return;
+ }
 
-  try {
-    const data = await getGitaData(chapter, verseNumber);
+ const card=document.createElement("div");
+ card.className="card";
+ card.innerHTML="<h3>🔎 Search Results</h3><div class='verseGrid'></div>";
+ box.appendChild(card);
 
-    let gujarati = "";
+ const grid=card.querySelector(".verseGrid");
 
-    try {
-      gujarati = await translateHindiToGujarati(data.hindi);
-    } catch (_) {
-      gujarati =
-        "ગુજરાતી અર્થ લોડ થઈ શક્યો નથી. Internet connection તપાસો.";
-    }
-
-    section.innerHTML = `
-      <div class="back" onclick="show('gita')">
-        ← Bhagavad Gita
-      </div>
-
-      <div class="card">
-
-        <h2>📖 Bhagavad Gita ${chapter}.${verseNumber}</h2>
-
-        <div class="shlok">
-          ${escHtml(data.sanskrit).replace(/\n/g,"<br>")}
-        </div>
-
-        <hr>
-
-        <h3>🇬🇧 English Meaning</h3>
-
-        <p style="font:16px Arial;line-height:1.7">
-          ${escHtml(data.english).replace(/\n/g,"<br>")}
-        </p>
-
-        <h3>🇮🇳 हिन्दी अर्थ</h3>
-
-        <p style="font:16px Arial;line-height:1.7">
-          ${escHtml(data.hindi).replace(/\n/g,"<br>")}
-        </p>
-
-        <h3>🇮🇳 ગુજરાતી અર્થ</h3>
-
-        <p style="font:16px Arial;line-height:1.7">
-          ${escHtml(gujarati).replace(/\n/g,"<br>")}
-        </p>
-
-        <button class="primary"
-          onclick="addFavorite('${escHtml(data.sanskrit)}')">
-          ❤️ Favorite
-        </button>
-
-      </div>
-    `;
-
-  } catch (error) {
-
-    section.innerHTML = `
-      <div class="back" onclick="show('gita')">
-        ← Bhagavad Gita
-      </div>
-
-      <div class="card">
-
-        <h2>📖 Bhagavad Gita ${chapter}.${verseNumber}</h2>
-
-        <p style="font:15px Arial;line-height:1.6">
-          શ્લોક લોડ થઈ શક્યો નથી.
-          Internet connection તપાસો અને ફરી પ્રયાસ કરો.
-        </p>
-
-        <button class="primary"
-          onclick="openGitaVerseByNumber(${chapter},${verseNumber})">
-          🔄 ફરી પ્રયાસ
-        </button>
-
-      </div>
-    `;
-  }
+ matches.slice(0,100).forEach(v=>{
+   const b=document.createElement("button");
+   b.className="primary";
+   b.textContent=`${v.chapter}.${v.verse}`;
+   b.onclick=()=>openVerse(v.chapter,v.verse);
+   grid.appendChild(b);
+ });
 }
 
-/* Existing website compatibility */
-function openGitaVerse(key) {
+window.gita=gita;
+window.openGitaVerse=openVerse;
+window.loadGita=loadGita;
 
-  const verse = gita[key];
-
-  if (verse) {
-    return openGitaVerseByNumber(
-      verse.chapter,
-      verse.verse
-    );
-  }
-
-  const match = String(key).match(/(\d+)[-.](\d+)/);
-
-  if (match) {
-    return openGitaVerseByNumber(
-      Number(match[1]),
-      Number(match[2])
-    );
-  }
-}
-
-function initFullGita() {
-  buildFullGitaLibrary();
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener(
-    "DOMContentLoaded",
-    initFullGita
-  );
-} else {
-  initFullGita();
-}
+document.addEventListener("DOMContentLoaded",loadGita);
