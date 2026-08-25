@@ -2080,69 +2080,7 @@ languageSelect.addEventListener("change", function () {
 
 <script src="gita.js"></script>
 
-<script>
-function openGitaVerse(key){
 
-    const verse = gita[key];
-
-    if(!verse){
-        alert("આ શ્લોક હજુ ઉપલબ્ધ નથી.");
-        return;
-    }
-
-    document.querySelectorAll(".view").forEach(function(v){
-        v.classList.remove("active");
-    });
-
-    let old = document.getElementById("dynamicVerse");
-
-    if(!old){
-
-        old = document.createElement("section");
-
-        old.id = "dynamicVerse";
-        old.className = "view";
-
-        document.querySelector("main").appendChild(old);
-    }
-
-    old.innerHTML = `
-        <div class="back" onclick="show('gita')">
-            ← Bhagavad Gita
-        </div>
-
-        <div class="card">
-
-            <h2>
-                📖 Bhagavad Gita ${verse.chapter}.${verse.verse}
-            </h2>
-
-            <div class="shlok">
-                ${verse.sanskrit}
-            </div>
-
-            <hr>
-
-            <h3>🇬🇧 English</h3>
-            <p>${verse.english}</p>
-
-            <h3>🇮🇳 हिन्दी</h3>
-            <p>${verse.hindi}</p>
-
-            <h3>🇮🇳 ગુજરાતી</h3>
-            <p>${verse.gujarati}</p>
-
-            <button class="primary"
-                onclick="addFavorite('${verse.sanskrit.replace(/'/g,"\\'")}')">
-                ❤️ Favorite
-            </button>
-
-        </div>
-    `;
-
-    old.classList.add("active");
-    window.scrollTo(0,0);
-}
 </script>
 </body>
 
