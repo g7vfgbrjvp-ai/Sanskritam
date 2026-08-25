@@ -1789,7 +1789,46 @@ alert(
 }
 
 </script>
+// LANGUAGE SYSTEM
+const languageSelect = document.querySelector("select");
 
+languageSelect.addEventListener("change", function () {
+
+    const lang = this.value;
+
+    if (lang === "ગુજરાતી") {
+        document.documentElement.lang = "gu";
+
+        document.querySelector(".tag").textContent =
+            "સંસ્કૃતના જ્ઞાનની શોધ કરો";
+
+        document.querySelector("input").placeholder =
+            "શ્લોક, ગ્રંથ, સુભાષિત શોધો...";
+
+    } 
+    
+    else if (lang === "हिन्दी") {
+        document.documentElement.lang = "hi";
+
+        document.querySelector(".tag").textContent =
+            "संस्कृत के ज्ञान की खोज करें";
+
+        document.querySelector("input").placeholder =
+            "श्लोक, ग्रंथ, सुभाषित खोजें...";
+
+    } 
+    
+    else {
+        document.documentElement.lang = "en";
+
+        document.querySelector(".tag").textContent =
+            "Discover the Wisdom of Sanskrit";
+
+        document.querySelector("input").placeholder =
+            "Search Shloka, Granth, Subhashita...";
+    }
+
+});
 </body>
 
 </html>
