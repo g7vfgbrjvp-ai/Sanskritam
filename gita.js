@@ -102,7 +102,73 @@ function openGitaVerse(key){
  <button class="primary" onclick="saveGitaFavorite('${key}')">❤️ Favorite</button>`;
  const sec=document.getElementById("gita"),box=document.getElementById("gita700List");
  if(sec)box?sec.insertBefore(r,box):sec.appendChild(r);
- translateGujarati(key);
+ async function translateGujarati(key){
+
+    const x = gita[key];
+    const target = document.getElementById("gu-" + key);
+
+    if(!x || !target){
+        return;
+    }
+
+    target.textContent = "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
+
+    if(!x.english){
+        target.textContent =
+            "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+        return;
+    }
+
+    try{
+
+        const url =
+        "https://translate.googleapis.com/translate_a/single" +
+        "?client=gtx" +
+        "&sl=en" +
+        "&tl=gu" +
+        "&dt=t" +
+        "&q=" +
+        encodeURIComponent(x.english);
+
+        const response = await fetch(url);
+
+        if(!response.ok){
+            throw new Error("Translation failed");
+        }
+
+        const data = await response.json();
+
+        let gujarati = "";
+
+        if(Array.isArray(data) && Array.isArray(data[0])){
+
+            gujarati = data[0]
+                .map(function(item){
+                    return item && item[0] ? item[0] : "";
+                })
+                .join("");
+        }
+
+        if(gujarati.trim()){
+
+            target.textContent = gujarati.trim();
+
+        }else{
+
+            target.textContent =
+                "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+        }
+
+    }catch(error){
+
+        console.error(
+            "Gujarati Translation Error:",
+            error
+        );
+
+        target.textContent =
+            "ગુજરાતી અર્થ મેળવવામાં સમસ્યા આવી. Internet ચાલુ રાખો.";
+    }
 }
 
 function saveGitaFavorite(key){
