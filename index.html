@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SANSKRITAM 🪷</title>
+
+<style>
+body{
+margin:0;
+font-family:Georgia,serif;
+background:#f7f0df;
+color:#342719;
+}
+.app{
+max-width:430px;
+margin:auto;
+min-height:100vh;
+background:#f7f0df;
+}
+header{
+text-align:center;
+padding:25px 15px 15px;
+}
+.logo{
+font-size:30px;
+font-weight:bold;
+letter-spacing:2px;
+}
+.tag{
+color:#b87909;
+font:14px Arial;
+margin-top:5px;
+}
+main{
+padding:15px 16px 90px;
+}
+.search{
+background:#fffaf0;
+border:1px solid #e7d9bc;
+border-radius:28px;
+padding:14px;
+margin-bottom:16px;
+}
+.search input{
+border:0;
+outline:0;
+background:transparent;
+width:90%;
+font-size:15px;
+}
+.card{
+background:#fffaf0;
+border:1px solid #e7d9bc;
+border-radius:18px;
+padding:18px;
+margin-bottom:14px;
+box-shadow:0 5px 18px #00000012;
+}
+.shlok{
+font-size:20px;
+line-height:1.7;
+}
+.source{
+font:13px Arial;
+color:#786b5a;
+margin-top:8px;
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+.tile{
+background:#fffaf0;
+border:1px solid #e7d9bc;
+border-radius:16px;
+padding:15px 5px;
+text-align:center;
+cursor:pointer;
+}
+.tile b{
+display:block;
+font:600 12px Arial;
+margin-top:7px;
+}
+.ico{
+font-size:25px;
+}
+button{
+border:0;
+border-radius:12px;
+padding:11px 14px;
+margin:4px;
+background:#fff3d6;
+color:#342719;
+font-weight:bold;
+}
+.primary{
+background:#b87909;
+color:white;
+}
+.view{
+display:none;
+}
+.view.active{
+display:block;
+}
+.back{
+color:#b87909;
+font:14px Arial;
+margin-bottom:15px;
+cursor:pointer;
+}
+.poster{
+background:linear-gradient(160deg,#d9b66b,#75603c,#302b25);
+color:white;
+border-radius:16px;
+padding:35px 20px;
+text-align:center;
+min-height:250px;
+}
+.meaning{
+font:14px Arial;
+line-height:1.6;
+margin-top:15px;
+}
+nav{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:min(430px,100%);
+background:#fffaf0;
+border-top:1px solid #e7d9bc;
+display:flex;
+justify-content:space-around;
+padding:8px 3px;
+}
+nav button{
+background:none;
+font-size:11px;
+margin:0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+<div class="logo">🪷 SANSKRITAM</div>
+<div class="tag">Discover the Wisdom of Sanskrit</div>
+
+<div style="margin-top:15px">
+🌐
+<select>
+<option>English</option>
+<option>ગુજરાતી</option>
+<option>हिन्दी</option>
+</select>
+</div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="view active">
+
+<div class="search">
+🔍
+<input placeholder="Search Shloka, Granth, Subhashita...">
+</div>
+
+<div class="card">
+
+<h3>☀️ SHLOKA OF THE DAY</h3>
+
+<div class="shlok">
+कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।
+</div>
+
+<div class="source">
+— Bhagavad Gita 2.47
+</div>
+
+<button onclick="show('detail')">
+Read Meaning
+</button>
+
+<button class="primary" onclick="show('poster')">
+🖼 Create Poster
+</button>
+
+</div>
+
+<div class="grid">
+
+<div class="tile" onclick="show('shlokas')">
+<span class="ico">📖</span>
+<b>Shlokas</b>
+</div>
+
+<div class="tile" onclick="show('granthas')">
+<span class="ico">📚</span>
+<b>Granthas</b>
+</div>
+
+<div class="tile" onclick="show('subhashita')">
+<span class="ico">🌿</span>
+<b>Subhashitas</b>
+</div>
+
+<div class="tile" onclick="show('poster')">
+<span class="ico">🖼️</span>
+<b>Poster</b>
+</div>
+
+<div class="tile" onclick="show('favorites')">
+<span class="ico">❤️</span>
+<b>Favorites</b>
+</div>
+
+<div class="tile" onclick="show('suggest')">
+<span class="ico">➕</span>
+<b>Suggest</b>
+</div>
+
+</div>
+</section>
+
+
+<!-- SHLOKAS -->
+<section id="shlokas" class="view">
+
+<div class="back" onclick="show('home')">← Home</div>
+
+<h2>📖 Shlokas</h2>
+
+<div class="card">
+<div class="shlok">
+योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।
+</div>
+
+<div class="source">
+Bhagavad Gita 2.48
+</div>
+
+<button onclick="show('detail')">
+Open
+</button>
+</div>
+
+<div class="card">
+<div class="shlok">
+विद्या ददाति विनयं विनयाद् याति पात्रताम्।
+</div>
+
+<div class="source">
+Subhashita
+</div>
+</div>
+
+</section>
+
+
+<!-- GRANTHAS -->
+
+<section id="granthas" class="view">
+
+<div class="back" onclick="show('home')">
+← Home
+</div>
+
+<h2>📚 Granth Library</h2>
+
+<div class="card">
+
+🕉️ Bhagavad Gita
+<hr>
+
+🚩 Ramayana
+<hr>
+
+⚔️ Mahabharata
+<hr>
+
+📖 Upanishads
+<hr>
+
+🌿 Vedas
+<hr>
+
+📜 Puranas
+<hr>
+
+🌸 Niti & Subhashita Granthas
+
+</div>
+
+</section>
+
+
+<!-- SHLOKA DETAIL -->
+
+<section id="detail" class="view">
+
+<div class="back" onclick="show('home')">
+← Home
+</div>
+
+<div class="card">
+
+<div class="shlok">
+
+योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।<br>
+
+सिद्ध्यसिद्ध्योः समो भूत्वा समत्वं योग उच्यते॥
+
+</div>
+
+<div class="source">
+— Bhagavad Gita 2.48
+</div>
+
+<h3>English Meaning</h3>
+
+<p>
+Perform your duty with a balanced mind,
+free from attachment to success or failure.
+</p>
+
+<h3>ગુજરાતી અર્થ</h3>
+
+<p>
+ફળની આસક્તિ છોડીને સમતાભાવથી કર્તવ્ય કરો.
+</p>
+
+<h3>हिन्दी अर्थ</h3>
+
+<p>
+फल की आसक्ति छोड़कर कर्तव्य करो और
+सफलता-असफलता में समान भाव रखो।
+</p>
+
+<button class="primary"
+onclick="show('poster')">
+🖼 Create Poster
+</button>
+
+<button>
+❤️ Add to Favorites
+</button>
+
+</div>
+
+</section>
+
+
+<!-- POSTER -->
+
+<section id="poster" class="view">
+
+<div class="back" onclick="show('home')">
+← Home
+</div>
+
+<h2>🖼️ Meaning-Based Poster</h2>
+
+<div class="poster">
+
+<small>SANSKRITAM</small>
+
+<div class="shlok">
+
+योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।
+
+</div>
+
+<div class="meaning">
+
+Perform your duty with a calm and balanced mind,
+free from attachment.
+
+</div>
+
+</div>
+
+<br>
+
+<button>Classic</button>
+<button>Divine</button>
+<button>Minimal</button>
+
+<button class="primary">
+Download / Share
+</button>
+
+</section>
+
+
+<!-- SUBHASHITA -->
+
+<section id="subhashita" class="view">
+
+<div class="back" onclick="show('home')">
+← Home
+</div>
+
+<h2>🌿 Subhashitas</h2>
+
+<div class="card">
+
+<div class="shlok">
+विद्या ददाति विनयं विनयाद् याति पात्रताम्।
+</div>
+
+<p>
+Knowledge gives humility;
+humility leads to worthiness.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- FAVORITES -->
+
+<section id="favorites" class="view">
+
+<div class="back" onclick="show('home')">
+← Home
+</div>
+
+<h2>❤️ My Favorites</h2>
+
+<div class="card">
+Your saved shlokas will appear here.
+</div>
+
+</section>
+
+
+<!-- SUGGEST -->
+
+<section id="suggest" class="view">
+
+<div class="back" onclick="show('home')">
+← Home
+</div>
+
+<h2>➕ Suggest a Shloka</h2>
+
+<div class="card">
+
+<textarea
+placeholder="Paste or type a Sanskrit shloka..."
+style="width:100%;height:120px;padding:12px">
+</textarea>
+
+<br>
+
+<button class="primary">
+Submit for Review
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+
+<nav>
+
+<button onclick="show('home')">
+🏠 Home
+</button>
+
+<button onclick="show('shlokas')">
+📖 Shlokas
+</button>
+
+<button onclick="show('granthas')">
+📚 Granthas
+</button>
+
+<button onclick="show('favorites')">
+❤️ Favorites
+</button>
+
+<button onclick="show('suggest')">
+➕ Suggest
+</button>
+
+</nav>
+
+</div>
+
+
+<script>
+
+function show(id){
+
+document
+.querySelectorAll('.view')
+.forEach(v=>v.classList.remove('active'));
+
+document
+.getElementById(id)
+.classList.add('active');
+
+window.scrollTo(0,0);
+
+}
+
+</script>
+
+</body>
+</html>
