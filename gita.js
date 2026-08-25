@@ -1,4 +1,4 @@
-/* SANSKRITAM - Bhagavad Gita 700 Shloka Loader
+ /* SANSKRITAM - Bhagavad Gita 700 Shloka Loader
    Source: TheAum Bhagavad Gita API (Sanskrit + Hindi + English)
    Gujarati meaning is generated on demand from the Hindi meaning.
 */
