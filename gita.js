@@ -25,6 +25,75 @@ function normalizeRow(r){
 }
 
 function normalizeData(data){
+   function findHindi(c,v){
+
+    if(!hindiData){
+        return "";
+    }
+
+    const key = `${c}-${v}`;
+
+    let x = null;
+
+    if(hindiData[key]){
+        x = hindiData[key];
+    }
+
+    else if(hindiData.verses?.[c]?.[v]){
+        x = hindiData.verses[c][v];
+    }
+
+    else if(hindiData.chapters?.[c]?.verses?.[v]){
+        x = hindiData.chapters[c].verses[v];
+    }
+
+    else if(Array.isArray(hindiData)){
+
+        x = hindiData.find(function(item){
+
+            const chapter = Number(
+                item.chapter ??
+                item.chapter_number ??
+                item.chapterNumber
+            );
+
+            const verse = Number(
+                item.verse ??
+                item.verse_number ??
+                item.verseNumber
+            );
+
+            return chapter === c && verse === v;
+
+        });
+
+    }
+
+    if(!x){
+        return "";
+    }
+
+    if(typeof x === "string"){
+        return x;
+    }
+
+    return String(
+
+        x.meaning_hindi ??
+        x.hindi_meaning ??
+        x.hindiMeaning ??
+        x.verse_meaning_hindi ??
+        x.translation_hindi ??
+        x.translation ??
+        x.meaning ??
+        x.hindi ??
+        x.text_hindi ??
+        x.text ??
+        ""
+
+    ).trim();
+
+}
  let rows=[];
  if(Array.isArray(data)) rows=data;
  else if(Array.isArray(data?.verses)) rows=data.verses;
