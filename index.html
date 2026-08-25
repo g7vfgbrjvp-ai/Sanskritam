@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="gu">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1">
+
 <title>SANSKRITAM 🪷</title>
 
 <style>
+
+/* =====================================================
+   BASIC
+   ===================================================== */
+
 *{
     box-sizing:border-box;
 }
@@ -32,7 +42,6 @@ header{
 .logo{
     font-size:30px;
     font-weight:bold;
-    letter-spacing:2px;
 }
 
 .tag{
@@ -81,31 +90,6 @@ main{
     margin-top:8px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-}
-
-.tile{
-    background:#fffaf0;
-    border:1px solid #e7d9bc;
-    border-radius:16px;
-    padding:15px 5px;
-    text-align:center;
-    cursor:pointer;
-}
-
-.tile b{
-    display:block;
-    font:600 12px Arial;
-    margin-top:7px;
-}
-
-.ico{
-    font-size:25px;
-}
-
 button{
     border:0;
     border-radius:12px;
@@ -137,24 +121,42 @@ button{
     cursor:pointer;
 }
 
-.poster{
-    background:linear-gradient(
-        160deg,
-        #d9b66b,
-        #75603c,
-        #302b25
-    );
-    color:white;
-    border-radius:16px;
-    padding:35px 20px;
-    text-align:center;
-    min-height:250px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
 }
 
-.meaning{
+.tile{
+    background:#fffaf0;
+    border:1px solid #e7d9bc;
+    border-radius:16px;
+    padding:15px 5px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.tile b{
+    display:block;
+    font:600 12px Arial;
+    margin-top:7px;
+}
+
+.ico{
+    font-size:25px;
+}
+
+textarea{
+    border:1px solid #e7d9bc;
+    border-radius:10px;
+    font-family:Arial;
+}
+
+.empty{
     font:14px Arial;
-    line-height:1.6;
-    margin-top:15px;
+    color:#786b5a;
+    text-align:center;
+    padding:20px;
 }
 
 .chapter{
@@ -192,11 +194,9 @@ select{
     background:#fffaf0;
 }
 
-textarea{
-    border:1px solid #e7d9bc;
-    border-radius:10px;
-    font-family:Arial;
-}
+/* =====================================================
+   BOTTOM NAV
+   ===================================================== */
 
 nav{
     position:fixed;
@@ -209,7 +209,7 @@ nav{
     display:flex;
     justify-content:space-around;
     padding:8px 3px;
-    z-index:5;
+    z-index:100;
 }
 
 nav button{
@@ -218,18 +218,96 @@ nav button{
     margin:0;
 }
 
-.empty{
-    font:14px Arial;
-    color:#786b5a;
-    text-align:center;
-    padding:20px;
+/* =====================================================
+   GITA
+   ===================================================== */
+
+#gita700List{
+    margin-top:14px;
 }
+
+.gita700-status,
+.gita700-chapter,
+.gita700-reader{
+    background:#fffaf0;
+    border:1px solid #e7d9bc;
+    border-radius:18px;
+    padding:16px;
+    margin:14px 0;
+    box-shadow:0 5px 18px #00000012;
+}
+
+.gita700-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.gita700-btn{
+    border:0;
+    border-radius:14px;
+    padding:14px 5px;
+    background:#b87909;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    margin:0;
+}
+
+.gita700-sanskrit{
+    font-size:22px;
+    line-height:1.8;
+    white-space:pre-line;
+    margin-top:10px;
+}
+
+.gita700-meaning{
+    font-family:Arial,sans-serif;
+    font-size:16px;
+    line-height:1.8;
+}
+
+.gita-title{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.gita-loading{
+    text-align:center;
+    padding:25px 10px;
+    font-family:Arial;
+}
+
+.gita-error{
+    background:#fff3d6;
+    border:1px solid #e7d9bc;
+    border-radius:18px;
+    padding:18px;
+    font-family:Arial;
+    line-height:1.6;
+}
+
+@media(max-width:360px){
+
+    .gita700-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
 <div class="app">
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
 
 <header>
 
@@ -238,7 +316,7 @@ nav button{
     </div>
 
     <div class="tag">
-        Discover the Wisdom of Sanskrit
+        સંસ્કૃતના જ્ઞાનની શોધ કરો
     </div>
 
     <div style="margin-top:15px">
@@ -273,8 +351,8 @@ nav button{
 
         <input
             id="searchBox"
-            oninput="searchAll()"
             placeholder="શ્લોક, ગ્રંથ, સુભાષિત શોધો..."
+            oninput="searchAll()"
         >
 
     </div>
@@ -294,28 +372,18 @@ nav button{
         </div>
 
         <div class="source">
-
             — Bhagavad Gita 2.47
-
         </div>
 
-
-        <button
-            onclick="show('detail')"
-        >
-
+        <button onclick="show('detail')">
             Read Meaning
-
         </button>
-
 
         <button
             class="primary"
             onclick="show('poster')"
         >
-
             🖼 Create Poster
-
         </button>
 
     </div>
@@ -329,8 +397,8 @@ nav button{
 
         <p
             style="
-                font:14px Arial;
-                line-height:1.6;
+            font:14px Arial;
+            line-height:1.6;
             "
         >
 
@@ -340,14 +408,11 @@ nav button{
 
         </p>
 
-
         <button
             class="primary"
             onclick="show('std10')"
         >
-
             📚 Open Std. 10
-
         </button>
 
     </div>
@@ -355,100 +420,52 @@ nav button{
 
     <div class="grid">
 
-
         <div
             class="tile"
             onclick="show('shlokas')"
         >
-
-            <span class="ico">
-                📖
-            </span>
-
-            <b>
-                Shlokas
-            </b>
-
+            <span class="ico">📖</span>
+            <b>Shlokas</b>
         </div>
-
 
         <div
             class="tile"
             onclick="show('granthas')"
         >
-
-            <span class="ico">
-                📚
-            </span>
-
-            <b>
-                Granthas
-            </b>
-
+            <span class="ico">📚</span>
+            <b>Granthas</b>
         </div>
-
 
         <div
             class="tile"
             onclick="show('subhashita')"
         >
-
-            <span class="ico">
-                🌿
-            </span>
-
-            <b>
-                Subhashitas
-            </b>
-
+            <span class="ico">🌿</span>
+            <b>Subhashitas</b>
         </div>
-
 
         <div
             class="tile"
             onclick="show('poster')"
         >
-
-            <span class="ico">
-                🖼️
-            </span>
-
-            <b>
-                Poster
-            </b>
-
+            <span class="ico">🖼️</span>
+            <b>Poster</b>
         </div>
-
 
         <div
             class="tile"
             onclick="show('favorites')"
         >
-
-            <span class="ico">
-                ❤️
-            </span>
-
-            <b>
-                Favorites
-            </b>
-
+            <span class="ico">❤️</span>
+            <b>Favorites</b>
         </div>
-
 
         <div
             class="tile"
             onclick="show('suggest')"
         >
-
-            <span class="ico">
-                ➕
-            </span>
-
-            <b>
-                Suggest
-            </b>
-
+            <span class="ico">➕</span>
+            <b>Suggest</b>
         </div>
 
     </div>
@@ -460,25 +477,18 @@ nav button{
      STD 10
      ===================================================== -->
 
-<section
-    id="std10"
-    class="view"
->
+<section id="std10" class="view">
 
     <div
         class="back"
         onclick="show('home')"
     >
-
         ← Home
-
     </div>
-
 
     <h2>
         🎓 Std. 10 Sanskrit
     </h2>
-
 
     <div id="chapterList"></div>
 
@@ -489,20 +499,14 @@ nav button{
      CHAPTER
      ===================================================== -->
 
-<section
-    id="chapter"
-    class="view"
->
+<section id="chapter" class="view">
 
     <div
         class="back"
         onclick="show('std10')"
     >
-
         ← Std. 10
-
     </div>
-
 
     <div class="card">
 
@@ -519,25 +523,18 @@ nav button{
      SHLOKAS
      ===================================================== -->
 
-<section
-    id="shlokas"
-    class="view"
->
+<section id="shlokas" class="view">
 
     <div
         class="back"
         onclick="show('home')"
     >
-
         ← Home
-
     </div>
-
 
     <h2>
         📖 Shlokas
     </h2>
-
 
     <div class="card">
 
@@ -548,22 +545,13 @@ nav button{
 
         </div>
 
-
         <div class="source">
-
             Bhagavad Gita 2.48
-
         </div>
 
-
-        <button
-            onclick="show('detail')"
-        >
-
+        <button onclick="show('detail')">
             Open
-
         </button>
-
 
         <button
             onclick="
@@ -572,9 +560,7 @@ nav button{
             )
             "
         >
-
             ❤️ Favorite
-
         </button>
 
     </div>
@@ -586,20 +572,14 @@ nav button{
      DETAIL
      ===================================================== -->
 
-<section
-    id="detail"
-    class="view"
->
+<section id="detail" class="view">
 
     <div
         class="back"
         onclick="show('home')"
     >
-
         ← Home
-
     </div>
-
 
     <div class="card">
 
@@ -612,70 +592,41 @@ nav button{
 
         </div>
 
-
         <div class="source">
-
             — Bhagavad Gita 2.48
-
         </div>
-
 
         <h3>
             English Meaning
         </h3>
 
         <p>
-
             Perform your duty with a balanced mind,
             free from attachment to success or failure.
-
         </p>
-
 
         <h3>
             ગુજરાતી અર્થ
         </h3>
 
         <p>
-
-            ફળની આસક્તિ છોડીને
-            સમતાભાવથી કર્તવ્ય કરો.
-
+            ફળની આસક્તિ છોડીને સમતાભાવથી કર્તવ્ય કરો.
         </p>
-
 
         <h3>
             हिन्दी अर्थ
         </h3>
 
         <p>
-
-            फल की आसक्ति छोड़कर कर्तव्य करो
-            और सफलता-असफलता में समान भाव रखो।
-
+            फल की आसक्ति छोड़कर कर्तव्य करो और
+            सफलता-असफलता में समान भाव रखो।
         </p>
-
 
         <button
             class="primary"
             onclick="show('poster')"
         >
-
             🖼 Create Poster
-
-        </button>
-
-
-        <button
-            onclick="
-            addFavorite(
-            'योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय।'
-            )
-            "
-        >
-
-            ❤️ Add to Favorites
-
         </button>
 
     </div>
@@ -687,70 +638,59 @@ nav button{
      POSTER
      ===================================================== -->
 
-<section
-    id="poster"
-    class="view"
->
+<section id="poster" class="view">
 
     <div
         class="back"
         onclick="show('home')"
     >
-
         ← Home
-
     </div>
-
 
     <h2>
         🖼️ Meaning-Based Poster
     </h2>
 
+    <div class="card">
 
-    <div class="poster">
+        <div
+            style="
+            background:linear-gradient(
+            160deg,
+            #d9b66b,
+            #75603c,
+            #302b25
+            );
+            color:white;
+            border-radius:16px;
+            padding:35px 20px;
+            text-align:center;
+            "
+        >
 
-        <small>
-            SANSKRITAM
-        </small>
+            <small>SANSKRITAM</small>
 
+            <div class="shlok">
 
-        <div class="shlok">
+                योगस्थः कुरु कर्माणि<br>
+                सङ्गं त्यक्त्वा धनञ्जय।
 
-            योगस्थः कुरु कर्माणि<br>
-            सङ्गं त्यक्त्वा धनञ्जय।
+            </div>
+
+            <p>
+                Perform your duty with a calm
+                and balanced mind.
+            </p>
 
         </div>
 
+        <br>
 
-        <div class="meaning">
-
-            Perform your duty with a calm
-            and balanced mind,
-            free from attachment.
-
-        </div>
+        <button onclick="window.print()">
+            🖨 Save / Print
+        </button>
 
     </div>
-
-
-    <br>
-
-
-    <button onclick="window.print()">
-
-        🖨 Save / Print
-
-    </button>
-
-
-    <button
-        class="primary"
-        onclick="sharePoster()"
-    >
-
-        📤 Share
-
-    </button>
 
 </section>
 
@@ -759,25 +699,18 @@ nav button{
      GRANTHAS
      ===================================================== -->
 
-<section
-    id="granthas"
-    class="view"
->
+<section id="granthas" class="view">
 
     <div
         class="back"
         onclick="show('home')"
     >
-
         ← Home
-
     </div>
-
 
     <h2>
         📚 Granth Library
     </h2>
-
 
     <div class="card">
 
@@ -789,19 +722,14 @@ nav button{
             18 Chapters • 700 Shlokas
         </p>
 
-
         <button
             class="primary"
             onclick="show('gita')"
         >
-
             Open Granth
-
         </button>
 
-
         <hr>
-
 
         <h3>
             🚩 Ramayana
@@ -811,19 +739,14 @@ nav button{
             Valmiki Ramayana
         </p>
 
-
         <button
             class="primary"
             onclick="show('ramayana')"
         >
-
             Open Granth
-
         </button>
 
-
         <hr>
-
 
         <h3>
             ⚔️ Mahabharata
@@ -833,19 +756,14 @@ nav button{
             The great epic of Bharat
         </p>
 
-
         <button
             class="primary"
             onclick="show('mahabharata')"
         >
-
             Open Granth
-
         </button>
 
-
         <hr>
-
 
         <h3>
             📖 Upanishads
@@ -855,19 +773,14 @@ nav button{
             Principal Upanishads
         </p>
 
-
         <button
             class="primary"
             onclick="show('upanishads')"
         >
-
             Open Granth
-
         </button>
 
-
         <hr>
-
 
         <h3>
             🌿 Vedas
@@ -878,19 +791,14 @@ nav button{
             Samaveda • Atharvaveda
         </p>
 
-
         <button
             class="primary"
             onclick="show('vedas')"
         >
-
             Open Granth
-
         </button>
 
-
         <hr>
-
 
         <h3>
             🌺 Puranas
@@ -900,14 +808,11 @@ nav button{
             18 Major Puranas
         </p>
 
-
         <button
             class="primary"
             onclick="show('puranas')"
         >
-
             Open Granth
-
         </button>
 
     </div>
@@ -916,27 +821,42 @@ nav button{
 
 
 <!-- =====================================================
-     BHAGAVAD GITA
+     GITA
      ===================================================== -->
 
-<section
-    id="gita"
-    class="view"
->
+<section id="gita" class="view">
 
     <div
         class="back"
         onclick="show('granthas')"
     >
-
         ← Granthas
-
     </div>
-
 
     <h2>
         🕉️ Bhagavad Gita
     </h2>
+
+    <!-- Gita engine આ જગ્યાએ automatically
+         18 chapters + 700 buttons બનાવશે -->
+
+    <div id="gita700List">
+
+        <div class="gita700-status">
+
+            <div class="gita-loading">
+
+                📖 ભગવદ્ ગીતા લોડ થઈ રહી છે...
+
+                <br><br>
+
+                કૃપા કરીને થોડી ક્ષણ રાહ જુઓ.
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -945,20 +865,14 @@ nav button{
      RAMAYANA
      ===================================================== -->
 
-<section
-    id="ramayana"
-    class="view"
->
+<section id="ramayana" class="view">
 
     <div
         class="back"
         onclick="show('granthas')"
     >
-
         ← Granthas
-
     </div>
-
 
     <div class="card">
 
@@ -971,10 +885,8 @@ nav button{
         </h3>
 
         <p>
-            Valmiki Ramayana •
-            Sanskrit Shlokas
+            Valmiki Ramayana • Sanskrit Shlokas
         </p>
-
 
         <button class="primary">
             Coming Soon
@@ -989,20 +901,14 @@ nav button{
      MAHABHARATA
      ===================================================== -->
 
-<section
-    id="mahabharata"
-    class="view"
->
+<section id="mahabharata" class="view">
 
     <div
         class="back"
         onclick="show('granthas')"
     >
-
         ← Granthas
-
     </div>
-
 
     <div class="card">
 
@@ -1011,12 +917,9 @@ nav button{
         </h2>
 
         <p>
-
             મહાભારતના સંસ્કૃત શ્લોક
             અને તેમના અર્થ અહીં ઉમેરવામાં આવશે.
-
         </p>
-
 
         <button class="primary">
             Coming Soon
@@ -1031,20 +934,14 @@ nav button{
      UPANISHADS
      ===================================================== -->
 
-<section
-    id="upanishads"
-    class="view"
->
+<section id="upanishads" class="view">
 
     <div
         class="back"
         onclick="show('granthas')"
     >
-
         ← Granthas
-
     </div>
-
 
     <div class="card">
 
@@ -1053,12 +950,9 @@ nav button{
         </h2>
 
         <p>
-
             Principal Upanishads અને
             તેમના શ્લોકો અહીં ઉમેરવામાં આવશે.
-
         </p>
-
 
         <button class="primary">
             Coming Soon
@@ -1073,20 +967,14 @@ nav button{
      VEDAS
      ===================================================== -->
 
-<section
-    id="vedas"
-    class="view"
->
+<section id="vedas" class="view">
 
     <div
         class="back"
         onclick="show('granthas')"
     >
-
         ← Granthas
-
     </div>
-
 
     <div class="card">
 
@@ -1095,12 +983,9 @@ nav button{
         </h2>
 
         <p>
-
             Rigveda • Yajurveda •
             Samaveda • Atharvaveda
-
         </p>
-
 
         <button class="primary">
             Coming Soon
@@ -1115,20 +1000,14 @@ nav button{
      PURANAS
      ===================================================== -->
 
-<section
-    id="puranas"
-    class="view"
->
+<section id="puranas" class="view">
 
     <div
         class="back"
         onclick="show('granthas')"
     >
-
         ← Granthas
-
     </div>
-
 
     <div class="card">
 
@@ -1137,12 +1016,9 @@ nav button{
         </h2>
 
         <p>
-
             18 Major Puranas અને
             તેમના શ્લોકો અહીં ઉમેરવામાં આવશે.
-
         </p>
-
 
         <button class="primary">
             Coming Soon
@@ -1157,25 +1033,18 @@ nav button{
      SUBHASHITA
      ===================================================== -->
 
-<section
-    id="subhashita"
-    class="view"
->
+<section id="subhashita" class="view">
 
     <div
         class="back"
         onclick="show('home')"
     >
-
         ← Home
-
     </div>
-
 
     <h2>
         🌿 Subhashitas
     </h2>
-
 
     <div class="card">
 
@@ -1186,14 +1055,10 @@ nav button{
 
         </div>
 
-
         <p>
-
             Knowledge gives humility;
             humility leads to worthiness.
-
         </p>
-
 
         <button
             onclick="
@@ -1202,9 +1067,7 @@ nav button{
             )
             "
         >
-
             ❤️ Favorite
-
         </button>
 
     </div>
@@ -1216,25 +1079,18 @@ nav button{
      FAVORITES
      ===================================================== -->
 
-<section
-    id="favorites"
-    class="view"
->
+<section id="favorites" class="view">
 
     <div
         class="back"
         onclick="show('home')"
     >
-
         ← Home
-
     </div>
-
 
     <h2>
         ❤️ My Favorites
     </h2>
-
 
     <div
         id="favoriteList"
@@ -1248,25 +1104,18 @@ nav button{
      SUGGEST
      ===================================================== -->
 
-<section
-    id="suggest"
-    class="view"
->
+<section id="suggest" class="view">
 
     <div
         class="back"
         onclick="show('home')"
     >
-
         ← Home
-
     </div>
-
 
     <h2>
         ➕ Suggest a Shloka
     </h2>
-
 
     <div class="card">
 
@@ -1274,23 +1123,19 @@ nav button{
             id="suggestText"
             placeholder="Paste or type a Sanskrit shloka..."
             style="
-                width:100%;
-                height:120px;
-                padding:12px;
+            width:100%;
+            height:120px;
+            padding:12px;
             "
         ></textarea>
 
-
         <br>
-
 
         <button
             class="primary"
             onclick="submitSuggestion()"
         >
-
             Submit for Review
-
         </button>
 
     </div>
@@ -1333,78 +1178,65 @@ nav button{
 
 <script>
 
-/* =========================================================
-   STD 10 CHAPTERS
-   ========================================================= */
+/* =====================================================
+   STD 10 DATA
+   ===================================================== */
 
 const chapters = [
 
-    ["1","सं वदध्वम्"],
-    ["2","यद्भविष्यो विनश्यति"],
-    ["3","स्वस्थवृत्तं समाचर"],
-    ["4","जनार्दनस्य पश्चिमः सन्देशः"],
-    ["5","गुणवती कन्या"],
-    ["6","काष्ठखण्डः"],
-    ["7","सुभाषितकुसुमानि"],
-    ["8","साक्षिभूतः मनुष्यः"],
-    ["9","चक्षुष्मान् अन्ध एव"],
-    ["10","त्वमेका भवानी"],
-    ["11","यस्य जननं तस्य मरणम्"],
-    ["12","कलिकालसर्वज्ञो हेमचन्द्रः"],
-    ["13","गीतामृतम्"],
-    ["14","क इदं दुष्करं कुर्यात्"],
-    ["15","जयः पराजयो वा"],
-    ["16","अद्भुतं युद्धम्"],
-    ["17","स्वाभाविकं सादृश्यम्"],
-    ["18","मुक्तानि मुक्तकानि"],
-    ["19","सत्यं मयूरः"],
-    ["20","तथैव तिष्ठति"]
+["1","सं वदध्वम्"],
+["2","यद्भविष्यो विनश्यति"],
+["3","स्वस्थवृत्तं समाचर"],
+["4","जनार्दनस्य पश्चिमः सन्देशः"],
+["5","गुणवती कन्या"],
+["6","काष्ठखण्डः"],
+["7","सुभाषितकुसुमानि"],
+["8","साक्षिभूतः मनुष्यः"],
+["9","चक्षुष्मान् अन्ध एव"],
+["10","त्वमेका भवानी"],
+["11","यस्य जननं तस्य मरणम्"],
+["12","कलिकालसर्वज्ञो हेमचन्द्रः"],
+["13","गीतामृतम्"],
+["14","क इदं दुष्करं कुर्यात्"],
+["15","जयः पराजयो वा"],
+["16","अद्भुतं युद्धम्"],
+["17","स्वाभाविकं सादृश्यम्"],
+["18","मुक्तानि मुक्तकानि"],
+["19","सत्यं मयूरः"],
+["20","तथैव तिष्ठति"]
 
 ];
 
 
-/* =========================================================
-   SHOW PAGE
-   ========================================================= */
+/* =====================================================
+   PAGE SYSTEM
+   ===================================================== */
 
 function show(id){
 
     document
-        .querySelectorAll(".view")
-        .forEach(function(view){
+    .querySelectorAll(".view")
+    .forEach(function(v){
 
-            view.classList.remove("active");
+        v.classList.remove("active");
 
-        });
+    });
 
-
-    const target =
+    const page =
         document.getElementById(id);
 
-
-    if(!target){
-
-        console.error(
-            "SANSKRITAM: section not found:",
-            id
-        );
+    if(!page){
 
         return;
 
     }
 
-
-    target.classList.add("active");
-
+    page.classList.add("active");
 
     window.scrollTo({
-
         top:0,
-
         behavior:"smooth"
-
     });
-
 
     if(id === "favorites"){
 
@@ -1415,9 +1247,9 @@ function show(id){
 }
 
 
-/* =========================================================
-   RENDER STD 10
-   ========================================================= */
+/* =====================================================
+   STD10
+   ===================================================== */
 
 function renderChapters(){
 
@@ -1426,79 +1258,57 @@ function renderChapters(){
             "chapterList"
         );
 
-
     if(!box){
 
         return;
 
     }
 
-
     box.innerHTML =
-        chapters.map(
-            function(chapter){
+        chapters.map(function(c){
 
-                return `
+            return `
 
-                    <div
-                        class="card chapter"
-                        onclick="
-                        openChapter('${chapter[0]}')
-                        "
-                    >
+            <div
+                class="card chapter"
+                onclick="openChapter('${c[0]}')"
+            >
 
-                        <div class="chapterNo">
+                <div class="chapterNo">
+                    ${c[0]}
+                </div>
 
-                            ${chapter[0]}
+                <div>
 
-                        </div>
-
-
-                        <div>
-
-                            <div class="chapterTitle">
-
-                                ${chapter[1]}
-
-                            </div>
-
-
-                            <div class="chapterSub">
-
-                                પાઠ ખોલવા માટે Tap કરો
-
-                            </div>
-
-                        </div>
-
+                    <div class="chapterTitle">
+                        ${c[1]}
                     </div>
 
-                `;
+                    <div class="chapterSub">
+                        પાઠ ખોલવા માટે Tap કરો
+                    </div>
 
-            }
-        ).join("");
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
 
 }
-
 
 renderChapters();
 
 
-/* =========================================================
-   OPEN CHAPTER
-   ========================================================= */
-
 function openChapter(number){
 
     const chapter =
-        chapters.find(
-            function(item){
+        chapters.find(function(c){
 
-                return item[0] === number;
+            return c[0] === number;
 
-            }
-        );
-
+        });
 
     if(!chapter){
 
@@ -1506,16 +1316,13 @@ function openChapter(number){
 
     }
 
-
     document.getElementById(
         "chapterHeading"
     ).textContent =
-
         "પાઠ " +
         chapter[0] +
         " — " +
         chapter[1];
-
 
     document.getElementById(
         "chapterContent"
@@ -1525,11 +1332,10 @@ function openChapter(number){
             📖 પાઠનો વિભાગ
         </h3>
 
-
         <p
             style="
-                font:14px Arial;
-                line-height:1.7;
+            font:14px Arial;
+            line-height:1.7;
             "
         >
 
@@ -1540,27 +1346,16 @@ function openChapter(number){
 
         </p>
 
-
-        <button
-            class="primary"
-            onclick="show('poster')"
-        >
-
-            🖼 Create Poster
-
-        </button>
-
     `;
-
 
     show("chapter");
 
 }
 
 
-/* =========================================================
-   FAVORITE
-   ========================================================= */
+/* =====================================================
+   FAVORITES
+   ===================================================== */
 
 function addFavorite(text){
 
@@ -1571,46 +1366,28 @@ function addFavorite(text){
             ) || "[]"
         );
 
-
     if(!favorites.includes(text)){
 
         favorites.push(text);
 
     }
 
-
     localStorage.setItem(
         "sanskritamFavorites",
         JSON.stringify(favorites)
     );
 
-
-    alert(
-        "❤️ Favorite Saved"
-    );
+    alert("❤️ Favorite Saved");
 
 }
 
 
-/* =========================================================
-   RENDER FAVORITES
-   ========================================================= */
-
 function renderFavorites(){
-
-    let favorites =
-        JSON.parse(
-            localStorage.getItem(
-                "sanskritamFavorites"
-            ) || "[]"
-        );
-
 
     const box =
         document.getElementById(
             "favoriteList"
         );
-
 
     if(!box){
 
@@ -1618,6 +1395,12 @@ function renderFavorites(){
 
     }
 
+    let favorites =
+        JSON.parse(
+            localStorage.getItem(
+                "sanskritamFavorites"
+            ) || "[]"
+        );
 
     if(!favorites.length){
 
@@ -1635,36 +1418,33 @@ function renderFavorites(){
 
     }
 
-
     box.innerHTML =
-        favorites.map(
-            function(text){
+        favorites.map(function(text){
 
-                return `
+            return `
 
-                    <div
-                        style="
-                            font-size:18px;
-                            line-height:1.7;
-                            margin-bottom:15px;
-                        "
-                    >
+                <div
+                    style="
+                    font-size:18px;
+                    line-height:1.7;
+                    margin-bottom:15px;
+                    "
+                >
 
-                        ❤️ ${text}
+                    ❤️ ${text}
 
-                    </div>
+                </div>
 
-                `;
+            `;
 
-            }
-        ).join("");
+        }).join("");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    SEARCH
-   ========================================================= */
+   ===================================================== */
 
 function searchAll(){
 
@@ -1673,38 +1453,25 @@ function searchAll(){
             "searchBox"
         );
 
-
-    if(!input){
-
-        return;
-
-    }
-
-
-    const query =
+    const q =
         input.value
-            .trim()
-            .toLowerCase();
+        .trim()
+        .toLowerCase();
 
-
-    if(!query){
+    if(!q){
 
         return;
 
     }
-
 
     const chapter =
-        chapters.find(
-            function(item){
+        chapters.find(function(c){
 
-                return item[1]
-                    .toLowerCase()
-                    .includes(query);
+            return c[1]
+            .toLowerCase()
+            .includes(q);
 
-            }
-        );
-
+        });
 
     if(chapter){
 
@@ -1715,28 +1482,16 @@ function searchAll(){
 }
 
 
-/* =========================================================
-   SUGGESTION
-   ========================================================= */
+/* =====================================================
+   SUGGEST
+   ===================================================== */
 
 function submitSuggestion(){
 
-    const textarea =
+    const text =
         document.getElementById(
             "suggestText"
-        );
-
-
-    if(!textarea){
-
-        return;
-
-    }
-
-
-    const text =
-        textarea.value.trim();
-
+        ).value.trim();
 
     if(!text){
 
@@ -1748,183 +1503,1104 @@ function submitSuggestion(){
 
     }
 
-
     localStorage.setItem(
         "lastSuggestion",
         text
     );
 
-
     alert(
         "✅ Suggestion saved successfully!"
     );
 
-
-    textarea.value = "";
+    document.getElementById(
+        "suggestText"
+    ).value = "";
 
 }
 
 
+/* =====================================================
+   LANGUAGE
+   ===================================================== */
+
+document
+.getElementById("language")
+.addEventListener(
+    "change",
+    function(){
+
+        const lang =
+            this.value;
+
+        const tag =
+            document.querySelector(
+                ".tag"
+            );
+
+        const input =
+            document.getElementById(
+                "searchBox"
+            );
+
+        if(lang === "ગુજરાતી"){
+
+            document.documentElement.lang="gu";
+
+            tag.textContent =
+                "સંસ્કૃતના જ્ઞાનની શોધ કરો";
+
+            input.placeholder =
+                "શ્લોક, ગ્રંથ, સુભાષિત શોધો...";
+
+        }
+
+        else if(lang === "हिन्दी"){
+
+            document.documentElement.lang="hi";
+
+            tag.textContent =
+                "संस्कृत के ज्ञान की खोज करें";
+
+            input.placeholder =
+                "श्लोक, ग्रंथ, सुभाषित खोजें...";
+
+        }
+
+        else{
+
+            document.documentElement.lang="en";
+
+            tag.textContent =
+                "Discover the Wisdom of Sanskrit";
+
+            input.placeholder =
+                "Search Shloka, Granth, Subhashita...";
+
+        }
+
+    }
+);
+
+
 /* =========================================================
-   SHARE
+   BHAGAVAD GITA ENGINE
    ========================================================= */
 
-async function sharePoster(){
+const GITA_DATA_URL =
+"https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json";
 
-    if(navigator.share){
+const GITA_HINDI_URL =
+"https://raw.githubusercontent.com/kashishkhullar/gita_json/master/gita.json";
 
-        try{
 
-            await navigator.share({
+const GITA_CHAPTERS = [
 
-                title:"Sanskritam",
+[1,"अर्जुनविषादयोग",47],
+[2,"सांख्ययोग",72],
+[3,"कर्मयोग",43],
+[4,"ज्ञानकर्मसंन्यासयोग",42],
+[5,"कर्मसंन्यासयोग",29],
+[6,"आत्मसंयमयोग",47],
+[7,"ज्ञानविज्ञानयोग",30],
+[8,"अक्षरब्रह्मयोग",28],
+[9,"राजविद्याराजगुह्ययोग",34],
+[10,"विभूतियोग",42],
+[11,"विश्वरूपदर्शनयोग",55],
+[12,"भक्तियोग",20],
+[13,"क्षेत्रक्षेत्रज्ञविभागयोग",34],
+[14,"गुणत्रयविभागयोग",27],
+[15,"पुरुषोत्तमयोग",20],
+[16,"दैवासुरसम्पद्विभागयोग",24],
+[17,"श्रद्धात्रयविभागयोग",28],
+[18,"मोक्षसंन्यासयोग",78]
 
-                text:"Sanskrit Shloka"
+];
+
+
+let gita = {};
+let allVerses = [];
+let hindiData = null;
+
+
+/* =====================================================
+   ESCAPE
+   ===================================================== */
+
+function esc(value){
+
+    return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   NORMALIZE
+   ===================================================== */
+
+function normalizeRow(row){
+
+    const chapter =
+        Number(
+            row?.chapter ??
+            row?.chapter_number ??
+            row?.chapterNumber
+        );
+
+    const verse =
+        Number(
+            row?.verse ??
+            row?.verse_number ??
+            row?.verseNumber
+        );
+
+    const sanskrit =
+        row?.sanskrit ??
+        row?.text ??
+        row?.devanagari ??
+        row?.slok ??
+        row?.verse_text ??
+        "";
+
+    const english =
+        row?.english ??
+        row?.translation ??
+        row?.meaning ??
+        row?.translation_en ??
+        "";
+
+    if(!chapter || !verse || !sanskrit){
+
+        return null;
+
+    }
+
+    return {
+
+        chapter,
+        verse,
+        key:`${chapter}-${verse}`,
+        sanskrit:String(sanskrit).trim(),
+        english:String(english || "").trim()
+
+    };
+
+}
+
+
+/* =====================================================
+   NORMALIZE DATA
+   ===================================================== */
+
+function normalizeData(data){
+
+    let rows = [];
+
+    if(Array.isArray(data)){
+
+        rows = data;
+
+    }
+
+    else if(Array.isArray(data?.verses)){
+
+        rows = data.verses;
+
+    }
+
+    else if(Array.isArray(data?.data)){
+
+        rows = data.data;
+
+    }
+
+    else if(
+        data &&
+        typeof data === "object"
+    ){
+
+        if(Array.isArray(data.chapters)){
+
+            data.chapters.forEach(function(chapter){
+
+                if(Array.isArray(chapter.verses)){
+
+                    rows.push(
+                        ...chapter.verses
+                    );
+
+                }
 
             });
 
         }
 
-        catch(error){
+        if(!rows.length){
 
-            console.log(
-                "Share cancelled"
+            Object.entries(data)
+            .forEach(function([key,value]){
+
+                if(
+                    /^\d+-\d+$/.test(key) &&
+                    value &&
+                    typeof value === "object"
+                ){
+
+                    const parts =
+                        key.split("-");
+
+                    rows.push({
+
+                        ...value,
+
+                        chapter:
+                            value.chapter ??
+                            parts[0],
+
+                        verse:
+                            value.verse ??
+                            parts[1]
+
+                    });
+
+                }
+
+            });
+
+        }
+
+    }
+
+    return rows
+    .map(normalizeRow)
+    .filter(Boolean)
+    .sort(function(a,b){
+
+        return (
+            a.chapter-b.chapter ||
+            a.verse-b.verse
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   HINDI MEANING
+   ===================================================== */
+
+function findHindi(chapter,verse){
+
+    if(!hindiData){
+
+        return "";
+
+    }
+
+    const key =
+        `${chapter}-${verse}`;
+
+    let item = null;
+
+
+    if(hindiData[key]){
+
+        item =
+            hindiData[key];
+
+    }
+
+
+    else if(
+        hindiData.verses &&
+        hindiData.verses[chapter] &&
+        hindiData.verses[chapter][verse]
+    ){
+
+        item =
+            hindiData.verses
+            [chapter]
+            [verse];
+
+    }
+
+
+    else if(
+        hindiData.chapters &&
+        hindiData.chapters[chapter]
+    ){
+
+        const chapterData =
+            hindiData.chapters[chapter];
+
+        if(
+            chapterData.verses &&
+            chapterData.verses[verse]
+        ){
+
+            item =
+                chapterData.verses[verse];
+
+        }
+
+    }
+
+
+    if(Array.isArray(hindiData)){
+
+        item =
+            hindiData.find(function(row){
+
+                const c =
+                    Number(
+                        row?.chapter ??
+                        row?.chapter_number ??
+                        row?.chapterNumber
+                    );
+
+                const v =
+                    Number(
+                        row?.verse ??
+                        row?.verse_number ??
+                        row?.verseNumber
+                    );
+
+                return (
+                    c === chapter &&
+                    v === verse
+                );
+
+            });
+
+    }
+
+
+    if(!item){
+
+        return "";
+
+    }
+
+
+    if(typeof item === "string"){
+
+        return item.trim();
+
+    }
+
+
+    return String(
+
+        item.meaning_hindi ??
+        item.hindi_meaning ??
+        item.hindiMeaning ??
+        item.verse_meaning_hindi ??
+        item.translation_hindi ??
+        item.hindi_translation ??
+        item.translation ??
+        item.meaning ??
+        item.hindi ??
+        item.text_hindi ??
+        ""
+
+    ).trim();
+
+}
+
+
+/* =====================================================
+   BUILD GITA
+   ===================================================== */
+
+function buildGita(){
+
+    gita = {};
+
+    allVerses.forEach(function(verse){
+
+        gita[verse.key] = {
+
+            ...verse,
+
+            hindi:
+                findHindi(
+                    verse.chapter,
+                    verse.verse
+                ),
+
+            gujarati:""
+
+        };
+
+    });
+
+    window.gita = gita;
+
+}
+
+
+/* =====================================================
+   RENDER GITA
+   ===================================================== */
+
+function renderGita(){
+
+    const box =
+        document.getElementById(
+            "gita700List"
+        );
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    if(!allVerses.length){
+
+        box.innerHTML = `
+
+            <div class="gita700-status">
+
+                <div class="gita-loading">
+
+                    📖 શ્લોકો લોડ થઈ રહ્યા છે...
+
+                    <br><br>
+
+                    Internet ચાલુ રાખો.
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <div class="gita700-status">
+
+            📚 ભગવદ્ ગીતા —
+            18 અધ્યાય •
+            ${allVerses.length}
+            શ્લોક
+
+        </div>
+
+    `;
+
+
+    GITA_CHAPTERS.forEach(
+        function([chapter,name,count]){
+
+            html += `
+
+                <div class="gita700-chapter">
+
+                    <h3>
+
+                        અધ્યાય ${chapter}
+                        —
+                        ${esc(name)}
+
+                    </h3>
+
+                    <div class="gita700-grid">
+
+            `;
+
+
+            for(
+                let verse=1;
+                verse<=count;
+                verse++
+            ){
+
+                const key =
+                    `${chapter}-${verse}`;
+
+
+                if(gita[key]){
+
+                    html += `
+
+                        <button
+                            class="gita700-btn"
+                            onclick="
+                            openGitaVerse('${key}')
+                            "
+                        >
+
+                            શ્લોક
+                            ${chapter}.${verse}
+
+                        </button>
+
+                    `;
+
+                }
+
+            }
+
+
+            html += `
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    box.innerHTML = html;
+
+}
+
+
+/* =====================================================
+   GUJARATI TRANSLATION
+   ===================================================== */
+
+async function translateGujarati(key){
+
+    const verse =
+        gita[key];
+
+    const target =
+        document.getElementById(
+            "gu-"+key
+        );
+
+    if(!verse || !target){
+
+        return;
+
+    }
+
+
+    if(!verse.english){
+
+        target.textContent =
+            "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+
+        return;
+
+    }
+
+
+    target.textContent =
+        "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
+
+
+    try{
+
+        const url =
+            "https://translate.googleapis.com/" +
+            "translate_a/single" +
+            "?client=gtx" +
+            "&sl=en" +
+            "&tl=gu" +
+            "&dt=t" +
+            "&q=" +
+            encodeURIComponent(
+                verse.english
+            );
+
+
+        const response =
+            await fetch(url);
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Translation failed"
             );
 
         }
 
+
+        const data =
+            await response.json();
+
+
+        let result = "";
+
+
+        if(
+            Array.isArray(data) &&
+            Array.isArray(data[0])
+        ){
+
+            result =
+                data[0]
+                .map(function(part){
+
+                    return part?.[0] || "";
+
+                })
+                .join("");
+
+        }
+
+
+        target.textContent =
+            result.trim() ||
+            "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+
     }
 
-    else{
+    catch(error){
+
+        console.error(
+            error
+        );
+
+        target.textContent =
+            "ગુજરાતી અર્થ મેળવવા Internet ચાલુ રાખો.";
+
+    }
+
+}
+
+
+/* =====================================================
+   OPEN GITA VERSE
+   ===================================================== */
+
+function openGitaVerse(key){
+
+    const verse =
+        gita[key];
+
+
+    if(!verse){
 
         alert(
-            "Share supported નથી. Print → Save as PDF ઉપયોગ કરો."
+            "આ શ્લોક હાલમાં ઉપલબ્ધ નથી."
+        );
+
+        return;
+
+    }
+
+
+    document
+    .getElementById(
+        "gitaVerseReader"
+    )
+    ?.remove();
+
+
+    const reader =
+        document.createElement("div");
+
+
+    reader.id =
+        "gitaVerseReader";
+
+
+    reader.className =
+        "gita700-reader";
+
+
+    reader.innerHTML = `
+
+        <div
+            class="back"
+            onclick="
+            document
+            .getElementById(
+                'gitaVerseReader'
+            )
+            ?.remove()
+            "
+        >
+
+            ← શ્લોક સૂચિ
+
+        </div>
+
+
+        <div class="gita-title">
+
+            📖 Bhagavad Gita
+            ${verse.chapter}.${verse.verse}
+
+        </div>
+
+
+        <div class="source">
+
+            અધ્યાય ${verse.chapter}
+            • શ્લોક ${verse.verse}
+
+        </div>
+
+
+        <hr>
+
+
+        <h3>
+            🕉️ संस्कृत श्लोक
+        </h3>
+
+
+        <div class="gita700-sanskrit">
+
+            ${esc(verse.sanskrit)}
+
+        </div>
+
+
+        <hr>
+
+
+        <h3>
+            🇬🇧 English Meaning
+        </h3>
+
+
+        <p class="gita700-meaning">
+
+            ${
+                verse.english
+                ?
+                esc(verse.english)
+                :
+                "English meaning ઉપલબ્ધ નથી."
+            }
+
+        </p>
+
+
+        <hr>
+
+
+        <h3>
+            🇮🇳 हिन्दी अर्थ
+        </h3>
+
+
+        <p
+            class="gita700-meaning"
+        >
+
+            ${
+                verse.hindi
+                ?
+                esc(verse.hindi)
+                :
+                "हिन्दी अर्थ उपलब्ध नहीं है।"
+            }
+
+        </p>
+
+
+        <hr>
+
+
+        <h3>
+            🇮🇳 ગુજરાતી અર્થ
+        </h3>
+
+
+        <p
+            id="gu-${key}"
+            class="gita700-meaning"
+        >
+
+            ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...
+
+        </p>
+
+
+        <button
+            class="primary"
+            onclick="
+            saveGitaFavorite('${key}')
+            "
+        >
+
+            ❤️ Favorite
+
+        </button>
+
+    `;
+
+
+    const section =
+        document.getElementById(
+            "gita"
+        );
+
+
+    const list =
+        document.getElementById(
+            "gita700List"
+        );
+
+
+    if(section){
+
+        section.insertBefore(
+            reader,
+            list
         );
 
     }
 
+
+    translateGujarati(key);
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
 }
 
 
-/* =========================================================
-   LANGUAGE
-   ========================================================= */
+/* =====================================================
+   GITA FAVORITE
+   ===================================================== */
 
-const languageSelect =
-    document.getElementById(
-        "language"
+function saveGitaFavorite(key){
+
+    const verse =
+        gita[key];
+
+
+    if(!verse){
+
+        return;
+
+    }
+
+
+    let favorites =
+        JSON.parse(
+            localStorage.getItem(
+                "sanskritamFavorites"
+            ) || "[]"
+        );
+
+
+    const item =
+        `${key} — ${verse.sanskrit}`;
+
+
+    if(!favorites.includes(item)){
+
+        favorites.push(item);
+
+    }
+
+
+    localStorage.setItem(
+        "sanskritamFavorites",
+        JSON.stringify(favorites)
     );
 
 
-if(languageSelect){
+    alert(
+        "❤️ Favorite Saved"
+    );
 
-    languageSelect.addEventListener(
-        "change",
-        function(){
-
-            const lang =
-                this.value;
+}
 
 
-            const tag =
-                document.querySelector(
-                    ".tag"
+/* =====================================================
+   LOAD GITA
+   ===================================================== */
+
+async function loadGita(){
+
+    renderGita();
+
+
+    try{
+
+        console.log(
+            "SANSKRITAM: Loading Gita..."
+        );
+
+
+        const response =
+            await fetch(
+                GITA_DATA_URL
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Gita data loading failed"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        allVerses =
+            normalizeData(data);
+
+
+        /*
+         * Standard Bhagavad Gita = 700
+         *
+         * કેટલાક datasetsમાં duplicate/extra
+         * record હોઈ શકે છે.
+         */
+
+        if(allVerses.length > 700){
+
+            allVerses =
+                allVerses
+                .filter(function(v){
+
+                    return !(
+                        v.chapter === 13 &&
+                        v.verse === 1
+                    );
+
+                })
+                .slice(0,700);
+
+        }
+
+
+        /* =================================================
+           HINDI DATA
+           ================================================= */
+
+        try{
+
+            const hindiResponse =
+                await fetch(
+                    GITA_HINDI_URL
                 );
 
 
-            const input =
-                document.getElementById(
-                    "searchBox"
-                );
+            if(hindiResponse.ok){
 
-
-            if(lang === "ગુજરાતી"){
-
-                document.documentElement.lang =
-                    "gu";
-
-
-                if(tag){
-
-                    tag.textContent =
-                        "સંસ્કૃતના જ્ઞાનની શોધ કરો";
-
-                }
-
-
-                if(input){
-
-                    input.placeholder =
-                        "શ્લોક, ગ્રંથ, સુભાષિત શોધો...";
-
-                }
-
-            }
-
-
-            else if(lang === "हिन्दी"){
-
-                document.documentElement.lang =
-                    "hi";
-
-
-                if(tag){
-
-                    tag.textContent =
-                        "संस्कृत के ज्ञान की खोज करें";
-
-                }
-
-
-                if(input){
-
-                    input.placeholder =
-                        "श्लोक, ग्रंथ, सुभाषित खोजें...";
-
-                }
-
-            }
-
-
-            else{
-
-                document.documentElement.lang =
-                    "en";
-
-
-                if(tag){
-
-                    tag.textContent =
-                        "Discover the Wisdom of Sanskrit";
-
-                }
-
-
-                if(input){
-
-                    input.placeholder =
-                        "Search Shloka, Granth, Subhashita...";
-
-                }
+                hindiData =
+                    await hindiResponse.json();
 
             }
 
         }
+
+        catch(hindiError){
+
+            console.log(
+                "Hindi data could not load."
+            );
+
+        }
+
+
+        buildGita();
+
+
+        renderGita();
+
+
+        console.log(
+            "SANSKRITAM:",
+            allVerses.length,
+            "Gita verses loaded."
+        );
+
+    }
+
+
+    catch(error){
+
+        console.error(
+            "GITA LOAD ERROR:",
+            error
+        );
+
+
+        const box =
+            document.getElementById(
+                "gita700List"
+            );
+
+
+        if(box){
+
+            box.innerHTML = `
+
+                <div class="gita-error">
+
+                    ⚠️
+                    <b>
+                    ભગવદ્ ગીતા લોડ થઈ શકી નથી.
+                    </b>
+
+                    <br><br>
+
+                    Internet ચાલુ છે કે નહીં
+                    તે તપાસો અને page refresh કરો.
+
+                    <br><br>
+
+                    જો ફરી પણ ન આવે તો
+                    મને screenshot મોકલજો.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   START GITA
+   ===================================================== */
+
+if(
+    document.readyState === "loading"
+){
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        loadGita
     );
 
 }
 
+else{
+
+    loadGita();
+
+}
+
 </script>
-
-
-<!-- =====================================================
-     IMPORTANT
-     gita.js તમારી GitHub repositoryમાં
-     index.html ની same folder માં હોવું જોઈએ.
-     ===================================================== -->
-
-<script src="gita.js"></script>
-
 
 </body>
 </html>
