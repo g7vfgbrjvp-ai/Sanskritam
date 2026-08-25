@@ -453,6 +453,130 @@ function findHindi(chapter, verse){
 }
 
     if(!hindiData){
+        return "";
+    }
+
+    const key = `${chapter}-${verse}`;
+
+    let item = null;
+
+
+    /* ===============================
+       DIRECT KEY
+       =============================== */
+
+    if(hindiData[key]){
+        item = hindiData[key];
+    }
+
+
+    /* ===============================
+       VERSES OBJECT
+       =============================== */
+
+    if(!item &&
+       hindiData.verses &&
+       hindiData.verses[chapter] &&
+       hindiData.verses[chapter][verse]){
+
+        item =
+            hindiData.verses[chapter][verse];
+
+    }
+
+
+    /* ===============================
+       CHAPTER OBJECT
+       =============================== */
+
+    if(!item &&
+       hindiData.chapters &&
+       hindiData.chapters[chapter]){
+
+        const ch =
+            hindiData.chapters[chapter];
+
+        if(
+            ch.verses &&
+            ch.verses[verse]
+        ){
+
+            item =
+                ch.verses[verse];
+
+        }
+
+    }
+
+
+    /* ===============================
+       ARRAY
+       =============================== */
+
+    if(!item && Array.isArray(hindiData)){
+
+        item =
+            hindiData.find(function(row){
+
+                const c = Number(
+                    row?.chapter ??
+                    row?.chapter_number ??
+                    row?.chapterNumber
+                );
+
+                const v = Number(
+                    row?.verse ??
+                    row?.verse_number ??
+                    row?.verseNumber
+                );
+
+                return (
+                    c === chapter &&
+                    v === verse
+                );
+
+            });
+
+    }
+
+
+    if(!item){
+        return "";
+    }
+
+
+    /* ===============================
+       STRING
+       =============================== */
+
+    if(typeof item === "string"){
+        return item.trim();
+    }
+
+
+    /* ===============================
+       HINDI MEANING
+       =============================== */
+
+    const hindi =
+        item.meaning_hindi ??
+        item.hindi_meaning ??
+        item.hindiMeaning ??
+        item.verse_meaning_hindi ??
+        item.translation_hindi ??
+        item.translation_hi ??
+        item.hindi ??
+        item.meaning ??
+        item.text_hindi ??
+        item.text ??
+        "";
+
+
+    return String(hindi).trim();
+
+}
+
+    if(!hindiData){
 
         return "";
 
