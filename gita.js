@@ -307,88 +307,41 @@ function findHindi(chapter, verse){
         return "";
     }
 
-    const key =
-        `${chapter}-${verse}`;
+    const c = String(chapter);
+    const v = String(verse);
 
     let item = null;
 
-
-    /* Direct key */
-
-    if(hindiData[key]){
-        item = hindiData[key];
-    }
-
-
-    /* verses */
+    /* =========================================
+       FORMAT:
+       hindiData.verses["1"]["1"]
+       ========================================= */
 
     if(
-        !item &&
         hindiData.verses &&
-        hindiData.verses[chapter] &&
-        hindiData.verses[chapter][verse]
+        hindiData.verses[c] &&
+        hindiData.verses[c][v]
     ){
 
-        item =
-            hindiData.verses[chapter][verse];
+        item = hindiData.verses[c][v];
 
     }
 
 
-    /* chapters */
+    /* =========================================
+       FORMAT:
+       hindiData["verses"]["1"]["1"]
+       ========================================= */
 
     if(
         !item &&
-        hindiData.chapters &&
-        hindiData.chapters[chapter]
-    ){
-
-        const ch =
-            hindiData.chapters[chapter];
-
-        if(
-            ch.verses &&
-            ch.verses[verse]
-        ){
-
-            item =
-                ch.verses[verse];
-
-        }
-
-    }
-
-
-    /* Array */
-
-    if(
-        !item &&
-        Array.isArray(hindiData)
+        hindiData["verses"] &&
+        hindiData["verses"][c] &&
+        hindiData["verses"][c][v]
     ){
 
         item =
-            hindiData.find(
-                function(row){
-
-                    const c = Number(
-                        row?.chapter ??
-                        row?.chapter_number ??
-                        row?.chapterNumber
-                    );
-
-                    const v = Number(
-                        row?.verse ??
-                        row?.verse_number ??
-                        row?.verseNumber
-                    );
-
-                    return (
-                        c === chapter &&
-                        v === verse
-                    );
-
-                }
-            );
+            hindiData["verses"][c][v];
 
     }
 
@@ -398,30 +351,32 @@ function findHindi(chapter, verse){
     }
 
 
+    /* =========================================
+       IF STRING
+       ========================================= */
+
     if(typeof item === "string"){
+
         return item.trim();
+
     }
 
 
-    const hindi =
-        firstValue(
-            item,
-            [
-                "meaning_hindi",
-                "hindi_meaning",
-                "hindiMeaning",
-                "verse_meaning_hindi",
-                "translation_hindi",
-                "translation_hi",
-                "hindi",
-                "meaning",
-                "text_hindi",
-                "text"
-            ]
-        );
+    /* =========================================
+       ACTUAL HINDI MEANING
+       ========================================= */
 
+    return String(
 
-    return String(hindi || "").trim();
+        item.verse_meaning_hindi ??
+        item.meaning ??
+        item.meaning_hindi ??
+        item.hindi_meaning ??
+        item.hindiMeaning ??
+        item.translation_hindi ??
+        ""
+
+    ).trim();
 
 }
 
