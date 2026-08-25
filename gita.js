@@ -337,23 +337,21 @@ function findHindi(chapter, verse){
     let item = null;
 
 
-    /* ===============================
-       DIRECT KEY
-       =============================== */
+    /* DIRECT KEY */
 
     if(hindiData[key]){
         item = hindiData[key];
     }
 
 
-    /* ===============================
-       VERSES OBJECT
-       =============================== */
+    /* VERSES OBJECT */
 
-    if(!item &&
-       hindiData.verses &&
-       hindiData.verses[chapter] &&
-       hindiData.verses[chapter][verse]){
+    if(
+        !item &&
+        hindiData.verses &&
+        hindiData.verses[chapter] &&
+        hindiData.verses[chapter][verse]
+    ){
 
         item =
             hindiData.verses[chapter][verse];
@@ -361,35 +359,36 @@ function findHindi(chapter, verse){
     }
 
 
-    /* ===============================
-       CHAPTER OBJECT
-       =============================== */
+    /* CHAPTER OBJECT */
 
-    if(!item &&
-       hindiData.chapters &&
-       hindiData.chapters[chapter]){
+    if(
+        !item &&
+        hindiData.chapters &&
+        hindiData.chapters[chapter]
+    ){
 
-        const ch =
+        const chapterData =
             hindiData.chapters[chapter];
 
         if(
-            ch.verses &&
-            ch.verses[verse]
+            chapterData.verses &&
+            chapterData.verses[verse]
         ){
 
             item =
-                ch.verses[verse];
+                chapterData.verses[verse];
 
         }
 
     }
 
 
-    /* ===============================
-       ARRAY
-       =============================== */
+    /* ARRAY */
 
-    if(!item && Array.isArray(hindiData)){
+    if(
+        !item &&
+        Array.isArray(hindiData)
+    ){
 
         item =
             hindiData.find(function(row){
@@ -421,18 +420,14 @@ function findHindi(chapter, verse){
     }
 
 
-    /* ===============================
-       STRING
-       =============================== */
+    /* STRING */
 
     if(typeof item === "string"){
         return item.trim();
     }
 
 
-    /* ===============================
-       HINDI MEANING
-       =============================== */
+    /* HINDI MEANING */
 
     const hindi =
         item.meaning_hindi ??
@@ -449,6 +444,8 @@ function findHindi(chapter, verse){
 
 
     return String(hindi).trim();
+
+}
 
 }
 
