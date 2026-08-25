@@ -7,7 +7,8 @@ const GITA_DATA_URL =
 "https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json";
 
 const GITA_HINDI_URL =
-"https://raw.githubusercontent.com/kashishkhullar/gita_json/master/gita.json";
+"const GITA_HINDI_URL =
+"https://raw.githubusercontent.com/kashishkhullar/gita_json/master/dataset.json";
 
 
 /* =========================================================
