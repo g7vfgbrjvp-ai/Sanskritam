@@ -1,36 +1,35 @@
 /* =========================================================
-   🪷 SANSKRITAM
-   PROFESSIONAL BHAGAVAD GITA ENGINE
-   ---------------------------------------------------------
-   Features:
+   🪷 SANSKRITAM — PROFESSIONAL GITA READER
+   =========================================================
+   FEATURES
+
    ✓ 18 Chapters
    ✓ 700 Shlokas
    ✓ Sanskrit
-   ✓ English
+   ✓ Gujarati
    ✓ Hindi
-   ✓ Gujarati Translation
-   ✓ Gujarati Offline Cache
-   ✓ Progress indicator
-   ✓ Offline detection
-   ✓ Retry
+   ✓ English
+   ✓ Language Switch
    ✓ Search
-   ✓ Chapter filter
-   ✓ Previous / Next verse
+   ✓ Chapter Navigation
+   ✓ Easy Verse Opening
+   ✓ Previous / Next
    ✓ Favorites
-   ✓ Speech
+   ✓ Copy
    ✓ Share
-   ✓ Safe rendering
-   ✓ Cache versioning
+   ✓ Speech
+   ✓ Offline Cache
+   ✓ Retry
+   ✓ Mobile Friendly
+   ✓ Safe Rendering
    ========================================================= */
 
 
 /* =========================================================
-   CONFIGURATION
+   CONFIG
 ========================================================= */
 
-const SANSKRITAM_GITA = {
-
-    VERSION: "2.0.0",
+const GITA_CONFIG = {
 
     DATA_URL:
         "https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json",
@@ -38,47 +37,116 @@ const SANSKRITAM_GITA = {
     HINDI_URL:
         "https://raw.githubusercontent.com/kashishkhullar/gita_json/master/dataset_hindi.json",
 
-    GUJARATI_TRANSLATE_URL:
+    TRANSLATE_URL:
         "https://translate.googleapis.com/translate_a/single",
 
     CACHE_KEY:
-        "sanskritam_gita_gujarati_v2",
+        "sanskritam_gita_gujarati_v3",
+
+    LANGUAGE_KEY:
+        "sanskritam_language",
 
     FAVORITE_KEY:
-        "sanskritamFavorites",
-
-    REQUEST_DELAY:
-        250
+        "sanskritamFavorites"
 
 };
 
 
 /* =========================================================
-   18 CHAPTERS
+   CHAPTER DATA
 ========================================================= */
 
 const GITA_CHAPTERS = [
 
-    [1,  "अर्जुनविषादयोग",                 47],
-    [2,  "सांख्ययोग",                       72],
-    [3,  "कर्मयोग",                         43],
-    [4,  "ज्ञानकर्मसंन्यासयोग",             42],
-    [5,  "कर्मसंन्यासयोग",                  29],
-    [6,  "आत्मसंयमयोग",                     47],
-    [7,  "ज्ञानविज्ञानयोग",                 30],
-    [8,  "अक्षरब्रह्मयोग",                  28],
-    [9,  "राजविद्याराजगुह्ययोग",            34],
-    [10, "विभूतियोग",                       42],
-    [11, "विश्वरूपदर्शनयोग",               55],
-    [12, "भक्तियोग",                        20],
-    [13, "क्षेत्रक्षेत्रज्ञविभागयोग",       34],
-    [14, "गुणत्रयविभागयोग",                27],
-    [15, "पुरुषोत्तमयोग",                   20],
-    [16, "दैवासुरसम्पद्विभागयोग",          24],
-    [17, "श्रद्धात्रयविभागयोग",            28],
-    [18, "मोक्षसंन्यासयोग",                78]
+    [1,"अर्जुनविषादयोग",47],
+    [2,"सांख्ययोग",72],
+    [3,"कर्मयोग",43],
+    [4,"ज्ञानकर्मसंन्यासयोग",42],
+    [5,"कर्मसंन्यासयोग",29],
+    [6,"आत्मसंयमयोग",47],
+    [7,"ज्ञानविज्ञानयोग",30],
+    [8,"अक्षरब्रह्मयोग",28],
+    [9,"राजविद्याराजगुह्ययोग",34],
+    [10,"विभूतियोग",42],
+    [11,"विश्वरूपदर्शनयोग",55],
+    [12,"भक्तियोग",20],
+    [13,"क्षेत्रक्षेत्रज्ञविभागयोग",34],
+    [14,"गुणत्रयविभागयोग",27],
+    [15,"पुरुषोत्तमयोग",20],
+    [16,"दैवासुरसम्पद्विभागयोग",24],
+    [17,"श्रद्धात्रयविभागयोग",28],
+    [18,"मोक्षसंन्यासयोग",78]
 
 ];
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+const LANGUAGES = {
+
+    gu: {
+        name:"ગુજરાતી",
+        flag:"🇮🇳",
+        sanskrit:"સંસ્કૃત શ્લોક",
+        meaning:"ગુજરાતી અર્થ",
+        search:"શ્લોક શોધો...",
+        chapter:"અધ્યાય",
+        verse:"શ્લોક",
+        previous:"← પાછો",
+        next:"આગળ →",
+        favorite:"❤️ મનપસંદ",
+        copy:"📋 Copy",
+        share:"📤 Share",
+        speak:"🔊 સાંભળો",
+        close:"← શ્લોકો",
+        noResult:"કોઈ શ્લોક મળ્યો નથી.",
+        loading:"શ્લોકો લોડ થઈ રહ્યા છે...",
+        offline:"📴 Offline"
+    },
+
+    hi: {
+        name:"हिन्दी",
+        flag:"🇮🇳",
+        sanskrit:"संस्कृत श्लोक",
+        meaning:"हिन्दी अर्थ",
+        search:"श्लोक खोजें...",
+        chapter:"अध्याय",
+        verse:"श्लोक",
+        previous:"← पिछला",
+        next:"अगला →",
+        favorite:"❤️ पसंदीदा",
+        copy:"📋 Copy",
+        share:"📤 Share",
+        speak:"🔊 सुनें",
+        close:"← श्लोक",
+        noResult:"कोई श्लोक नहीं मिला।",
+        loading:"श्लोक लोड हो रहे हैं...",
+        offline:"📴 Offline"
+    },
+
+    en: {
+        name:"English",
+        flag:"🇬🇧",
+        sanskrit:"Sanskrit Shloka",
+        meaning:"English Meaning",
+        search:"Search Shloka...",
+        chapter:"Chapter",
+        verse:"Verse",
+        previous:"← Previous",
+        next:"Next →",
+        favorite:"❤️ Favorite",
+        copy:"📋 Copy",
+        share:"📤 Share",
+        speak:"🔊 Listen",
+        close:"← Shlokas",
+        noResult:"No shloka found.",
+        loading:"Loading shlokas...",
+        offline:"📴 Offline"
+    }
+
+};
 
 
 /* =========================================================
@@ -91,20 +159,30 @@ let allVerses = [];
 
 let hindiData = null;
 
-let currentVerseKey = null;
+let currentVerse = null;
 
-let isGitaLoaded = false;
-
-let isGujaratiSaving = false;
+let currentLanguage =
+    localStorage.getItem(
+        GITA_CONFIG.LANGUAGE_KEY
+    ) || "gu";
 
 
 /* =========================================================
-   DOM HELPER
+   HELPER
 ========================================================= */
 
-function G$(id){
+function $id(id){
 
     return document.getElementById(id);
+
+}
+
+
+function lang(){
+
+    return LANGUAGES[
+        currentLanguage
+    ] || LANGUAGES.gu;
 
 }
 
@@ -117,34 +195,37 @@ function esc(value){
 
     return String(value ?? "")
 
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
 /* =========================================================
-   TEXT NORMALIZER
+   CLEAN TEXT
 ========================================================= */
 
-function cleanText(value){
+function clean(value){
 
     return String(value ?? "")
-        .replace(/\r/g, "")
-        .replace(/\n{3,}/g, "\n\n")
+        .replace(/\r/g,"")
+        .replace(/\n{3,}/g,"\n\n")
         .trim();
 
 }
 
 
 /* =========================================================
-   FIRST AVAILABLE VALUE
+   VALUE FINDER
 ========================================================= */
 
-function firstValue(object, keys){
+function getValue(
+    object,
+    keys
+){
 
     if(
         !object ||
@@ -161,13 +242,9 @@ function firstValue(object, keys){
     ){
 
         if(
-
             object[key] !== undefined &&
-
             object[key] !== null &&
-
-            String(object[key]).trim() !== ""
-
+            String(object[key]).trim()
         ){
 
             return object[key];
@@ -183,7 +260,7 @@ function firstValue(object, keys){
 
 
 /* =========================================================
-   NORMALIZE ONE VERSE
+   NORMALIZE VERSE
 ========================================================= */
 
 function normalizeVerse(row){
@@ -198,67 +275,61 @@ function normalizeVerse(row){
     }
 
 
-    const chapter = Number(
-
-        firstValue(
-            row,
-            [
-                "chapter",
-                "chapter_number",
-                "chapterNumber",
-                "chapter_no"
-            ]
-        )
-
-    );
+    const chapter =
+        Number(
+            getValue(
+                row,
+                [
+                    "chapter",
+                    "chapter_number",
+                    "chapterNumber"
+                ]
+            )
+        );
 
 
-    const verse = Number(
-
-        firstValue(
-            row,
-            [
-                "verse",
-                "verse_number",
-                "verseNumber",
-                "verse_no"
-            ]
-        )
-
-    );
+    const verse =
+        Number(
+            getValue(
+                row,
+                [
+                    "verse",
+                    "verse_number",
+                    "verseNumber"
+                ]
+            )
+        );
 
 
-    const sanskrit = cleanText(
+    const sanskrit =
+        clean(
+            getValue(
+                row,
+                [
+                    "sanskrit",
+                    "devanagari",
+                    "slok",
+                    "shloka",
+                    "verse_text",
+                    "text"
+                ]
+            )
+        );
 
-        firstValue(
-            row,
-            [
-                "sanskrit",
-                "devanagari",
-                "slok",
-                "shloka",
-                "verse_text",
-                "text"
-            ]
-        )
 
-    );
-
-
-    const english = cleanText(
-
-        firstValue(
-            row,
-            [
-                "english",
-                "translation",
-                "translation_en",
-                "meaning",
-                "english_meaning"
-            ]
-        )
-
-    );
+    const english =
+        clean(
+            getValue(
+                row,
+                [
+                    "english",
+                    "translation",
+                    "translation_en",
+                    "meaning",
+                    "english_meaning"
+                ]
+            )
+        );
 
 
     if(
@@ -283,7 +354,11 @@ function normalizeVerse(row){
 
         sanskrit,
 
-        english
+        english,
+
+        hindi:"",
+
+        gujarati:""
 
     };
 
@@ -291,15 +366,13 @@ function normalizeVerse(row){
 
 
 /* =========================================================
-   NORMALIZE COMPLETE DATA
+   NORMALIZE DATA
 ========================================================= */
 
-function normalizeGitaData(data){
+function normalizeData(data){
 
     let rows = [];
 
-
-    /* Array */
 
     if(
         Array.isArray(data)
@@ -311,7 +384,15 @@ function normalizeGitaData(data){
     }
 
 
-    /* data.verses */
+    else if(
+        Array.isArray(data?.data)
+    ){
+
+        rows =
+            data.data;
+
+    }
+
 
     else if(
         Array.isArray(data?.verses)
@@ -323,131 +404,56 @@ function normalizeGitaData(data){
     }
 
 
-    /* data.data */
-
     else if(
-        Array.isArray(data?.data)
+        Array.isArray(data?.chapters)
     ){
 
-        rows =
-            data.data;
+        data.chapters.forEach(
 
-    }
+            chapter => {
 
+                if(
+                    !Array.isArray(
+                        chapter?.verses
+                    )
+                ){
 
-    /* Object */
-
-    else if(
-        data &&
-        typeof data === "object"
-    ){
-
-        /* Chapters */
-
-        if(
-            Array.isArray(data.chapters)
-        ){
-
-            data.chapters.forEach(
-
-                chapter => {
-
-                    if(
-                        !Array.isArray(
-                            chapter?.verses
-                        )
-                    ){
-
-                        return;
-
-                    }
-
-
-                    chapter.verses.forEach(
-
-                        verse => {
-
-                            rows.push({
-
-                                ...verse,
-
-                                chapter:
-                                    verse.chapter ??
-                                    chapter.chapter ??
-                                    chapter.chapter_number
-
-                            });
-
-                        }
-
-                    );
+                    return;
 
                 }
 
-            );
 
-        }
+                chapter.verses.forEach(
 
-
-        /* Key format 1-1 */
-
-        if(
-            !rows.length
-        ){
-
-            Object.entries(data)
-            .forEach(
-
-                ([key,value]) => {
-
-                    if(
-
-                        /^\d+-\d+$/
-                        .test(key)
-
-                        &&
-
-                        value &&
-
-                        typeof value === "object"
-
-                    ){
-
-                        const [
-                            chapter,
-                            verse
-                        ] =
-                            key.split("-");
-
+                    verse => {
 
                         rows.push({
 
-                            ...value,
+                            ...verse,
 
                             chapter:
-                                value.chapter ??
-                                chapter,
-
-                            verse:
-                                value.verse ??
-                                verse
+                                verse.chapter ??
+                                chapter.chapter ??
+                                chapter.chapter_number
 
                         });
 
                     }
 
-                }
+                );
 
-            );
+            }
 
-        }
+        );
 
     }
 
 
     return rows
 
-        .map(normalizeVerse)
+        .map(
+            normalizeVerse
+        )
 
         .filter(Boolean)
 
@@ -455,9 +461,9 @@ function normalizeGitaData(data){
 
             (a,b) =>
 
-                a.chapter - b.chapter ||
+                a.chapter-b.chapter ||
 
-                a.verse - b.verse
+                a.verse-b.verse
 
         );
 
@@ -468,13 +474,13 @@ function normalizeGitaData(data){
    REMOVE DUPLICATES
 ========================================================= */
 
-function removeDuplicateVerses(verses){
+function uniqueVerses(){
 
     const map =
         new Map();
 
 
-    verses.forEach(
+    allVerses.forEach(
 
         verse => {
 
@@ -496,15 +502,16 @@ function removeDuplicateVerses(verses){
     );
 
 
-    return Array.from(
-        map.values()
-    );
+    allVerses =
+        Array.from(
+            map.values()
+        );
 
 }
 
 
 /* =========================================================
-   HINDI LOOKUP
+   HINDI
 ========================================================= */
 
 function findHindi(
@@ -519,30 +526,10 @@ function findHindi(
     }
 
 
-    const key =
-        `${chapter}-${verse}`;
+    let item = null;
 
-
-    let item =
-        null;
-
-
-    /* Direct key */
 
     if(
-        hindiData[key]
-    ){
-
-        item =
-            hindiData[key];
-
-    }
-
-
-    /* Array */
-
-    if(
-        !item &&
         Array.isArray(
             hindiData
         )
@@ -551,85 +538,46 @@ function findHindi(
         item =
             hindiData.find(
 
-                row => {
+                row =>
 
-                    const c =
-                        Number(
+                    Number(
+                        row?.chapter ??
+                        row?.chapter_number
+                    ) === chapter
 
-                            row?.chapter ??
-                            row?.chapter_number ??
-                            row?.chapterNumber
+                    &&
 
-                        );
-
-
-                    const v =
-                        Number(
-
-                            row?.verse ??
-                            row?.verse_number ??
-                            row?.verseNumber
-
-                        );
-
-
-                    return (
-
-                        c === chapter &&
-                        v === verse
-
-                    );
-
-                }
+                    Number(
+                        row?.verse ??
+                        row?.verse_number
+                    ) === verse
 
             );
 
     }
 
 
-    /* verses */
-
     if(
         !item &&
         hindiData.verses
     ){
 
-        const chapterData =
-            hindiData.verses[chapter];
-
-
-        if(
-            chapterData
-        ){
-
-            item =
-                chapterData[verse];
-
-        }
+        item =
+            hindiData
+                .verses?.[chapter]?.[verse];
 
     }
 
-
-    /* chapters */
 
     if(
         !item &&
         hindiData.chapters
     ){
 
-        const chapterData =
-            hindiData.chapters[chapter];
-
-
-        if(
-            chapterData?.verses
-        ){
-
-            item =
-                chapterData
-                    .verses[verse];
-
-        }
+        item =
+            hindiData
+                .chapters?.[chapter]
+                ?.verses?.[verse];
 
     }
 
@@ -645,25 +593,22 @@ function findHindi(
         typeof item === "string"
     ){
 
-        return cleanText(item);
+        return clean(item);
 
     }
 
 
-    return cleanText(
+    return clean(
 
-        firstValue(
+        getValue(
             item,
             [
                 "meaning_hindi",
                 "hindi_meaning",
-                "hindiMeaning",
-                "verse_meaning_hindi",
                 "translation_hindi",
                 "translation_hi",
                 "hindi",
                 "meaning",
-                "text_hindi",
                 "text"
             ]
         )
@@ -674,10 +619,10 @@ function findHindi(
 
 
 /* =========================================================
-   BUILD GITA OBJECT
+   BUILD
 ========================================================= */
 
-function buildGitaObject(){
+function buildGita(){
 
     gita = {};
 
@@ -686,19 +631,17 @@ function buildGitaObject(){
 
         verse => {
 
+            verse.hindi =
+                findHindi(
+                    verse.chapter,
+                    verse.verse
+                );
+
+
             gita[
                 verse.key
-            ] = {
-
-                ...verse,
-
-                hindi:
-                    findHindi(
-                        verse.chapter,
-                        verse.verse
-                    )
-
-            };
+            ] =
+                verse;
 
         }
 
@@ -712,53 +655,139 @@ function buildGitaObject(){
 
 
 /* =========================================================
-   CACHE
+   INDEXEDDB
 ========================================================= */
 
-function getGujaratiCache(){
+const DB_NAME =
+    "SANSKRITAM_GITA_DB";
+
+const DB_VERSION =
+    1;
+
+const STORE =
+    "gujarati";
+
+
+function openDB(){
+
+    return new Promise(
+
+        (resolve,reject) => {
+
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
+
+
+            request.onupgradeneeded =
+                function(event){
+
+                    const db =
+                        event.target.result;
+
+
+                    if(
+                        !db.objectStoreNames
+                            .contains(STORE)
+                    ){
+
+                        db.createObjectStore(
+                            STORE
+                        );
+
+                    }
+
+                };
+
+
+            request.onsuccess =
+                function(){
+
+                    resolve(
+                        request.result
+                    );
+
+                };
+
+
+            request.onerror =
+                function(){
+
+                    reject(
+                        request.error
+                    );
+
+                };
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   GET OFFLINE GUJARATI
+========================================================= */
+
+async function getGujarati(key){
 
     try{
 
-        const raw =
-            localStorage.getItem(
-                SANSKRITAM_GITA.CACHE_KEY
-            );
+        const db =
+            await openDB();
 
 
-        if(!raw){
+        return new Promise(
 
-            return {};
+            resolve => {
 
-        }
-
-
-        const parsed =
-            JSON.parse(raw);
-
-
-        if(
-            !parsed ||
-            typeof parsed !== "object"
-        ){
-
-            return {};
-
-        }
+                const transaction =
+                    db.transaction(
+                        STORE,
+                        "readonly"
+                    );
 
 
-        return parsed;
+                const store =
+                    transaction
+                        .objectStore(
+                            STORE
+                        );
+
+
+                const request =
+                    store.get(key);
+
+
+                request.onsuccess =
+                    () => {
+
+                        resolve(
+                            request.result || ""
+                        );
+
+                    };
+
+
+                request.onerror =
+                    () => {
+
+                        resolve("");
+
+                    };
+
+            }
+
+        );
 
     }
 
-    catch(error){
+    catch{
 
-        console.warn(
-            "Gujarati cache read error",
-            error
-        );
-
-
-        return {};
+        return "";
 
     }
 
@@ -766,33 +795,55 @@ function getGujaratiCache(){
 
 
 /* =========================================================
-   SAVE CACHE
+   SAVE GUJARATI
 ========================================================= */
 
-function saveGujaratiCache(cache){
+async function saveGujarati(
+    key,
+    text
+){
 
     try{
 
-        localStorage.setItem(
+        const db =
+            await openDB();
 
-            SANSKRITAM_GITA.CACHE_KEY,
 
-            JSON.stringify(cache)
+        return new Promise(
+
+            resolve => {
+
+                const transaction =
+                    db.transaction(
+                        STORE,
+                        "readwrite"
+                    );
+
+
+                transaction
+                    .objectStore(
+                        STORE
+                    )
+                    .put(
+                        text,
+                        key
+                    );
+
+
+                transaction.oncomplete =
+                    () => resolve(true);
+
+
+                transaction.onerror =
+                    () => resolve(false);
+
+            }
 
         );
-
-
-        return true;
 
     }
 
-    catch(error){
-
-        console.warn(
-            "Gujarati cache storage error",
-            error
-        );
-
+    catch{
 
         return false;
 
@@ -802,144 +853,19 @@ function saveGujaratiCache(cache){
 
 
 /* =========================================================
-   CACHE COUNT
+   TRANSLATION
 ========================================================= */
 
-function getGujaratiCacheCount(){
-
-    return Object.keys(
-        getGujaratiCache()
-    ).length;
-
-}
-
-
-/* =========================================================
-   ONLINE CHECK
-========================================================= */
-
-function isOnline(){
-
-    return (
-        navigator.onLine !== false
-    );
-
-}
-
-
-/* =========================================================
-   TRANSLATE ONE ENGLISH TEXT
-========================================================= */
-
-async function translateEnglishToGujarati(
-    english
+async function translateGujarati(
+    key
 ){
-
-    if(
-        !english ||
-        !isOnline()
-    ){
-
-        return "";
-
-    }
-
-
-    const url =
-
-        SANSKRITAM_GITA
-            .GUJARATI_TRANSLATE_URL
-
-        +
-
-        "?client=gtx"
-
-        +
-
-        "&sl=en"
-
-        +
-
-        "&tl=gu"
-
-        +
-
-        "&dt=t"
-
-        +
-
-        "&q="
-
-        +
-
-        encodeURIComponent(
-            english
-        );
-
-
-    const response =
-        await fetch(
-
-            url,
-
-            {
-                cache:"no-store"
-            }
-
-        );
-
-
-    if(
-        !response.ok
-    ){
-
-        throw new Error(
-            "Translation HTTP error"
-        );
-
-    }
-
-
-    const data =
-        await response.json();
-
-
-    if(
-        !Array.isArray(data) ||
-        !Array.isArray(data[0])
-    ){
-
-        return "";
-
-    }
-
-
-    return cleanText(
-
-        data[0]
-            .map(
-                part =>
-                    part?.[0] || ""
-            )
-            .join("")
-
-    );
-
-}
-
-
-/* =========================================================
-   TRANSLATE CURRENT VERSE
-========================================================= */
-
-async function translateGujarati(key){
 
     const verse =
         gita[key];
 
 
     const target =
-        document.getElementById(
+        $id(
             `gu-${key}`
         );
 
@@ -954,18 +880,28 @@ async function translateGujarati(key){
     }
 
 
-    /* Cache */
+    const cached =
+        await getGujarati(
+            key
+        );
 
-    const cache =
-        getGujaratiCache();
+
+    if(cached){
+
+        target.textContent =
+            cached;
+
+        return;
+
+    }
 
 
     if(
-        cache[key]
+        !navigator.onLine
     ){
 
         target.textContent =
-            cache[key];
+            "📴 ગુજરાતી અર્થ Offline માં ઉપલબ્ધ નથી.";
 
         return;
 
@@ -984,27 +920,75 @@ async function translateGujarati(key){
     }
 
 
-    if(
-        !isOnline()
-    ){
-
-        target.textContent =
-            "📴 આ શ્લોકનો ગુજરાતી અર્થ Offline માં સાચવાયેલો નથી.";
-
-        return;
-
-    }
-
-
     target.textContent =
         "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
 
 
     try{
 
-        const translated =
-            await translateEnglishToGujarati(
+        const url =
+
+            GITA_CONFIG
+                .TRANSLATE_URL
+
+            +
+
+            "?client=gtx"
+
+            +
+
+            "&sl=en"
+
+            +
+
+            "&tl=gu"
+
+            +
+
+            "&dt=t"
+
+            +
+
+            "&q="
+
+            +
+
+            encodeURIComponent(
                 verse.english
+            );
+
+
+        const response =
+            await fetch(
+                url
+            );
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error(
+                "Translation failed"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const translated =
+            clean(
+
+                data?.[0]
+                    ?.map(
+                        x => x?.[0] || ""
+                    )
+                    ?.join("")
+                    || ""
+
             );
 
 
@@ -1017,31 +1001,26 @@ async function translateGujarati(key){
         }
 
 
-        cache[key] =
-            translated;
-
-
-        saveGujaratiCache(
-            cache
+        await saveGujarati(
+            key,
+            translated
         );
 
 
         target.textContent =
             translated;
-
 
     }
 
     catch(error){
 
         console.error(
-            "Gujarati translation:",
             error
         );
 
 
         target.textContent =
-            "ગુજરાતી અર્થ મેળવવામાં સમસ્યા આવી. Internet ફરી તપાસો.";
+            "ગુજરાતી અર્થ મેળવવામાં સમસ્યા આવી.";
 
     }
 
@@ -1049,382 +1028,113 @@ async function translateGujarati(key){
 
 
 /* =========================================================
-   UPDATE CACHE UI
+   LANGUAGE SELECTOR
 ========================================================= */
 
-function updateCacheUI(){
+function languageSelector(){
 
-    const count =
-        getGujaratiCacheCount();
+    return `
 
+        <div
+            class="gita-language-box"
+        >
 
-    const element =
-        document.getElementById(
-            "gitaCacheCount"
-        );
+            <span>
+                🌐
+            </span>
 
 
-    if(element){
-
-        element.textContent =
-            count;
-
-    }
-
-}
-
-
-/* =========================================================
-   SAVE ALL GUJARATI
-========================================================= */
-
-async function saveAllGujaratiOffline(){
-
-    if(
-        isGujaratiSaving
-    ){
-
-        return;
-
-    }
-
-
-    if(
-        !allVerses.length
-    ){
-
-        showGitaToast(
-            "પહેલા Gita load થવા દો."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        !isOnline()
-    ){
-
-        showGitaToast(
-            "📴 Internet ચાલુ કરો."
-        );
-
-        return;
-
-    }
-
-
-    isGujaratiSaving =
-        true;
-
-
-    const cache =
-        getGujaratiCache();
-
-
-    const verses =
-        allVerses.filter(
-
-            verse =>
-
-                verse.english &&
-
-                !cache[verse.key]
-
-        );
-
-
-    if(
-        !verses.length
-    ){
-
-        showGitaToast(
-            "✅ બધા Gujarati અર્થ પહેલેથી Offline છે."
-        );
-
-        isGujaratiSaving =
-            false;
-
-        return;
-
-    }
-
-
-    const progress =
-        document.getElementById(
-            "gitaOfflineProgress"
-        );
-
-
-    if(progress){
-
-        progress.style.display =
-            "block";
-
-    }
-
-
-    let completed =
-        0;
-
-
-    for(
-        const verse of verses
-    ){
-
-        if(
-            !isOnline()
-        ){
-
-            break;
-
-        }
-
-
-        try{
-
-            const translated =
-                await translateEnglishToGujarati(
-                    verse.english
-                );
-
-
-            if(
-                translated
-            ){
-
-                cache[
-                    verse.key
-                ] =
-                    translated;
-
-            }
-
-
-        }
-
-        catch(error){
-
-            console.warn(
-                "Translation failed:",
-                verse.key
-            );
-
-        }
-
-
-        completed++;
-
-
-        const percent =
-            Math.round(
-                (
-                    completed /
-                    verses.length
-                ) * 100
-            );
-
-
-        if(progress){
-
-            progress.innerHTML = `
-
-                <div
-                    style="
-                    font-size:13px;
-                    margin-bottom:6px;
-                    "
-                >
-
-                    Gujarati Offline Save
-
-                    ${completed}
-                    /
-                    ${verses.length}
-
-                    (${percent}%)
-
-                </div>
-
-
-                <div
-                    style="
-                    height:8px;
-                    background:#eadfc9;
-                    border-radius:20px;
-                    overflow:hidden;
-                    "
-                >
-
-                    <div
-                        style="
-                        width:${percent}%;
-                        height:100%;
-                        background:#16803c;
-                        transition:.2s;
-                        "
-                    ></div>
-
-                </div>
-
-            `;
-
-        }
-
-
-        saveGujaratiCache(
-            cache
-        );
-
-
-        await new Promise(
-            resolve =>
-                setTimeout(
-                    resolve,
-                    SANSKRITAM_GITA
-                        .REQUEST_DELAY
-                )
-        );
-
-    }
-
-
-    saveGujaratiCache(
-        cache
-    );
-
-
-    updateCacheUI();
-
-
-    if(progress){
-
-        progress.innerHTML = `
-
-            <div
-                style="
-                color:#16803c;
-                font-weight:bold;
+            <select
+                id="gitaLanguage"
+                onchange="
+                changeGitaLanguage(this.value)
                 "
             >
 
-                ✅ Gujarati Offline Save Complete
+                <option
+                    value="gu"
+                    ${
+                        currentLanguage === "gu"
+                        ? "selected"
+                        : ""
+                    }
+                >
 
-            </div>
+                    🇮🇳 ગુજરાતી
 
-        `;
-
-    }
+                </option>
 
 
-    showGitaToast(
-        `✅ ${getGujaratiCacheCount()} Gujarati અર્થ Offline Save થયા.`
-    );
+                <option
+                    value="hi"
+                    ${
+                        currentLanguage === "hi"
+                        ? "selected"
+                        : ""
+                    }
+                >
+
+                    🇮🇳 हिन्दी
+
+                </option>
 
 
-    isGujaratiSaving =
-        false;
+                <option
+                    value="en"
+                    ${
+                        currentLanguage === "en"
+                        ? "selected"
+                        : ""
+                    }
+                >
+
+                    🇬🇧 English
+
+                </option>
+
+            </select>
+
+        </div>
+
+    `;
 
 }
 
 
 /* =========================================================
-   GITA TOAST
+   CHANGE LANGUAGE
 ========================================================= */
 
-function showGitaToast(message){
+function changeGitaLanguage(language){
 
     if(
-        typeof window.toast ===
-        "function"
+        !LANGUAGES[language]
     ){
-
-        window.toast(
-            message
-        );
 
         return;
 
     }
 
 
-    let element =
-        document.getElementById(
-            "gitaToast"
-        );
+    currentLanguage =
+        language;
 
 
-    if(!element){
+    localStorage.setItem(
 
-        element =
-            document.createElement(
-                "div"
-            );
+        GITA_CONFIG
+            .LANGUAGE_KEY,
 
+        language
 
-        element.id =
-            "gitaToast";
-
-
-        element.style.cssText = `
-
-            position:fixed;
-
-            left:50%;
-
-            bottom:90px;
-
-            transform:
-                translateX(-50%);
-
-            background:#342719;
-
-            color:white;
-
-            padding:12px 18px;
-
-            border-radius:12px;
-
-            z-index:9999;
-
-            font:600 13px Arial;
-
-            box-shadow:
-                0 8px 25px
-                rgba(0,0,0,.2);
-
-        `;
-
-
-        document.body.appendChild(
-            element
-        );
-
-    }
-
-
-    element.textContent =
-        message;
-
-
-    clearTimeout(
-        window.__gitaToastTimer
     );
 
 
-    window.__gitaToastTimer =
-        setTimeout(
+    renderGita();
 
-            () => {
-
-                element.remove();
-
-            },
-
-            2500
-
-        );
+    showGitaToast(
+        LANGUAGES[language].name
+    );
 
 }
 
@@ -1433,321 +1143,58 @@ function showGitaToast(message){
    GITA HEADER
 ========================================================= */
 
-function gitaHeaderHTML(){
+function gitaHeader(){
 
-    const count =
-        Math.min(
-            allVerses.length,
-            700
-        );
-
-
-    const cached =
-        getGujaratiCacheCount();
+    const L =
+        lang();
 
 
     return `
 
         <div
-            class="gita700-status"
+            class="gita-top-card"
         >
 
             <div
-                style="
-                font-size:22px;
-                font-weight:bold;
-                "
+                class="gita-brand"
             >
 
-                🕉️ Bhagavad Gita
+                🕉️
+
+                <div>
+
+                    <strong>
+                        Bhagavad Gita
+                    </strong>
+
+                    <small>
+                        18 અધ્યાય • 700 શ્લોક
+                    </small>
+
+                </div>
 
             </div>
 
 
-            <div
-                style="
-                margin-top:5px;
-                color:#786b5a;
-                font:13px Arial;
-                "
-            >
-
-                18 અધ્યાય •
-                ${count}/700 શ્લોક
-
-            </div>
+            ${languageSelector()}
 
 
             <div
-                style="
-                display:grid;
-                grid-template-columns:
-                repeat(2,1fr);
-                gap:8px;
-                margin-top:15px;
-                "
+                class="gita-search-wrap"
             >
 
-                <button
-                    type="button"
-                    class="gita-offline-btn"
-                    onclick="
-                    saveAllGujaratiOffline()
-                    "
-                    style="
-                    margin:0;
+                🔍
+
+                <input
+                    id="gitaSearch"
+                    type="search"
+                    placeholder="${L.search}"
+                    oninput="
+                    searchGita()
                     "
                 >
 
-                    📥 Gujarati Offline
-
-                </button>
-
-
-                <button
-                    type="button"
-                    onclick="
-                    renderGita()
-                    "
-                    style="
-                    margin:0;
-                    "
-                >
-
-                    🔄 Refresh
-
-                </button>
-
             </div>
-
-
-            <div
-                style="
-                margin-top:10px;
-                text-align:center;
-                font:12px Arial;
-                color:#786b5a;
-                "
-            >
-
-                💾 Gujarati Offline:
-                <b id="gitaCacheCount">
-                    ${cached}
-                </b>
-
-            </div>
-
-
-            <div
-                id="gitaOfflineProgress"
-                style="
-                display:none;
-                margin-top:12px;
-                "
-            ></div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function searchGita(){
-
-    const input =
-        document.getElementById(
-            "gitaSearch"
-        );
-
-
-    const results =
-        document.getElementById(
-            "gitaSearchResults"
-        );
-
-
-    if(
-        !input ||
-        !results
-    ){
-
-        return;
-
-    }
-
-
-    const query =
-        input.value
-            .trim()
-            .toLowerCase();
-
-
-    if(!query){
-
-        results.innerHTML =
-            "";
-
-        return;
-
-    }
-
-
-    const found =
-        allVerses.filter(
-
-            verse =>
-
-                verse.sanskrit
-                    .toLowerCase()
-                    .includes(query)
-
-                ||
-
-                verse.english
-                    .toLowerCase()
-                    .includes(query)
-
-                ||
-
-                verse.hindi
-                    .toLowerCase()
-                    .includes(query)
-
-                ||
-
-                `${verse.chapter}.${verse.verse}`
-                    .includes(query)
-
-        ).slice(
-            0,
-            30
-        );
-
-
-    if(!found.length){
-
-        results.innerHTML = `
-
-            <div
-                class="gita700-status"
-                style="
-                text-align:center;
-                "
-            >
-
-                🔎 કોઈ શ્લોક મળ્યો નથી.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    results.innerHTML = `
-
-        <div
-            class="gita700-status"
-        >
-
-            <b>
-                🔎 ${found.length}
-                Result
-            </b>
-
-
-            <div
-                style="
-                margin-top:12px;
-                "
-            >
-
-                ${
-                    found
-                    .map(
-
-                        verse => `
-
-                        <button
-                            type="button"
-                            onclick="
-                            openGitaVerse(
-                            '${verse.key}'
-                            )
-                            "
-                            style="
-                            display:block;
-                            width:100%;
-                            text-align:left;
-                            margin:6px 0;
-                            "
-                        >
-
-                            📖
-                            ${verse.chapter}.${verse.verse}
-
-                            —
-                            ${esc(
-                                verse.sanskrit
-                                    .slice(0,80)
-                            )}
-
-                        </button>
-
-                        `
-
-                    )
-                    .join("")
-                }
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   CHAPTER FILTER
-========================================================= */
-
-function gitaChapterSelector(){
-
-    return `
-
-        <div
-            style="
-            margin-bottom:15px;
-            "
-        >
-
-            <input
-                id="gitaSearch"
-                type="search"
-                placeholder="
-                🔍 શ્લોક શોધો...
-                "
-                oninput="
-                searchGita()
-                "
-                style="
-                width:100%;
-                padding:13px 15px;
-                border:1px solid #e7d9bc;
-                border-radius:15px;
-                background:#fffaf0;
-                outline:none;
-                "
-            >
 
 
             <div
@@ -1762,199 +1209,118 @@ function gitaChapterSelector(){
 
 
 /* =========================================================
-   RENDER CHAPTERS
+   CHAPTER CARD
 ========================================================= */
 
-function renderGitaChapters(){
-
-    let html = "";
-
-
-    GITA_CHAPTERS.forEach(
-
-        data => {
-
-            const [
-                chapter,
-                name,
-                count
-            ] =
-                data;
-
-
-            const available =
-                GITA_CHAPTERS_COUNT(
-                    chapter,
-                    count
-                );
-
-
-            html += `
-
-                <div
-                    class="gita700-chapter"
-                >
-
-                    <div
-                        style="
-                        display:flex;
-                        justify-content:
-                        space-between;
-                        align-items:center;
-                        gap:10px;
-                        "
-                    >
-
-                        <h3>
-
-                            અધ્યાય
-                            ${chapter}
-
-                            <br>
-
-                            <span
-                                style="
-                                font-size:14px;
-                                color:#786b5a;
-                                "
-                            >
-
-                                ${esc(name)}
-
-                            </span>
-
-                        </h3>
-
-
-                        <span
-                            style="
-                            font:12px Arial;
-                            color:#786b5a;
-                            "
-                        >
-
-                            ${available}/${count}
-
-                        </span>
-
-                    </div>
-
-
-                    <div
-                        class="gita700-grid"
-                    >
-
-            `;
-
-
-            for(
-                let verse = 1;
-                verse <= count;
-                verse++
-            ){
-
-                const key =
-                    `${chapter}-${verse}`;
-
-
-                if(
-                    gita[key]
-                ){
-
-                    html += `
-
-                        <button
-                            type="button"
-                            class="gita700-btn"
-                            onclick="
-                            openGitaVerse(
-                            '${key}'
-                            )
-                            "
-                        >
-
-                            ${chapter}.${verse}
-
-                        </button>
-
-                    `;
-
-                }
-
-            }
-
-
-            html += `
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }
-
-    );
-
-
-    return html;
-
-}
-
-
-/* =========================================================
-   AVAILABLE VERSE COUNT
-========================================================= */
-
-function GITA_CHAPTERS_COUNT(
+function chapterCard(
     chapter,
-    expected
+    title,
+    total
 ){
 
-    let count = 0;
+    let buttons = "";
 
 
     for(
         let i=1;
-        i<=expected;
+        i<=total;
         i++
     ){
 
+        const key =
+            `${chapter}-${i}`;
+
+
         if(
-            gita[
-                `${chapter}-${i}`
-            ]
+            gita[key]
         ){
 
-            count++;
+            buttons += `
+
+                <button
+                    class="gita-verse-btn"
+                    onclick="
+                    openGitaVerse(
+                    '${key}'
+                    )
+                    "
+                >
+
+                    ${chapter}.${i}
+
+                </button>
+
+            `;
 
         }
 
     }
 
 
-    return count;
+    return `
+
+        <div
+            class="gita-chapter-card"
+        >
+
+            <div
+                class="chapter-heading"
+            >
+
+                <div
+                    class="chapter-number"
+                >
+
+                    ${chapter}
+
+                </div>
+
+
+                <div>
+
+                    <h3>
+
+                        ${esc(title)}
+
+                    </h3>
+
+                    <small>
+
+                        ${total} શ્લોક
+
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="gita-verse-grid"
+            >
+
+                ${buttons}
+
+            </div>
+
+        </div>
+
+    `;
 
 }
 
 
 /* =========================================================
-   RENDER COMPLETE GITA
+   RENDER
 ========================================================= */
 
 function renderGita(){
 
     const section =
-        document.getElementById(
-            "gita"
-        );
+        $id("gita");
 
 
     if(!section){
-
-        console.error(
-            "SANSKRITAM: #gita not found."
-        );
 
         return;
 
@@ -1962,7 +1328,7 @@ function renderGita(){
 
 
     let box =
-        document.getElementById(
+        $id(
             "gita700List"
         );
 
@@ -1993,24 +1359,14 @@ function renderGita(){
         box.innerHTML = `
 
             <div
-                class="gita700-status"
+                class="gita-loading-card"
             >
 
-                <div
-                    style="
-                    text-align:center;
-                    padding:25px;
-                    "
-                >
+                🕉️
 
-                    📖
+                <br><br>
 
-                    <br><br>
-
-                    Bhagavad Gita
-                    loading...
-
-                </div>
+                ${lang().loading}
 
             </div>
 
@@ -2023,40 +1379,45 @@ function renderGita(){
 
     box.innerHTML =
 
-        gitaHeaderHTML()
+        gitaHeader()
 
         +
 
-        gitaChapterSelector()
-
-        +
-
-        renderGitaChapters();
-
-
-    updateCacheUI();
+        GITA_CHAPTERS
+            .map(
+                data =>
+                    chapterCard(
+                        data[0],
+                        data[1],
+                        data[2]
+                    )
+            )
+            .join("");
 
 }
 
 
 /* =========================================================
-   PREVIOUS / NEXT
+   SEARCH
 ========================================================= */
 
-function getVerseIndex(key){
+function searchGita(){
 
-    return allVerses.findIndex(
-        verse =>
-            verse.key === key
-    );
-
-}
+    const input =
+        $id(
+            "gitaSearch"
+        );
 
 
-function openPreviousVerse(){
+    const output =
+        $id(
+            "gitaSearchResults"
+        );
+
 
     if(
-        !currentVerseKey
+        !input ||
+        !output
     ){
 
         return;
@@ -2064,67 +1425,119 @@ function openPreviousVerse(){
     }
 
 
-    const index =
-        getVerseIndex(
-            currentVerseKey
-        );
+    const q =
+        input.value
+            .trim()
+            .toLowerCase();
 
 
-    if(
-        index <= 0
-    ){
+    if(!q){
 
-        showGitaToast(
-            "આ પહેલો શ્લોક છે."
-        );
+        output.innerHTML =
+            "";
 
         return;
 
     }
 
 
-    openGitaVerse(
-        allVerses[index - 1].key
-    );
+    const results =
+        allVerses
+            .filter(
 
-}
+                verse =>
+
+                    verse.sanskrit
+                        .toLowerCase()
+                        .includes(q)
+
+                    ||
+
+                    verse.english
+                        .toLowerCase()
+                        .includes(q)
+
+                    ||
+
+                    verse.hindi
+                        .toLowerCase()
+                        .includes(q)
+
+                    ||
+
+                    `${verse.chapter}.${verse.verse}`
+                        .includes(q)
+
+            )
+            .slice(
+                0,
+                20
+            );
 
 
-function openNextVerse(){
+    if(!results.length){
 
-    if(
-        !currentVerseKey
-    ){
+        output.innerHTML = `
+
+            <div
+                class="search-result-empty"
+            >
+
+                ${lang().noResult}
+
+            </div>
+
+        `;
 
         return;
 
     }
 
 
-    const index =
-        getVerseIndex(
-            currentVerseKey
-        );
+    output.innerHTML = `
 
+        <div
+            class="search-results"
+        >
 
-    if(
-        index < 0 ||
-        index >=
-        allVerses.length - 1
-    ){
+            ${
+                results
+                .map(
 
-        showGitaToast(
-            "આ છેલ્લો શ્લોક છે."
-        );
+                    verse => `
 
-        return;
+                        <button
+                            onclick="
+                            openGitaVerse(
+                            '${verse.key}'
+                            )
+                            "
+                        >
 
-    }
+                            <b>
+                                ${verse.chapter}.${verse.verse}
+                            </b>
 
+                            <span>
 
-    openGitaVerse(
-        allVerses[index + 1].key
-    );
+                                ${esc(
+                                    verse.sanskrit
+                                        .slice(0,70)
+                                )}
+
+                            </span>
+
+                        </button>
+
+                    `
+
+                )
+                .join("")
+            }
+
+        </div>
+
+    `;
 
 }
 
@@ -2133,7 +1546,7 @@ function openNextVerse(){
    OPEN VERSE
 ========================================================= */
 
-function openGitaVerse(key){
+async function openGitaVerse(key){
 
     const verse =
         gita[key];
@@ -2142,7 +1555,7 @@ function openGitaVerse(key){
     if(!verse){
 
         showGitaToast(
-            "આ શ્લોક ઉપલબ્ધ નથી."
+            "Shloka not found"
         );
 
         return;
@@ -2150,21 +1563,28 @@ function openGitaVerse(key){
     }
 
 
-    currentVerseKey =
+    currentVerse =
         key;
 
 
-    const oldReader =
-        document.getElementById(
+    const old =
+        $id(
             "gitaVerseReader"
         );
 
 
-    if(oldReader){
+    if(old){
 
-        oldReader.remove();
+        old.remove();
 
     }
+
+
+    const index =
+        allVerses.findIndex(
+            v =>
+                v.key === key
+        );
 
 
     const reader =
@@ -2178,72 +1598,54 @@ function openGitaVerse(key){
 
 
     reader.className =
-        "gita700-reader";
+        "gita-reader";
 
 
-    const index =
-        getVerseIndex(
-            key
-        );
-
-
-    const isFirst =
-        index <= 0;
-
-
-    const isLast =
-        index >=
-        allVerses.length - 1;
+    const L =
+        lang();
 
 
     reader.innerHTML = `
 
-        <div
+        <button
+            class="gita-back"
             onclick="
-            document
-            .getElementById(
-                'gitaVerseReader'
-            )
-            ?.remove()
-            "
-            style="
-            cursor:pointer;
-            color:#a96808;
-            font:700 13px Arial;
-            margin-bottom:15px;
+            closeGitaVerse()
             "
         >
 
-            ← શ્લોક સૂચિ
+            ${L.close}
+
+        </button>
+
+
+        <div
+            class="verse-title"
+        >
+
+            🕉️ Bhagavad Gita
 
         </div>
 
 
         <div
-            style="
-            font-size:21px;
-            font-weight:bold;
-            "
+            class="verse-number"
         >
 
-            📖 Bhagavad Gita
-
-        </div>
-
-
-        <div
-            style="
-            font-size:16px;
-            color:#a96808;
-            margin-top:5px;
-            "
-        >
-
-            અધ્યાય
+            ${L.chapter}
             ${verse.chapter}
             •
-            શ્લોક
+            ${L.verse}
             ${verse.verse}
+
+        </div>
+
+
+        <div
+            class="language-mini"
+        >
+
+            ${languageSelector()}
 
         </div>
 
@@ -2252,12 +1654,12 @@ function openGitaVerse(key){
 
 
         <h3>
-            🕉️ संस्कृत श्लोक
+            🕉️ ${L.sanskrit}
         </h3>
 
 
         <div
-            class="gita700-sanskrit"
+            class="sanskrit-text"
         >
 
             ${esc(
@@ -2267,108 +1669,94 @@ function openGitaVerse(key){
         </div>
 
 
-        <hr>
-
-
-        <h3>
-            🇬🇧 English Meaning
-        </h3>
-
-
-        <p
-            class="gita700-meaning"
+        <div
+            class="meaning-box"
         >
 
-            ${
-                verse.english
-                ?
+            <h3>
+                🇬🇧 English
+            </h3>
 
-                esc(
+            <p>
+
+                ${
                     verse.english
-                )
+                    ?
+                    esc(
+                        verse.english
+                    )
+                    :
+                    "Not available."
+                }
 
-                :
+            </p>
 
-                "English meaning उपलब्ध નથી."
-            }
-
-        </p>
-
-
-        <hr>
-
-
-        <h3>
-            🇮🇳 हिन्दी अर्थ
-        </h3>
-
-
-        <p
-            class="gita700-meaning"
-        >
-
-            ${
-                verse.hindi
-                ?
-
-                esc(
-                    verse.hindi
-                )
-
-                :
-
-                "हिन्दी अर्थ उपलब्ध નથી."
-            }
-
-        </p>
-
-
-        <hr>
-
-
-        <h3>
-            🇮🇳 ગુજરાતી અર્થ
-        </h3>
-
-
-        <p
-            id="gu-${key}"
-            class="gita700-meaning"
-        >
-
-            ગુજરાતી અર્થ
-            મેળવવામાં આવી રહ્યો છે...
-
-        </p>
+        </div>
 
 
         <div
-            style="
-            display:grid;
-            grid-template-columns:
-            repeat(2,1fr);
-            gap:8px;
-            margin-top:15px;
-            "
+            class="meaning-box"
         >
 
+            <h3>
+                🇮🇳 हिन्दी
+            </h3>
+
+            <p>
+
+                ${
+                    verse.hindi
+                    ?
+                    esc(
+                        verse.hindi
+                    )
+                    :
+                    "हिन्दी अर्थ उपलब्ध नहीं है।"
+                }
+
+            </p>
+
+        </div>
+
+
+        <div
+            class="meaning-box"
+        >
+
+            <h3>
+                🇮🇳 ગુજરાતી
+            </h3>
+
+            <p
+                id="gu-${key}"
+            >
+
+                ગુજરાતી અર્થ
+                મેળવવામાં આવી રહ્યો છે...
+
+            </p>
+
+        </div>
+
+
+        <div
+            class="verse-actions"
+        >
 
             <button
-                type="button"
                 onclick="
-                saveGitaFavorite(
+                saveFavorite(
                 '${key}'
                 )
                 "
             >
 
-                ❤️ Favorite
+                ${L.favorite}
 
             </button>
 
 
             <button
-                type="button"
                 onclick="
                 speakGita(
                 '${key}'
@@ -2376,27 +1764,12 @@ function openGitaVerse(key){
                 "
             >
 
-                🔊 સાંભળો
+                ${L.speak}
 
             </button>
 
 
             <button
-                type="button"
-                onclick="
-                shareGita(
-                '${key}'
-                )
-                "
-            >
-
-                📤 Share
-
-            </button>
-
-
-            <button
-                type="button"
                 onclick="
                 copyGita(
                 '${key}'
@@ -2404,7 +1777,20 @@ function openGitaVerse(key){
                 "
             >
 
-                📋 Copy
+                ${L.copy}
+
+            </button>
+
+
+            <button
+                onclick="
+                shareGita(
+                '${key}'
+                )
+                "
+            >
+
+                ${L.share}
 
             </button>
 
@@ -2412,38 +1798,38 @@ function openGitaVerse(key){
 
 
         <div
-            style="
-            display:grid;
-            grid-template-columns:
-            repeat(2,1fr);
-            gap:8px;
-            margin-top:10px;
-            "
+            class="verse-navigation"
         >
 
-
             <button
-                type="button"
-                ${isFirst ? "disabled" : ""}
+                ${
+                    index <= 0
+                    ? "disabled"
+                    : ""
+                }
                 onclick="
                 openPreviousVerse()
                 "
             >
 
-                ← Previous
+                ${L.previous}
 
             </button>
 
 
             <button
-                type="button"
-                ${isLast ? "disabled" : ""}
+                ${
+                    index >=
+                    allVerses.length-1
+                    ? "disabled"
+                    : ""
+                }
                 onclick="
                 openNextVerse()
                 "
             >
 
-                Next →
+                ${L.next}
 
             </button>
 
@@ -2453,13 +1839,11 @@ function openGitaVerse(key){
 
 
     const section =
-        document.getElementById(
-            "gita"
-        );
+        $id("gita");
 
 
     const list =
-        document.getElementById(
+        $id(
             "gita700List"
         );
 
@@ -2482,7 +1866,7 @@ function openGitaVerse(key){
     }
 
 
-    translateGujarati(
+    await translateGujarati(
         key
     );
 
@@ -2499,10 +1883,103 @@ function openGitaVerse(key){
 
 
 /* =========================================================
+   CLOSE
+========================================================= */
+
+function closeGitaVerse(){
+
+    const reader =
+        $id(
+            "gitaVerseReader"
+        );
+
+
+    if(reader){
+
+        reader.remove();
+
+    }
+
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+function openPreviousVerse(){
+
+    if(!currentVerse){
+
+        return;
+
+    }
+
+
+    const index =
+        allVerses.findIndex(
+            v =>
+                v.key ===
+                currentVerse
+        );
+
+
+    if(index > 0){
+
+        openGitaVerse(
+            allVerses[
+                index-1
+            ].key
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+function openNextVerse(){
+
+    if(!currentVerse){
+
+        return;
+
+    }
+
+
+    const index =
+        allVerses.findIndex(
+            v =>
+                v.key ===
+                currentVerse
+        );
+
+
+    if(
+        index >= 0 &&
+        index <
+        allVerses.length-1
+    ){
+
+        openGitaVerse(
+            allVerses[
+                index+1
+            ].key
+        );
+
+    }
+
+}
+
+
+/* =========================================================
    FAVORITE
 ========================================================= */
 
-function saveGitaFavorite(key){
+function saveFavorite(key){
 
     const verse =
         gita[key];
@@ -2515,16 +1992,16 @@ function saveGitaFavorite(key){
     }
 
 
-    let favorites = [];
+    let list = [];
 
 
     try{
 
-        favorites =
+        list =
             JSON.parse(
 
                 localStorage.getItem(
-                    SANSKRITAM_GITA
+                    GITA_CONFIG
                         .FAVORITE_KEY
                 ) || "[]"
 
@@ -2534,67 +2011,41 @@ function saveGitaFavorite(key){
 
     catch{
 
-        favorites =
-            [];
+        list = [];
 
     }
 
 
-    const item = {
-
-        key:
-            key,
-
-        text:
-            verse.sanskrit,
-
-        chapter:
-            verse.chapter,
-
-        verse:
-            verse.verse
-
-    };
-
-
-    const exists =
-        favorites.some(
-
-            favorite =>
-                (
-                    typeof favorite ===
-                    "object"
-                )
-
-                ?
-
-                favorite.key ===
-                key
-
-                :
-
-                String(favorite)
-                    .includes(key)
-
-        );
-
-
     if(
-        !exists
+        !list.some(
+            item =>
+                item.key === key
+        )
     ){
 
-        favorites.push(
-            item
-        );
+        list.push({
+
+            key,
+
+            text:
+                verse.sanskrit,
+
+            chapter:
+                verse.chapter,
+
+            verse:
+                verse.verse
+
+        });
 
 
         localStorage.setItem(
 
-            SANSKRITAM_GITA
+            GITA_CONFIG
                 .FAVORITE_KEY,
 
             JSON.stringify(
-                favorites
+                list
             )
 
         );
@@ -2609,7 +2060,7 @@ function saveGitaFavorite(key){
     else{
 
         showGitaToast(
-            "❤️ Already in Favorites"
+            "Already Saved ❤️"
         );
 
     }
@@ -2636,7 +2087,8 @@ async function copyGita(key){
 
     const text =
 
-        `Bhagavad Gita ${verse.chapter}.${verse.verse}
+`🕉️ Bhagavad Gita
+${verse.chapter}.${verse.verse}
 
 ${verse.sanskrit}
 
@@ -2655,7 +2107,7 @@ ${verse.hindi || ""}`;
 
 
         showGitaToast(
-            "📋 Shlok copied"
+            "📋 Copied"
         );
 
     }
@@ -2663,7 +2115,7 @@ ${verse.hindi || ""}`;
     catch{
 
         showGitaToast(
-            "Copy supported નથી."
+            "Copy failed"
         );
 
     }
@@ -2690,7 +2142,7 @@ async function shareGita(key){
 
     const text =
 
-        `🕉️ Bhagavad Gita
+`🕉️ Bhagavad Gita
 ${verse.chapter}.${verse.verse}
 
 ${verse.sanskrit}`;
@@ -2707,8 +2159,7 @@ ${verse.sanskrit}`;
                 title:
                     "SANSKRITAM",
 
-                text:
-                    text
+                text
 
             });
 
@@ -2716,15 +2167,8 @@ ${verse.sanskrit}`;
 
         else{
 
-            await navigator
-                .clipboard
-                .writeText(
-                    text
-                );
-
-
-            showGitaToast(
-                "📋 Shlok copied"
+            await copyGita(
+                key
             );
 
         }
@@ -2748,23 +2192,10 @@ function speakGita(key){
         gita[key];
 
 
-    if(!verse){
-
-        return;
-
-    }
-
-
     if(
-        !(
-            "speechSynthesis"
-            in window
-        )
+        !verse ||
+        !window.speechSynthesis
     ){
-
-        showGitaToast(
-            "🔊 Speech available નથી."
-        );
 
         return;
 
@@ -2774,374 +2205,107 @@ function speakGita(key){
     speechSynthesis.cancel();
 
 
-    const utterance =
+    const speech =
         new SpeechSynthesisUtterance(
             verse.sanskrit
         );
 
 
-    utterance.lang =
+    speech.lang =
         "hi-IN";
 
 
-    utterance.rate =
-        .78;
+    speech.rate =
+        .75;
 
 
-    utterance.pitch =
+    speech.pitch =
         1;
 
 
     speechSynthesis.speak(
-        utterance
+        speech
     );
 
 }
 
 
 /* =========================================================
-   NETWORK STATUS
+   TOAST
 ========================================================= */
 
-function updateNetworkStatus(){
+function showGitaToast(message){
 
-    const online =
-        isOnline();
-
-
-    const element =
-        document.getElementById(
-            "gitaNetworkStatus"
+    let toast =
+        $id(
+            "gitaToast"
         );
 
 
-    if(element){
+    if(!toast){
 
-        element.innerHTML = online
-
-            ?
-
-            "🟢 Online"
-
-            :
-
-            "🔴 Offline";
-
-    }
-
-}
+        toast =
+            document.createElement(
+                "div"
+            );
 
 
-window.addEventListener(
-    "online",
-    function(){
+        toast.id =
+            "gitaToast";
 
-        updateNetworkStatus();
 
-        showGitaToast(
-            "🟢 Internet connected"
+        toast.className =
+            "gita-toast";
+
+
+        document.body.appendChild(
+            toast
         );
 
     }
-);
 
 
-window.addEventListener(
-    "offline",
-    function(){
-
-        updateNetworkStatus();
-
-        showGitaToast(
-            "📴 Offline mode"
-        );
-
-    }
-);
+    toast.textContent =
+        message;
 
 
-/* =========================================================
-   LOAD GITA
-========================================================= */
-
-async function loadGita(){
-
-    injectProfessionalGitaStyles();
+    toast.classList.add(
+        "show"
+    );
 
 
-    const box =
-        document.getElementById(
-            "gita700List"
-        );
+    clearTimeout(
+        window.gitaToastTimer
+    );
 
 
-    if(box){
+    window.gitaToastTimer =
+        setTimeout(
 
-        box.innerHTML = `
+            () => {
 
-            <div
-                class="gita700-status"
-            >
-
-                <div
-                    style="
-                    text-align:center;
-                    padding:25px;
-                    "
-                >
-
-                    🕉️
-
-                    <br><br>
-
-                    <b>
-                        Bhagavad Gita
-                    </b>
-
-                    <br>
-
-                    <span
-                        style="
-                        color:#786b5a;
-                        font:13px Arial;
-                        "
-                    >
-
-                        700 Shlokas loading...
-
-                    </span>
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-
-    try{
-
-        const response =
-            await fetch(
-
-                SANSKRITAM_GITA
-                    .DATA_URL,
-
-                {
-                    cache:
-                        "force-cache"
-                }
-
-            );
-
-
-        if(
-            !response.ok
-        ){
-
-            throw new Error(
-                "Gita data HTTP " +
-                response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        let verses =
-            normalizeGitaData(
-                data
-            );
-
-
-        verses =
-            removeDuplicateVerses(
-                verses
-            );
-
-
-        /*
-         * Standard Bhagavad Gita
-         * has 700 verses.
-         */
-
-        if(
-            verses.length > 700
-        ){
-
-            verses =
-                verses
-                    .filter(
-                        verse =>
-
-                        !(
-                            verse.chapter === 13 &&
-                            verse.verse === 1
-                        )
-
-                    )
-                    .slice(
-                        0,
-                        700
-                    );
-
-        }
-
-
-        allVerses =
-            verses;
-
-
-        /* Hindi */
-
-        try{
-
-            const hindiResponse =
-                await fetch(
-
-                    SANSKRITAM_GITA
-                        .HINDI_URL,
-
-                    {
-                        cache:
-                            "force-cache"
-                    }
-
+                toast.classList.remove(
+                    "show"
                 );
 
+            },
 
-            if(
-                hindiResponse.ok
-            ){
-
-                hindiData =
-                    await hindiResponse.json();
-
-            }
-
-        }
-
-        catch(error){
-
-            console.warn(
-                "Hindi data unavailable",
-                error
-            );
-
-            hindiData =
-                null;
-
-        }
-
-
-        buildGitaObject();
-
-
-        isGitaLoaded =
-            true;
-
-
-        renderGita();
-
-
-        console.log(
-
-            "🪷 SANSKRITAM GITA:",
-
-            allVerses.length,
-
-            "verses loaded"
+            2200
 
         );
-
-    }
-
-    catch(error){
-
-        console.error(
-            "GITA LOAD ERROR:",
-            error
-        );
-
-
-        if(box){
-
-            box.innerHTML = `
-
-                <div
-                    class="gita700-status"
-                >
-
-                    <div
-                        style="
-                        text-align:center;
-                        padding:20px;
-                        "
-                    >
-
-                        ⚠️
-
-                        <br><br>
-
-                        <b>
-                            ભગવદ્ ગીતા
-                            લોડ થઈ શકી નથી.
-                        </b>
-
-                        <br><br>
-
-                        <span
-                            style="
-                            font:13px Arial;
-                            color:#786b5a;
-                            "
-                        >
-
-                            Internet connection
-                            તપાસો.
-
-                        </span>
-
-                        <br><br>
-
-                        <button
-                            type="button"
-                            class="primary"
-                            onclick="
-                            loadGita()
-                            "
-                        >
-
-                            🔄 Retry
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }
-
-    }
 
 }
 
 
 /* =========================================================
-   PROFESSIONAL STYLES
+   PROFESSIONAL CSS
 ========================================================= */
 
-function injectProfessionalGitaStyles(){
+function injectGitaCSS(){
 
     if(
-        document.getElementById(
-            "sanskritam-gita-pro-style"
+        $id(
+            "sanskritam-gita-css"
         )
     ){
 
@@ -3157,12 +2321,198 @@ function injectProfessionalGitaStyles(){
 
 
     style.id =
-        "sanskritam-gita-pro-style";
+        "sanskritam-gita-css";
 
 
     style.textContent = `
 
-        .gita700-status{
+        .gita-top-card{
+
+            background:#fffaf0;
+
+            border:
+                1px solid
+                #e7d9bc;
+
+            border-radius:22px;
+
+            padding:18px;
+
+            margin-bottom:16px;
+
+            box-shadow:
+                0 7px 22px
+                rgba(0,0,0,.06);
+
+        }
+
+
+        .gita-brand{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:12px;
+
+            font-size:28px;
+
+        }
+
+
+        .gita-brand strong{
+
+            display:block;
+
+            font-size:21px;
+
+        }
+
+
+        .gita-brand small{
+
+            display:block;
+
+            font:
+                12px
+                Arial;
+
+            color:#786b5a;
+
+            margin-top:4px;
+
+        }
+
+
+        .gita-language-box{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:7px;
+
+            margin:12px 0;
+
+        }
+
+
+        .gita-language-box select{
+
+            flex:1;
+
+            padding:10px;
+
+            border:
+                1px solid
+                #e7d9bc;
+
+            border-radius:12px;
+
+            background:#fffaf0;
+
+            outline:none;
+
+        }
+
+
+        .gita-search-wrap{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:8px;
+
+            padding:12px 14px;
+
+            border:
+                1px solid
+                #e7d9bc;
+
+            border-radius:15px;
+
+            background:#fff;
+
+        }
+
+
+        .gita-search-wrap input{
+
+            width:100%;
+
+            border:0;
+
+            outline:0;
+
+            background:transparent;
+
+            font:
+                14px
+                Arial;
+
+        }
+
+
+        .search-results{
+
+            margin-top:10px;
+
+            border-radius:15px;
+
+            overflow:hidden;
+
+        }
+
+
+        .search-results button{
+
+            width:100%;
+
+            text-align:left;
+
+            margin:4px 0;
+
+            background:#fff;
+
+            border:
+                1px solid
+                #e7d9bc;
+
+        }
+
+
+        .search-results span{
+
+            display:block;
+
+            margin-top:4px;
+
+            font:
+                12px
+                Arial;
+
+            color:#786b5a;
+
+        }
+
+
+        .search-result-empty{
+
+            text-align:center;
+
+            padding:15px;
+
+            font:
+                13px
+                Arial;
+
+            color:#786b5a;
+
+        }
+
+
+        .gita-chapter-card{
 
             background:#fffaf0;
 
@@ -3172,68 +2522,94 @@ function injectProfessionalGitaStyles(){
 
             border-radius:20px;
 
-            padding:18px;
+            padding:17px;
 
-            margin:14px 0;
-
-            box-shadow:
-                0 6px 20px
-                rgba(0,0,0,.06);
-
-        }
-
-
-        .gita700-chapter{
-
-            background:#fffaf0;
-
-            border:
-                1px solid
-                #e7d9bc;
-
-            border-radius:20px;
-
-            padding:18px;
-
-            margin:16px 0;
+            margin-bottom:14px;
 
             box-shadow:
-                0 6px 20px
-                rgba(0,0,0,.06);
+                0 5px 18px
+                rgba(0,0,0,.05);
 
         }
 
 
-        .gita700-chapter h3{
+        .chapter-heading{
 
-            margin:0 0 16px;
+            display:flex;
 
-            color:#342719;
+            align-items:center;
 
-            line-height:1.5;
+            gap:12px;
+
+            margin-bottom:15px;
 
         }
 
 
-        .gita700-grid{
+        .chapter-number{
+
+            min-width:44px;
+
+            height:44px;
+
+            border-radius:50%;
+
+            display:grid;
+
+            place-items:center;
+
+            background:#b87909;
+
+            color:#fff;
+
+            font:
+                bold 15px
+                Arial;
+
+        }
+
+
+        .chapter-heading h3{
+
+            margin:0;
+
+            font-size:17px;
+
+            line-height:1.4;
+
+        }
+
+
+        .chapter-heading small{
+
+            color:#786b5a;
+
+            font:
+                12px
+                Arial;
+
+        }
+
+
+        .gita-verse-grid{
 
             display:grid;
 
             grid-template-columns:
                 repeat(3,1fr);
 
-            gap:9px;
+            gap:8px;
 
         }
 
 
-        .gita700-btn{
+        .gita-verse-btn{
 
             border:0;
 
-            border-radius:13px;
+            border-radius:12px;
 
-            padding:12px 5px;
+            padding:12px 4px;
 
             background:
                 linear-gradient(
@@ -3245,28 +2621,15 @@ function injectProfessionalGitaStyles(){
             color:white;
 
             font:
-
                 700 12px
                 Arial;
 
             cursor:pointer;
 
-            transition:
-                transform .15s,
-                box-shadow .15s;
-
         }
 
 
-        .gita700-btn:active{
-
-            transform:
-                scale(.96);
-
-        }
-
-
-        .gita700-reader{
+        .gita-reader{
 
             background:#fffaf0;
 
@@ -3274,20 +2637,70 @@ function injectProfessionalGitaStyles(){
                 1px solid
                 #e7d9bc;
 
-            border-radius:22px;
+            border-radius:23px;
 
             padding:20px;
 
-            margin:18px 0;
+            margin-bottom:18px;
 
             box-shadow:
-                0 10px 28px
-                rgba(73,48,15,.10);
+                0 10px 30px
+                rgba(0,0,0,.08);
 
         }
 
 
-        .gita700-sanskrit{
+        .gita-back{
+
+            border:0;
+
+            background:none;
+
+            color:#b87909;
+
+            padding:0;
+
+            margin:0 0 15px;
+
+            font:
+                bold 13px
+                Arial;
+
+            cursor:pointer;
+
+        }
+
+
+        .verse-title{
+
+            font-size:23px;
+
+            font-weight:bold;
+
+        }
+
+
+        .verse-number{
+
+            margin-top:5px;
+
+            color:#b87909;
+
+            font:
+                13px
+                Arial;
+
+        }
+
+
+        .language-mini{
+
+            margin-top:10px;
+
+        }
+
+
+        .sanskrit-text{
 
             font-size:23px;
 
@@ -3295,72 +2708,12 @@ function injectProfessionalGitaStyles(){
 
             white-space:pre-line;
 
-            color:#342719;
+            margin:12px 0 20px;
 
         }
 
 
-        .gita700-meaning{
-
-            font:
-                16px/1.8
-                Arial,
-                sans-serif;
-
-            color:#493c2d;
-
-        }
-
-
-        .gita-offline-btn{
-
-            border:0;
-
-            border-radius:14px;
-
-            padding:13px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #16803c,
-                    #10652f
-                );
-
-            color:white;
-
-            font:
-                700 13px
-                Arial;
-
-            cursor:pointer;
-
-        }
-
-
-        .gita-offline-btn:disabled{
-
-            opacity:.6;
-
-        }
-
-
-        #gitaOfflineProgress{
-
-            background:#f1e5ca;
-
-            border-radius:14px;
-
-            padding:10px;
-
-        }
-
-
-        #gitaSearch{
-
-            width:100%;
-
-            padding:13px 15px;
+        .meaning-box{
 
             border:
                 1px solid
@@ -3368,34 +2721,149 @@ function injectProfessionalGitaStyles(){
 
             border-radius:15px;
 
+            padding:14px;
+
+            margin:12px 0;
+
+            background:#fff;
+
+        }
+
+
+        .meaning-box h3{
+
+            margin-top:0;
+
+            font-size:16px;
+
+        }
+
+
+        .meaning-box p{
+
+            font:
+                16px/1.8
+                Arial;
+
+            margin-bottom:0;
+
+            color:#493c2d;
+
+        }
+
+
+        .verse-actions{
+
+            display:grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:8px;
+
+            margin-top:15px;
+
+        }
+
+
+        .verse-navigation{
+
+            display:grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:8px;
+
+            margin-top:9px;
+
+        }
+
+
+        .verse-navigation button{
+
+            margin:0;
+
+        }
+
+
+        button:disabled{
+
+            opacity:.4;
+
+            cursor:not-allowed;
+
+        }
+
+
+        .gita-loading-card{
+
             background:#fffaf0;
 
-            outline:none;
+            border:
+                1px solid
+                #e7d9bc;
+
+            border-radius:20px;
+
+            text-align:center;
+
+            padding:40px 15px;
 
             font:
                 14px
                 Arial;
 
-            color:#342719;
+        }
+
+
+        .gita-toast{
+
+            position:fixed;
+
+            left:50%;
+
+            bottom:85px;
+
+            transform:
+                translate(-50%,20px);
+
+            opacity:0;
+
+            pointer-events:none;
+
+            background:#342719;
+
+            color:#fff;
+
+            padding:12px 18px;
+
+            border-radius:13px;
+
+            z-index:9999;
+
+            font:
+                600 13px
+                Arial;
+
+            transition:.25s;
 
         }
 
 
-        #gitaSearch:focus{
+        .gita-toast.show{
 
-            border-color:
-                #b87909;
+            opacity:1;
 
-            box-shadow:
-                0 0 0 3px
-                rgba(184,121,9,.10);
+            transform:
+                translate(-50%,0);
 
         }
 
 
         @media(max-width:360px){
 
-            .gita700-grid{
+            .gita-verse-grid{
 
                 grid-template-columns:
                     repeat(2,1fr);
@@ -3403,7 +2871,7 @@ function injectProfessionalGitaStyles(){
             }
 
 
-            .gita700-sanskrit{
+            .sanskrit-text{
 
                 font-size:20px;
 
@@ -3422,6 +2890,208 @@ function injectProfessionalGitaStyles(){
 
 
 /* =========================================================
+   LOAD
+========================================================= */
+
+async function loadGita(){
+
+    injectGitaCSS();
+
+
+    const box =
+        $id(
+            "gita700List"
+        );
+
+
+    if(box){
+
+        box.innerHTML = `
+
+            <div
+                class="gita-loading-card"
+            >
+
+                🕉️
+
+                <br><br>
+
+                ${lang().loading}
+
+            </div>
+
+        `;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                GITA_CONFIG.DATA_URL,
+                {
+                    cache:
+                        "force-cache"
+                }
+            );
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error(
+                "Gita data unavailable"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        allVerses =
+            normalizeData(
+                data
+            );
+
+
+        uniqueVerses();
+
+
+        /*
+         * Keep standard 700
+         */
+
+        if(
+            allVerses.length > 700
+        ){
+
+            allVerses =
+                allVerses
+                    .filter(
+
+                        v =>
+
+                        !(
+                            v.chapter === 13 &&
+                            v.verse === 1
+                        )
+
+                    )
+                    .slice(
+                        0,
+                        700
+                    );
+
+        }
+
+
+        /* Hindi */
+
+        try{
+
+            const responseHindi =
+                await fetch(
+                    GITA_CONFIG.HINDI_URL,
+                    {
+                        cache:
+                            "force-cache"
+                    }
+                );
+
+
+            if(
+                responseHindi.ok
+            ){
+
+                hindiData =
+                    await responseHindi.json();
+
+            }
+
+        }
+
+        catch(error){
+
+            console.warn(
+                "Hindi unavailable",
+                error
+            );
+
+        }
+
+
+        buildGita();
+
+
+        renderGita();
+
+
+        console.log(
+            "🪷 SANSKRITAM:",
+            allVerses.length,
+            "verses loaded"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            error
+        );
+
+
+        if(box){
+
+            box.innerHTML = `
+
+                <div
+                    class="gita-loading-card"
+                >
+
+                    ⚠️
+
+                    <br><br>
+
+                    <b>
+                        Bhagavad Gita
+                        load થઈ શકી નથી.
+                    </b>
+
+                    <br><br>
+
+                    Internet connection
+                    તપાસો.
+
+                    <br><br>
+
+                    <button
+                        class="primary"
+                        onclick="
+                        loadGita()
+                        "
+                    >
+
+                        🔄 Retry
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
    START
 ========================================================= */
 
@@ -3431,11 +3101,8 @@ if(
 ){
 
     document.addEventListener(
-
         "DOMContentLoaded",
-
         loadGita
-
     );
 
 }
