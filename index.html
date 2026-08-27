@@ -3494,17 +3494,14 @@ function renderGita(){
 
                     html += `
 
-                        <button
-                            class="gita700-btn"
-                            onclick="
-                            openGitaVerse(
-                            '${key}'
-                            )
-                            "
-                        >
+                       <button
+    type="button"
+    class="gita700-btn verse-btn"
+    data-key="${key}"
+    onclick="openGitaVerse('${key}')"
+>
 
                             ${chapter}.${verse}
-
                         </button>
 
                     `;
