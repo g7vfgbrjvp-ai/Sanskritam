@@ -2308,8 +2308,8 @@ const GITA_CHAPTERS = [
 const GITA_DATA_URL =
 "https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json";
 
-
-const GITA_HINDI_URL = "";
+const GITA_HINDI_URL =
+"https://raw.githubusercontent.com/kashishkhullar/gita_json/master/dataset.json"; 
 
 let gita = {};
 
@@ -3209,127 +3209,62 @@ function normalizeData(data){
    HINDI
 ===================================================== */
 
-function findHindi(
-    chapter,
-    verse
-){
+function findHindi(chapter, verse){
 
     if(!hindiData){
-
         return "";
-
     }
 
+    let item = null;
 
-    let item =
-    null;
+    const key = `${chapter}-${verse}`;
 
-
-    const key =
-    `${chapter}-${verse}`;
-
-
-    if(
-        hindiData[key]
-    ){
-
-        item =
-        hindiData[key];
-
+    if(hindiData[key]){
+        item = hindiData[key];
     }
 
+    else if(Array.isArray(hindiData)){
 
-    else if(
-        Array.isArray(
-            hindiData
-        )
-    ){
+        item = hindiData.find(row => {
 
-        item =
-        hindiData.find(
+            const c = Number(
+                row?.chapter ??
+                row?.chapter_number ??
+                row?.chapterNumber ??
+                row?.chapter_id
+            );
 
-            row =>
+            const v = Number(
+                row?.verse ??
+                row?.verse_number ??
+                row?.verseNumber ??
+                row?.verse_id
+            );
 
-                Number(
-                    row?.chapter ??
-                    row?.chapter_number ??
-                    row?.chapterNumber
-                )
+            return c === chapter && v === verse;
 
-                ===
-
-                chapter
-
-                &&
-
-                Number(
-                    row?.verse ??
-                    row?.verse_number ??
-                    row?.verseNumber
-                )
-
-                ===
-
-                verse
-
-        );
+        });
 
     }
-
-
-    else if(
-        hindiData
-        .verses
-        ?. [chapter]
-        ?. [verse]
-    ){
-
-        item =
-        hindiData
-        .verses
-        [chapter]
-        [verse];
-
-    }
-
 
     if(!item){
-
         return "";
-
     }
 
-
-    if(
-        typeof item ===
-        "string"
-    ){
-
+    if(typeof item === "string"){
         return item.trim();
-
     }
-
 
     return String(
 
         item.meaning_hindi ??
-
+        item.verse_meaning_hindi ??
         item.hindi_meaning ??
-
         item.hindiMeaning ??
-
         item.translation_hindi ??
-
         item.hindi_translation ??
-
-        item.translation ??
-
         item.meaning ??
-
         item.hindi ??
-
-        item.text_hindi ??
-
         ""
 
     ).trim();
