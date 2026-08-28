@@ -708,7 +708,7 @@ nav button.active{
     <div class="card">
         <h3>🕉️ Bhagavad Gita</h3>
         <p>18 Chapters • 700 Shlokas</p>
-        <button class="primary" onclick="show('gita')">Open Granth</button>
+        <button class="primary" onclick="show('gita'); renderGita();">Open Granth</button>
         <hr>
         <h3>🚩 Ramayana</h3>
         <p>Valmiki Ramayana</p>
@@ -1183,9 +1183,11 @@ function buildGita(){
 }
 
 /* =====================================================
-   RENDER GITA
+   RENDER GITA (બધા અધ્યાયનું લિસ્ટ બતાવવા માટે)
 ===================================================== */
 function renderGita(){
+    $("gitaVerseReader")?.remove(); // શ્લોક રીડર ખુલ્લું હોય તો બંધ કરવા
+    
     const box = $("gita700List");
 
     if(!allVerses.length){
@@ -1205,28 +1207,57 @@ function renderGita(){
             <b>📚 ભગવદ્ ગીતા</b><br>
             <span class="source">18 અધ્યાય • ${allVerses.length} શ્લોક</span>
         </div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
     `;
 
     GITA_CHAPTERS.forEach(([chapter, name, count]) => {
         html += `
-            <div class="gita700-chapter">
-                <h3>અધ્યાય ${chapter} — ${esc(name)}</h3>
-                <div class="gita700-grid">
+            <div class="card chapter" onclick="openGitaChapter(${chapter}, '${esc(name)}', ${count})" style="margin-bottom:0;">
+                <div class="chapterNo">${chapter}</div>
+                <div>
+                    <div class="chapterTitle">${esc(name)}</div>
+                    <div class="chapterSub">${count} શ્લોક • ખોલવા માટે Tap કરો</div>
+                </div>
+            </div>
         `;
-        for(let verse = 1; verse <= count; verse++){
-            const key = `${chapter}-${verse}`;
-            if(gita[key]){
-                html += `
-                    <button type="button" class="gita700-btn verse-btn" data-key="${key}" onclick="openGitaVerse('${key}')">
-                        ${chapter}.${verse}
-                    </button>
-                `;
-            }
-        }
-        html += `</div></div>`;
     });
 
+    html += `</div>`;
     box.innerHTML = html;
+}
+
+/* =====================================================
+   OPEN GITA CHAPTER (માત્ર પસંદ કરેલા અધ્યાયના શ્લોકો)
+===================================================== */
+function openGitaChapter(chapter, name, count){
+    $("gitaVerseReader")?.remove(); 
+    
+    const box = $("gita700List");
+    
+    let html = `
+        <div class="back" onclick="renderGita()" style="margin-top:10px; display:inline-flex; align-items:center; gap:5px; color:var(--gold); font:700 13px Arial; cursor:pointer;">
+            ← બધા અધ્યાય
+        </div>
+        
+        <div class="gita700-chapter">
+            <h3 style="margin-top:10px;">અધ્યાય ${chapter} — ${name}</h3>
+            <div class="gita700-grid">
+    `;
+
+    for(let verse = 1; verse <= count; verse++){
+        const key = `${chapter}-${verse}`;
+        if(gita[key]){
+            html += `
+                <button type="button" class="gita700-btn verse-btn" data-key="${key}" onclick="openGitaVerse('${key}')">
+                    ${chapter}.${verse}
+                </button>
+            `;
+        }
+    }
+
+    html += `</div></div>`;
+    box.innerHTML = html;
+    window.scrollTo({ top:0, behavior:"smooth" });
 }
 
 /* =====================================================
