@@ -3351,11 +3351,7 @@ function buildGita(){
 
                 ...verse,
 
-                hindi:
-                findHindi(
-                    verse.chapter,
-                    verse.verse
-                ),
+                hindi:"",
 
                 gujarati:""
 
@@ -3516,20 +3512,197 @@ function renderGita(){
 
     );
 
+/* =====================================================
+   AUTO TRANSLATION — HINDI + GUJARATI
+===================================================== */
 
-    box.innerHTML =
-    html;
+async function translateText(
+    text,
+    targetLanguage
+){
+
+    if(!text){
+
+        return "";
+
+    }
+
+    try{
+
+        const url =
+        "https://translate.googleapis.com/" +
+        "translate_a/single" +
+        "?client=gtx" +
+        "&sl=en" +
+        "&tl=" +
+        targetLanguage +
+        "&dt=t" +
+        "&q=" +
+        encodeURIComponent(text);
+
+
+        const response =
+        await fetch(url);
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Translation failed"
+            );
+
+        }
+
+
+        const data =
+        await response.json();
+
+
+        const result =
+
+        Array.isArray(data) &&
+        Array.isArray(data[0])
+
+        ?
+
+        data[0]
+        .map(
+            part =>
+            part?.[0] || ""
+        )
+        .join("")
+
+        :
+
+        "";
+
+
+        return result.trim();
+
+    }
+
+    catch(error){
+
+        console.log(
+            "Translation error:",
+            error
+        );
+
+        return "";
+
+    }
 
 }
 
 
 /* =====================================================
-   GUJARATI TRANSLATION
+   LOAD HINDI + GUJARATI MEANING
 ===================================================== */
 
-async function translateGujarati(
-    key
-){
+async function translateMeanings(key){
+
+    const verse =
+    gita[key];
+
+
+    if(!verse){
+
+        return;
+
+    }
+
+
+    const hindiTarget =
+    $("hi-" + key);
+
+
+    const gujaratiTarget =
+    $("gu-" + key);
+
+
+    if(!verse.english){
+
+        if(hindiTarget){
+
+            hindiTarget.textContent =
+            "हिन्दी अर्थ उपलब्ध नहीं है।";
+
+        }
+
+
+        if(gujaratiTarget){
+
+            gujaratiTarget.textContent =
+            "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+
+        }
+
+
+        return;
+
+    }
+
+
+    if(hindiTarget){
+
+        hindiTarget.textContent =
+        "हिन्दी अर्थ प्राप्त किया जा रहा है...";
+
+    }
+
+
+    if(gujaratiTarget){
+
+        gujaratiTarget.textContent =
+        "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
+
+    }
+
+
+    /* ---------------------------------------------
+       HINDI
+    --------------------------------------------- */
+
+    const hindi =
+    await translateText(
+        verse.english,
+        "hi"
+    );
+
+
+    if(hindiTarget){
+
+        hindiTarget.textContent =
+
+        hindi ||
+
+        "हिन्दी अर्थ ઉપલબ્ધ नहीं है।";
+
+    }
+
+
+    /* ---------------------------------------------
+       GUJARATI
+    --------------------------------------------- */
+
+    const gujarati =
+    await translateText(
+        verse.english,
+        "gu"
+    );
+
+
+    if(gujaratiTarget){
+
+        gujaratiTarget.textContent =
+
+        gujarati ||
+
+        "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+
+    }
+
+}
 
     const verse =
     gita[key];
@@ -3772,27 +3945,19 @@ function openGitaVerse(key){
         <hr>
 
 
-        <h3>
-            🇮🇳 हिन्दी अर्थ
-        </h3>
+<h3>
+    🇮🇳 हिन्दी अर्थ
+</h3>
 
+<p
+    id="hi-${key}"
+    class="meaning"
+>
 
-        <p class="meaning">
+    हिन्दी अर्थ
+    प्राप्त किया जा रहा है...
 
-            ${
-                verse.hindi
-                ?
-
-                esc(
-                    verse.hindi
-                )
-
-                :
-
-                "हिन्दी अर्थ उपलब्ध नहीं है।"
-            }
-
-        </p>
+</p>
 
 
         <hr>
@@ -3872,7 +4037,7 @@ function openGitaVerse(key){
     );
 
 
-    translateGujarati(key);
+    translateMeanings(key);
 
 
     window.scrollTo({
@@ -3977,35 +4142,7 @@ async function loadGita(){
         }
 
 
-        try{
-
-            const hindiResponse =
-            await fetch(
-                GITA_HINDI_URL,
-                {
-                    cache:"force-cache"
-                }
-            );
-
-
-            if(
-                hindiResponse.ok
-            ){
-
-                hindiData =
-                await hindiResponse.json();
-
-            }
-
-        }
-
-        catch{
-
-            hindiData =
-            null;
-
-        }
-
+      
 
         buildGita();
 
