@@ -122,13 +122,13 @@ textarea{ width:100%; min-height:130px; resize:vertical; padding:12px; border: 1
 .empty{ text-align:center; color:var(--muted); padding:25px 10px; font: 14px Arial; }
 
 /* =====================================================
-   GITA
+   GRANTH READER (GITA & RAMAYANA)
 ===================================================== */
-.gita700-status, .gita700-chapter, .gita700-reader{ background: var(--surface); border: 1px solid var(--border); border-radius:18px; padding:16px; margin:14px 0; box-shadow: var(--shadow); }
-.gita700-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:8px; }
-.gita700-btn{ margin:0; width:100%; padding:11px 4px; background:#fff3d6; color:var(--text); }
-.gita700-btn:hover{ border-color: var(--gold); }
-.gita700-sanskrit{ font-size:22px; line-height:1.85; white-space:pre-line; }
+.granth-status, .granth-chapter, .granth-reader{ background: var(--surface); border: 1px solid var(--border); border-radius:18px; padding:16px; margin:14px 0; box-shadow: var(--shadow); }
+.granth-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:8px; }
+.granth-btn{ margin:0; width:100%; padding:11px 4px; background:#fff3d6; color:var(--text); }
+.granth-btn:hover{ border-color: var(--gold); }
+.granth-sanskrit{ font-size:22px; line-height:1.85; white-space:pre-line; }
 .meaning{ font: 15px Arial, sans-serif; line-height:1.75; }
 .loading{ text-align:center; padding:28px 10px; font: 14px Arial; color:var(--muted); }
 .error{ padding:15px; border-radius:14px; background:#fff3d6; border: 1px solid var(--border); font: 14px Arial; line-height:1.6; }
@@ -152,7 +152,7 @@ nav button.active{ color:var(--gold); }
 /* =====================================================
    RESPONSIVE
 ===================================================== */
-@media(max-width:360px){ .grid{ grid-template-columns: repeat(2,1fr); } .gita700-grid{ grid-template-columns: repeat(2,1fr); } .shlok{ font-size:19px; } }
+@media(max-width:360px){ .grid{ grid-template-columns: repeat(2,1fr); } .granth-grid{ grid-template-columns: repeat(2,1fr); } .shlok{ font-size:19px; } }
 @media(min-width:700px){ body{ padding:20px 0; } .app{ border-radius:28px; overflow:hidden; box-shadow: 0 20px 70px rgba(40,25,5,.12); } }
 </style>
 </head>
@@ -224,7 +224,7 @@ nav button.active{ color:var(--gold); }
     <div class="back" onclick="show('home')">← Home</div><h2>📚 Granth Library</h2>
     <div class="card">
         <h3>🕉️ Bhagavad Gita</h3><p>18 Chapters • 700 Shlokas</p><button class="primary" onclick="show('gita'); renderGita();">Open Granth</button><hr>
-        <h3>🚩 Ramayana</h3><p>Valmiki Ramayana</p><button class="primary" onclick="show('ramayana')">Open Granth</button><hr>
+        <h3>🚩 Ramayana</h3><p>Valmiki Ramayana (વાલ્મીકિ રામાયણ)</p><button class="primary" onclick="show('ramayana'); renderRamayana();">Open Granth</button><hr>
         <h3>⚔️ Mahabharata</h3><p>The great epic of Bharat</p><button class="primary" onclick="show('mahabharata')">Open Granth</button><hr>
         <h3>📖 Upanishads</h3><p>Principal Upanishads</p><button class="primary" onclick="show('upanishads')">Open Granth</button><hr>
         <h3>🌿 Vedas</h3><p>Rigveda • Yajurveda • Samaveda • Atharvaveda</p><button class="primary" onclick="show('vedas')">Open Granth</button><hr>
@@ -232,8 +232,8 @@ nav button.active{ color:var(--gold); }
     </div>
 </section>
 
-<section id="gita" class="view"><div class="back" onclick="show('granthas')">← Granthas</div><h2>🕉️ Bhagavad Gita</h2><div id="gita700List"><div class="gita700-status"><div class="loading">📖 ભગવદ્ ગીતા લોડ થઈ રહી છે...</div></div></div></section>
-<section id="ramayana" class="view"><div class="back" onclick="show('granthas')">← Granthas</div><div class="card"><h2>🚩 Ramayana</h2><p>વાલ્મીકિ રામાયણના સંસ્કૃત શ્લોક અને અર્થ.</p><span class="badge">આગામી આવૃત્તિ</span></div></section>
+<section id="gita" class="view"><div class="back" onclick="show('granthas')">← Granthas</div><h2>🕉️ Bhagavad Gita</h2><div id="gita700List"><div class="granth-status"><div class="loading">📖 ભગવદ્ ગીતા લોડ થઈ રહી છે...</div></div></div></section>
+<section id="ramayana" class="view"><div class="back" onclick="show('granthas')">← Granthas</div><h2>🚩 Ramayana</h2><div id="ramayanaList"><div class="granth-status"><div class="loading">📖 રામાયણ લોડ થઈ રહ્યું છે...</div></div></div></section>
 <section id="mahabharata" class="view"><div class="back" onclick="show('granthas')">← Granthas</div><div class="card"><h2>⚔️ Mahabharata</h2><p>મહાભારતના સંસ્કૃત શ્લોક અને તેમના અર્થ અહીં ઉમેરાશે.</p><span class="badge">આગામી આવૃત્તિ</span></div></section>
 <section id="upanishads" class="view"><div class="back" onclick="show('granthas')">← Granthas</div><div class="card"><h2>📖 Upanishads</h2><p>Principal Upanishads અને તેમના મંત્રો.</p><span class="badge">આગામી આવૃત્તિ</span></div></section>
 <section id="vedas" class="view"><div class="back" onclick="show('granthas')">← Granthas</div><div class="card"><h2>🌿 Vedas</h2><p>Rigveda • Yajurveda • Samaveda • Atharvaveda</p><span class="badge">આગામી આવૃત્તિ</span></div></section>
@@ -270,6 +270,24 @@ let gita = {};
 let allVerses = [];
 let hindiData = null;
 
+// RAMAYANA DATA & STRUCTURE
+const RAMAYANA_KANDAS = [
+    [1, "બાલકાંડ", "Bala Kanda", "શ્રી રામનો જન્મ અને બાળપણ"],
+    [2, "અયોધ્યાકાંડ", "Ayodhya Kanda", "રાજ્યાભિષેકની તૈયારી અને વનવાસ"],
+    [3, "અરણ્યકાંડ", "Aranya Kanda", "વનવાસનો સમય અને સીતા હરણ"],
+    [4, "કિષ્કિંધાકાંડ", "Kishkindha Kanda", "વાનર સેના સાથે મૈત્રી"],
+    [5, "સુંદરકાંડ", "Sundara Kanda", "હનુમાનજીની લંકા યાત્રા"],
+    [6, "યુદ્ધકાંડ", "Yuddha Kanda", "રામ-રાવણ યુદ્ધ"],
+    [7, "ઉત્તરકાંડ", "Uttara Kanda", "અયોધ્યા પરત અને પછીની કથા"]
+];
+
+// તમે આ લિસ્ટમાં તમારા મનપસંદ રામાયણના શ્લોકો ઉમેરી શકો છો
+let ramayanaData = {
+    "1-1-1": { kanda: 1, sarga: 1, verse: 1, sanskrit: "तपःस्वाध्यायनिरतं तपस्वी वाग्विदां वरम् ।\nनारदं परिपप्रच्छ वाल्मीकिर्मुनिपुङ्गवम् ॥", english: "The ascetic Valmiki asked Narada, the best among those who are eloquent, who is ever engaged in austerities and study of the Vedas." },
+    "1-1-2": { kanda: 1, sarga: 1, verse: 2, sanskrit: "कोन्वस्मिन्साम्प्रतं लोके गुणवान्कश्च वीर्यवान् ।\nधर्मज्ञश्च कृतज्ञश्च सत्यवाक्यो दृढव्रतः ॥", english: "Who in this world right now is virtuous, valiant, knower of dharma, grateful, speaker of truth, and firm in his vows?" },
+    "5-15-2": { kanda: 5, sarga: 15, verse: 2, sanskrit: "नमस्तुभ्यं महादेवि सीते दुःखविनाशिनि ।\nरामाय रामभद्राय रामचन्द्राय वेधसे ॥", english: "Salutations to you, O great goddess Sita, the destroyer of sorrows. Salutations to Rama, Ramabhadra, Ramachandra, the creator." }
+};
+
 /* =====================================================
    HELPERS & NAVIGATION
 ===================================================== */
@@ -294,12 +312,7 @@ function show(id){
    STD 10 & FAVORITES & SEARCH
 ===================================================== */
 function renderChapters(){
-    $("chapterList").innerHTML = chapters.map(c => `
-        <div class="card chapter" onclick="openChapter('${esc(c[0])}')">
-            <div class="chapterNo">${esc(c[0])}</div>
-            <div><div class="chapterTitle">${esc(c[1])}</div><div class="chapterSub">પાઠ ખોલવા માટે Tap કરો</div></div>
-        </div>
-    `).join("");
+    $("chapterList").innerHTML = chapters.map(c => `<div class="card chapter" onclick="openChapter('${esc(c[0])}')"><div class="chapterNo">${esc(c[0])}</div><div><div class="chapterTitle">${esc(c[1])}</div><div class="chapterSub">પાઠ ખોલવા માટે Tap કરો</div></div></div>`).join("");
 }
 
 function openChapter(number){
@@ -332,6 +345,37 @@ function searchAll(){
     box.innerHTML = `<div class="card"><b>🔎 Search Results</b>${found.slice(0,6).map(c => `<div class="chapter" style="padding:12px 0" onclick="openChapter('${esc(c[0])}')"><div class="chapterNo">${esc(c[0])}</div><div><b>${esc(c[1])}</b><div class="chapterSub">Std. 10 Sanskrit</div></div></div>`).join("")}</div>`;
 }
 $("searchBox").addEventListener("input", searchAll);
+
+/* =====================================================
+   ROBUST AUTO TRANSLATION (WITH FALLBACK BACKUP API)
+===================================================== */
+async function translateText(text, targetLanguage){
+    if(!text) return "";
+    try{
+        const url1 = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=" + targetLanguage + "&dt=t&q=" + encodeURIComponent(text);
+        const response1 = await fetch(url1);
+        if(response1.ok){
+            const data = await response1.json();
+            if(Array.isArray(data) && Array.isArray(data[0])){
+                return data[0].map(part => part?.[0] || "").join("").trim();
+            }
+        }
+    } catch(e) { console.log("Google Translate Rate Limited", e); }
+    
+    try{
+        const url2 = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(text) + "&langpair=en|" + targetLanguage;
+        const response2 = await fetch(url2);
+        if(response2.ok){
+            const data2 = await response2.json();
+            if(data2.responseData && data2.responseData.translatedText){
+                if(!data2.responseData.translatedText.includes("MYMEMORY WARNING")){
+                    return data2.responseData.translatedText.trim();
+                }
+            }
+        }
+    } catch(e) { console.log("Backup Translate Failed", e); }
+    return "";
+}
 
 /* =====================================================
    GITA LOGIC
@@ -381,10 +425,10 @@ function buildGita(){
 }
 
 function renderGita(){
-    $("gitaVerseReader")?.remove(); 
+    $("granthVerseReader")?.remove(); 
     const box = $("gita700List");
-    if(!allVerses.length){ box.innerHTML = `<div class="gita700-status"><div class="loading">📖 શ્લોકો લોડ થઈ રહ્યા છે...<br><br>Internet ચાલુ રાખો.</div></div>`; return; }
-    let html = `<div class="gita700-status"><b>📚 ભગવદ્ ગીતા</b><br><span class="source">18 અધ્યાય • ${allVerses.length} શ્લોક</span></div><div style="display:flex; flex-direction:column; gap:10px;">`;
+    if(!allVerses.length){ box.innerHTML = `<div class="granth-status"><div class="loading">📖 શ્લોકો લોડ થઈ રહ્યા છે...<br><br>Internet ચાલુ રાખો.</div></div>`; return; }
+    let html = `<div class="granth-status"><b>📚 ભગવદ્ ગીતા</b><br><span class="source">18 અધ્યાય • ${allVerses.length} શ્લોક</span></div><div style="display:flex; flex-direction:column; gap:10px;">`;
     GITA_CHAPTERS.forEach(([chapter, name, count]) => {
         html += `<div class="card chapter" onclick="openGitaChapter(${chapter}, '${esc(name)}', ${count})" style="margin-bottom:0;"><div class="chapterNo">${chapter}</div><div><div class="chapterTitle">${esc(name)}</div><div class="chapterSub">${count} શ્લોક • ખોલવા માટે Tap કરો</div></div></div>`;
     });
@@ -392,57 +436,25 @@ function renderGita(){
 }
 
 function openGitaChapter(chapter, name, count){
-    $("gitaVerseReader")?.remove(); 
+    $("granthVerseReader")?.remove(); 
     const box = $("gita700List");
-    let html = `<div class="back" onclick="renderGita()" style="margin-top:10px; display:inline-flex; align-items:center; gap:5px; color:var(--gold); font:700 13px Arial; cursor:pointer;">← બધા અધ્યાય</div><div class="gita700-chapter"><h3 style="margin-top:10px;">અધ્યાય ${chapter} — ${name}</h3><div class="gita700-grid">`;
+    let html = `<div class="back" onclick="renderGita()" style="margin-top:10px; display:inline-flex; align-items:center; gap:5px; color:var(--gold); font:700 13px Arial; cursor:pointer;">← બધા અધ્યાય</div><div class="granth-chapter"><h3 style="margin-top:10px;">અધ્યાય ${chapter} — ${name}</h3><div class="granth-grid">`;
     for(let verse = 1; verse <= count; verse++){
         const key = `${chapter}-${verse}`;
-        if(gita[key]){ html += `<button type="button" class="gita700-btn verse-btn" data-key="${key}" onclick="openGitaVerse('${key}')">${chapter}.${verse}</button>`; }
+        if(gita[key]){ html += `<button type="button" class="granth-btn verse-btn" data-key="${key}" onclick="openGitaVerse('${key}')">${chapter}.${verse}</button>`; }
     }
     html += `</div></div>`; box.innerHTML = html; window.scrollTo({ top:0, behavior:"smooth" });
 }
 
-/* =====================================================
-   ROBUST AUTO TRANSLATION (WITH FALLBACK BACKUP API)
-===================================================== */
-async function translateText(text, targetLanguage){
-    if(!text) return "";
+async function translateMeanings(key, granthType){
+    const verse = granthType === 'gita' ? gita[key] : ramayanaData[key]; 
+    if(!verse) return;
     
-    // ૧. પહેલો પ્રયાસ (Google Translate)
-    try{
-        const url1 = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=" + targetLanguage + "&dt=t&q=" + encodeURIComponent(text);
-        const response1 = await fetch(url1);
-        if(response1.ok){
-            const data = await response1.json();
-            if(Array.isArray(data) && Array.isArray(data[0])){
-                return data[0].map(part => part?.[0] || "").join("").trim();
-            }
-        }
-    } catch(e) { console.log("Google Translate Rate Limited", e); }
-    
-    // ૨. બીજો પ્રયાસ (MyMemory Backup - જો Google કામ ન કરે તો)
-    try{
-        const url2 = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(text) + "&langpair=en|" + targetLanguage;
-        const response2 = await fetch(url2);
-        if(response2.ok){
-            const data2 = await response2.json();
-            if(data2.responseData && data2.responseData.translatedText){
-                // Ignore API warnings if quota is exceeded on the backup
-                if(!data2.responseData.translatedText.includes("MYMEMORY WARNING")){
-                    return data2.responseData.translatedText.trim();
-                }
-            }
-        }
-    } catch(e) { console.log("Backup Translate Failed", e); }
-
-    return "";
-}
-
-async function translateMeanings(key){
-    const verse = gita[key]; if(!verse) return;
     const hindiTarget = $("hi-" + key); const gujaratiTarget = $("gu-" + key);
 
-    let hindiText = findHindi(verse.chapter, verse.verse);
+    let hindiText = "";
+    if(granthType === 'gita') hindiText = findHindi(verse.chapter, verse.verse);
+    
     if(!hindiText && verse.english) {
         if(hindiTarget) hindiTarget.textContent = "हिन्दी अर्थ प्राप्त किया जा रहा है...";
         hindiText = await translateText(verse.english, "hi");
@@ -452,7 +464,6 @@ async function translateMeanings(key){
     if(!verse.english){
         if(gujaratiTarget) gujaratiTarget.textContent = "ગુજરાતી અર્થ ઉપલબ્ધ નથી."; return;
     }
-
     if(gujaratiTarget) gujaratiTarget.textContent = "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
     const gujaratiText = await translateText(verse.english, "gu");
     if(gujaratiTarget){ gujaratiTarget.textContent = gujaratiText || "ગુજરાતી અર્થ ઉપલબ્ધ નથી."; }
@@ -460,27 +471,25 @@ async function translateMeanings(key){
 
 function openGitaVerse(key){
     const verse = gita[key]; if(!verse){ toast("આ શ્લોક ઉપલબ્ધ નથી."); return; }
-    $("gitaVerseReader")?.remove();
-    const reader = document.createElement("div"); reader.id = "gitaVerseReader"; reader.className = "gita700-reader";
+    $("granthVerseReader")?.remove();
+    const reader = document.createElement("div"); reader.id = "granthVerseReader"; reader.className = "granth-reader";
     reader.innerHTML = `
-        <div class="back" onclick="$('gitaVerseReader')?.remove()">← શ્લોક સૂચિ</div>
+        <div class="back" onclick="$('granthVerseReader')?.remove()">← શ્લોક સૂચિ</div>
         <div style="font-size:20px; font-weight:bold">📖 Bhagavad Gita ${verse.chapter}.${verse.verse}</div>
         <div class="source">અધ્યાય ${verse.chapter} • શ્લોક ${verse.verse}</div><hr>
-        <h3>🕉️ संस्कृत श्लोक</h3><div class="gita700-sanskrit">${esc(verse.sanskrit)}</div><hr>
+        <h3>🕉️ संस्कृत श्लोक</h3><div class="granth-sanskrit">${esc(verse.sanskrit)}</div><hr>
         <h3>🇬🇧 English Meaning</h3><p class="meaning">${verse.english ? esc(verse.english) : "English meaning ઉપલબ્ધ નથી."}</p><hr>
         <h3>🇮🇳 हिन्दी अर्थ</h3><p id="hi-${key}" class="meaning">हिन्दी अर्थ प्राप्त किया जा रहा है...</p><hr>
         <h3>🇮🇳 ગુજરાતી અર્થ</h3><p id="gu-${key}" class="meaning">ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...</p>
         <div class="actions">
-            <button onclick="saveGitaFavorite('${key}')">❤️ Favorite</button>
+            <button onclick="addFavorite('Gita ${key} — ${esc(verse.sanskrit)}')">❤️ Favorite</button>
             <button onclick="speakText('${esc(verse.sanskrit)}')">🔊 સાંભળો</button>
             <button onclick="shareText('${esc(verse.sanskrit)}')">📤 Share</button>
         </div>
     `;
     $("gita").insertBefore(reader, $("gita700List"));
-    translateMeanings(key); window.scrollTo({ top:0, behavior:"smooth" });
+    translateMeanings(key, 'gita'); window.scrollTo({ top:0, behavior:"smooth" });
 }
-
-function saveGitaFavorite(key){ const verse = gita[key]; if(!verse) return; addFavorite(`${key} — ${verse.sanskrit}`); }
 
 async function loadGita(){
     renderGita();
@@ -501,6 +510,67 @@ async function loadGita(){
     }
 }
 
+/* =====================================================
+   RAMAYANA LOGIC
+===================================================== */
+function renderRamayana(){
+    $("granthVerseReader")?.remove(); 
+    const box = $("ramayanaList");
+    let html = `<div class="granth-status"><b>🚩 વાલ્મીકિ રામાયણ</b><br><span class="source">7 કાંડ • પવિત્ર શ્લોકો</span></div><div style="display:flex; flex-direction:column; gap:10px;">`;
+    
+    RAMAYANA_KANDAS.forEach(([kandaId, gujName, engName, subtitle]) => {
+        html += `<div class="card chapter" onclick="openRamayanaKanda(${kandaId}, '${esc(gujName)}')" style="margin-bottom:0;"><div class="chapterNo" style="background: linear-gradient(145deg, #e74c3c, #c0392b);">${kandaId}</div><div><div class="chapterTitle">${esc(gujName)} (${esc(engName)})</div><div class="chapterSub">${esc(subtitle)} • ખોલવા માટે Tap કરો</div></div></div>`;
+    });
+    
+    html += `</div>`; box.innerHTML = html;
+}
+
+function openRamayanaKanda(kandaId, kandaName){
+    $("granthVerseReader")?.remove(); 
+    const box = $("ramayanaList");
+    let html = `<div class="back" onclick="renderRamayana()" style="margin-top:10px; display:inline-flex; align-items:center; gap:5px; color:var(--gold); font:700 13px Arial; cursor:pointer;">← બધા કાંડ</div><div class="granth-chapter"><h3 style="margin-top:10px;">${kandaName}</h3><div class="granth-grid">`;
+    
+    let hasVerses = false;
+    Object.keys(ramayanaData).forEach(key => {
+        const verse = ramayanaData[key];
+        if(verse.kanda === kandaId) {
+            hasVerses = true;
+            html += `<button type="button" class="granth-btn verse-btn" data-key="${key}" onclick="openRamayanaVerse('${key}')">સર્ગ ${verse.sarga}.${verse.verse}</button>`;
+        }
+    });
+
+    if(!hasVerses) {
+        html += `<p style="grid-column: 1 / -1; font-size:14px; color:var(--muted);">આ કાંડના શ્લોકો ટૂંક સમયમાં ઉમેરવામાં આવશે.</p>`;
+    }
+
+    html += `</div></div>`; box.innerHTML = html; window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+function openRamayanaVerse(key){
+    const verse = ramayanaData[key]; if(!verse){ toast("આ શ્લોક ઉપલબ્ધ નથી."); return; }
+    $("granthVerseReader")?.remove();
+    const reader = document.createElement("div"); reader.id = "granthVerseReader"; reader.className = "granth-reader";
+    reader.innerHTML = `
+        <div class="back" onclick="$('granthVerseReader')?.remove()">← શ્લોક સૂચિ</div>
+        <div style="font-size:20px; font-weight:bold">🚩 Valmiki Ramayana ${verse.kanda}.${verse.sarga}.${verse.verse}</div>
+        <div class="source">કાંડ ${verse.kanda} • સર્ગ ${verse.sarga} • શ્લોક ${verse.verse}</div><hr>
+        <h3>🕉️ संस्कृत श्लोक</h3><div class="granth-sanskrit">${esc(verse.sanskrit)}</div><hr>
+        <h3>🇬🇧 English Meaning</h3><p class="meaning">${verse.english ? esc(verse.english) : "English meaning ઉપલબ્ધ નથી."}</p><hr>
+        <h3>🇮🇳 हिन्दी अर्थ</h3><p id="hi-${key}" class="meaning">हिन्दी अर्थ प्राप्त किया जा रहा है...</p><hr>
+        <h3>🇮🇳 ગુજરાતી અર્થ</h3><p id="gu-${key}" class="meaning">ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...</p>
+        <div class="actions">
+            <button onclick="addFavorite('Ramayana ${key} — ${esc(verse.sanskrit)}')">❤️ Favorite</button>
+            <button onclick="speakText('${esc(verse.sanskrit)}')">🔊 સાંભળો</button>
+            <button onclick="shareText('${esc(verse.sanskrit)}')">📤 Share</button>
+        </div>
+    `;
+    $("ramayana").insertBefore(reader, $("ramayanaList"));
+    translateMeanings(key, 'ramayana'); window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+/* =====================================================
+   SHARE & SPEECH
+===================================================== */
 async function shareText(text){
     try{ if(navigator.share){ await navigator.share({ title: "SANSKRITAM", text: text }); } else { await navigator.clipboard.writeText(text); toast("📋 Text copied"); } } catch{}
 }
@@ -510,7 +580,7 @@ function speakText(text){
     speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(text); utterance.lang = "hi-IN"; utterance.rate = .82; speechSynthesis.speak(utterance);
 }
 
-renderChapters(); loadGita();
+renderChapters(); loadGita(); renderRamayana();
 </script>
 </body>
 </html>
