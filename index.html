@@ -3217,33 +3217,93 @@ function findHindi(chapter, verse){
 
     let item = null;
 
+    // Direct key: "2-48"
     const key = `${chapter}-${verse}`;
 
     if(hindiData[key]){
         item = hindiData[key];
     }
 
-    else if(Array.isArray(hindiData)){
+    // Dataset: verses[chapter][verse]
+    if(
+        !item &&
+        hindiData.verses &&
+        hindiData.verses[chapter] &&
+        hindiData.verses[chapter][verse]
+    ){
+        item = hindiData.verses[chapter][verse];
+    }
 
-        item = hindiData.find(row => {
+    // Dataset: chapters[chapter].verses[verse]
+    if(
+        !item &&
+        Array.isArray(hindiData.chapters)
+    ){
 
-            const c = Number(
-                row?.chapter ??
-                row?.chapter_number ??
-                row?.chapterNumber ??
-                row?.chapter_id
+        const ch =
+            hindiData.chapters.find(
+                x =>
+                    Number(
+                        x.chapter ??
+                        x.chapter_number ??
+                        x.chapterNumber
+                    ) === chapter
             );
 
-            const v = Number(
-                row?.verse ??
-                row?.verse_number ??
-                row?.verseNumber ??
-                row?.verse_id
-            );
+        if(ch && ch.verses){
 
-            return c === chapter && v === verse;
+            if(Array.isArray(ch.verses)){
 
-        });
+                item =
+                    ch.verses.find(
+                        x =>
+                            Number(
+                                x.verse ??
+                                x.verse_number ??
+                                x.verseNumber
+                            ) === verse
+                    );
+
+            }
+
+            else if(ch.verses[verse]){
+
+                item =
+                    ch.verses[verse];
+
+            }
+
+        }
+
+    }
+
+    // Array dataset
+    if(
+        !item &&
+        Array.isArray(hindiData)
+    ){
+
+        item =
+            hindiData.find(row => {
+
+                const c = Number(
+                    row?.chapter ??
+                    row?.chapter_number ??
+                    row?.chapterNumber
+                );
+
+                const v = Number(
+                    row?.verse ??
+                    row?.verse_number ??
+                    row?.verseNumber
+                );
+
+                return (
+                    c === chapter &&
+                    v === verse
+                );
+
+            });
 
     }
 
@@ -3257,13 +3317,13 @@ function findHindi(chapter, verse){
 
     return String(
 
+        item.meaning ??
         item.meaning_hindi ??
         item.verse_meaning_hindi ??
         item.hindi_meaning ??
         item.hindiMeaning ??
         item.translation_hindi ??
         item.hindi_translation ??
-        item.meaning ??
         item.hindi ??
         ""
 
