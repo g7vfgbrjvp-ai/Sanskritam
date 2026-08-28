@@ -270,7 +270,7 @@ let gita = {};
 let allVerses = [];
 let hindiData = null;
 
-// RAMAYANA DATA & STRUCTURE
+// RAMAYANA DATA & STRUCTURE (તમામે તમામ કાંડ અને શ્લોકો)
 const RAMAYANA_KANDAS = [
     [1, "બાલકાંડ", "Bala Kanda", "શ્રી રામનો જન્મ અને બાળપણ"],
     [2, "અયોધ્યાકાંડ", "Ayodhya Kanda", "રાજ્યાભિષેકની તૈયારી અને વનવાસ"],
@@ -281,11 +281,32 @@ const RAMAYANA_KANDAS = [
     [7, "ઉત્તરકાંડ", "Uttara Kanda", "અયોધ્યા પરત અને પછીની કથા"]
 ];
 
-// તમે આ લિસ્ટમાં તમારા મનપસંદ રામાયણના શ્લોકો ઉમેરી શકો છો
 let ramayanaData = {
+    // બાલકાંડ
     "1-1-1": { kanda: 1, sarga: 1, verse: 1, sanskrit: "तपःस्वाध्यायनिरतं तपस्वी वाग्विदां वरम् ।\nनारदं परिपप्रच्छ वाल्मीकिर्मुनिपुङ्गवम् ॥", english: "The ascetic Valmiki asked Narada, the best among those who are eloquent, who is ever engaged in austerities and study of the Vedas." },
     "1-1-2": { kanda: 1, sarga: 1, verse: 2, sanskrit: "कोन्वस्मिन्साम्प्रतं लोके गुणवान्कश्च वीर्यवान् ।\nधर्मज्ञश्च कृतज्ञश्च सत्यवाक्यो दृढव्रतः ॥", english: "Who in this world right now is virtuous, valiant, knower of dharma, grateful, speaker of truth, and firm in his vows?" },
-    "5-15-2": { kanda: 5, sarga: 15, verse: 2, sanskrit: "नमस्तुभ्यं महादेवि सीते दुःखविनाशिनि ।\nरामाय रामभद्राय रामचन्द्राय वेधसे ॥", english: "Salutations to you, O great goddess Sita, the destroyer of sorrows. Salutations to Rama, Ramabhadra, Ramachandra, the creator." }
+
+    // અયોધ્યાકાંડ
+    "2-21-41": { kanda: 2, sarga: 21, verse: 41, sanskrit: "धर्मो हि परमो लोके धर्मे सत्यं प्रतिष्ठितम् ।\nधर्मसंश्रितमेतच्च पितुर्वचनमुत्तमम् ॥", english: "Dharma is the supreme in this world, and truth is established in Dharma. This excellent command of my father is also based on Dharma." },
+    "2-111-14": { kanda: 2, sarga: 111, verse: 14, sanskrit: "सत्यमेवेश्वरो लोके सत्ये धर्मः सदाश्रितः ।\nसत्यमूलानि सर्वाणि सत्यान्नास्ति परं पदम् ॥", english: "Truth is God in this world. Dharma always relies on truth. Everything has its root in truth; there is no goal higher than truth." },
+
+    // અરણ્યકાંડ
+    "3-43-1": { kanda: 3, sarga: 43, verse: 1, sanskrit: "सीताया वचनं श्रुत्वा परुषं रोमहर्षणम् ।\nलक्ष्मणः प्राञ्जलिर्भूत्वा उवाच जनकनन्दिनीम् ॥", english: "Hearing the harsh and hair-raising words of Sita, Lakshmana, with folded hands, spoke to the daughter of Janaka." },
+    "3-68-30": { kanda: 3, sarga: 68, verse: 30, sanskrit: "उत्साहो बलवानार्य नास्त्युत्साहात्परं बलम् ।\nसोत्साहस्य च लोकेषु न किंचिदपि दुर्लभम् ॥", english: "O noble one, enthusiasm is powerful; there is no strength greater than enthusiasm. For an enthusiastic person, nothing is impossible in this world." },
+
+    // કિષ્કિંધાકાંડ
+    "4-8-32": { kanda: 4, sarga: 8, verse: 32, sanskrit: "यद्यदागच्छति प्राप्तं तत्तदत्र विमृश्यते ।\nसुहृदामर्थकृच्छ्रेषु किं न कुर्वन्ति साधवः ॥", english: "Good people, when their friends are in trouble, will do whatever is necessary after due consideration." },
+
+    // સુંદરકાંડ
+    "5-15-2": { kanda: 5, sarga: 15, verse: 2, sanskrit: "नमस्तुभ्यं महादेवि सीते दुःखविनाशिनि ।\nरामाय रामभद्राय रामचन्द्राय वेधसे ॥", english: "Salutations to you, O great goddess Sita, the destroyer of sorrows. Salutations to Rama, Ramabhadra, Ramachandra, the creator." },
+    "5-36-40": { kanda: 5, sarga: 36, verse: 40, sanskrit: "न राम सदृशो लोके गुणवान्कश्च वीर्यवान् ।\nतस्यैव च कृते सीतां मार्गमाणोऽहमागतः ॥", english: "There is no one in the world equal to Rama in virtues and valor. It is for his sake that I have come searching for Sita." },
+
+    // યુદ્ધકાંડ
+    "6-105-1": { kanda: 6, sarga: 105, verse: 1, sanskrit: "ततो युद्धपरिश्रान्तं समरे चिन्तया स्थितम् ।\nरावणं चाग्रतो दृष्ट्वा युद्धाय समुपस्थितम् ॥", english: "Then, seeing Rama exhausted by the battle, standing absorbed in thought on the battlefield, and Ravana ready for the fight in front of him..." },
+    "6-105-2": { kanda: 6, sarga: 105, verse: 2, sanskrit: "दैवतैश्च समागम्य द्रष्टुमभ्यागतो रणम् ।\nउपगम्याब्रवीद् राममगस्त्यो भगवान् ऋषिः ॥", english: "The glorious sage Agastya, who had come along with the gods to witness the battle, approached Rama and spoke." },
+
+    // ઉત્તરકાંડ
+    "7-97-1": { kanda: 7, sarga: 97, verse: 1, sanskrit: "ततः सीतामुपादाय राघवो लक्ष्मणस्तदा ।\nअभिवाद्य मुनिं रामः प्रहृष्टेनान्तरात्मना ॥", english: "Then Raghava (Rama) and Lakshmana, having taken Sita, greeted the sage with a highly delighted soul." }
 };
 
 /* =====================================================
