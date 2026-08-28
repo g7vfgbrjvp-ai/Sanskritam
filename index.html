@@ -3340,25 +3340,18 @@ function buildGita(){
 
     gita = {};
 
+    allVerses.forEach(verse => {
 
-    allVerses
-    .forEach(
-        verse => {
+        gita[verse.key] = {
 
-            gita[
-                verse.key
-            ] = {
+            ...verse,
 
-                ...verse,
+            hindi: "",
+            gujarati: ""
 
-                hindi:"",
+        };
 
-                gujarati:""
-
-            };
-
-        }
-    );
+    });
 
 }
 
@@ -3369,26 +3362,17 @@ function buildGita(){
 
 function renderGita(){
 
-    const box =
-    $("gita700List");
+    const box = $("gita700List");
 
-
-    if(
-        !allVerses.length
-    ){
+    if(!allVerses.length){
 
         box.innerHTML = `
 
-            <div
-                class="gita700-status"
-            >
+            <div class="gita700-status">
 
-                <div
-                    class="loading"
-                >
+                <div class="loading">
 
-                    📖 શ્લોકો
-                    લોડ થઈ રહ્યા છે...
+                    📖 શ્લોકો લોડ થઈ રહ્યા છે...
 
                     <br><br>
 
@@ -3407,9 +3391,7 @@ function renderGita(){
 
     let html = `
 
-        <div
-            class="gita700-status"
-        >
+        <div class="gita700-status">
 
             <b>
                 📚 ભગવદ્ ગીતા
@@ -3417,9 +3399,7 @@ function renderGita(){
 
             <br>
 
-            <span
-                class="source"
-            >
+            <span class="source">
 
                 18 અધ્યાય •
                 ${allVerses.length}
@@ -3432,23 +3412,12 @@ function renderGita(){
     `;
 
 
-    GITA_CHAPTERS
-    .forEach(
-
-        (
-            [
-                chapter,
-                name,
-                count
-            ]
-        ) => {
-
+    GITA_CHAPTERS.forEach(
+        ([chapter, name, count]) => {
 
             html += `
 
-                <div
-                    class="gita700-chapter"
-                >
+                <div class="gita700-chapter">
 
                     <h3>
 
@@ -3459,38 +3428,34 @@ function renderGita(){
 
                     </h3>
 
-
-                    <div
-                        class="gita700-grid"
-                    >
+                    <div class="gita700-grid">
 
             `;
 
 
             for(
-                let verse=1;
-                verse<=count;
+                let verse = 1;
+                verse <= count;
                 verse++
             ){
 
                 const key =
-                `${chapter}-${verse}`;
+                    `${chapter}-${verse}`;
 
 
-                if(
-                    gita[key]
-                ){
+                if(gita[key]){
 
                     html += `
 
-                       <button
-    type="button"
-    class="gita700-btn verse-btn"
-    data-key="${key}"
-    onclick="openGitaVerse('${key}')"
->
+                        <button
+                            type="button"
+                            class="gita700-btn verse-btn"
+                            data-key="${key}"
+                            onclick="openGitaVerse('${key}')"
+                        >
 
                             ${chapter}.${verse}
+
                         </button>
 
                     `;
@@ -3509,8 +3474,13 @@ function renderGita(){
             `;
 
         }
-
     );
+
+
+    box.innerHTML = html;
+
+}
+
 
 /* =====================================================
    AUTO TRANSLATION — HINDI + GUJARATI
@@ -3527,22 +3497,23 @@ async function translateText(
 
     }
 
+
     try{
 
         const url =
-        "https://translate.googleapis.com/" +
-        "translate_a/single" +
-        "?client=gtx" +
-        "&sl=en" +
-        "&tl=" +
-        targetLanguage +
-        "&dt=t" +
-        "&q=" +
-        encodeURIComponent(text);
+            "https://translate.googleapis.com/" +
+            "translate_a/single" +
+            "?client=gtx" +
+            "&sl=en" +
+            "&tl=" +
+            targetLanguage +
+            "&dt=t" +
+            "&q=" +
+            encodeURIComponent(text);
 
 
         const response =
-        await fetch(url);
+            await fetch(url);
 
 
         if(!response.ok){
@@ -3555,26 +3526,26 @@ async function translateText(
 
 
         const data =
-        await response.json();
+            await response.json();
 
 
         const result =
 
-        Array.isArray(data) &&
-        Array.isArray(data[0])
+            Array.isArray(data) &&
+            Array.isArray(data[0])
 
-        ?
+            ?
 
-        data[0]
-        .map(
-            part =>
-            part?.[0] || ""
-        )
-        .join("")
+            data[0]
+            .map(
+                part =>
+                    part?.[0] || ""
+            )
+            .join("")
 
-        :
+            :
 
-        "";
+            "";
 
 
         return result.trim();
@@ -3602,7 +3573,7 @@ async function translateText(
 async function translateMeanings(key){
 
     const verse =
-    gita[key];
+        gita[key];
 
 
     if(!verse){
@@ -3613,11 +3584,11 @@ async function translateMeanings(key){
 
 
     const hindiTarget =
-    $("hi-" + key);
+        $("hi-" + key);
 
 
     const gujaratiTarget =
-    $("gu-" + key);
+        $("gu-" + key);
 
 
     if(!verse.english){
@@ -3625,7 +3596,7 @@ async function translateMeanings(key){
         if(hindiTarget){
 
             hindiTarget.textContent =
-            "हिन्दी अर्थ उपलब्ध नहीं है।";
+                "हिन्दी अर्थ उपलब्ध नहीं है।";
 
         }
 
@@ -3633,7 +3604,7 @@ async function translateMeanings(key){
         if(gujaratiTarget){
 
             gujaratiTarget.textContent =
-            "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+                "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
 
         }
 
@@ -3646,7 +3617,7 @@ async function translateMeanings(key){
     if(hindiTarget){
 
         hindiTarget.textContent =
-        "हिन्दी अर्थ प्राप्त किया जा रहा है...";
+            "हिन्दी अर्थ प्राप्त किया जा रहा है...";
 
     }
 
@@ -3654,168 +3625,47 @@ async function translateMeanings(key){
     if(gujaratiTarget){
 
         gujaratiTarget.textContent =
-        "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
+            "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
 
     }
 
 
-    /* ---------------------------------------------
-       HINDI
-    --------------------------------------------- */
+    /* ---------------- HINDI ---------------- */
 
     const hindi =
-    await translateText(
-        verse.english,
-        "hi"
-    );
-
-
-    if(hindiTarget){
-
-        hindiTarget.textContent =
-
-        hindi ||
-
-        "हिन्दी अर्थ ઉપલબ્ધ नहीं है।";
-
-    }
-
-
-    /* ---------------------------------------------
-       GUJARATI
-    --------------------------------------------- */
-
-    const gujarati =
-    await translateText(
-        verse.english,
-        "gu"
-    );
-
-
-    if(gujaratiTarget){
-
-        gujaratiTarget.textContent =
-
-        gujarati ||
-
-        "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
-
-    }
-
-}
-
-    const verse =
-    gita[key];
-
-
-    const target =
-    $("gu-" + key);
-
-
-    if(
-        !verse ||
-        !target
-    ){
-
-        return;
-
-    }
-
-
-    if(
-        !verse.english
-    ){
-
-        target.textContent =
-        "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
-
-        return;
-
-    }
-
-
-    target.textContent =
-    "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
-
-
-    try{
-
-        const url =
-
-        "https://translate.googleapis.com/" +
-
-        "translate_a/single" +
-
-        "?client=gtx" +
-
-        "&sl=en" +
-
-        "&tl=gu" +
-
-        "&dt=t" +
-
-        "&q=" +
-
-        encodeURIComponent(
-            verse.english
+        await translateText(
+            verse.english,
+            "hi"
         );
 
 
-        const response =
-        await fetch(url);
+    if(hindiTarget){
 
+        hindiTarget.textContent =
 
-        if(
-            !response.ok
-        ){
+            hindi ||
 
-            throw new Error();
-
-        }
-
-
-        const data =
-        await response.json();
-
-
-        const result =
-
-        Array.isArray(data)
-
-        &&
-
-        Array.isArray(data[0])
-
-        ?
-
-        data[0]
-        .map(
-            part =>
-            part?.[0] || ""
-        )
-        .join("")
-
-        :
-
-        "";
-
-
-        target.textContent =
-
-        result.trim()
-
-        ||
-
-        "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+            "हिन्दी अर्थ उपलब्ध नहीं है।";
 
     }
 
 
-    catch{
+    /* ---------------- GUJARATI ---------------- */
 
-        target.textContent =
+    const gujarati =
+        await translateText(
+            verse.english,
+            "gu"
+        );
 
-        "ગુજરાતી અર્થ મેળવવા Internet ચાલુ રાખો.";
+
+    if(gujaratiTarget){
+
+        gujaratiTarget.textContent =
+
+            gujarati ||
+
+            "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
 
     }
 
@@ -3829,7 +3679,7 @@ async function translateMeanings(key){
 function openGitaVerse(key){
 
     const verse =
-    gita[key];
+        gita[key];
 
 
     if(!verse){
@@ -3844,21 +3694,19 @@ function openGitaVerse(key){
 
 
     $("gitaVerseReader")
-    ?.remove();
+        ?.remove();
 
 
     const reader =
-    document.createElement(
-        "div"
-    );
+        document.createElement("div");
 
 
     reader.id =
-    "gitaVerseReader";
+        "gitaVerseReader";
 
 
     reader.className =
-    "gita700-reader";
+        "gita700-reader";
 
 
     reader.innerHTML = `
@@ -3866,8 +3714,7 @@ function openGitaVerse(key){
         <div
             class="back"
             onclick="
-            $('gitaVerseReader')
-            ?.remove()
+                $('gitaVerseReader')?.remove()
             "
         >
 
@@ -3878,8 +3725,8 @@ function openGitaVerse(key){
 
         <div
             style="
-            font-size:20px;
-            font-weight:bold
+                font-size:20px;
+                font-weight:bold
             "
         >
 
@@ -3889,9 +3736,7 @@ function openGitaVerse(key){
         </div>
 
 
-        <div
-            class="source"
-        >
+        <div class="source">
 
             અધ્યાય ${verse.chapter}
             • શ્લોક ${verse.verse}
@@ -3907,9 +3752,7 @@ function openGitaVerse(key){
         </h3>
 
 
-        <div
-            class="gita700-sanskrit"
-        >
+        <div class="gita700-sanskrit">
 
             ${esc(verse.sanskrit)}
 
@@ -3929,13 +3772,8 @@ function openGitaVerse(key){
             ${
                 verse.english
                 ?
-
-                esc(
-                    verse.english
-                )
-
+                esc(verse.english)
                 :
-
                 "English meaning ઉપલબ્ધ નથી."
             }
 
@@ -3945,19 +3783,20 @@ function openGitaVerse(key){
         <hr>
 
 
-<h3>
-    🇮🇳 हिन्दी अर्थ
-</h3>
+        <h3>
+            🇮🇳 हिन्दी अर्थ
+        </h3>
 
-<p
-    id="hi-${key}"
-    class="meaning"
->
 
-    हिन्दी अर्थ
-    प्राप्त किया जा रहा है...
+        <p
+            id="hi-${key}"
+            class="meaning"
+        >
 
-</p>
+            हिन्दी अर्थ
+            प्राप्त किया जा रहा है...
+
+        </p>
 
 
         <hr>
@@ -3981,12 +3820,9 @@ function openGitaVerse(key){
 
         <div class="actions">
 
-
             <button
                 onclick="
-                saveGitaFavorite(
-                '${key}'
-                )
+                    saveGitaFavorite('${key}')
                 "
             >
 
@@ -3997,11 +3833,9 @@ function openGitaVerse(key){
 
             <button
                 onclick="
-                speakText(
-                '${esc(
-                    verse.sanskrit
-                )}'
-                )
+                    speakText(
+                        '${esc(verse.sanskrit)}'
+                    )
                 "
             >
 
@@ -4012,11 +3846,9 @@ function openGitaVerse(key){
 
             <button
                 onclick="
-                shareText(
-                '${esc(
-                    verse.sanskrit
-                )}'
-                )
+                    shareText(
+                        '${esc(verse.sanskrit)}'
+                    )
                 "
             >
 
@@ -4024,14 +3856,12 @@ function openGitaVerse(key){
 
             </button>
 
-
         </div>
 
     `;
 
 
-    $("gita")
-    .insertBefore(
+    $("gita").insertBefore(
         reader,
         $("gita700List")
     );
@@ -4047,6 +3877,127 @@ function openGitaVerse(key){
         behavior:"smooth"
 
     });
+
+}
+
+
+/* =====================================================
+   GITA FAVORITE
+===================================================== */
+
+function saveGitaFavorite(key){
+
+    const verse =
+        gita[key];
+
+
+    if(!verse){
+
+        return;
+
+    }
+
+
+    addFavorite(
+        `${key} — ${verse.sanskrit}`
+    );
+
+}
+
+
+/* =====================================================
+   LOAD GITA
+===================================================== */
+
+async function loadGita(){
+
+    renderGita();
+
+
+    try{
+
+        const response =
+            await fetch(
+                GITA_DATA_URL,
+                {
+                    cache:"force-cache"
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Gita data failed"
+            );
+
+        }
+
+
+        allVerses =
+            normalizeData(
+                await response.json()
+            );
+
+
+        if(allVerses.length > 700){
+
+            allVerses =
+
+                allVerses
+                .filter(
+                    v =>
+                        !(
+                            v.chapter === 13 &&
+                            v.verse === 1
+                        )
+                )
+                .slice(0,700);
+
+        }
+
+
+        buildGita();
+
+        renderGita();
+
+    }
+
+    catch(error){
+
+        console.log(
+            "Gita loading error:",
+            error
+        );
+
+
+        $("gita700List")
+            .innerHTML = `
+
+            <div class="error">
+
+                ⚠️
+
+                <b>
+                    ભગવદ્ ગીતા
+                    લોડ થઈ શકી નથી.
+                </b>
+
+                <br><br>
+
+                Internet connection
+                તપાસો અને page refresh કરો.
+
+                <br><br>
+
+                Appના બાકીના sections
+                offline પણ ચાલશે.
+
+            </div>
+
+        `;
+
+    }
 
 }
 
