@@ -721,7 +721,11 @@ function speakText(text){
     speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(text); utterance.lang = "hi-IN"; utterance.rate = .82; speechSynthesis.speak(utterance);
 }
 
-renderChapters(); loadGita(); renderRamayana();
+renderChapters();
+loadGita();
 </script>
+
+<script src="ramayana.js"></script>
+
 </body>
 </html>
