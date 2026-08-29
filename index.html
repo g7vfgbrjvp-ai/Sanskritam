@@ -270,304 +270,424 @@ let gita = {};
 let allVerses = [];
 let hindiData = null;
 
-// RAMAYANA DATA & STRUCTURE (તમામે તમામ કાંડ અને શ્લોકો)
+/* =====================================================
+   SANSKRITAM — RAMAYANA ENGINE
+   Valmiki Ramayana
+   Sanskrit + English + Hindi + Gujarati
+===================================================== */
+
 const RAMAYANA_KANDAS = [
     [1, "બાલકાંડ", "Bala Kanda", "શ્રી રામનો જન્મ અને બાળપણ"],
     [2, "અયોધ્યાકાંડ", "Ayodhya Kanda", "રાજ્યાભિષેકની તૈયારી અને વનવાસ"],
-    [3, "અરણ્યકાંડ", "Aranya Kanda", "વનવાસનો સમય અને સીતા હરણ"],
-    [4, "કિષ્કિંધાકાંડ", "Kishkindha Kanda", "વાનર સેના સાથે મૈત્રી"],
+    [3, "અરણ્યકાંડ", "Aranya Kanda", "વનવાસ અને સીતા હરણ"],
+    [4, "કિષ્કિંધાકાંડ", "Kishkindha Kanda", "સુગ્રીવ સાથે મૈત્રી અને વાનર સેના"],
     [5, "સુંદરકાંડ", "Sundara Kanda", "હનુમાનજીની લંકા યાત્રા"],
     [6, "યુદ્ધકાંડ", "Yuddha Kanda", "રામ-રાવણ યુદ્ધ"],
     [7, "ઉત્તરકાંડ", "Uttara Kanda", "અયોધ્યા પરત અને પછીની કથા"]
 ];
 
-let ramayanaData = {
-    // બાલકાંડ
-    "1-1-3": { kanda: 1, sarga: 1, verse: 3, sanskrit: "તમારો સંસ્કૃત શ્લોક", english: "English meaning" },
-    "1-1-2": { kanda: 1, sarga: 1, verse: 2, sanskrit: "कोन्वस्मिन्साम्प्रतं लोके गुणवान्कश्च वीर्यवान् ।\nधर्मज्ञश्च कृतज्ञश्च सत्यवाक्यो दृढव्रतः ॥", english: "Who in this world right now is virtuous, valiant, knower of dharma, grateful, speaker of truth, and firm in his vows?" },
+/* =====================================================
+   RAMAYANA DATA
+===================================================== */
 
-    // અયોધ્યાકાંડ
-    "2-21-41": { kanda: 2, sarga: 21, verse: 41, sanskrit: "धर्मो हि परमो लोके धर्मे सत्यं प्रतिष्ठितम् ।\nधर्मसंश्रितमेतच्च पितुर्वचनमुत्तमम् ॥", english: "Dharma is the supreme in this world, and truth is established in Dharma. This excellent command of my father is also based on Dharma." },
-    "2-111-14": { kanda: 2, sarga: 111, verse: 14, sanskrit: "सत्यमेवेश्वरो लोके सत्ये धर्मः सदाश्रितः ।\nसत्यमूलानि सर्वाणि सत्यान्नास्ति परं पदम् ॥", english: "Truth is God in this world. Dharma always relies on truth. Everything has its root in truth; there is no goal higher than truth." },
+const ramayanaData = {
 
-    // અરણ્યકાંડ
-    "3-43-1": { kanda: 3, sarga: 43, verse: 1, sanskrit: "सीताया वचनं श्रुत्वा परुषं रोमहर्षणम् ।\nलक्ष्मणः प्राञ्जलिर्भूत्वा उवाच जनकनन्दिनीम् ॥", english: "Hearing the harsh and hair-raising words of Sita, Lakshmana, with folded hands, spoke to the daughter of Janaka." },
-    "3-68-30": { kanda: 3, sarga: 68, verse: 30, sanskrit: "उत्साहो बलवानार्य नास्त्युत्साहात्परं बलम् ।\nसोत्साहस्य च लोकेषु न किंचिदपि दुर्लभम् ॥", english: "O noble one, enthusiasm is powerful; there is no strength greater than enthusiasm. For an enthusiastic person, nothing is impossible in this world." },
+    "1-1-1": {
+        kanda: 1,
+        sarga: 1,
+        verse: 1,
+        sanskrit:
+`तपःस्वाध्यायनिरतं तपस्वी वाग्विदां वरम् ।
+नारदं परिपप्रच्छ वाल्मीकिर्मुनिपुङ्गवम् ॥`,
+        english:
+        "Valmiki, the foremost among sages, asked Narada, who was devoted to austerity and self-study and was the best among speakers."
+    },
 
-    // કિષ્કિંધાકાંડ
-    "4-8-32": { kanda: 4, sarga: 8, verse: 32, sanskrit: "यद्यदागच्छति प्राप्तं तत्तदत्र विमृश्यते ।\nसुहृदामर्थकृच्छ्रेषु किं न कुर्वन्ति साधवः ॥", english: "Good people, when their friends are in trouble, will do whatever is necessary after due consideration." },
+    "1-1-2": {
+        kanda: 1,
+        sarga: 1,
+        verse: 2,
+        sanskrit:
+`कोन्वस्मिन् साम्प्रतं लोके गुणवान् कश्च वीर्यवान् ।
+धर्मज्ञश्च कृतज्ञश्च सत्यवाक्यो दृढव्रतः ॥`,
+        english:
+        "Who in this world is virtuous, powerful, righteous, grateful, truthful and firm in his vows?"
+    },
 
-    // સુંદરકાંડ
-    "5-15-2": { kanda: 5, sarga: 15, verse: 2, sanskrit: "नमस्तुभ्यं महादेवि सीते दुःखविनाशिनि ।\nरामाय रामभद्राय रामचन्द्राय वेधसे ॥", english: "Salutations to you, O great goddess Sita, the destroyer of sorrows. Salutations to Rama, Ramabhadra, Ramachandra, the creator." },
-    "5-36-40": { kanda: 5, sarga: 36, verse: 40, sanskrit: "न राम सदृशो लोके गुणवान्कश्च वीर्यवान् ।\nतस्यैव च कृते सीतां मार्गमाणोऽहमागतः ॥", english: "There is no one in the world equal to Rama in virtues and valor. It is for his sake that I have come searching for Sita." },
+    "1-1-3": {
+        kanda: 1,
+        sarga: 1,
+        verse: 3,
+        sanskrit:
+`चारित्रेण च को युक्तः सर्वभूतेषु को हितः ।
+विद्वान् कः कः समर्थश्च कश्चैकप्रियदर्शनः ॥`,
+        english:
+        "Who is endowed with noble character, benevolent to all beings, learned, capable and pleasing to behold?"
+    },
 
-    // યુદ્ધકાંડ
-    "6-105-1": { kanda: 6, sarga: 105, verse: 1, sanskrit: "ततो युद्धपरिश्रान्तं समरे चिन्तया स्थितम् ।\nरावणं चाग्रतो दृष्ट्वा युद्धाय समुपस्थितम् ॥", english: "Then, seeing Rama exhausted by the battle, standing absorbed in thought on the battlefield, and Ravana ready for the fight in front of him..." },
-    "6-105-2": { kanda: 6, sarga: 105, verse: 2, sanskrit: "दैवतैश्च समागम्य द्रष्टुमभ्यागतो रणम् ।\nउपगम्याब्रवीद् राममगस्त्यो भगवान् ऋषिः ॥", english: "The glorious sage Agastya, who had come along with the gods to witness the battle, approached Rama and spoke." },
+    "2-21-41": {
+        kanda: 2,
+        sarga: 21,
+        verse: 41,
+        sanskrit:
+`धर्मो हि परमो लोके धर्मे सत्यं प्रतिष्ठितम् ।
+धर्मसंश्रितमेतच्च पितुर्वचनमुत्तमम् ॥`,
+        english:
+        "Dharma is supreme in this world, and truth is established in Dharma. This excellent command of my father is also based on Dharma."
+    },
 
-    // ઉત્તરકાંડ
-    "7-97-1": { kanda: 7, sarga: 97, verse: 1, sanskrit: "ततः सीतामुपादाय राघवो लक्ष्मणस्तदा ।\nअभिवाद्य मुनिं रामः प्रहृष्टेनान्तरात्मना ॥", english: "Then Raghava (Rama) and Lakshmana, having taken Sita, greeted the sage with a highly delighted soul." }
+    "2-111-14": {
+        kanda: 2,
+        sarga: 111,
+        verse: 14,
+        sanskrit:
+`सत्यमेवेश्वरो लोके सत्ये धर्मः सदाश्रितः ।
+सत्यमूलानि सर्वाणि सत्यान्नास्ति परं पदम् ॥`,
+        english:
+        "Truth is supreme in this world. Dharma always rests upon truth. Everything has its root in truth; there is nothing higher than truth."
+    },
+
+    "3-68-30": {
+        kanda: 3,
+        sarga: 68,
+        verse: 30,
+        sanskrit:
+`उत्साहो बलवानार्य नास्त्युत्साहात्परं बलम् ।
+सोत्साहस्य च लोकेषु न किंचिदपि दुर्लभम् ॥`,
+        english:
+        "Enthusiasm is powerful. There is no strength greater than enthusiasm. For an enthusiastic person, nothing is impossible in this world."
+    },
+
+    "5-36-40": {
+        kanda: 5,
+        sarga: 36,
+        verse: 40,
+        sanskrit:
+`न राम सदृशो लोके गुणवान् कश्च वीर्यवान् ।
+तस्यैव च कृते सीतां मार्गमाणोऽहमागतः ॥`,
+        english:
+        "There is no one in the world equal to Rama in virtue and valor. It is for his sake that I have come searching for Sita."
+    },
+
+    "6-105-1": {
+        kanda: 6,
+        sarga: 105,
+        verse: 1,
+        sanskrit:
+`ततो युद्धपरिश्रान्तं समरे चिन्तया स्थितम् ।
+रावणं चाग्रतो दृष्ट्वा युद्धाय समुपस्थितम् ॥`,
+        english:
+        "Seeing Rama exhausted from battle and Ravana standing before him ready to fight, the sage Agastya approached him."
+    },
+
+    "6-105-2": {
+        kanda: 6,
+        sarga: 105,
+        verse: 2,
+        sanskrit:
+`दैवतैश्च समागम्य द्रष्टुमभ्यागतो रणम् ।
+उपगम्याब्रवीद् राममगस्त्यो भगवान् ऋषिः ॥`,
+        english:
+        "The glorious sage Agastya, who had come with the gods to witness the battle, approached Rama and spoke."
+    },
+
+    "7-97-1": {
+        kanda: 7,
+        sarga: 97,
+        verse: 1,
+        sanskrit:
+`ततः सीतामुपादाय राघवो लक्ष्मणस्तदा ।
+अभिवाद्य मुनिं रामः प्रहृष्टेनान्तरात्मना ॥`,
+        english:
+        "Then Rama and Lakshmana, having taken Sita, respectfully greeted the sage with great joy."
+    }
 };
 
-/* =====================================================
-   HELPERS & NAVIGATION
-===================================================== */
-const $ = id => document.getElementById(id);
-const esc = value => String(value ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
-
-function toast(message){
-    const t = $("toast"); t.textContent = message; t.classList.add("show");
-    clearTimeout(window.__toast); window.__toast = setTimeout(() => t.classList.remove("show"), 2200);
-}
-
-function show(id){
-    document.querySelectorAll(".view").forEach(v => v.classList.remove("active"));
-    const page = $(id); if(!page) return;
-    page.classList.add("active");
-    document.querySelectorAll("nav button").forEach(button => button.classList.toggle("active", button.dataset.nav === id));
-    if(id === "favorites") renderFavorites();
-    window.scrollTo({ top:0, behavior:"smooth" });
-}
 
 /* =====================================================
-   STD 10 & FAVORITES & SEARCH
+   RAMAYANA HOME
 ===================================================== */
-function renderChapters(){
-    $("chapterList").innerHTML = chapters.map(c => `<div class="card chapter" onclick="openChapter('${esc(c[0])}')"><div class="chapterNo">${esc(c[0])}</div><div><div class="chapterTitle">${esc(c[1])}</div><div class="chapterSub">પાઠ ખોલવા માટે Tap કરો</div></div></div>`).join("");
-}
 
-function openChapter(number){
-    const c = chapters.find(x => x[0] === number); if(!c) return;
-    $("chapterHeading").textContent = `પાઠ ${c[0]} — ${c[1]}`;
-    $("chapterContent").innerHTML = `<div class="badge">GSEB STD. 10</div><h3>📖 પાઠની સામગ્રી</h3><p>આ પાઠ માટે સંસ્કૃત શ્લોક, ગુજરાતી અર્થ વગેરે અહીં આવશે.</p>`;
-    show("chapter");
-}
-
-function getFavorites(){ try{ return JSON.parse(localStorage.getItem("sanskritamFavorites") || "[]"); } catch{ return []; } }
-function addFavorite(text){
-    const favorites = getFavorites();
-    if(!favorites.includes(text)){ favorites.push(text); localStorage.setItem("sanskritamFavorites", JSON.stringify(favorites)); toast("❤️ Favorite Saved"); }
-    else { toast("Already in Favorites"); }
-}
-function removeFavorite(index){
-    const favorites = getFavorites(); favorites.splice(index, 1);
-    localStorage.setItem("sanskritamFavorites", JSON.stringify(favorites)); renderFavorites(); toast("Favorite removed");
-}
-function renderFavorites(){
-    const favorites = getFavorites();
-    $("favoriteList").innerHTML = favorites.length ? favorites.map((text,index) => `<div style="margin-bottom:16px"><div class="shlok" style="font-size:18px">❤️ ${esc(text)}</div><button class="danger" onclick="removeFavorite(${index})">Remove</button></div>${index < favorites.length - 1 ? "<hr>" : ""}`).join("") : `<div class="empty">તમારા saved shlokas અહીં દેખાશે.</div>`;
-}
-
-function searchAll(){
-    const q = $("searchBox").value.trim().toLowerCase(); const box = $("searchResults");
-    if(!q){ box.innerHTML = ""; return; }
-    const found = chapters.filter(c => c[1].toLowerCase().includes(q));
-    if(!found.length){ box.innerHTML = `<div class="card empty">કોઈ matching result મળ્યો નથી.</div>`; return; }
-    box.innerHTML = `<div class="card"><b>🔎 Search Results</b>${found.slice(0,6).map(c => `<div class="chapter" style="padding:12px 0" onclick="openChapter('${esc(c[0])}')"><div class="chapterNo">${esc(c[0])}</div><div><b>${esc(c[1])}</b><div class="chapterSub">Std. 10 Sanskrit</div></div></div>`).join("")}</div>`;
-}
-$("searchBox").addEventListener("input", searchAll);
-
-/* =====================================================
-   ROBUST AUTO TRANSLATION (WITH FALLBACK BACKUP API)
-===================================================== */
-async function translateText(text, targetLanguage){
-    if(!text) return "";
-    try{
-        const url1 = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=" + targetLanguage + "&dt=t&q=" + encodeURIComponent(text);
-        const response1 = await fetch(url1);
-        if(response1.ok){
-            const data = await response1.json();
-            if(Array.isArray(data) && Array.isArray(data[0])){
-                return data[0].map(part => part?.[0] || "").join("").trim();
-            }
-        }
-    } catch(e) { console.log("Google Translate Rate Limited", e); }
-    
-    try{
-        const url2 = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(text) + "&langpair=en|" + targetLanguage;
-        const response2 = await fetch(url2);
-        if(response2.ok){
-            const data2 = await response2.json();
-            if(data2.responseData && data2.responseData.translatedText){
-                if(!data2.responseData.translatedText.includes("MYMEMORY WARNING")){
-                    return data2.responseData.translatedText.trim();
-                }
-            }
-        }
-    } catch(e) { console.log("Backup Translate Failed", e); }
-    return "";
-}
-
-/* =====================================================
-   GITA LOGIC
-===================================================== */
-function normalizeRow(row){
-    const chapter = Number(row?.chapter ?? row?.chapter_number ?? row?.chapterNumber);
-    const verse = Number(row?.verse ?? row?.verse_number ?? row?.verseNumber);
-    const sanskrit = row?.sanskrit ?? row?.text ?? row?.devanagari ?? row?.slok ?? row?.verse_text ?? "";
-    const english = row?.english ?? row?.translation ?? row?.meaning ?? row?.translation_en ?? "";
-    if(!chapter || !verse || !sanskrit) return null;
-    return { chapter, verse, key: `${chapter}-${verse}`, sanskrit: String(sanskrit).trim(), english: String(english || "").trim() };
-}
-
-function normalizeData(data){
-    let rows = [];
-    if(Array.isArray(data)) rows = data;
-    else if(Array.isArray(data?.verses)) rows = data.verses;
-    else if(Array.isArray(data?.data)) rows = data.data;
-    else if(data && typeof data === "object"){
-        if(Array.isArray(data.chapters)){ data.chapters.forEach(chapter => { if(Array.isArray(chapter.verses)) rows.push(...chapter.verses); }); }
-        if(!rows.length){ Object.entries(data).forEach(([key,value]) => { if(/^\d+-\d+$/.test(key) && value && typeof value === "object"){ const [c, v] = key.split("-"); rows.push({ ...value, chapter: value.chapter ?? c, verse: value.verse ?? v }); } }); }
-    }
-    return rows.map(normalizeRow).filter(Boolean).sort((a,b) => a.chapter - b.chapter || a.verse - b.verse);
-}
-
-function findHindi(chapter, verse){
-    if(!hindiData) return ""; let item = null; const key = `${chapter}-${verse}`;
-    if(hindiData[key]) item = hindiData[key];
-    if(!item && hindiData.verses && hindiData.verses[chapter] && hindiData.verses[chapter][verse]){ item = hindiData.verses[chapter][verse]; }
-    if(!item && Array.isArray(hindiData.chapters)){
-        const ch = hindiData.chapters.find(x => Number(x.chapter ?? x.chapter_number ?? x.chapterNumber) === chapter);
-        if(ch && ch.verses){
-            if(Array.isArray(ch.verses)){ item = ch.verses.find(x => Number(x.verse ?? x.verse_number ?? x.verseNumber) === verse); }
-            else if(ch.verses[verse]){ item = ch.verses[verse]; }
-        }
-    }
-    if(!item && Array.isArray(hindiData)){
-        item = hindiData.find(row => { return (Number(row?.chapter ?? row?.chapter_number ?? row?.chapterNumber) === chapter && Number(row?.verse ?? row?.verse_number ?? row?.verseNumber) === verse); });
-    }
-    if(!item) return ""; if(typeof item === "string") return item.trim();
-    return String(item.meaning ?? item.meaning_hindi ?? item.verse_meaning_hindi ?? item.hindi_meaning ?? item.hindiMeaning ?? item.translation_hindi ?? item.hindi_translation ?? item.hindi ?? "").trim();
-}
-
-function buildGita(){
-    gita = {};
-    allVerses.forEach(verse => { gita[verse.key] = { ...verse, hindi: "", gujarati: "" }; });
-}
-
-function renderGita(){
-    $("granthVerseReader")?.remove(); 
-    const box = $("gita700List");
-    if(!allVerses.length){ box.innerHTML = `<div class="granth-status"><div class="loading">📖 શ્લોકો લોડ થઈ રહ્યા છે...<br><br>Internet ચાલુ રાખો.</div></div>`; return; }
-    let html = `<div class="granth-status"><b>📚 ભગવદ્ ગીતા</b><br><span class="source">18 અધ્યાય • ${allVerses.length} શ્લોક</span></div><div style="display:flex; flex-direction:column; gap:10px;">`;
-    GITA_CHAPTERS.forEach(([chapter, name, count]) => {
-        html += `<div class="card chapter" onclick="openGitaChapter(${chapter}, '${esc(name)}', ${count})" style="margin-bottom:0;"><div class="chapterNo">${chapter}</div><div><div class="chapterTitle">${esc(name)}</div><div class="chapterSub">${count} શ્લોક • ખોલવા માટે Tap કરો</div></div></div>`;
-    });
-    html += `</div>`; box.innerHTML = html;
-}
-
-function openGitaChapter(chapter, name, count){
-    $("granthVerseReader")?.remove(); 
-    const box = $("gita700List");
-    let html = `<div class="back" onclick="renderGita()" style="margin-top:10px; display:inline-flex; align-items:center; gap:5px; color:var(--gold); font:700 13px Arial; cursor:pointer;">← બધા અધ્યાય</div><div class="granth-chapter"><h3 style="margin-top:10px;">અધ્યાય ${chapter} — ${name}</h3><div class="granth-grid">`;
-    for(let verse = 1; verse <= count; verse++){
-        const key = `${chapter}-${verse}`;
-        if(gita[key]){ html += `<button type="button" class="granth-btn verse-btn" data-key="${key}" onclick="openGitaVerse('${key}')">${chapter}.${verse}</button>`; }
-    }
-    html += `</div></div>`; box.innerHTML = html; window.scrollTo({ top:0, behavior:"smooth" });
-}
-
-async function translateMeanings(key, granthType){
-    const verse = granthType === 'gita' ? gita[key] : ramayanaData[key]; 
-    if(!verse) return;
-    
-    const hindiTarget = $("hi-" + key); const gujaratiTarget = $("gu-" + key);
-
-    let hindiText = "";
-    if(granthType === 'gita') hindiText = findHindi(verse.chapter, verse.verse);
-    
-    if(!hindiText && verse.english) {
-        if(hindiTarget) hindiTarget.textContent = "हिन्दी अर्थ प्राप्त किया जा रहा है...";
-        hindiText = await translateText(verse.english, "hi");
-    }
-    if(hindiTarget){ hindiTarget.textContent = hindiText || "हिन्दी अर्थ उपलब्ध नहीं है।"; }
-
-    if(!verse.english){
-        if(gujaratiTarget) gujaratiTarget.textContent = "ગુજરાતી અર્થ ઉપલબ્ધ નથી."; return;
-    }
-    if(gujaratiTarget) gujaratiTarget.textContent = "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
-    const gujaratiText = await translateText(verse.english, "gu");
-    if(gujaratiTarget){ gujaratiTarget.textContent = gujaratiText || "ગુજરાતી અર્થ ઉપલબ્ધ નથી."; }
-}
-
-function openGitaVerse(key){
-    const verse = gita[key]; if(!verse){ toast("આ શ્લોક ઉપલબ્ધ નથી."); return; }
-    $("granthVerseReader")?.remove();
-    const reader = document.createElement("div"); reader.id = "granthVerseReader"; reader.className = "granth-reader";
-    reader.innerHTML = `
-        <div class="back" onclick="$('granthVerseReader')?.remove()">← શ્લોક સૂચિ</div>
-        <div style="font-size:20px; font-weight:bold">📖 Bhagavad Gita ${verse.chapter}.${verse.verse}</div>
-        <div class="source">અધ્યાય ${verse.chapter} • શ્લોક ${verse.verse}</div><hr>
-        <h3>🕉️ संस्कृत श्लोक</h3><div class="granth-sanskrit">${esc(verse.sanskrit)}</div><hr>
-        <h3>🇬🇧 English Meaning</h3><p class="meaning">${verse.english ? esc(verse.english) : "English meaning ઉપલબ્ધ નથી."}</p><hr>
-        <h3>🇮🇳 हिन्दी अर्थ</h3><p id="hi-${key}" class="meaning">हिन्दी अर्थ प्राप्त किया जा रहा है...</p><hr>
-        <h3>🇮🇳 ગુજરાતી અર્થ</h3><p id="gu-${key}" class="meaning">ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...</p>
-        <div class="actions">
-            <button onclick="addFavorite('Gita ${key} — ${esc(verse.sanskrit)}')">❤️ Favorite</button>
-            <button onclick="speakText('${esc(verse.sanskrit)}')">🔊 સાંભળો</button>
-            <button onclick="shareText('${esc(verse.sanskrit)}')">📤 Share</button>
-        </div>
-    `;
-    $("gita").insertBefore(reader, $("gita700List"));
-    translateMeanings(key, 'gita'); window.scrollTo({ top:0, behavior:"smooth" });
-}
-
-async function loadGita(){
-    renderGita();
-    try{
-        const [enRes, hiRes] = await Promise.all([
-            fetch(GITA_DATA_URL, {cache:"force-cache"}),
-            fetch(GITA_HINDI_URL, {cache:"force-cache"}).catch(() => null)
-        ]);
-        if(!enRes.ok) throw new Error("Gita data failed");
-        allVerses = normalizeData(await enRes.json());
-        if(hiRes && hiRes.ok){ hindiData = await hiRes.json(); }
-        if(allVerses.length > 700){ allVerses = allVerses.filter(v => !(v.chapter === 13 && v.verse === 1)).slice(0,700); }
-        buildGita(); renderGita();
-    }
-    catch(error){
-        console.log("Gita loading error:", error);
-        $("gita700List").innerHTML = `<div class="error">⚠️ <b>ભગવદ્ ગીતા લોડ થઈ શકી નથી.</b><br><br>Internet connection તપાસો અને page refresh કરો.</div>`;
-    }
-}
-
-/* =====================================================
-   RAMAYANA LOGIC
-===================================================== */
 function renderRamayana(){
-    $("granthVerseReader")?.remove(); 
-    const box = $("ramayanaList");
-    let html = `<div class="granth-status"><b>🚩 વાલ્મીકિ રામાયણ</b><br><span class="source">7 કાંડ • પવિત્ર શ્લોકો</span></div><div style="display:flex; flex-direction:column; gap:10px;">`;
-    
-    RAMAYANA_KANDAS.forEach(([kandaId, gujName, engName, subtitle]) => {
-        html += `<div class="card chapter" onclick="openRamayanaKanda(${kandaId}, '${esc(gujName)}')" style="margin-bottom:0;"><div class="chapterNo" style="background: linear-gradient(145deg, #e74c3c, #c0392b);">${kandaId}</div><div><div class="chapterTitle">${esc(gujName)} (${esc(engName)})</div><div class="chapterSub">${esc(subtitle)} • ખોલવા માટે Tap કરો</div></div></div>`;
-    });
-    
-    html += `</div>`; box.innerHTML = html;
+
+    const box = document.getElementById("ramayanaList");
+
+    if(!box) return;
+
+    const oldReader = document.getElementById("granthVerseReader");
+
+    if(oldReader) oldReader.remove();
+
+    let html = `
+        <div class="granth-status">
+            <b>🚩 વાલ્મીકિ રામાયણ</b><br>
+            <span class="source">
+                7 કાંડ • સંસ્કૃત શ્લોક • English • हिन्दी • ગુજરાતી
+            </span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+    `;
+
+    RAMAYANA_KANDAS.forEach(
+        ([id, gujarati, english, subtitle]) => {
+
+            html += `
+                <div
+                    class="card chapter"
+                    onclick="openRamayanaKanda(${id}, '${gujarati}')"
+                    style="margin-bottom:0;"
+                >
+
+                    <div
+                        class="chapterNo"
+                        style="background:linear-gradient(145deg,#e74c3c,#c0392b);"
+                    >
+                        ${id}
+                    </div>
+
+                    <div>
+
+                        <div class="chapterTitle">
+                            ${gujarati}
+                        </div>
+
+                        <div class="chapterSub">
+                            ${english} • ${subtitle}
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+        }
+    );
+
+    html += `</div>`;
+
+    box.innerHTML = html;
 }
+
+
+/* =====================================================
+   OPEN KANDA
+===================================================== */
 
 function openRamayanaKanda(kandaId, kandaName){
-    $("granthVerseReader")?.remove(); 
-    const box = $("ramayanaList");
-    let html = `<div class="back" onclick="renderRamayana()" style="margin-top:10px; display:inline-flex; align-items:center; gap:5px; color:var(--gold); font:700 13px Arial; cursor:pointer;">← બધા કાંડ</div><div class="granth-chapter"><h3 style="margin-top:10px;">${kandaName}</h3><div class="granth-grid">`;
-    
-    let hasVerses = false;
-    Object.keys(ramayanaData).forEach(key => {
-        const verse = ramayanaData[key];
-        if(verse.kanda === kandaId) {
-            hasVerses = true;
-            html += `<button type="button" class="granth-btn verse-btn" data-key="${key}" onclick="openRamayanaVerse('${key}')">સર્ગ ${verse.sarga}.${verse.verse}</button>`;
-        }
-    });
 
-    if(!hasVerses) {
-        html += `<p style="grid-column: 1 / -1; font-size:14px; color:var(--muted);">આ કાંડના શ્લોકો ટૂંક સમયમાં ઉમેરવામાં આવશે.</p>`;
+    const box = document.getElementById("ramayanaList");
+
+    if(!box) return;
+
+    const oldReader =
+        document.getElementById("granthVerseReader");
+
+    if(oldReader) oldReader.remove();
+
+    let html = `
+        <div
+            class="back"
+            onclick="renderRamayana()"
+            style="margin-top:10px;"
+        >
+            ← બધા કાંડ
+        </div>
+
+        <div class="granth-chapter">
+
+            <h3>
+                🚩 ${kandaName}
+            </h3>
+
+            <div class="granth-grid">
+    `;
+
+    let found = false;
+
+    Object.entries(ramayanaData).forEach(
+        ([key, verse]) => {
+
+            if(Number(verse.kanda) !== Number(kandaId))
+                return;
+
+            found = true;
+
+            html += `
+                <button
+                    type="button"
+                    class="granth-btn"
+                    onclick="openRamayanaVerse('${key}')"
+                >
+                    સર્ગ ${verse.sarga}.${verse.verse}
+                </button>
+            `;
+        }
+    );
+
+    if(!found){
+
+        html += `
+            <p style="
+                grid-column:1/-1;
+                color:var(--muted);
+                text-align:center;
+                padding:20px;
+            ">
+                📖 આ કાંડના શ્લોકો ટૂંક સમયમાં ઉમેરવામાં આવશે.
+            </p>
+        `;
     }
 
-    html += `</div></div>`; box.innerHTML = html; window.scrollTo({ top:0, behavior:"smooth" });
+    html += `
+            </div>
+        </div>
+    `;
+
+    box.innerHTML = html;
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
+
+/* =====================================================
+   OPEN VERSE
+===================================================== */
+
 function openRamayanaVerse(key){
+
+    const verse = ramayanaData[key];
+
+    if(!verse){
+
+        if(typeof toast === "function")
+            toast("આ શ્લોક ઉપલબ્ધ નથી.");
+
+        return;
+    }
+
+    const oldReader =
+        document.getElementById("granthVerseReader");
+
+    if(oldReader) oldReader.remove();
+
+    const reader = document.createElement("div");
+
+    reader.id = "granthVerseReader";
+    reader.className = "granth-reader";
+
+    reader.innerHTML = `
+
+        <div
+            class="back"
+            onclick="document.getElementById('granthVerseReader')?.remove()"
+        >
+            ← શ્લોક સૂચિ
+        </div>
+
+        <div style="font-size:20px;font-weight:bold;">
+            🚩 Valmiki Ramayana
+            ${verse.kanda}.${verse.sarga}.${verse.verse}
+        </div>
+
+        <div class="source">
+            કાંડ ${verse.kanda}
+            • સર્ગ ${verse.sarga}
+            • શ્લોક ${verse.verse}
+        </div>
+
+        <hr>
+
+        <h3>🕉️ संस्कृत श्लोक</h3>
+
+        <div class="granth-sanskrit">
+            ${esc(verse.sanskrit)}
+        </div>
+
+        <hr>
+
+        <h3>🇬🇧 English Meaning</h3>
+
+        <p class="meaning">
+            ${esc(verse.english)}
+        </p>
+
+        <hr>
+
+        <h3>🇮🇳 हिन्दी अर्थ</h3>
+
+        <p
+            id="hi-${key}"
+            class="meaning"
+        >
+            हिन्दी अर्थ મેળવવામાં આવી રહ્યો છે...
+        </p>
+
+        <hr>
+
+        <h3>🇮🇳 ગુજરાતી અર્થ</h3>
+
+        <p
+            id="gu-${key}"
+            class="meaning"
+        >
+            ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...
+        </p>
+
+        <div class="actions">
+
+            <button
+                onclick="addFavorite(
+                    'Ramayana ${key} — ${esc(verse.sanskrit)}'
+                )"
+            >
+                ❤️ Favorite
+            </button>
+
+            <button
+                onclick="speakText(
+                    ${JSON.stringify(verse.sanskrit)}
+                )"
+            >
+                🔊 સાંભળો
+            </button>
+
+            <button
+                onclick="shareText(
+                    ${JSON.stringify(verse.sanskrit)}
+                )"
+            >
+                📤 Share
+            </button>
+
+        </div>
+    `;
+
+    const ramayanaPage =
+        document.getElementById("ramayana");
+
+    ramayanaPage.insertBefore(
+        reader,
+        document.getElementById("ramayanaList")
+    );
+
+    /*
+       Translation function
+       index.html માં રહેલી translateMeanings()
+       નો ઉપયોગ કરશે.
+    */
+
+    if(typeof translateMeanings === "function"){
+        translateMeanings(key, "ramayana");
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
     const verse = ramayanaData[key]; if(!verse){ toast("આ શ્લોક ઉપલબ્ધ નથી."); return; }
     $("granthVerseReader")?.remove();
     const reader = document.createElement("div"); reader.id = "granthVerseReader"; reader.className = "granth-reader";
