@@ -1,280 +1,557 @@
 /* =========================================================
-   🚩 SANSKRITAM — RAMAYANA ENGINE
-   Valmiki Ramayana
-   Sanskrit + English + Hindi + Gujarati
-========================================================= */
-
-const RAMAYANA_KANDAS = [
-    [1, "બાલકાંડ", "Bala Kanda", "શ્રી રામનો જન્મ અને બાળપણ"],
-    [2, "અયોધ્યાકાંડ", "Ayodhya Kanda", "રાજ્યાભિષેકની તૈયારી અને વનવાસ"],
-    [3, "અરણ્યકાંડ", "Aranya Kanda", "વનવાસ અને સીતા હરણ"],
-    [4, "કિષ્કિંધાકાંડ", "Kishkindha Kanda", "સુગ્રીવ સાથે મૈત્રી અને વાનર સેના"],
-    [5, "સુંદરકાંડ", "Sundara Kanda", "હનુમાનજીની લંકા યાત્રા"],
-    [6, "યુદ્ધકાંડ", "Yuddha Kanda", "રામ-રાવણ યુદ્ધ"],
-    [7, "ઉત્તરકાંડ", "Uttara Kanda", "અયોધ્યા પરત અને આગળની કથા"]
-];
-
-
-/* =========================================================
-   RAMAYANA SAMPLE DATA
+   SANSKRITAM
+   VALMIKI RAMAYANA ENGINE
    ========================================================= */
 
-const ramayanaData = {
+const RAMAYANA_SOURCE =
+"https://raw.githubusercontent.com/bhavykhatri/DharmicData/main/ValmikiRamayana/";
 
-    /* ---------- બાલકાંડ ---------- */
-
-    "1-1-1": {
-        kanda: 1,
-        sarga: 1,
-        verse: 1,
-        sanskrit:
-`तपःस्वाध्यायनिरतं तपस्वी वाग्विदां वरम् ।
-नारदं परिपप्रच्छ वाल्मीकिर्मुनिपुङ्गवम् ॥`,
-        english:
-        "Valmiki, the foremost among sages, asked Narada, who was devoted to austerity and study and was the best among those skilled in speech."
+const RAMAYANA_FILES = [
+    {
+        id: 1,
+        gu: "બાલકાંડ",
+        en: "Bala Kanda",
+        file: "1_balakanda.json",
+        subtitle: "શ્રી રામનો જન્મ, બાળપણ અને વિવાહ"
     },
-
-    "1-1-2": {
-        kanda: 1,
-        sarga: 1,
-        verse: 2,
-        sanskrit:
-`कोन्वस्मिन् साम्प्रतं लोके गुणवान् कश्च वीर्यवान् ।
-धर्मज्ञश्च कृतज्ञश्च सत्यवाक्यो दृढव्रतः ॥`,
-        english:
-        "Who in this world is virtuous, powerful, righteous, grateful, truthful and firm in his vows?"
+    {
+        id: 2,
+        gu: "અયોધ્યાકાંડ",
+        en: "Ayodhya Kanda",
+        file: "2_ayodhyakanda.json",
+        subtitle: "રાજ્યાભિષેક અને વનવાસ"
     },
-
-    "1-1-3": {
-        kanda: 1,
-        sarga: 1,
-        verse: 3,
-        sanskrit:
-`चारित्रेण च को युक्तः सर्वभूतेषु को हितः ।
-विद्वान् कः कः समर्थश्च कश्चैकप्रियदर्शनः ॥`,
-        english:
-        "Who is endowed with noble character, who is devoted to the welfare of all beings, who is learned, capable and pleasing to behold?"
+    {
+        id: 3,
+        gu: "અરણ્યકાંડ",
+        en: "Aranya Kanda",
+        file: "3_aranyakanda.json",
+        subtitle: "વનવાસ અને સીતા હરણ"
     },
-
-
-    /* ---------- અયોધ્યાકાંડ ---------- */
-
-    "2-21-41": {
-        kanda: 2,
-        sarga: 21,
-        verse: 41,
-        sanskrit:
-`धर्मो हि परमो लोके धर्मे सत्यं प्रतिष्ठितम् ।
-धर्मसंश्रितमेतच्च पितुर्वचनमुत्तमम् ॥`,
-        english:
-        "Dharma is supreme in this world, and truth is established in Dharma. This excellent command of my father is also based upon Dharma."
+    {
+        id: 4,
+        gu: "કિષ્કિંધાકાંડ",
+        en: "Kishkindha Kanda",
+        file: "4_kishkindhakanda.json",
+        subtitle: "હનુમાનજી અને સુગ્રીવ સાથે મૈત્રી"
     },
-
-    "2-111-14": {
-        kanda: 2,
-        sarga: 111,
-        verse: 14,
-        sanskrit:
-`सत्यमेवेश्वरो लोके सत्ये धर्मः सदाश्रितः ।
-सत्यमूलानि सर्वाणि सत्यान्नास्ति परं पदम् ॥`,
-        english:
-        "Truth is God in this world. Dharma always rests upon truth. Everything has its root in truth, and there is no higher principle than truth."
+    {
+        id: 5,
+        gu: "સુંદરકાંડ",
+        en: "Sundara Kanda",
+        file: "5_sundarakanda.json",
+        subtitle: "હનુમાનજીની લંકા યાત્રા"
     },
-
-
-    /* ---------- અરણ્યકાંડ ---------- */
-
-    "3-43-1": {
-        kanda: 3,
-        sarga: 43,
-        verse: 1,
-        sanskrit:
-`सीताया वचनं श्रुत्वा परुषं रोमहर्षणम् ।
-लक्ष्मणः प्राञ्जलिर्भूत्वा उवाच जनकनन्दिनीम् ॥`,
-        english:
-        "Hearing the harsh and disturbing words of Sita, Lakshmana, with folded hands, spoke to the daughter of Janaka."
+    {
+        id: 6,
+        gu: "યુદ્ધકાંડ",
+        en: "Yuddha Kanda",
+        file: "6_yudhhakanda.json",
+        subtitle: "રામ-રાવણ યુદ્ધ"
     },
-
-    "3-68-30": {
-        kanda: 3,
-        sarga: 68,
-        verse: 30,
-        sanskrit:
-`उत्साहो बलवानार्य नास्त्युत्साहात्परं बलम् ।
-सोत्साहस्य च लोकेषु न किंचिदपि दुर्लभम् ॥`,
-        english:
-        "O noble one, enthusiasm is powerful. There is no strength greater than enthusiasm. For an enthusiastic person, nothing in this world is difficult to obtain."
-    },
-
-
-    /* ---------- કિષ્કિંધાકાંડ ---------- */
-
-    "4-8-32": {
-        kanda: 4,
-        sarga: 8,
-        verse: 32,
-        sanskrit:
-`यद्यदागच्छति प्राप्तं तत्तदत्र विमृश्यते ।
-सुहृदामर्थकृच्छ्रेषु किं न कुर्वन्ति साधवः ॥`,
-        english:
-        "When friends are in difficulty, good people carefully consider the situation and do whatever is necessary."
-    },
-
-
-    /* ---------- સુંદરકાંડ ---------- */
-
-    "5-15-2": {
-        kanda: 5,
-        sarga: 15,
-        verse: 2,
-        sanskrit:
-`नमस्तुभ्यं महादेवि सीते दुःखविनाशिनि ।
-रामाय रामभद्राय रामचन्द्राय वेधसे ॥`,
-        english:
-        "Salutations to you, O great goddess Sita, destroyer of sorrow. Salutations to Rama, Ramabhadra and Ramachandra."
-    },
-
-    "5-36-40": {
-        kanda: 5,
-        sarga: 36,
-        verse: 40,
-        sanskrit:
-`न रामसदृशो लोके गुणवान् कश्च वीर्यवान् ।
-तस्यैव च कृते सीतां मार्गमाणोऽहमागतः ॥`,
-        english:
-        "There is no one in the world equal to Rama in virtue and valor. For his sake I have come searching for Sita."
-    },
-
-
-    /* ---------- યુદ્ધકાંડ ---------- */
-
-    "6-105-1": {
-        kanda: 6,
-        sarga: 105,
-        verse: 1,
-        sanskrit:
-`ततो युद्धपरिश्रान्तं समरे चिन्तया स्थितम् ।
-रावणं चाग्रतो दृष्ट्वा युद्धाय समुपस्थितम् ॥`,
-        english:
-        "Seeing Rama exhausted from the battle and Ravana standing before him ready for combat..."
-    },
-
-    "6-105-2": {
-        kanda: 6,
-        sarga: 105,
-        verse: 2,
-        sanskrit:
-`दैवतैश्च समागम्य द्रष्टुमभ्यागतो रणम् ।
-उपगम्याब्रवीद् राममगस्त्यो भगवान् ऋषिः ॥`,
-        english:
-        "The great sage Agastya, who had come with the gods to witness the battle, approached Rama and spoke."
-    },
-
-
-    /* ---------- ઉત્તરકાંડ ---------- */
-
-    "7-97-1": {
-        kanda: 7,
-        sarga: 97,
-        verse: 1,
-        sanskrit:
-`ततः सीतामुपादाय राघवो लक्ष्मणस्तदा ।
-अभिवाद्य मुनिं रामः प्रहृष्टेनान्तरात्मना ॥`,
-        english:
-        "Then Raghava and Lakshmana, having taken Sita, respectfully greeted the sage with joyful hearts."
+    {
+        id: 7,
+        gu: "ઉત્તરકાંડ",
+        en: "Uttara Kanda",
+        file: "7_uttarakanda.json",
+        subtitle: "અયોધ્યા પરત અને ઉત્તરકથા"
     }
-};
+];
+
+let ramayanaAll = [];
+let ramayanaByKanda = {};
+let ramayanaLoaded = false;
 
 
 /* =========================================================
-   RAMAYANA MAIN PAGE
-========================================================= */
+   ESCAPE HTML
+   ========================================================= */
 
-function renderRamayana(){
+function ramEsc(value){
 
-    const box = document.getElementById("ramayanaList");
+    return String(value ?? "")
+        .replace(/[&<>"']/g, function(m){
 
-    if(!box) return;
+            return {
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+            }[m];
 
-    document.getElementById("granthVerseReader")?.remove();
+        });
 
-    let html = `
+}
+
+
+/* =========================================================
+   NORMALIZE DATA
+   અલગ JSON structure માટે
+   ========================================================= */
+
+function normalizeRamayanaRow(row, kandaId){
+
+    if(!row || typeof row !== "object")
+        return null;
+
+    const sarga = Number(
+        row.sarga ??
+        row.sarga_number ??
+        row.chapter ??
+        row.chapterId ??
+        row.chapter_id ??
+        row.CHAPTERID
+    );
+
+    let verse = row.shloka ??
+        row.verse ??
+        row.verse_number ??
+        row.verseId ??
+        row.verse_id ??
+        row.VERSEID;
+
+    const sanskrit =
+        row.shloka_text ??
+        row.verseSanskrit ??
+        row.versesanskrit ??
+        row.sanskrit ??
+        row.text ??
+        row.verse_text ??
+        row.VERSESANSKRIT ??
+        "";
+
+    const english =
+        row.translation ??
+        row.english ??
+        row.verseTranslationInEng ??
+        row.englishTranslation ??
+        row.VERSEENGTRANSLATION ??
+        row.meaning ??
+        "";
+
+    if(!sarga || !sanskrit)
+        return null;
+
+    return {
+
+        id: `${kandaId}-${sarga}-${verse ?? ""}`,
+
+        kanda: Number(kandaId),
+
+        sarga: sarga,
+
+        verse: String(verse ?? ""),
+
+        sanskrit: String(sanskrit)
+            .replace(/<br\s*\/?>/gi,"\n")
+            .trim(),
+
+        english: String(english)
+            .replace(/<br\s*\/?>/gi,"\n")
+            .replace(/<[^>]*>/g,"")
+            .trim(),
+
+        hindi: "",
+        gujarati: ""
+
+    };
+
+}
+
+
+/* =========================================================
+   EXTRACT JSON
+   ========================================================= */
+
+function extractRamayanaRows(data){
+
+    let rows = [];
+
+    if(Array.isArray(data)){
+
+        rows = data;
+
+    }
+
+    else if(Array.isArray(data?.verses)){
+
+        rows = data.verses;
+
+    }
+
+    else if(Array.isArray(data?.data)){
+
+        rows = data.data;
+
+    }
+
+    else if(Array.isArray(data?.book?.verse)){
+
+        rows = data.book.verse;
+
+    }
+
+    else if(data && typeof data === "object"){
+
+        Object.values(data).forEach(value => {
+
+            if(Array.isArray(value))
+                rows.push(...value);
+
+            else if(value && typeof value === "object"){
+
+                if(
+                    value.sanskrit ||
+                    value.shloka_text ||
+                    value.verseSanskrit ||
+                    value.VERSESANSKRIT
+                ){
+
+                    rows.push(value);
+
+                }
+
+            }
+
+        });
+
+    }
+
+    return rows;
+
+}
+
+
+/* =========================================================
+   LOAD ONE KANDA
+   ========================================================= */
+
+async function loadRamayanaKanda(kanda){
+
+    const url =
+        RAMAYANA_SOURCE + kanda.file;
+
+    try{
+
+        const response = await fetch(
+            url,
+            {
+                cache:"force-cache"
+            }
+        );
+
+        if(!response.ok){
+
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+
+        }
+
+        const data =
+            await response.json();
+
+        const rows =
+            extractRamayanaRows(data);
+
+        const normalized =
+            rows
+            .map(row =>
+                normalizeRamayanaRow(row,kanda.id)
+            )
+            .filter(Boolean);
+
+        return normalized;
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Ramayana Kanda error:",
+            kanda.file,
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD COMPLETE RAMAYANA
+   ========================================================= */
+
+async function loadRamayana(){
+
+    const box =
+        document.getElementById("ramayanaList");
+
+    if(!box)
+        return;
+
+    box.innerHTML = `
+
         <div class="granth-status">
-            <b>🚩 વાલ્મીકિ રામાયણ</b><br>
-            <span class="source">
-                7 કાંડ • સંસ્કૃત શ્લોક • અર્થ
-            </span>
+
+            <div class="loading">
+
+                🚩 વાલ્મીકિ રામાયણ લોડ થઈ રહ્યું છે...
+
+                <br><br>
+
+                7 કાંડના શ્લોકો તૈયાર થઈ રહ્યા છે.
+
+                <br>
+
+                કૃપા કરીને થોડી ક્ષણ રાહ જુઓ...
+
+            </div>
+
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:10px;">
     `;
 
-    RAMAYANA_KANDAS.forEach(
-        ([id, guName, enName, subtitle]) => {
+    ramayanaAll = [];
 
-            html += `
-                <div
-                    class="card chapter"
-                    onclick="openRamayanaKanda(${id})"
-                    style="margin-bottom:0;"
-                >
+    ramayanaByKanda = {};
 
-                    <div
-                        class="chapterNo"
-                        style="
-                            background:
-                            linear-gradient(
-                                145deg,
-                                #e74c3c,
-                                #c0392b
-                            );
-                        "
-                    >
-                        ${id}
-                    </div>
+    const results =
+        await Promise.all(
+            RAMAYANA_FILES.map(
+                kanda =>
+                    loadRamayanaKanda(kanda)
+            )
+        );
 
-                    <div>
+    results.forEach(
+        (verses,index) => {
 
-                        <div class="chapterTitle">
-                            ${guName}
-                        </div>
+            const kandaId =
+                RAMAYANA_FILES[index].id;
 
-                        <div class="chapterSub">
-                            ${enName} • ${subtitle}
-                        </div>
+            ramayanaByKanda[kandaId] =
+                verses;
 
-                    </div>
+            ramayanaAll.push(...verses);
 
-                </div>
-            `;
         }
     );
 
+
+    ramayanaAll.sort(
+        (a,b) => {
+
+            if(a.kanda !== b.kanda)
+                return a.kanda - b.kanda;
+
+            if(a.sarga !== b.sarga)
+                return a.sarga - b.sarga;
+
+            return String(a.verse)
+                .localeCompare(
+                    String(b.verse),
+                    undefined,
+                    {numeric:true}
+                );
+
+        }
+    );
+
+
+    ramayanaLoaded = true;
+
+    renderRamayana();
+
+}
+
+
+/* =========================================================
+   RAMAYANA HOME
+   7 KANDA
+   ========================================================= */
+
+function renderRamayana(){
+
+    const box =
+        document.getElementById("ramayanaList");
+
+    if(!box)
+        return;
+
+
+    let total =
+        ramayanaAll.length;
+
+
+    let html = `
+
+        <div class="granth-status">
+
+            <b>🚩 વાલ્મીકિ રામાયણ</b>
+
+            <br>
+
+            <span class="source">
+
+                7 કાંડ • ${total.toLocaleString("en-IN")}
+                શ્લોક
+
+            </span>
+
+        </div>
+
+        <div style="
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+        ">
+
+    `;
+
+
+    RAMAYANA_FILES.forEach(kanda => {
+
+        const verses =
+            ramayanaByKanda[kanda.id] || [];
+
+
+        const sargas =
+            new Set(
+                verses.map(v => v.sarga)
+            ).size;
+
+
+        html += `
+
+            <div
+                class="card chapter"
+                onclick="
+                    openRamayanaKanda(${kanda.id})
+                "
+                style="margin-bottom:0;"
+            >
+
+                <div
+                    class="chapterNo"
+                    style="
+                        background:
+                        linear-gradient(
+                            145deg,
+                            #e74c3c,
+                            #c0392b
+                        );
+                    "
+                >
+
+                    ${kanda.id}
+
+                </div>
+
+
+                <div>
+
+                    <div class="chapterTitle">
+
+                        ${ramEsc(kanda.gu)}
+
+                    </div>
+
+
+                    <div class="chapterSub">
+
+                        ${ramEsc(kanda.en)}
+                        •
+                        ${sargas} સર્ગ
+                        •
+                        ${verses.length.toLocaleString("en-IN")}
+                        શ્લોક
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
     html += `</div>`;
 
+
     box.innerHTML = html;
+
 }
 
 
 /* =========================================================
    OPEN KANDA
-========================================================= */
+   ========================================================= */
 
 function openRamayanaKanda(kandaId){
 
-    const box = document.getElementById("ramayanaList");
+    const box =
+        document.getElementById("ramayanaList");
 
-    if(!box) return;
+    if(!box)
+        return;
 
-    document.getElementById("granthVerseReader")?.remove();
 
-    const kanda = RAMAYANA_KANDAS.find(
-        x => x[0] === kandaId
-    );
+    const kanda =
+        RAMAYANA_FILES.find(
+            x => x.id === Number(kandaId)
+        );
 
-    if(!kanda) return;
+    if(!kanda)
+        return;
+
+
+    const verses =
+        ramayanaByKanda[kandaId] || [];
+
+
+    if(!verses.length){
+
+        box.innerHTML = `
+
+            <div class="error">
+
+                ⚠️ આ કાંડના શ્લોકો લોડ થઈ શક્યા નથી.
+
+                <br><br>
+
+                Internet connection તપાસો.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const sargaMap = {};
+
+
+    verses.forEach(v => {
+
+        if(!sargaMap[v.sarga])
+            sargaMap[v.sarga] = [];
+
+        sargaMap[v.sarga].push(v);
+
+    });
+
 
     let html = `
+
         <div
             class="back"
             onclick="renderRamayana()"
@@ -282,103 +559,272 @@ function openRamayanaKanda(kandaId){
             ← બધા કાંડ
         </div>
 
-        <div class="granth-chapter">
 
-            <h3>
-                🚩 ${kanda[1]}
-            </h3>
+        <div class="granth-status">
 
-            <div class="chapterSub">
-                ${kanda[2]} • ${kanda[3]}
-            </div>
+            <b>
+                🚩 ${ramEsc(kanda.gu)}
+            </b>
 
             <br>
 
-            <div class="granth-grid">
+            <span class="source">
+
+                ${ramEsc(kanda.en)}
+
+                •
+                ${verses.length.toLocaleString("en-IN")}
+                શ્લોક
+
+            </span>
+
+        </div>
+
+
+        <div style="
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+        ">
+
     `;
 
-    let found = false;
 
-    Object.entries(ramayanaData).forEach(
-        ([key, verse]) => {
+    Object.keys(sargaMap)
+        .sort((a,b) => Number(a)-Number(b))
+        .forEach(sarga => {
 
-            if(verse.kanda !== kandaId) return;
+            const list =
+                sargaMap[sarga];
 
-            found = true;
 
             html += `
-                <button
-                    type="button"
-                    class="granth-btn"
-                    onclick="openRamayanaVerse('${key}')"
+
+                <div
+                    class="card chapter"
+                    onclick="
+                        openRamayanaSarga(
+                            ${kandaId},
+                            ${sarga}
+                        )
+                    "
+                    style="margin-bottom:0;"
                 >
-                    સર્ગ ${verse.sarga}.${verse.verse}
-                </button>
+
+                    <div class="chapterNo">
+
+                        ${sarga}
+
+                    </div>
+
+                    <div>
+
+                        <div class="chapterTitle">
+
+                            સર્ગ ${sarga}
+
+                        </div>
+
+                        <div class="chapterSub">
+
+                            ${list.length}
+                            શ્લોક
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             `;
-        }
-    );
 
-    if(!found){
+        });
 
-        html += `
-            <div
-                style="
-                    grid-column:1/-1;
-                    text-align:center;
-                    padding:25px 10px;
-                    color:var(--muted);
-                "
-            >
-                📖 આ કાંડના વધુ શ્લોકો
-                ટૂંક સમયમાં ઉમેરવામાં આવશે.
-            </div>
-        `;
-    }
 
-    html += `
-            </div>
-        </div>
-    `;
+    html += `</div>`;
+
 
     box.innerHTML = html;
+
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
 
 
 /* =========================================================
-   OPEN RAMAYANA VERSE
-========================================================= */
+   OPEN SARGA
+   ========================================================= */
 
-async function openRamayanaVerse(key){
+function openRamayanaSarga(kandaId,sargaId){
 
-    const verse = ramayanaData[key];
+    const box =
+        document.getElementById("ramayanaList");
+
+    if(!box)
+        return;
+
+
+    const kanda =
+        RAMAYANA_FILES.find(
+            x => x.id === Number(kandaId)
+        );
+
+
+    const verses =
+        (ramayanaByKanda[kandaId] || [])
+        .filter(
+            v => Number(v.sarga) === Number(sargaId)
+        );
+
+
+    let html = `
+
+        <div
+            class="back"
+            onclick="
+                openRamayanaKanda(${kandaId})
+            "
+        >
+
+            ← બધા સર્ગ
+
+        </div>
+
+
+        <div class="granth-status">
+
+            <b>
+                🚩 ${ramEsc(kanda.gu)}
+            </b>
+
+            <br>
+
+            <span class="source">
+
+                સર્ગ ${sargaId}
+                •
+                ${verses.length} શ્લોક
+
+            </span>
+
+        </div>
+
+
+        <div class="granth-grid">
+
+    `;
+
+
+    verses.forEach(v => {
+
+        html += `
+
+            <button
+                type="button"
+                class="granth-btn"
+                onclick="
+                    openRamayanaVerse(
+                        '${ramEsc(v.id)}'
+                    )
+                "
+            >
+
+                ${v.sarga}.${ramEsc(v.verse)}
+
+            </button>
+
+        `;
+
+    });
+
+
+    html += `</div>`;
+
+
+    box.innerHTML = html;
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   FIND VERSE
+   ========================================================= */
+
+function findRamayanaVerse(id){
+
+    return ramayanaAll.find(
+        v => v.id === id
+    );
+
+}
+
+
+/* =========================================================
+   OPEN VERSE
+   ========================================================= */
+
+async function openRamayanaVerse(id){
+
+    const verse =
+        findRamayanaVerse(id);
 
     if(!verse){
-        if(typeof toast === "function"){
-            toast("આ શ્લોક ઉપલબ્ધ નથી.");
-        }
+
+        if(typeof toast === "function")
+            toast("આ શ્લોક મળ્યો નથી.");
+
         return;
+
     }
 
-    document.getElementById("granthVerseReader")?.remove();
 
-    const reader = document.createElement("div");
+    const old =
+        document.getElementById(
+            "granthVerseReader"
+        );
 
-    reader.id = "granthVerseReader";
-    reader.className = "granth-reader";
+    if(old)
+        old.remove();
+
+
+    const reader =
+        document.createElement("div");
+
+
+    reader.id =
+        "granthVerseReader";
+
+    reader.className =
+        "granth-reader";
+
 
     reader.innerHTML = `
 
         <div
             class="back"
-            onclick="openRamayanaKanda(${verse.kanda})"
+            onclick="
+                document
+                .getElementById(
+                    'granthVerseReader'
+                )
+                ?.remove()
+            "
         >
+
             ← શ્લોક સૂચિ
+
         </div>
+
 
         <div
             style="
@@ -386,247 +832,263 @@ async function openRamayanaVerse(key){
                 font-weight:bold;
             "
         >
+
             🚩 Valmiki Ramayana
+
+            ${verse.kanda}.
+            ${verse.sarga}.
+            ${ramEsc(verse.verse)}
+
         </div>
+
 
         <div class="source">
+
             કાંડ ${verse.kanda}
-            • સર્ગ ${verse.sarga}
-            • શ્લોક ${verse.verse}
+            •
+            સર્ગ ${verse.sarga}
+            •
+            શ્લોક ${ramEsc(verse.verse)}
+
         </div>
 
+
         <hr>
+
 
         <h3>
             🕉️ संस्कृत श्लोक
         </h3>
 
+
         <div class="granth-sanskrit">
-            ${esc(verse.sanskrit)}
+
+            ${ramEsc(verse.sanskrit)}
+
         </div>
 
+
         <hr>
+
 
         <h3>
             🇬🇧 English Meaning
         </h3>
 
+
         <p class="meaning">
-            ${esc(verse.english)}
+
+            ${
+                verse.english
+                ?
+                ramEsc(verse.english)
+                :
+                "English meaning ઉપલબ્ધ નથી."
+            }
+
         </p>
 
+
         <hr>
+
 
         <h3>
             🇮🇳 हिन्दी अर्थ
         </h3>
 
+
         <p
-            id="ram-hi-${key}"
+            id="hi-${ramEsc(verse.id)}"
             class="meaning"
         >
+
             हिन्दी अर्थ મેળવવામાં આવી રહ્યો છે...
+
         </p>
 
+
         <hr>
+
 
         <h3>
             🇮🇳 ગુજરાતી અર્થ
         </h3>
 
+
         <p
-            id="ram-gu-${key}"
+            id="gu-${ramEsc(verse.id)}"
             class="meaning"
         >
+
             ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...
+
         </p>
+
 
         <div class="actions">
 
+
             <button
-                onclick="saveRamayanaFavorite('${key}')"
+                onclick="
+                    addFavorite(
+                        ${JSON.stringify(
+                            "Ramayana " +
+                            verse.kanda +
+                            "." +
+                            verse.sarga +
+                            "." +
+                            verse.verse +
+                            " — " +
+                            verse.sanskrit
+                        )}
+                    )
+                "
             >
+
                 ❤️ Favorite
+
             </button>
 
+
             <button
-                onclick="speakText(${JSON.stringify(verse.sanskrit)})"
+                onclick="
+                    speakText(
+                        ${JSON.stringify(
+                            verse.sanskrit
+                        )}
+                    )
+                "
             >
+
                 🔊 સાંભળો
+
             </button>
 
+
             <button
-                onclick="shareText(${JSON.stringify(verse.sanskrit)})"
+                onclick="
+                    shareText(
+                        ${JSON.stringify(
+                            verse.sanskrit
+                        )}
+                    )
+                "
             >
+
                 📤 Share
+
             </button>
+
 
         </div>
+
     `;
 
-    document
-        .getElementById("ramayana")
-        .insertBefore(
-            reader,
-            document.getElementById("ramayanaList")
+
+    const page =
+        document.getElementById(
+            "ramayana"
         );
 
-    await translateRamayanaMeaning(key);
+
+    page.insertBefore(
+        reader,
+        document.getElementById(
+            "ramayanaList"
+        )
+    );
+
+
+    /* ==========================================
+       AUTOMATIC HINDI + GUJARATI
+       ========================================== */
+
+
+    if(typeof translateText === "function"){
+
+        if(verse.english){
+
+            try{
+
+                const [
+                    hindi,
+                    gujarati
+                ] = await Promise.all([
+
+                    translateText(
+                        verse.english,
+                        "hi"
+                    ),
+
+                    translateText(
+                        verse.english,
+                        "gu"
+                    )
+
+                ]);
+
+
+                const hi =
+                    document.getElementById(
+                        `hi-${verse.id}`
+                    );
+
+                const gu =
+                    document.getElementById(
+                        `gu-${verse.id}`
+                    );
+
+
+                if(hi){
+
+                    hi.textContent =
+                        hindi ||
+                        "हिन्दी अर्थ उपलब्ध नहीं है।";
+
+                }
+
+
+                if(gu){
+
+                    gu.textContent =
+                        gujarati ||
+                        "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+
+                }
+
+            }
+
+            catch(error){
+
+                console.error(
+                    "Translation error:",
+                    error
+                );
+
+            }
+
+        }
+
+    }
+
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
-
-
-/* =========================================================
-   TRANSLATION
-========================================================= */
-
-async function translateRamayanaMeaning(key){
-
-    const verse = ramayanaData[key];
-
-    if(!verse) return;
-
-    const hi = document.getElementById(
-        "ram-hi-" + key
-    );
-
-    const gu = document.getElementById(
-        "ram-gu-" + key
-    );
-
-    if(!verse.english){
-
-        if(hi)
-            hi.textContent =
-            "हिन्दी अर्थ उपलब्ध नहीं है।";
-
-        if(gu)
-            gu.textContent =
-            "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
-
-        return;
-    }
-
-
-    /* ---------- Hindi ---------- */
-
-    if(hi)
-        hi.textContent =
-        "हिन्दी अर्थ प्राप्त किया जा रहा है...";
-
-    try{
-
-        const hindi =
-            await translateText(
-                verse.english,
-                "hi"
-            );
-
-        if(hi){
-
-            hi.textContent =
-                hindi ||
-                "हिन्दी अर्थ उपलब्ध नहीं है।";
-        }
-
-    }catch{
-
-        if(hi)
-            hi.textContent =
-            "हिन्दी अर्थ उपलब्ध नहीं है।";
-    }
-
-
-    /* ---------- Gujarati ---------- */
-
-    if(gu)
-        gu.textContent =
-        "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
-
-    try{
-
-        const gujarati =
-            await translateText(
-                verse.english,
-                "gu"
-            );
-
-        if(gu){
-
-            gu.textContent =
-                gujarati ||
-                "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
-        }
-
-    }catch{
-
-        if(gu)
-            gu.textContent =
-            "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
-    }
-}
-
-
-/* =========================================================
-   FAVORITE
-========================================================= */
-
-function saveRamayanaFavorite(key){
-
-    const verse = ramayanaData[key];
-
-    if(!verse) return;
-
-    if(typeof addFavorite === "function"){
-
-        addFavorite(
-            `Ramayana ${verse.kanda}.${verse.sarga}.${verse.verse} — ${verse.sanskrit}`
-        );
-
-    }
-}
-
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-window.RAMAYANA_KANDAS =
-    RAMAYANA_KANDAS;
-
-window.ramayanaData =
-    ramayanaData;
-
-window.renderRamayana =
-    renderRamayana;
-
-window.openRamayanaKanda =
-    openRamayanaKanda;
-
-window.openRamayanaVerse =
-    openRamayanaVerse;
-
-window.saveRamayanaFavorite =
-    saveRamayanaFavorite;
 
 
 /* =========================================================
    START
-========================================================= */
+   ========================================================= */
 
-if(document.readyState === "loading"){
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        renderRamayana
-    );
+        loadRamayana();
 
-}else{
-
-    renderRamayana();
-
-}
+    }
+);
