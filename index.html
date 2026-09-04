@@ -436,4 +436,724 @@ document.addEventListener(
 );
 
 </script>
+<!-- =====================================================
+     PART 2/3
+     GITA + TRANSLATION ENGINE
+     ===================================================== -->
 
+<script>
+
+/* =====================================================
+   BHAGAVAD GITA DATA
+   ===================================================== */
+
+const GITA_DATA_URL =
+"https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json";
+
+const GITA_HINDI_URL =
+"https://raw.githubusercontent.com/kashishkhullar/gita_json/master/dataset_hindi.json";
+
+
+const GITA_CHAPTERS = [
+
+  "अर्जुनविषादयोग",
+  "सांख्ययोग",
+  "कर्मयोग",
+  "ज्ञानकर्मसंन्यासयोग",
+  "कर्मसंन्यासयोग",
+  "आत्मसंयमयोग",
+  "ज्ञानविज्ञानयोग",
+  "अक्षरब्रह्मयोग",
+  "राजविद्याराजगुह्ययोग",
+  "विभूतियोग",
+  "विश्वरूपदर्शनयोग",
+  "भक्तियोग",
+  "क्षेत्रक्षेत्रज्ञविभागयोग",
+  "गुणत्रयविभागयोग",
+  "पुरुषोत्तमयोग",
+  "दैवासुरसम्पद्विभागयोग",
+  "श्रद्धात्रयविभागयोग",
+  "मोक्षसंन्यासयोग"
+
+];
+
+
+let GITA_ROWS = [];
+
+let GITA_HINDI = [];
+
+let gitaLoaded = false;
+
+let gitaLoading = false;
+
+
+/* =====================================================
+   COMMON TEXT HELPERS
+   ===================================================== */
+
+function cleanText(value){
+
+  if(
+    value === null ||
+    value === undefined
+  ){
+    return "";
+  }
+
+  if(
+    typeof value === "string"
+  ){
+    return value.trim();
+  }
+
+  if(
+    typeof value === "number"
+  ){
+    return String(value);
+  }
+
+  return "";
+
+}
+
+
+function firstText(...values){
+
+  for(
+    const value of values
+  ){
+
+    const text =
+      cleanText(value);
+
+    if(text){
+      return text;
+    }
+
+  }
+
+  return "";
+
+}
+
+
+/* =====================================================
+   NORMALIZE GITA VERSE
+   ===================================================== */
+
+function normalizeGitaVerse(row){
+
+  if(
+    !row ||
+    typeof row !== "object"
+  ){
+    return null;
+  }
+
+
+  const chapter = Number(
+
+    row.chapter ??
+
+    row.chapter_number ??
+
+    row.chapterId ??
+
+    row.chapter_id ??
+
+    row.chapterNo ??
+
+    row.CHAPTER
+
+  );
+
+
+  const verse = Number(
+
+    row.verse ??
+
+    row.verse_number ??
+
+    row.verseId ??
+
+    row.verse_id ??
+
+    row.verseNo ??
+
+    row.VERSE
+
+  );
+
+
+  const sanskrit =
+    firstText(
+
+      row.text,
+
+      row.sanskrit,
+
+      row.sloka,
+
+      row.shloka,
+
+      row.verse_text,
+
+      row.verseSanskrit,
+
+      row.VERSESANSKRIT,
+
+      row.SANSKRIT
+
+    );
+
+
+  const english =
+    firstText(
+
+      row.translation,
+
+      row.english,
+
+      row.meaning,
+
+      row.verseTranslation,
+
+      row.englishTranslation,
+
+      row.VERSEENGTRANSLATION
+
+    );
+
+
+  if(
+    !chapter ||
+    !verse ||
+    !sanskrit
+  ){
+    return null;
+  }
+
+
+  return {
+
+    id:
+      `${chapter}.${verse}`,
+
+    chapter,
+
+    verse,
+
+    sanskrit,
+
+    english
+
+  };
+
+}
+
+
+/* =====================================================
+   EXTRACT GITA DATA
+   ===================================================== */
+
+function extractGitaRows(data){
+
+  const output = [];
+
+
+  function walk(value){
+
+    if(!value){
+      return;
+    }
+
+
+    if(
+      Array.isArray(value)
+    ){
+
+      value.forEach(walk);
+
+      return;
+
+    }
+
+
+    if(
+      typeof value !== "object"
+    ){
+      return;
+    }
+
+
+    const normalized =
+      normalizeGitaVerse(
+        value
+      );
+
+
+    if(normalized){
+
+      output.push(
+        normalized
+      );
+
+    }
+
+
+    Object.keys(value)
+      .forEach(key => {
+
+        if(
+          key !== "text" &&
+          key !== "sanskrit" &&
+          key !== "translation" &&
+          key !== "english" &&
+          key !== "meaning"
+        ){
+
+          walk(
+            value[key]
+          );
+
+        }
+
+      });
+
+  }
+
+
+  walk(data);
+
+
+  const unique =
+    new Map();
+
+
+  output.forEach(row => {
+
+    unique.set(
+      row.id,
+      row
+    );
+
+  });
+
+
+  return [
+    ...unique.values()
+  ].sort(
+
+    (a,b) =>
+
+      a.chapter -
+      b.chapter ||
+
+      a.verse -
+      b.verse
+
+  );
+
+}
+
+
+/* =====================================================
+   HINDI GITA MEANING
+   ===================================================== */
+
+function findHindi(
+  chapter,
+  verse
+){
+
+  const id =
+    `${chapter}.${verse}`;
+
+
+  const found =
+    GITA_HINDI.find(row => {
+
+      const c = Number(
+
+        row.chapter ??
+
+        row.chapter_number ??
+
+        row.chapterId ??
+
+        row.chapter_id
+
+      );
+
+
+      const v = Number(
+
+        row.verse ??
+
+        row.verse_number ??
+
+        row.verseId ??
+
+        row.verse_id
+
+      );
+
+
+      return (
+        `${c}.${v}` === id
+      );
+
+    });
+
+
+  if(!found){
+    return "";
+  }
+
+
+  return firstText(
+
+    found.hindi,
+
+    found.translation,
+
+    found.meaning,
+
+    found.text,
+
+    found.description
+
+  );
+
+}
+
+
+/* =====================================================
+   ONLINE TRANSLATION
+   ===================================================== */
+
+async function translateText(
+  text,
+  target
+){
+
+  if(!text){
+    return "";
+  }
+
+
+  try{
+
+    const url =
+
+      "https://translate.googleapis.com/translate_a/single" +
+
+      "?client=gtx" +
+
+      "&sl=auto" +
+
+      "&tl=" +
+      encodeURIComponent(
+        target
+      ) +
+
+      "&dt=t" +
+
+      "&q=" +
+      encodeURIComponent(
+        text
+      );
+
+
+    const response =
+      await fetch(url);
+
+
+    if(
+      !response.ok
+    ){
+
+      throw new Error(
+        "Translation HTTP " +
+        response.status
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      data &&
+      Array.isArray(
+        data[0]
+      )
+    ){
+
+      return data[0]
+
+        .map(part =>
+          part &&
+          part[0]
+            ? part[0]
+            : ""
+        )
+
+        .filter(Boolean)
+
+        .join("");
+
+    }
+
+  }
+  catch(error){
+
+    console.warn(
+      "Translation error:",
+      error
+    );
+
+  }
+
+
+  return "";
+
+}
+
+
+/* =====================================================
+   LOAD GITA
+   ===================================================== */
+
+async function loadGita(){
+
+  if(gitaLoaded){
+
+    renderGita();
+
+    return;
+
+  }
+
+
+  if(gitaLoading){
+    return;
+  }
+
+
+  gitaLoading = true;
+
+
+  const container =
+    document.getElementById(
+      "gita700List"
+    );
+
+
+  if(container){
+
+    container.innerHTML = `
+
+      <div class="card">
+
+        📖 Bhagavad Gita
+        loading...
+
+      </div>
+
+    `;
+
+  }
+
+
+  try{
+
+    const responses =
+      await Promise.all([
+
+        fetch(
+          GITA_DATA_URL
+        ),
+
+        fetch(
+          GITA_HINDI_URL
+        )
+
+      ]);
+
+
+    const mainResponse =
+      responses[0];
+
+
+    const hindiResponse =
+      responses[1];
+
+
+    if(
+      !mainResponse.ok
+    ){
+
+      throw new Error(
+
+        "Gita HTTP " +
+
+        mainResponse.status
+
+      );
+
+    }
+
+
+    const mainData =
+      await mainResponse.json();
+
+
+    GITA_ROWS =
+      extractGitaRows(
+        mainData
+      );
+
+
+    if(
+      hindiResponse.ok
+    ){
+
+      const hindiData =
+        await hindiResponse.json();
+
+
+      if(
+        Array.isArray(
+          hindiData
+        )
+      ){
+
+        GITA_HINDI =
+          hindiData;
+
+      }
+      else{
+
+        GITA_HINDI = [];
+
+      }
+
+    }
+
+
+    gitaLoaded = true;
+
+
+    console.log(
+
+      "Gita verses loaded:",
+
+      GITA_ROWS.length
+
+    );
+
+
+    renderGita();
+
+  }
+  catch(error){
+
+    console.error(
+      "Gita load error:",
+      error
+    );
+
+
+    if(container){
+
+      container.innerHTML = `
+
+        <div class="card">
+
+          ❌ Bhagavad Gita
+          load થઈ શકી નથી.
+
+          <br><br>
+
+          Internet connection
+          check કરીને ફરી try કરો.
+
+        </div>
+
+      `;
+
+    }
+
+  }
+  finally{
+
+    gitaLoading = false;
+
+  }
+
+}
+
+
+/* =====================================================
+   GITA CHAPTER LIST
+   ===================================================== */
+
+function renderGita(){
+
+  const container =
+    document.getElementById(
+      "gita700List"
+    );
+
+
+  if(!container){
+    return;
+  }
+
+
+  if(
+    !GITA_ROWS.length
+  ){
+
+    container.innerHTML = `
+
+      <div class="card">
+
+        📖 Gita loading...
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  for(
+    let chapter = 1;
+    chapter <= 18;
+    chapter++
+  ){
+
+    const verses =
+      GITA_ROWS.filter(
+        row =>
+          row.chapter ===
+          chapter
+      );
+
+
+    html += `
+
+      <div
+        class="card"
+        onclick="
+          renderGitaChapter(
+            ${
