@@ -537,7 +537,15 @@
 
     function normalizeRamayanaRow(row, kandaId) {
         if (!row || typeof row !== "object") return null;
-        const sarga = Number(row.sarga ?? row.sarga_number ?? row.chapter ?? row.chapterId ?? row.chapter_id ?? row.CHAPTERID);
+        const sarga = Number(
+    row.sarg ??
+    row.sarga ??
+    row.sarga_number ??
+    row.chapter ??
+    row.chapterId ??
+    row.chapter_id ??
+    row.CHAPTERID
+);
         let verse = row.shloka ?? row.verse ?? row.verse_number ?? row.verseId ?? row.verse_id ?? row.VERSEID;
         const sanskrit = row.shloka_text ?? row.verseSanskrit ?? row.versesanskrit ?? row.sanskrit ?? row.text ?? row.verse_text ?? row.VERSESANSKRIT ?? "";
         const english = row.translation ?? row.english ?? row.verseTranslationInEng ?? row.englishTranslation ?? row.VERSEENGTRANSLATION ?? row.meaning ?? "";
