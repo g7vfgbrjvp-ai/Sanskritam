@@ -537,24 +537,72 @@
 
     function normalizeRamayanaRow(row, kandaId) {
         if (!row || typeof row !== "object") return null;
-        const sarga = Number(
-    row.sarg ??
-    row.sarga ??
-    row.sarga_number ??
-    row.chapter ??
-    row.chapterId ??
-    row.chapter_id ??
-    row.CHAPTERID
-);
-        let verse = row.shloka ?? row.verse ?? row.verse_number ?? row.verseId ?? row.verse_id ?? row.VERSEID;
-        const sanskrit = row.shloka_text ?? row.verseSanskrit ?? row.versesanskrit ?? row.sanskrit ?? row.text ?? row.verse_text ?? row.VERSESANSKRIT ?? "";
-        const english = row.translation ?? row.english ?? row.verseTranslationInEng ?? row.englishTranslation ?? row.VERSEENGTRANSLATION ?? row.meaning ?? "";
-        
-        if (!sarga || !sanskrit) return null;
-        return {
-            id: `${kandaId}-${sarga}-${verse ?? ""}`, kanda: Number(kandaId), sarga: sarga, verse: String(verse ?? ""),
-            sanskrit: String(sanskrit).replace(/<br\s*\/?>/gi, "\n").trim(),
-            english: String(english).replace(/<br\s*\/?>/gi, "\n").replace(/<[^>]*>/g, "").trim()
+function normalizeRamayanaRow(row, kandaId) {
+
+    if (!row || typeof row !== "object") return null;
+
+    const sarga = Number(
+        row.sarg ??
+        row.sarga ??
+        row.sarga_number ??
+        row.chapter ??
+        row.chapterId ??
+        row.chapter_id ??
+        row.CHAPTERID ??
+        row.SARGA ??
+        row.SARG
+    );
+
+    const verse =
+        row.shloka ??
+        row.verse ??
+        row.verse_number ??
+        row.verseId ??
+        row.verse_id ??
+        row.VERSEID ??
+        row.VERSE;
+
+    const sanskrit =
+        row.text ??
+        row.shloka_text ??
+        row.verseSanskrit ??
+        row.versesanskrit ??
+        row.sanskrit ??
+        row.verse_text ??
+        row.VERSESANSKRIT ??
+        row.SANSKRIT ??
+        "";
+
+    const english =
+        row.translation ??
+        row.english ??
+        row.verseTranslationInEng ??
+        row.englishTranslation ??
+        row.VERSEENGTRANSLATION ??
+        row.meaning ??
+        "";
+
+    if (!sarga || !sanskrit) return null;
+
+    return {
+        id: `${kandaId}-${sarga}-${verse ?? ""}`,
+
+        kanda: Number(kandaId),
+
+        sarga: sarga,
+
+        verse: String(verse ?? ""),
+
+        sanskrit: String(sanskrit)
+            .replace(/<br\s*\/?>/gi, "\n")
+            .trim(),
+
+        english: String(english)
+            .replace(/<br\s*\/?>/gi, "\n")
+            .replace(/<[^>]*>/g, "")
+            .trim()
+    };
+}
         };
     }
 
