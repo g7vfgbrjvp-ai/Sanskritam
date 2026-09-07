@@ -2314,6 +2314,103 @@ Reset
 </div>
 
 </main>
+/* =====================================================
+   JAPA
+===================================================== */
+
+let japCount =
+Number(
+localStorage.getItem("brahmanshJapCount") || "0"
+);
+
+
+function openJapa(){
+
+openPage("japaPage");
+
+renderJapa();
+
+}
+
+
+function addJapa(){
+
+japCount++;
+
+localStorage.setItem(
+"brahmanshJapCount",
+japCount
+);
+
+renderJapa();
+
+}
+
+
+function resetJapa(){
+
+if(japCount === 0){
+return;
+}
+
+if(confirm("જાપની ગણતરી Reset કરવી છે?")){
+
+japCount = 0;
+
+localStorage.setItem(
+"brahmanshJapCount",
+"0"
+);
+
+renderJapa();
+
+}
+
+}
+
+
+function renderJapa(){
+
+const count =
+document.getElementById("japaCount");
+
+const progress =
+document.getElementById("japaProgress");
+
+const text =
+document.getElementById("japaText");
+
+const mala =
+document.getElementById("malaText");
+
+if(!count){
+return;
+}
+
+count.textContent =
+japCount;
+
+const current =
+japCount % 108;
+
+const percentage =
+current === 0 && japCount > 0
+? 100
+: (current / 108) * 100;
+
+progress.style.width =
+percentage + "%";
+
+text.textContent =
+(current === 0 && japCount > 0
+? 108
+: current) + " / 108";
+
+mala.textContent =
+Math.floor(japCount / 108) + " માળા";
+
+}
+
 </script>
 
 </body>
