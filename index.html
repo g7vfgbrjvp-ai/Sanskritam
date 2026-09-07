@@ -2209,7 +2209,111 @@ document.body.classList.add("dark");
 renderRecent();
 
 renderShloks();
+<!-- =========================
+     JAPA
+========================= -->
 
+<main id="japaPage" class="page">
+
+<div class="content">
+
+<button class="back-button"
+onclick="goHome()">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2">
+
+<path d="m15 18-6-6 6-6"/>
+
+</svg>
+
+પાછા
+
+</button>
+
+
+<div class="section-title">
+
+<h2>જાપ</h2>
+
+</div>
+
+
+<section class="japa-card">
+
+<small>BRAHMANSH • જાપ</small>
+
+<h2>ૐ નમઃ શિવાય</h2>
+
+
+<div class="japa-circle"></div>
+
+
+<div class="japa-count"
+id="japaCount">
+
+0
+
+</div>
+
+<div class="japa-label">
+જાપ
+</div>
+
+
+<div class="japa-progress">
+
+<div
+id="japaProgress"
+class="japa-progress-bar">
+</div>
+
+</div>
+
+
+<div class="japa-info">
+
+<span id="japaText">
+0 / 108
+</span>
+
+&nbsp; • &nbsp;
+
+<span id="malaText">
+0 માળા
+</span>
+
+</div>
+
+
+<div class="japa-buttons">
+
+<button
+class="japa-add"
+onclick="addJapa()">
+
++ જાપ
+
+</button>
+
+
+<button
+class="japa-reset"
+onclick="resetJapa()">
+
+Reset
+
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+</main>
 </script>
 
 </body>
