@@ -9,617 +9,741 @@
 <title>BRAHMANSH</title>
 
 <style>
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 :root{
-    --bg:#f7f3ed;
-    --card:#ffffff;
-    --text:#302820;
-    --muted:#766b60;
-    --primary:#8B5E34;
-    --primary-dark:#68421f;
-    --border:#e5ddd2;
-    --soft:#efe7dc;
-    --danger:#a33b32;
-    --shadow:0 8px 25px rgba(70,45,20,.07);
+--bg:#f7f3ed;
+--card:#fff;
+--text:#302820;
+--muted:#766b60;
+--primary:#8B5E34;
+--primary-dark:#68421f;
+--border:#e5ddd2;
+--soft:#efe7dc;
+--shadow:0 8px 25px rgba(70,45,20,.07);
 }
 
 body{
-    font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Noto Sans Gujarati",
-    "Noto Sans Devanagari",
-    Arial,
-    sans-serif;
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Noto Sans Gujarati",
+"Noto Sans Devanagari",
+Arial,
+sans-serif;
 
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
+background:var(--bg);
+color:var(--text);
+min-height:100vh;
 }
 
 button,
 input{
-    font-family:inherit;
+font-family:inherit;
 }
 
 button{
-    -webkit-tap-highlight-color:transparent;
+-webkit-tap-highlight-color:transparent;
 }
 
 .app{
-    max-width:560px;
-    margin:auto;
-    min-height:100vh;
-    background:var(--bg);
-    padding-bottom:90px;
+max-width:560px;
+margin:auto;
+min-height:100vh;
+background:var(--bg);
+padding-bottom:90px;
 }
 
+
 /* =========================
-   HEADER
+HEADER
 ========================= */
 
 .header{
-    padding:20px 18px 15px;
-    background:var(--bg);
-    position:sticky;
-    top:0;
-    z-index:50;
+padding:20px 18px 15px;
+background:var(--bg);
+position:sticky;
+top:0;
+z-index:50;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 .brand-mark{
-    width:45px;
-    height:45px;
-    border:1.5px solid var(--primary);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--primary);
+width:45px;
+height:45px;
+border:1.5px solid var(--primary);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:var(--primary);
 }
 
 .brand-mark svg{
-    width:24px;
-    height:24px;
+width:24px;
+height:24px;
 }
 
 .brand h1{
-    font-size:22px;
-    letter-spacing:.4px;
+font-size:22px;
+letter-spacing:.4px;
 }
 
 .brand p{
-    margin-top:2px;
-    font-size:11px;
-    color:var(--muted);
+margin-top:2px;
+font-size:11px;
+color:var(--muted);
 }
 
+
 /* =========================
-   SEARCH
+SEARCH
 ========================= */
 
 .search-box{
-    margin-top:17px;
-    position:relative;
+margin-top:17px;
+position:relative;
 }
 
 .search-box svg{
-    position:absolute;
-    left:14px;
-    top:50%;
-    transform:translateY(-50%);
-    width:19px;
-    color:var(--muted);
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+width:19px;
+color:var(--muted);
 }
 
 .search-box input{
-    width:100%;
-    padding:14px 15px 14px 44px;
-    border:1px solid var(--border);
-    background:var(--card);
-    border-radius:14px;
-    color:var(--text);
-    outline:none;
-    font-size:14px;
+width:100%;
+padding:14px 15px 14px 44px;
+border:1px solid var(--border);
+background:var(--card);
+border-radius:14px;
+color:var(--text);
+outline:none;
+font-size:14px;
 }
 
 .search-box input:focus{
-    border-color:var(--primary);
+border-color:var(--primary);
 }
 
+
 /* =========================
-   CONTENT
+CONTENT
 ========================= */
 
 .content{
-    padding:4px 17px 20px;
+padding:4px 17px 20px;
 }
 
 .section-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:17px 2px 12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:17px 2px 12px;
 }
 
 .section-title h2{
-    font-size:18px;
+font-size:18px;
 }
 
 .section-title button{
-    border:0;
-    background:none;
-    color:var(--primary);
-    font-size:12px;
-    cursor:pointer;
+border:0;
+background:none;
+color:var(--primary);
+font-size:12px;
+cursor:pointer;
 }
 
+
 /* =========================
-   DAILY
+DAILY
 ========================= */
 
 .daily{
-    background:var(--primary);
-    color:white;
-    border-radius:21px;
-    padding:22px;
-    box-shadow:var(--shadow);
+background:var(--primary);
+color:#fff;
+border-radius:21px;
+padding:22px;
+box-shadow:var(--shadow);
 }
 
 .daily small{
-    font-size:11px;
-    opacity:.8;
+font-size:11px;
+opacity:.8;
 }
 
 .daily h2{
-    margin-top:9px;
-    font-size:20px;
+margin-top:9px;
+font-size:20px;
 }
 
 .daily .sanskrit{
-    margin-top:14px;
-    font-family:"Noto Sans Devanagari",serif;
-    font-size:20px;
-    line-height:1.9;
+margin-top:14px;
+font-family:"Noto Sans Devanagari",serif;
+font-size:20px;
+line-height:1.9;
 }
 
 .daily .meaning{
-    margin-top:10px;
-    font-size:14px;
-    line-height:1.7;
+margin-top:10px;
+font-size:14px;
+line-height:1.7;
 }
 
 .daily-actions{
-    display:flex;
-    gap:8px;
-    margin-top:17px;
+display:flex;
+gap:8px;
+margin-top:17px;
 }
 
 .btn{
-    border-radius:10px;
-    padding:10px 14px;
-    font-size:12px;
-    cursor:pointer;
+border-radius:10px;
+padding:10px 14px;
+font-size:12px;
+cursor:pointer;
 }
 
 .btn-light{
-    background:#fff;
-    border:0;
-    color:var(--primary-dark);
+background:#fff;
+border:0;
+color:var(--primary-dark);
 }
 
 .btn-outline{
-    background:transparent;
-    border:1px solid rgba(255,255,255,.55);
-    color:white;
+background:transparent;
+border:1px solid rgba(255,255,255,.55);
+color:#fff;
 }
 
+
 /* =========================
-   GRID
+GRID
 ========================= */
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:11px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:11px;
 }
 
 .menu-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:17px 14px;
-    cursor:pointer;
-    transition:.15s;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:16px;
+padding:17px 14px;
+cursor:pointer;
+transition:.15s;
 }
 
 .menu-card:active{
-    transform:scale(.98);
+transform:scale(.98);
 }
 
 .icon-box{
-    width:40px;
-    height:40px;
-    border-radius:11px;
-    background:var(--soft);
-    color:var(--primary);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:12px;
+width:40px;
+height:40px;
+border-radius:11px;
+background:var(--soft);
+color:var(--primary);
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:12px;
 }
 
 .icon-box svg{
-    width:21px;
-    height:21px;
+width:21px;
+height:21px;
 }
 
 .menu-card h3{
-    font-size:14px;
+font-size:14px;
 }
 
 .menu-card p{
-    margin-top:5px;
-    color:var(--muted);
-    font-size:11px;
+margin-top:5px;
+color:var(--muted);
+font-size:11px;
 }
+
 
 /* =========================
-   LANGUAGE TABS
-========================= */
-
-.language-tabs{
-    display:flex;
-    gap:7px;
-    overflow-x:auto;
-    padding:2px 0 12px;
-}
-
-.language-tabs button{
-    flex:0 0 auto;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--muted);
-    padding:8px 13px;
-    border-radius:9px;
-    font-size:12px;
-    cursor:pointer;
-}
-
-.language-tabs button.active{
-    background:var(--primary);
-    color:#fff;
-    border-color:var(--primary);
-}
-
-/* =========================
-   SHLOK CARD
+SHLOK
 ========================= */
 
 .shlok-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:17px;
-    margin-bottom:12px;
-    box-shadow:0 3px 14px rgba(70,45,20,.025);
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+padding:17px;
+margin-bottom:12px;
+box-shadow:0 3px 14px rgba(70,45,20,.025);
 }
 
 .shlok-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:8px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
 }
 
 .chapter{
-    color:var(--primary);
-    font-size:11px;
-    font-weight:700;
-}
-
-.shlok-actions{
-    display:flex;
-    gap:5px;
-}
-
-.icon-btn{
-    width:33px;
-    height:33px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--muted);
-    border-radius:9px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-}
-
-.icon-btn svg{
-    width:16px;
-    height:16px;
-}
-
-.icon-btn.favorite-active{
-    color:var(--primary);
-    background:var(--soft);
+color:var(--primary);
+font-size:11px;
+font-weight:700;
 }
 
 .shlok{
-    margin-top:13px;
-    font-family:"Noto Sans Devanagari",serif;
-    font-size:19px;
-    line-height:1.95;
+margin-top:13px;
+font-family:"Noto Sans Devanagari",serif;
+font-size:19px;
+line-height:1.95;
 }
 
 .meaning-box{
-    margin-top:14px;
-    padding-top:13px;
-    border-top:1px solid var(--border);
+margin-top:14px;
+padding-top:13px;
+border-top:1px solid var(--border);
 }
 
 .meaning-label{
-    color:var(--primary);
-    font-size:11px;
-    font-weight:700;
-    margin-bottom:6px;
+color:var(--primary);
+font-size:11px;
+font-weight:700;
+margin-bottom:6px;
 }
 
 .meaning-text{
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.8;
+color:var(--muted);
+font-size:14px;
+line-height:1.8;
 }
 
+
 /* =========================
-   CHAPTER
+LANGUAGE
+========================= */
+
+.language-tabs{
+display:flex;
+gap:7px;
+overflow-x:auto;
+padding:2px 0 12px;
+}
+
+.language-tabs button{
+flex:0 0 auto;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--muted);
+padding:8px 13px;
+border-radius:9px;
+font-size:12px;
+cursor:pointer;
+}
+
+.language-tabs button.active{
+background:var(--primary);
+color:#fff;
+border-color:var(--primary);
+}
+
+
+/* =========================
+CHAPTER
 ========================= */
 
 .chapter-card{
-    display:flex;
-    align-items:center;
-    gap:13px;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:15px;
-    margin-bottom:10px;
-    cursor:pointer;
+display:flex;
+align-items:center;
+gap:13px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:16px;
+padding:15px;
+margin-bottom:10px;
+cursor:pointer;
 }
 
 .chapter-number{
-    min-width:43px;
-    height:43px;
-    border-radius:11px;
-    background:var(--soft);
-    color:var(--primary);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700;
+min-width:43px;
+height:43px;
+border-radius:11px;
+background:var(--soft);
+color:var(--primary);
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
 }
 
 .chapter-info{
-    flex:1;
+flex:1;
 }
 
 .chapter-info h3{
-    font-size:14px;
+font-size:14px;
 }
 
 .chapter-info p{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
+color:var(--muted);
+font-size:11px;
+margin-top:4px;
 }
 
 .arrow{
-    color:var(--muted);
+color:var(--muted);
 }
 
 .arrow svg{
-    width:18px;
+width:18px;
 }
 
+
 /* =========================
-   BACK
+BACK
 ========================= */
 
 .back-button{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    border:0;
-    background:none;
-    color:var(--primary);
-    font-size:13px;
-    cursor:pointer;
-    margin:3px 0 14px;
+display:flex;
+align-items:center;
+gap:7px;
+border:0;
+background:none;
+color:var(--primary);
+font-size:13px;
+cursor:pointer;
 }
 
 .back-button svg{
-    width:17px;
+width:18px;
 }
 
+
 /* =========================
-   DETAIL HEADER
+DETAIL
 ========================= */
 
 .detail-header{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:18px;
-    margin-bottom:13px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+padding:18px;
+margin-bottom:13px;
 }
 
 .detail-header h2{
-    font-size:19px;
+font-size:19px;
 }
 
 .detail-header p{
-    margin-top:5px;
-    color:var(--muted);
-    font-size:12px;
+margin-top:5px;
+color:var(--muted);
+font-size:12px;
 }
 
+
 /* =========================
-   EMPTY
+EMPTY
 ========================= */
 
 .empty{
-    text-align:center;
-    padding:55px 20px;
-    color:var(--muted);
+text-align:center;
+padding:55px 20px;
+color:var(--muted);
 }
 
-.empty svg{
-    width:43px;
-    height:43px;
-    color:var(--primary);
-    margin-bottom:13px;
-}
 
 /* =========================
-   SETTINGS
+SETTINGS
 ========================= */
 
 .setting-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    overflow:hidden;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:16px;
+overflow:hidden;
 }
 
 .setting-row{
-    padding:17px;
-    border-bottom:1px solid var(--border);
-    cursor:pointer;
+padding:17px;
+border-bottom:1px solid var(--border);
+cursor:pointer;
 }
 
 .setting-row:last-child{
-    border-bottom:0;
+border-bottom:0;
 }
 
 .setting-row h3{
-    font-size:14px;
+font-size:14px;
 }
 
 .setting-row p{
-    margin-top:5px;
-    color:var(--muted);
-    font-size:11px;
+margin-top:5px;
+color:var(--muted);
+font-size:11px;
 }
 
+
 /* =========================
-   BOTTOM NAV
+JAPA
 ========================= */
 
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:560px;
-    height:72px;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(12px);
-    border-top:1px solid var(--border);
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    z-index:100;
+.japa-head{
+display:flex;
+align-items:center;
+gap:8px;
+margin:5px 0 16px;
 }
 
-.nav-item{
-    border:0;
-    background:none;
-    color:var(--muted);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:5px;
-    font-size:10px;
-    cursor:pointer;
+.japa-title{
+font-size:24px;
+margin-bottom:14px;
 }
 
-.nav-item svg{
-    width:20px;
-    height:20px;
+.mantra-tabs{
+display:flex;
+gap:8px;
+overflow-x:auto;
+padding-bottom:18px;
 }
 
-.nav-item.active{
-    color:var(--primary);
-    font-weight:700;
+.mantra-tab{
+white-space:nowrap;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+border-radius:11px;
+padding:10px 13px;
+font-size:12px;
 }
+
+.mantra-tab.active{
+background:var(--primary);
+color:#fff;
+border-color:var(--primary);
+}
+
+.mala-wrap{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:12px 0 8px;
+}
+
+.mala{
+width:270px;
+height:270px;
+border-radius:50%;
+border:24px dotted #87562f;
+box-shadow:0 0 0 7px rgba(139,94,52,.08);
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.mala::before{
+content:"ॐ";
+font-family:"Noto Sans Devanagari",serif;
+font-size:82px;
+color:var(--primary);
+}
+
+.mala::after{
+content:"";
+position:absolute;
+width:22px;
+height:34px;
+background:#87562f;
+border-radius:50% 50% 45% 45%;
+top:-29px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.japa-mantra{
+text-align:center;
+font-family:"Noto Sans Devanagari",serif;
+color:var(--primary);
+font-size:23px;
+font-weight:700;
+margin:8px 0 16px;
+}
+
+.japa-count{
+text-align:center;
+font-size:42px;
+font-weight:800;
+}
+
+.japa-sub{
+text-align:center;
+color:var(--muted);
+font-size:13px;
+margin-top:2px;
+}
+
+.japa-progress{
+height:7px;
+background:var(--soft);
+border-radius:20px;
+overflow:hidden;
+margin:14px 5px 5px;
+}
+
+.japa-progress div{
+height:100%;
+width:0;
+background:var(--primary);
+transition:.18s;
+}
+
+.japa-actions{
+display:flex;
+gap:10px;
+margin-top:18px;
+}
+
+.japa-main{
+flex:1;
+background:var(--primary);
+color:#fff;
+border:0;
+border-radius:15px;
+padding:16px;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+}
+
+.japa-secondary{
+flex:1;
+background:var(--card);
+color:var(--text);
+border:1px solid var(--border);
+border-radius:15px;
+padding:15px;
+font-size:13px;
+cursor:pointer;
+}
+
+.japa-quote{
+margin-top:18px;
+background:var(--soft);
+border-radius:18px;
+padding:20px;
+text-align:center;
+font-size:15px;
+line-height:1.8;
+}
+
+.japa-quote small{
+display:block;
+margin-top:8px;
+color:var(--muted);
+font-size:11px;
+}
+
 
 /* =========================
-   PAGES
+PAGES
 ========================= */
 
 .page{
-    display:none;
+display:none;
 }
 
 .page.active{
-    display:block;
+display:block;
 }
 
+
 /* =========================
-   DARK
+BOTTOM NAV
+========================= */
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+max-width:560px;
+height:72px;
+background:rgba(255,255,255,.96);
+backdrop-filter:blur(12px);
+border-top:1px solid var(--border);
+display:grid;
+grid-template-columns:repeat(4,1fr);
+z-index:100;
+}
+
+.nav-item{
+border:0;
+background:none;
+color:var(--muted);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:5px;
+font-size:10px;
+cursor:pointer;
+}
+
+.nav-item svg{
+width:20px;
+height:20px;
+}
+
+.nav-item.active{
+color:var(--primary);
+font-weight:700;
+}
+
+
+/* =========================
+DARK
 ========================= */
 
 body.dark{
-    --bg:#181512;
-    --card:#241f1a;
-    --text:#eee6dc;
-    --muted:#aaa095;
-    --primary:#c28a52;
-    --primary-dark:#e1b27d;
-    --border:#3a3129;
-    --soft:#322a23;
+--bg:#181512;
+--card:#241f1a;
+--text:#eee6dc;
+--muted:#aaa095;
+--primary:#c28a52;
+--primary-dark:#e1b27d;
+--border:#3a3129;
+--soft:#322a23;
 }
 
 body.dark .bottom-nav{
-    background:rgba(36,31,26,.97);
+background:rgba(36,31,26,.97);
 }
 
-/* =========================
-   DESKTOP
-========================= */
-
-@media(min-width:700px){
-
-    body{
-        background:#e8e1d8;
-    }
-
-    .app{
-        box-shadow:0 0 35px rgba(0,0,0,.08);
-    }
-}
 </style>
 </head>
+
 
 <body>
 
 <div class="app">
 
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
@@ -633,8 +757,11 @@ stroke="currentColor"
 stroke-width="1.5">
 
 <path d="M12 20C8 18 5 15 5 11C8 12 10 14 12 17C14 14 16 12 19 11C19 15 16 18 12 20Z"/>
-<path d="M12 17C10 13 10 9 12 5C14 9 14 13 12 17Z"/>
+
+<path d="M12 17C10 13 10 9 12 5C14 9 16 13 12 17Z"/>
+
 <path d="M5 11C7 10 9 10 12 12"/>
+
 <path d="M19 11C17 10 15 10 12 12"/>
 
 </svg>
@@ -651,6 +778,7 @@ stroke-width="1.5">
 
 </div>
 
+
 <div class="search-box">
 
 <svg viewBox="0 0 24 24"
@@ -659,6 +787,7 @@ stroke="currentColor"
 stroke-width="2">
 
 <circle cx="11" cy="11" r="7"/>
+
 <path d="m20 20-4-4"/>
 
 </svg>
@@ -673,23 +802,29 @@ oninput="searchContent()">
 
 </header>
 
-<!-- =========================
-     HOME
-========================= -->
+
+<!-- HOME -->
 
 <main id="homePage" class="page active">
 
 <div class="content">
 
 <div class="section-title">
+
 <h2>આજની વાણી</h2>
+
 </div>
+
 
 <section class="daily">
 
-<small>ભગવદ્ ગીતા • અધ્યાય ૨ • શ્લોક ૨૦</small>
+<small>
+ભગવદ્ ગીતા • અધ્યાય ૨ • શ્લોક ૨૦
+</small>
 
-<h2>આત્માનું જ્ઞાન</h2>
+<h2>
+આત્માનું જ્ઞાન
+</h2>
 
 <div class="sanskrit">
 न जायते म्रियते वा कदाचित् ।
@@ -702,25 +837,38 @@ oninput="searchContent()">
 
 <div class="daily-actions">
 
-<button class="btn btn-light"
+<button
+class="btn btn-light"
 onclick="copyText('न जायते म्रियते वा कदाचित् ।')">
+
 Copy
+
 </button>
 
-<button class="btn btn-outline"
+<button
+class="btn btn-outline"
 onclick="shareText('न जायते म्रियते वा कदाचित् ।')">
+
 Share
+
 </button>
 
 </div>
 
 </section>
 
+
 <div class="section-title">
+
 <h2>વિભાગો</h2>
+
 </div>
 
+
 <div class="grid">
+
+
+<!-- GITA -->
 
 <div class="menu-card"
 onclick="showChapters()">
@@ -733,21 +881,32 @@ stroke="currentColor"
 stroke-width="1.6">
 
 <path d="M5 5h14v14H5z"/>
+
 <path d="M8 8h8"/>
+
 <path d="M8 12h8"/>
+
 <path d="M8 16h5"/>
 
 </svg>
 
 </div>
 
-<h3>ભગવદ્ ગીતા</h3>
-<p>૧૮ અધ્યાય</p>
+<h3>
+ભગવદ્ ગીતા
+</h3>
+
+<p>
+૧૮ અધ્યાય
+</p>
 
 </div>
 
+
+<!-- JAPA -->
+
 <div class="menu-card"
-onclick="openShloks()">
+onclick="openJapa()">
 
 <div class="icon-box">
 
@@ -756,19 +915,26 @@ fill="none"
 stroke="currentColor"
 stroke-width="1.6">
 
-<path d="M6 4h12v16H6z"/>
-<path d="M9 8h6"/>
-<path d="M9 12h6"/>
-<path d="M9 16h4"/>
+<circle cx="12" cy="12" r="8"/>
+
+<path d="M12 7v5l3 2"/>
 
 </svg>
 
 </div>
 
-<h3>શ્લોક</h3>
-<p>શ્લોક અને અર્થ</p>
+<h3>
+જાપ
+</h3>
+
+<p>
+મંત્ર જાપ કરો
+</p>
 
 </div>
+
+
+<!-- STOTRA -->
 
 <div class="menu-card">
 
@@ -780,19 +946,31 @@ stroke="currentColor"
 stroke-width="1.6">
 
 <path d="M4 7h16"/>
+
 <path d="M6 7v12"/>
+
 <path d="M18 7v12"/>
+
 <path d="M8 11h8"/>
+
 <path d="M8 15h6"/>
 
 </svg>
 
 </div>
 
-<h3>સ્તોત્ર</h3>
-<p>પ્રાર્થના અને સ્તોત્ર</p>
+<h3>
+સ્તોત્ર
+</h3>
+
+<p>
+પ્રાર્થના અને સ્તોત્ર
+</p>
 
 </div>
+
+
+<!-- GRANTH -->
 
 <div class="menu-card">
 
@@ -804,24 +982,35 @@ stroke="currentColor"
 stroke-width="1.6">
 
 <path d="M4 6h16v14H4z"/>
+
 <path d="M8 6V4h8v2"/>
+
 <path d="M8 10h8"/>
+
 <path d="M8 14h6"/>
 
 </svg>
 
 </div>
 
-<h3>ગ્રંથો</h3>
-<p>પવિત્ર ગ્રંથો</p>
+<h3>
+ગ્રંથો
+</h3>
+
+<p>
+પવિત્ર ગ્રંથો
+</p>
 
 </div>
 
 </div>
+
 
 <div class="section-title">
 
-<h2>તાજેતરના શ્લોક</h2>
+<h2>
+તાજેતરના શ્લોક
+</h2>
 
 <button onclick="openShloks()">
 બધા જુઓ
@@ -829,42 +1018,192 @@ stroke-width="1.6">
 
 </div>
 
+
 <div id="recentShloks"></div>
 
 </div>
 
 </main>
 
-<!-- =========================
-     SHLOKS
-========================= -->
+
+<!-- JAPA PAGE -->
+
+<main id="japaPage" class="page">
+
+<div class="content">
+
+<div class="japa-head">
+
+<button
+class="back-button"
+onclick="goHome()">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2">
+
+<path d="m15 18-6-6 6-6"/>
+
+</svg>
+
+પાછા
+
+</button>
+
+</div>
+
+
+<h2 class="japa-title">
+જાપ
+</h2>
+
+
+<div class="mantra-tabs">
+
+<button class="mantra-tab active">
+ૐ નમઃ શિવાય
+</button>
+
+<button class="mantra-tab">
+ૐ નમો ભગવતે વાસુદેવાય
+</button>
+
+<button class="mantra-tab">
+શ્રી રામ જય રામ
+</button>
+
+</div>
+
+
+<div class="mala-wrap">
+
+<div class="mala"></div>
+
+</div>
+
+
+<div class="japa-mantra">
+ૐ નમઃ શિવાય
+</div>
+
+
+<div
+class="japa-count"
+id="japaCount">
+
+0
+
+</div>
+
+
+<div class="japa-sub">
+જાપ
+</div>
+
+
+<div class="japa-progress">
+
+<div id="japaProgress"></div>
+
+</div>
+
+
+<div class="japa-sub">
+
+<span id="japaText">
+0 / 108
+</span>
+
+•
+
+<span id="malaText">
+0 માળા
+</span>
+
+</div>
+
+
+<div class="japa-actions">
+
+<button
+class="japa-main"
+onclick="addJapa()">
+
++ જાપ
+
+</button>
+
+
+<button
+class="japa-secondary"
+onclick="resetJapa()">
+
+રીસેટ
+
+</button>
+
+</div>
+
+
+<div class="japa-quote">
+
+“મનને શાંત કરવા માટે જાપ સર્વોત્તમ સાધન છે.”
+
+<small>
+— સંસ્કાર વાણી
+</small>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- SHLOK PAGE -->
 
 <main id="shlokPage" class="page">
 
 <div class="content">
 
 <div class="section-title">
-<h2>શ્લોક</h2>
+
+<h2>
+શ્લોક
+</h2>
+
 </div>
+
 
 <div class="language-tabs">
 
-<button id="langGu"
+<button
+id="langGu"
 onclick="setLanguage('gu')">
+
 ગુજરાતી
+
 </button>
 
-<button id="langHi"
+<button
+id="langHi"
 onclick="setLanguage('hi')">
+
 हिन्दी
+
 </button>
 
-<button id="langEn"
+<button
+id="langEn"
 onclick="setLanguage('en')">
+
 English
+
 </button>
 
 </div>
+
 
 <div id="shlokList"></div>
 
@@ -872,9 +1211,8 @@ English
 
 </main>
 
-<!-- =========================
-     GITA
-========================= -->
+
+<!-- GITA -->
 
 <main id="gitaPage" class="page">
 
@@ -882,7 +1220,9 @@ English
 
 <div class="section-title">
 
-<h2>ભગવદ્ ગીતા</h2>
+<h2>
+ભગવદ્ ગીતા
+</h2>
 
 </div>
 
@@ -892,15 +1232,15 @@ English
 
 </main>
 
-<!-- =========================
-     CHAPTER
-========================= -->
+
+<!-- CHAPTER -->
 
 <main id="chapterPage" class="page">
 
 <div class="content">
 
-<button class="back-button"
+<button
+class="back-button"
 onclick="showChapters()">
 
 <svg viewBox="0 0 24 24"
@@ -916,15 +1256,15 @@ stroke-width="2">
 
 </button>
 
+
 <div id="chapterDetail"></div>
 
 </div>
 
 </main>
 
-<!-- =========================
-     SEARCH
-========================= -->
+
+<!-- SEARCH -->
 
 <main id="searchPage" class="page">
 
@@ -932,7 +1272,9 @@ stroke-width="2">
 
 <div class="section-title">
 
-<h2>શોધ પરિણામ</h2>
+<h2>
+શોધ પરિણામ
+</h2>
 
 </div>
 
@@ -942,9 +1284,8 @@ stroke-width="2">
 
 </main>
 
-<!-- =========================
-     FAVORITES
-========================= -->
+
+<!-- FAVORITES -->
 
 <main id="favoritePage" class="page">
 
@@ -952,7 +1293,9 @@ stroke-width="2">
 
 <div class="section-title">
 
-<h2>મારા મનપસંદ</h2>
+<h2>
+મારા મનપસંદ
+</h2>
 
 </div>
 
@@ -962,9 +1305,8 @@ stroke-width="2">
 
 </main>
 
-<!-- =========================
-     SETTINGS
-========================= -->
+
+<!-- SETTINGS -->
 
 <main id="settingsPage" class="page">
 
@@ -972,16 +1314,22 @@ stroke-width="2">
 
 <div class="section-title">
 
-<h2>Settings</h2>
+<h2>
+Settings
+</h2>
 
 </div>
 
+
 <div class="setting-card">
 
-<div class="setting-row"
+<div
+class="setting-row"
 onclick="toggleDarkMode()">
 
-<h3>Appearance</h3>
+<h3>
+Appearance
+</h3>
 
 <p>
 Light / Dark Mode
@@ -989,10 +1337,14 @@ Light / Dark Mode
 
 </div>
 
-<div class="setting-row"
+
+<div
+class="setting-row"
 onclick="clearFavorites()">
 
-<h3>Clear Favorites</h3>
+<h3>
+Clear Favorites
+</h3>
 
 <p>
 સાચવેલા બધા મનપસંદ શ્લોક દૂર કરો.
@@ -1000,9 +1352,12 @@ onclick="clearFavorites()">
 
 </div>
 
+
 <div class="setting-row">
 
-<h3>About BRAHMANSH</h3>
+<h3>
+About BRAHMANSH
+</h3>
 
 <p>
 ज्ञान • भक्ति • संस्कार
@@ -1016,13 +1371,13 @@ onclick="clearFavorites()">
 
 </main>
 
-<!-- =========================
-     BOTTOM NAV
-========================= -->
+
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-<button class="nav-item active"
+<button
+class="nav-item active"
 onclick="goHome(this)">
 
 <svg viewBox="0 0 24 24"
@@ -1031,7 +1386,9 @@ stroke="currentColor"
 stroke-width="1.7">
 
 <path d="M4 11.5 12 5l8 6.5"/>
+
 <path d="M6 10.5V20h12v-9.5"/>
+
 <path d="M10 20v-5h4v5"/>
 
 </svg>
@@ -1040,7 +1397,9 @@ Home
 
 </button>
 
-<button class="nav-item"
+
+<button
+class="nav-item"
 onclick="showChapters(this)">
 
 <svg viewBox="0 0 24 24"
@@ -1049,8 +1408,11 @@ stroke="currentColor"
 stroke-width="1.7">
 
 <path d="M5 5h14v14H5z"/>
+
 <path d="M8 8h8"/>
+
 <path d="M8 12h8"/>
+
 <path d="M8 16h5"/>
 
 </svg>
@@ -1059,7 +1421,9 @@ stroke-width="1.7">
 
 </button>
 
-<button class="nav-item"
+
+<button
+class="nav-item"
 onclick="openFavorites(this)">
 
 <svg viewBox="0 0 24 24"
@@ -1075,7 +1439,9 @@ Favorites
 
 </button>
 
-<button class="nav-item"
+
+<button
+class="nav-item"
 onclick="openSettings(this)">
 
 <svg viewBox="0 0 24 24"
@@ -1084,8 +1450,6 @@ stroke="currentColor"
 stroke-width="1.7">
 
 <circle cx="12" cy="12" r="3"/>
-
-<path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3a1.7 1.7 0 0 0-1 1.5V20h-2.6v-.1a1.7 1.7 0 0 0-1-1.5a1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6v-2.6h.5A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3a1.7 1.7 0 0 0 1-1.5V5h2.6v.1a1.7 1.7 0 0 0 1 1.5a1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9a1.7 1.7 0 0 0 1.5 1h.5V14h-.5a1.7 1.7 0 0 0-1.5 1Z"/>
 
 </svg>
 
@@ -1097,267 +1461,245 @@ Settings
 
 </div>
 
+
 <script>
 
-/* =====================================================
-   BRAHMANSH DATABASE
-===================================================== */
+/* =========================
+DATABASE
+========================= */
 
-const chapters = [
+const chapters=[
 
-{
-n:1,
-name:"અર્જુનવિષાદ યોગ",
-hi:"अर्जुनविषाद योग",
-en:"Arjuna Vishada Yoga"
-},
+{n:1,name:"અર્જુનવિષાદ યોગ",en:"Arjuna Vishada Yoga"},
 
-{
-n:2,
-name:"સાંખ્ય યોગ",
-hi:"सांख्य योग",
-en:"Sankhya Yoga"
-},
+{n:2,name:"સાંખ્ય યોગ",en:"Sankhya Yoga"},
 
-{
-n:3,
-name:"કર્મ યોગ",
-hi:"कर्म योग",
-en:"Karma Yoga"
-},
+{n:3,name:"કર્મ યોગ",en:"Karma Yoga"},
 
-{
-n:4,
-name:"જ્ઞાન કર્મ સંન્યાસ યોગ",
-hi:"ज्ञान कर्म संन्यास योग",
-en:"Jnana Karma Sannyasa Yoga"
-},
+{n:4,name:"જ્ઞાન કર્મ સંન્યાસ યોગ",en:"Jnana Karma Sannyasa Yoga"},
 
-{
-n:5,
-name:"કર્મ સંન્યાસ યોગ",
-hi:"कर्म संन्यास योग",
-en:"Karma Sannyasa Yoga"
-},
+{n:5,name:"કર્મ સંન્યાસ યોગ",en:"Karma Sannyasa Yoga"},
 
-{
-n:6,
-name:"ધ્યાન યોગ",
-hi:"ध्यान योग",
-en:"Dhyana Yoga"
-},
+{n:6,name:"ધ્યાન યોગ",en:"Dhyana Yoga"},
 
-{
-n:7,
-name:"જ્ઞાન વિજ્ઞાન યોગ",
-hi:"ज्ञान विज्ञान योग",
-en:"Jnana Vijnana Yoga"
-},
+{n:7,name:"જ્ઞાન વિજ્ઞાન યોગ",en:"Jnana Vijnana Yoga"},
 
-{
-n:8,
-name:"અક્ષર બ્રહ્મ યોગ",
-hi:"अक्षर ब्रह्म योग",
-en:"Akshara Brahma Yoga"
-},
+{n:8,name:"અક્ષર બ્રહ્મ યોગ",en:"Akshara Brahma Yoga"},
 
-{
-n:9,
-name:"રાજવિદ્યા રાજગુહ્ય યોગ",
-hi:"राजविद्या राजगुह्य योग",
-en:"Raja Vidya Raja Guhya Yoga"
-},
+{n:9,name:"રાજવિદ્યા રાજગુહ્ય યોગ",en:"Raja Vidya Raja Guhya Yoga"},
 
-{
-n:10,
-name:"વિભૂતિ યોગ",
-hi:"विभूति योग",
-en:"Vibhuti Yoga"
-},
+{n:10,name:"વિભૂતિ યોગ",en:"Vibhuti Yoga"},
 
-{
-n:11,
-name:"વિશ્વરૂપ દર્શન યોગ",
-hi:"विश्वरूप दर्शन योग",
-en:"Vishvarupa Darshana Yoga"
-},
+{n:11,name:"વિશ્વરૂપ દર્શન યોગ",en:"Vishvarupa Darshana Yoga"},
 
-{
-n:12,
-name:"ભક્તિ યોગ",
-hi:"भक्ति योग",
-en:"Bhakti Yoga"
-},
+{n:12,name:"ભક્તિ યોગ",en:"Bhakti Yoga"},
 
-{
-n:13,
-name:"ક્ષેત્ર ક્ષેત્રજ્ઞ વિભાગ યોગ",
-hi:"क्षेत्र क्षेत्रज्ञ विभाग योग",
-en:"Kshetra Kshetrajna Vibhaga Yoga"
-},
+{n:13,name:"ક્ષેત્ર ક્ષેત્રજ્ઞ વિભાગ યોગ",en:"Kshetra Kshetrajna Vibhaga Yoga"},
 
-{
-n:14,
-name:"ગુણત્રય વિભાગ યોગ",
-hi:"गुणत्रय विभाग योग",
-en:"Gunatraya Vibhaga Yoga"
-},
+{n:14,name:"ગુણત્રય વિભાગ યોગ",en:"Gunatraya Vibhaga Yoga"},
 
-{
-n:15,
-name:"પુરુષોત્તમ યોગ",
-hi:"पुरुषोत्तम योग",
-en:"Purushottama Yoga"
-},
+{n:15,name:"પુરુષોત્તમ યોગ",en:"Purushottama Yoga"},
 
-{
-n:16,
-name:"દૈવાસુર સંપદ્ વિભાગ યોગ",
-hi:"दैवासुर सम्पद् विभाग योग",
-en:"Daivasura Sampad Vibhaga Yoga"
-},
+{n:16,name:"દૈવાસુર સંપદ્ વિભાગ યોગ",en:"Daivasura Sampad Vibhaga Yoga"},
 
-{
-n:17,
-name:"શ્રદ્ધાત્રય વિભાગ યોગ",
-hi:"श्रद्धात्रय विभाग योग",
-en:"Shraddhatraya Vibhaga Yoga"
-},
+{n:17,name:"શ્રદ્ધાત્રય વિભાગ યોગ",en:"Shraddhatraya Vibhaga Yoga"},
 
-{
-n:18,
-name:"મોક્ષ સંન્યાસ યોગ",
-hi:"मोक्ष संन्यास योग",
-en:"Moksha Sannyasa Yoga"
-}
+{n:18,name:"મોક્ષ સંન્યાસ યોગ",en:"Moksha Sannyasa Yoga"}
 
 ];
 
-/* =====================================================
-   SHLOK DATA
-===================================================== */
 
-const shloks = [
+const shloks=[
 
 {
 id:"2.20",
 chapter:2,
 verse:20,
-
-sanskrit:
-"न जायते म्रियते वा कदाचित् ।",
-
-gu:
-"આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું ક્યારેય મૃત્યુ પણ થતું નથી.",
-
-hi:
-"आत्मा का कभी जन्म नहीं होता और न ही कभी मृत्यु होती है।",
-
-en:
-"The soul is never born and it never dies."
+sanskrit:"न जायते म्रियते वा कदाचित् ।",
+gu:"આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું ક્યારેય મૃત્યુ પણ થતું નથી.",
+hi:"आत्मा का कभी जन्म नहीं होता और न ही कभी मृत्यु होती है।",
+en:"The soul is never born and it never dies."
 },
 
 {
 id:"2.47",
 chapter:2,
 verse:47,
-
-sanskrit:
-"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।",
-
-gu:
-"તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.",
-
-hi:
-"तुम्हारा अधिकार केवल कर्म करने में है, उसके फल में कभी नहीं।",
-
-en:
-"You have a right to perform your duty, but not to the fruits of your actions."
+sanskrit:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।",
+gu:"તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.",
+hi:"तुम्हारा अधिकार केवल कर्म करने में है, उसके फल में कभी नहीं।",
+en:"You have a right to perform your duty, but not to the fruits of your actions."
 },
 
 {
 id:"4.7",
 chapter:4,
 verse:7,
-
-sanskrit:
-"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।",
-
-gu:
-"હે ભારત, જ્યારે જ્યારે ધર્મની હાનિ થાય છે ત્યારે હું પ્રગટ થાઉં છું.",
-
-hi:
-"हे भारत, जब-जब धर्म की हानि होती है तब मैं प्रकट होता हूँ।",
-
-en:
-"Whenever righteousness declines, I manifest Myself."
+sanskrit:"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।",
+gu:"હે ભારત, જ્યારે જ્યારે ધર્મની હાનિ થાય છે ત્યારે હું પ્રગટ થાઉં છું.",
+hi:"हे भारत, जब-जब धर्म की हानि होती है तब मैं प्रकट होता हूँ।",
+en:"Whenever righteousness declines, I manifest Myself."
 },
 
 {
 id:"4.8",
 chapter:4,
 verse:8,
-
-sanskrit:
-"परित्राणाय साधूनां विनाशाय च दुष्कृताम् ।",
-
-gu:
-"સાધુઓના રક્ષણ માટે અને દુષ્ટોના વિનાશ માટે હું પ્રગટ થાઉં છું.",
-
-hi:
-"साधुओं की रक्षा और दुष्टों के विनाश के लिए मैं प्रकट होता हूँ।",
-
-en:
-"I manifest to protect the righteous and to destroy evil."
+sanskrit:"परित्राणाय साधूनां विनाशाय च दुष्कृताम् ।",
+gu:"સાધુઓના રક્ષણ માટે અને દુષ્ટોના વિનાશ માટે હું પ્રગટ થાઉં છું.",
+hi:"साधुओं की रक्षा और दुष्टों के विनाश के लिए मैं प्रकट होता हूँ।",
+en:"I manifest to protect the righteous and to destroy evil."
 },
 
 {
 id:"12.13",
 chapter:12,
 verse:13,
-
-sanskrit:
-"अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च ।",
-
-gu:
-"જે કોઈ પ્રાણી પ્રત્યે દ્વેષ રાખતો નથી, સૌનો મિત્ર અને કરુણાશીલ છે.",
-
-hi:
-"जो किसी प्राणी से द्वेष नहीं करता, सबका मित्र और करुणामय है।",
-
-en:
-"One who has no hatred toward any being and is friendly and compassionate."
+sanskrit:"अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च ।",
+gu:"જે કોઈ પ્રાણી પ્રત્યે દ્વેષ રાખતો નથી, સૌનો મિત્ર અને કરુણાશીલ છે.",
+hi:"जो किसी प्राणी से द्वेष नहीं करता, सबका मित्र और करुणामय है।",
+en:"One who has no hatred toward any being and is friendly and compassionate."
 }
 
 ];
 
-/* =====================================================
-   STATE
-===================================================== */
 
-let currentLanguage =
-localStorage.getItem("brahmanshLanguage") || "gu";
+let currentLanguage=
+localStorage.getItem("brahmanshLanguage")||"gu";
 
-let favorites =
+let favorites=
 JSON.parse(
-localStorage.getItem("brahmanshFavorites") || "[]"
+localStorage.getItem("brahmanshFavorites")||"[]"
 );
 
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
+
+/* =========================
+JAPA
+========================= */
+
+let japCount=
+Number(
+localStorage.getItem("brahmanshJapCount")||"0"
+);
+
+
+function openJapa(){
+
+openPage("japaPage");
+
+document
+.querySelectorAll(".nav-item")
+.forEach(i=>i.classList.remove("active"));
+
+renderJapa();
+
+}
+
+
+function addJapa(){
+
+japCount++;
+
+localStorage.setItem(
+"brahmanshJapCount",
+japCount
+);
+
+renderJapa();
+
+}
+
+
+function resetJapa(){
+
+if(japCount===0){
+
+return;
+
+}
+
+if(
+confirm("જાપની ગણતરી Reset કરવી છે?")
+){
+
+japCount=0;
+
+localStorage.setItem(
+"brahmanshJapCount",
+"0"
+);
+
+renderJapa();
+
+}
+
+}
+
+
+function renderJapa(){
+
+const count=
+document.getElementById("japaCount");
+
+const bar=
+document.getElementById("japaProgress");
+
+const txt=
+document.getElementById("japaText");
+
+const mala=
+document.getElementById("malaText");
+
+if(!count){
+
+return;
+
+}
+
+count.textContent=japCount;
+
+const current=
+japCount%108;
+
+bar.style.width=
+(
+current===0 && japCount>0
+?100
+:(current/108)*100
+)+"%";
+
+txt.textContent=
+(
+current===0 && japCount>0
+?108
+:current
+)
++" / 108";
+
+mala.textContent=
+Math.floor(japCount/108)
++" માળા";
+
+}
+
+
+/* =========================
+NAVIGATION
+========================= */
 
 function openPage(id){
 
-document.querySelectorAll(".page")
-.forEach(page=>{
-page.classList.remove("active");
-});
+document
+.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
 
-const target=document.getElementById(id);
+const target=
+document.getElementById(id);
 
 if(target){
+
 target.classList.add("active");
+
 }
 
 window.scrollTo({
@@ -1367,18 +1709,21 @@ behavior:"smooth"
 
 }
 
+
 function setActiveNav(button){
 
-document.querySelectorAll(".nav-item")
-.forEach(item=>{
-item.classList.remove("active");
-});
+document
+.querySelectorAll(".nav-item")
+.forEach(i=>i.classList.remove("active"));
 
 if(button){
+
 button.classList.add("active");
+
 }
 
 }
+
 
 function goHome(button){
 
@@ -1388,17 +1733,17 @@ setActiveNav(button);
 
 }
 
+
 function openShloks(button=null){
 
 openPage("shlokPage");
 
 setActiveNav(button);
 
-renderLanguageButtons();
-
 renderShloks();
 
 }
+
 
 function openFavorites(button){
 
@@ -1406,9 +1751,25 @@ openPage("favoritePage");
 
 setActiveNav(button);
 
-renderFavorites();
+const data=
+shloks.filter(
+s=>favorites.includes(s.id)
+);
+
+document.getElementById(
+"favoriteList"
+).innerHTML=
+
+data.length
+?
+data.map(createShlokCard).join("")
+:
+`<div class="empty">
+<p>હજુ કોઈ શ્લોક મનપસંદમાં ઉમેર્યો નથી.</p>
+</div>`;
 
 }
+
 
 function openSettings(button){
 
@@ -1418,9 +1779,113 @@ setActiveNav(button);
 
 }
 
-/* =====================================================
-   CHAPTERS
-===================================================== */
+
+/* =========================
+SHLOK
+========================= */
+
+function createShlokCard(item){
+
+let meaning=
+currentLanguage==="hi"
+?item.hi
+:currentLanguage==="en"
+?item.en
+:item.gu;
+
+let label=
+currentLanguage==="hi"
+?"हिन्दी अर्थ"
+:currentLanguage==="en"
+?"English Meaning"
+:"ગુજરાતી અર્થ";
+
+return `
+
+<div class="shlok-card">
+
+<div class="shlok-top">
+
+<span class="chapter">
+
+ભગવદ્ ગીતા •
+${item.chapter}.${item.verse}
+
+</span>
+
+</div>
+
+<div class="shlok">
+
+${item.sanskrit}
+
+</div>
+
+<div class="meaning-box">
+
+<div class="meaning-label">
+
+${label}
+
+</div>
+
+<div class="meaning-text">
+
+${meaning}
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function renderShloks(data=shloks){
+
+document.getElementById(
+"shlokList"
+).innerHTML=
+data.map(createShlokCard).join("");
+
+}
+
+
+function renderRecent(){
+
+document.getElementById(
+"recentShloks"
+).innerHTML=
+shloks
+.slice(0,3)
+.map(createShlokCard)
+.join("");
+
+}
+
+
+function setLanguage(lang){
+
+currentLanguage=lang;
+
+localStorage.setItem(
+"brahmanshLanguage",
+lang
+);
+
+renderShloks();
+
+renderRecent();
+
+}
+
+
+/* =========================
+GITA
+========================= */
 
 function showChapters(button=null){
 
@@ -1428,17 +1893,20 @@ openPage("gitaPage");
 
 setActiveNav(button);
 
-const list=
-document.getElementById("chapterList");
+document.getElementById(
+"chapterList"
+).innerHTML=
 
-list.innerHTML=
 chapters.map(ch=>`
 
-<div class="chapter-card"
+<div
+class="chapter-card"
 onclick="openChapter(${ch.n})">
 
 <div class="chapter-number">
+
 ${ch.n}
+
 </div>
 
 <div class="chapter-info">
@@ -1455,7 +1923,8 @@ ${ch.en}
 
 <div class="arrow">
 
-<svg viewBox="0 0 24 24"
+<svg
+viewBox="0 0 24 24"
 fill="none"
 stroke="currentColor"
 stroke-width="1.8">
@@ -1472,65 +1941,45 @@ stroke-width="1.8">
 
 }
 
-/* =====================================================
-   CHAPTER DETAIL
-===================================================== */
 
 function openChapter(number){
 
 openPage("chapterPage");
 
-const chapter=
-chapters.find(c=>c.n===number);
+const ch=
+chapters.find(
+c=>c.n===number
+);
 
 const data=
-shloks.filter(s=>s.chapter===number);
+shloks.filter(
+s=>s.chapter===number
+);
 
-let html=`
+document.getElementById(
+"chapterDetail"
+).innerHTML=
+
+`
 
 <div class="detail-header">
 
 <h2>
-અધ્યાય ${chapter.n}
+અધ્યાય ${ch.n}
 </h2>
 
 <p>
-${chapter.name}
+${ch.name}
 </p>
 
 </div>
 
-<div class="language-tabs">
-
-<button class="${currentLanguage==="gu"?"active":""}"
-onclick="setChapterLanguage('gu',${number})">
-
-ગુજરાતી
-
-</button>
-
-<button class="${currentLanguage==="hi"?"active":""}"
-onclick="setChapterLanguage('hi',${number})">
-
-हिन्दी
-
-</button>
-
-<button class="${currentLanguage==="en"?"active":""}"
-onclick="setChapterLanguage('en',${number})">
-
-English
-
-</button>
-
-</div>
-
-`;
-
-if(!data.length){
-
-html+=`
-
+${
+data.length
+?
+data.map(createShlokCard).join("")
+:
+`
 <div class="empty">
 
 <p>
@@ -1538,343 +1987,23 @@ html+=`
 </p>
 
 </div>
-
-`;
-
-}else{
-
-html+=
-data.map(createShlokCard).join("");
-
+`
 }
-
-document.getElementById(
-"chapterDetail"
-).innerHTML=html;
-
-}
-
-function setChapterLanguage(lang,chapter){
-
-currentLanguage=lang;
-
-localStorage.setItem(
-"brahmanshLanguage",
-lang
-);
-
-openChapter(chapter);
-
-}
-
-/* =====================================================
-   SHLOK CARD
-===================================================== */
-
-function createShlokCard(item){
-
-let meaning=item.gu;
-let label="ગુજરાતી અર્થ";
-
-if(currentLanguage==="hi"){
-
-meaning=item.hi;
-label="हिन्दी अर्थ";
-
-}
-
-if(currentLanguage==="en"){
-
-meaning=item.en;
-label="English Meaning";
-
-}
-
-const active=
-favorites.includes(item.id)
-? "favorite-active"
-: "";
-
-return `
-
-<div class="shlok-card">
-
-<div class="shlok-top">
-
-<span class="chapter">
-
-ભગવદ્ ગીતા •
-${item.chapter}.${item.verse}
-
-</span>
-
-<div class="shlok-actions">
-
-<button
-class="icon-btn"
-title="Copy"
-onclick='copyText(${JSON.stringify(item.sanskrit)})'>
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.7">
-
-<rect x="8" y="8"
-width="11"
-height="11"
-rx="2"/>
-
-<path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>
-
-</svg>
-
-</button>
-
-<button
-class="icon-btn"
-title="Share"
-onclick='shareText(${JSON.stringify(item.sanskrit)})'>
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.7">
-
-<circle cx="18" cy="5" r="2"/>
-<circle cx="6" cy="12" r="2"/>
-<circle cx="18" cy="19" r="2"/>
-
-<path d="m8 11 8-5"/>
-<path d="m8 13 8 5"/>
-
-</svg>
-
-</button>
-
-<button
-class="icon-btn"
-title="Read"
-onclick='speakText(${JSON.stringify(item.sanskrit)})'>
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.7">
-
-<path d="M4 10v4"/>
-<path d="M8 7v10"/>
-<path d="M12 4v16"/>
-<path d="M16 8v8"/>
-<path d="M20 10v4"/>
-
-</svg>
-
-</button>
-
-<button
-class="icon-btn ${active}"
-title="Favorite"
-onclick="toggleFavorite('${item.id}')">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.7">
-
-<path d="M20 8c0 5-8 10-8 10S4 13 4 8a4 4 0 0 1 7-2a4 4 0 0 1 9 2Z"/>
-
-</svg>
-
-</button>
-
-</div>
-
-</div>
-
-<div class="shlok">
-${item.sanskrit}
-</div>
-
-<div class="meaning-box">
-
-<div class="meaning-label">
-${label}
-</div>
-
-<div class="meaning-text">
-${meaning}
-</div>
-
-</div>
-
-</div>
 
 `;
 
 }
 
-/* =====================================================
-   SHLOK LIST
-===================================================== */
 
-function renderShloks(data=shloks){
-
-const list=
-document.getElementById("shlokList");
-
-if(!data.length){
-
-list.innerHTML=`
-
-<div class="empty">
-<p>કોઈ શ્લોક મળ્યો નથી.</p>
-</div>
-
-`;
-
-return;
-
-}
-
-list.innerHTML=
-data.map(createShlokCard).join("");
-
-renderLanguageButtons();
-
-}
-
-/* =====================================================
-   LANGUAGE
-===================================================== */
-
-function renderLanguageButtons(){
-
-["Gu","Hi","En"].forEach(x=>{
-
-const btn=
-document.getElementById("lang"+x);
-
-if(btn){
-btn.classList.remove("active");
-}
-
-});
-
-const id=
-currentLanguage==="gu"
-? "langGu"
-: currentLanguage==="hi"
-? "langHi"
-: "langEn";
-
-const active=
-document.getElementById(id);
-
-if(active){
-active.classList.add("active");
-}
-
-}
-
-function setLanguage(lang){
-
-currentLanguage=lang;
-
-localStorage.setItem(
-"brahmanshLanguage",
-lang
-);
-
-renderLanguageButtons();
-
-renderShloks();
-
-renderRecent();
-
-}
-
-/* =====================================================
-   FAVORITES
-===================================================== */
-
-function toggleFavorite(id){
-
-if(favorites.includes(id)){
-
-favorites=
-favorites.filter(x=>x!==id);
-
-}else{
-
-favorites.push(id);
-
-}
-
-localStorage.setItem(
-"brahmanshFavorites",
-JSON.stringify(favorites)
-);
-
-renderShloks();
-renderRecent();
-renderFavorites();
-
-}
-
-function renderFavorites(){
-
-const box=
-document.getElementById("favoriteList");
-
-const data=
-shloks.filter(
-item=>favorites.includes(item.id)
-);
-
-if(!data.length){
-
-box.innerHTML=`
-
-<div class="empty">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.5">
-
-<path d="M20 8c0 5-8 10-8 10S4 13 4 8a4 4 0 0 1 7-2a4 4 0 0 1 9 2Z"/>
-
-</svg>
-
-<p>
-હજુ કોઈ શ્લોક મનપસંદમાં ઉમેર્યો નથી.
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-box.innerHTML=
-data.map(createShlokCard).join("");
-
-}
+/* =========================
+FAVORITES
+========================= */
 
 function clearFavorites(){
 
-if(!favorites.length){
-
-alert("Favorites પહેલેથી ખાલી છે.");
-
-return;
-
-}
-
-if(confirm("બધા Favorites દૂર કરવા છે?")){
+if(
+confirm("બધા Favorites દૂર કરવા છે?")
+){
 
 favorites=[];
 
@@ -1882,113 +2011,83 @@ localStorage.removeItem(
 "brahmanshFavorites"
 );
 
-renderFavorites();
-renderShloks();
-renderRecent();
+openFavorites();
 
 }
 
 }
 
-/* =====================================================
-   RECENT
-===================================================== */
 
-function renderRecent(){
-
-const box=
-document.getElementById("recentShloks");
-
-box.innerHTML=
-shloks
-.slice(0,3)
-.map(createShlokCard)
-.join("");
-
-}
-
-/* =====================================================
-   SEARCH
-===================================================== */
+/* =========================
+SEARCH
+========================= */
 
 function searchContent(){
 
-const query=
-document.getElementById("searchInput")
+const q=
+document.getElementById(
+"searchInput"
+)
 .value
 .toLowerCase()
 .trim();
 
-if(!query){
-
-if(
-document.getElementById("searchPage")
-.classList.contains("active")
-){
+if(!q){
 
 goHome();
-
-}
 
 return;
 
 }
 
 const results=
-shloks.filter(item=>{
+shloks.filter(s=>
 
-return (
-
-item.sanskrit
+s.sanskrit
 .toLowerCase()
-.includes(query)
+.includes(q)
 
 ||
 
-item.gu
+s.gu
 .toLowerCase()
-.includes(query)
+.includes(q)
 
 ||
 
-item.hi
+s.hi
 .toLowerCase()
-.includes(query)
+.includes(q)
 
 ||
 
-item.en
+s.en
 .toLowerCase()
-.includes(query)
+.includes(q)
 
 ||
 
-String(item.chapter)
-.includes(query)
+String(s.chapter)
+.includes(q)
 
 ||
 
-String(item.verse)
-.includes(query)
+String(s.verse)
+.includes(q)
 
 );
 
-});
-
 openPage("searchPage");
 
-document.querySelectorAll(".nav-item")
-.forEach(item=>{
-item.classList.remove("active");
-});
+document.getElementById(
+"searchResults"
+).innerHTML=
 
-const box=
-document.getElementById("searchResults");
-
-if(!results.length){
-
-box.innerHTML=`
-
+results.length
+?
+results.map(createShlokCard).join("")
+:
+`
 <div class="empty">
 
 <p>
@@ -1996,21 +2095,14 @@ box.innerHTML=`
 </p>
 
 </div>
-
 `;
 
-return;
-
 }
 
-box.innerHTML=
-results.map(createShlokCard).join("");
 
-}
-
-/* =====================================================
-   COPY
-===================================================== */
+/* =========================
+COPY
+========================= */
 
 function copyText(text){
 
@@ -2021,34 +2113,37 @@ window.isSecureContext
 
 navigator.clipboard
 .writeText(text)
-.then(()=>{
-alert("શ્લોક Copy થયો.");
-});
-
-return;
+.then(
+()=>alert("Copy થયો.")
+);
 
 }
 
-const area=
+else{
+
+const a=
 document.createElement("textarea");
 
-area.value=text;
+a.value=text;
 
-document.body.appendChild(area);
+document.body.appendChild(a);
 
-area.select();
+a.select();
 
 document.execCommand("copy");
 
-area.remove();
+a.remove();
 
-alert("શ્લોક Copy થયો.");
+alert("Copy થયો.");
 
 }
 
-/* =====================================================
-   SHARE
-===================================================== */
+}
+
+
+/* =========================
+SHARE
+========================= */
 
 function shareText(text){
 
@@ -2062,7 +2157,9 @@ text:text
 
 });
 
-}else{
+}
+
+else{
 
 copyText(text);
 
@@ -2070,42 +2167,16 @@ copyText(text);
 
 }
 
-/* =====================================================
-   TEXT TO SPEECH
-===================================================== */
 
-function speakText(text){
-
-if(!("speechSynthesis" in window)){
-
-alert(
-"આ deviceમાં Text-to-Speech ઉપલબ્ધ નથી."
-);
-
-return;
-
-}
-
-speechSynthesis.cancel();
-
-const utterance=
-new SpeechSynthesisUtterance(text);
-
-utterance.lang="hi-IN";
-
-utterance.rate=.82;
-
-speechSynthesis.speak(utterance);
-
-}
-
-/* =====================================================
-   DARK MODE
-===================================================== */
+/* =========================
+DARK MODE
+========================= */
 
 function toggleDarkMode(){
 
-document.body.classList.toggle("dark");
+document.body.classList.toggle(
+"dark"
+);
 
 localStorage.setItem(
 "brahmanshDark",
@@ -2114,12 +2185,15 @@ document.body.classList.contains("dark")
 
 }
 
-/* =====================================================
-   INITIALIZE
-===================================================== */
+
+/* =========================
+INITIALIZE
+========================= */
 
 if(
-localStorage.getItem("brahmanshDark")==="true"
+localStorage.getItem(
+"brahmanshDark"
+)==="true"
 ){
 
 document.body.classList.add("dark");
@@ -2134,5 +2208,3 @@ renderShloks();
 
 </body>
 </html>
-
- A code che maro haave ama “વિભાગ” જે શ્લોક વાળું બટન છે આની જગ્યા પર આપડે જાપ નું મૂકવાનું છે 
