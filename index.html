@@ -5,2206 +5,607 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#8B5E34">
 <meta name="description" content="BRAHMANSH - ज्ञान, भक्ति और संस्कार">
-
 <title>BRAHMANSH</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 :root{
---bg:#f7f3ed;
---card:#fff;
---text:#302820;
---muted:#766b60;
---primary:#8B5E34;
---primary-dark:#68421f;
---border:#e5ddd2;
---soft:#efe7dc;
---shadow:0 8px 25px rgba(70,45,20,.07);
+ --bg:#f7f3ed;
+ --card:#fff;
+ --text:#302820;
+ --muted:#766b60;
+ --primary:#8B5E34;
+ --primary-dark:#68421f;
+ --border:#e5ddd2;
+ --soft:#efe7dc;
+ --shadow:0 8px 25px rgba(70,45,20,.07);
 }
 
 body{
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Noto Sans Gujarati",
-"Noto Sans Devanagari",
-Arial,
-sans-serif;
-
-background:var(--bg);
-color:var(--text);
-min-height:100vh;
+ font-family:-apple-system,BlinkMacSystemFont,"Noto Sans Gujarati",
+ "Noto Sans Devanagari",Arial,sans-serif;
+ background:var(--bg);color:var(--text);min-height:100vh;
 }
-
-button,
-input{
-font-family:inherit;
-}
-
-button{
--webkit-tap-highlight-color:transparent;
-}
-
-.app{
-max-width:560px;
-margin:auto;
-min-height:100vh;
-background:var(--bg);
-padding-bottom:90px;
-}
-
-
-/* =========================
-HEADER
-========================= */
+button,input{font-family:inherit}
+button{-webkit-tap-highlight-color:transparent}
+.app{max-width:560px;margin:auto;min-height:100vh;background:var(--bg);padding-bottom:90px}
 
 .header{
-padding:20px 18px 15px;
-background:var(--bg);
-position:sticky;
-top:0;
-z-index:50;
+ padding:20px 18px 15px;background:var(--bg);
+ position:sticky;top:0;z-index:50;
 }
-
-.brand{
-display:flex;
-align-items:center;
-gap:12px;
-}
-
+.brand{display:flex;align-items:center;gap:12px}
 .brand-mark{
-width:45px;
-height:45px;
-border:1.5px solid var(--primary);
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:var(--primary);
+ width:45px;height:45px;border:1.5px solid var(--primary);
+ border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--primary)
 }
+.brand-mark svg{width:24px;height:24px}
+.brand h1{font-size:22px;letter-spacing:.4px}
+.brand p{margin-top:2px;font-size:11px;color:var(--muted)}
 
-.brand-mark svg{
-width:24px;
-height:24px;
-}
-
-.brand h1{
-font-size:22px;
-letter-spacing:.4px;
-}
-
-.brand p{
-margin-top:2px;
-font-size:11px;
-color:var(--muted);
-}
-
-
-/* =========================
-SEARCH
-========================= */
-
-.search-box{
-margin-top:17px;
-position:relative;
-}
-
+.search-box{margin-top:17px;position:relative}
 .search-box svg{
-position:absolute;
-left:14px;
-top:50%;
-transform:translateY(-50%);
-width:19px;
-color:var(--muted);
+ position:absolute;left:14px;top:50%;transform:translateY(-50%);
+ width:19px;color:var(--muted)
 }
-
 .search-box input{
-width:100%;
-padding:14px 15px 14px 44px;
-border:1px solid var(--border);
-background:var(--card);
-border-radius:14px;
-color:var(--text);
-outline:none;
-font-size:14px;
+ width:100%;padding:14px 15px 14px 44px;border:1px solid var(--border);
+ background:var(--card);border-radius:14px;color:var(--text);outline:none;font-size:14px
 }
+.search-box input:focus{border-color:var(--primary)}
 
-.search-box input:focus{
-border-color:var(--primary);
-}
-
-
-/* =========================
-CONTENT
-========================= */
-
-.content{
-padding:4px 17px 20px;
-}
-
+.content{padding:4px 17px 20px}
 .section-title{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin:17px 2px 12px;
+ display:flex;justify-content:space-between;align-items:center;
+ margin:17px 2px 12px
 }
-
-.section-title h2{
-font-size:18px;
-}
-
+.section-title h2{font-size:18px}
 .section-title button{
-border:0;
-background:none;
-color:var(--primary);
-font-size:12px;
-cursor:pointer;
+ border:0;background:none;color:var(--primary);font-size:12px;cursor:pointer
 }
-
-
-/* =========================
-DAILY
-========================= */
 
 .daily{
-background:var(--primary);
-color:#fff;
-border-radius:21px;
-padding:22px;
-box-shadow:var(--shadow);
+ background:var(--primary);color:#fff;border-radius:21px;padding:22px;
+ box-shadow:var(--shadow)
 }
-
-.daily small{
-font-size:11px;
-opacity:.8;
-}
-
-.daily h2{
-margin-top:9px;
-font-size:20px;
-}
-
+.daily small{font-size:11px;opacity:.8}
+.daily h2{margin-top:9px;font-size:20px}
 .daily .sanskrit{
-margin-top:14px;
-font-family:"Noto Sans Devanagari",serif;
-font-size:20px;
-line-height:1.9;
+ margin-top:14px;font-family:"Noto Sans Devanagari",serif;
+ font-size:20px;line-height:1.9
 }
+.daily .meaning{margin-top:10px;font-size:14px;line-height:1.7}
+.daily-actions{display:flex;gap:8px;margin-top:17px}
+.btn{border-radius:10px;padding:10px 14px;font-size:12px;cursor:pointer}
+.btn-light{background:#fff;border:0;color:var(--primary-dark)}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,.55);color:#fff}
 
-.daily .meaning{
-margin-top:10px;
-font-size:14px;
-line-height:1.7;
-}
-
-.daily-actions{
-display:flex;
-gap:8px;
-margin-top:17px;
-}
-
-.btn{
-border-radius:10px;
-padding:10px 14px;
-font-size:12px;
-cursor:pointer;
-}
-
-.btn-light{
-background:#fff;
-border:0;
-color:var(--primary-dark);
-}
-
-.btn-outline{
-background:transparent;
-border:1px solid rgba(255,255,255,.55);
-color:#fff;
-}
-
-
-/* =========================
-GRID
-========================= */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:11px;
-}
-
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
 .menu-card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-padding:17px 14px;
-cursor:pointer;
-transition:.15s;
+ background:var(--card);border:1px solid var(--border);border-radius:16px;
+ padding:17px 14px;cursor:pointer;transition:.15s
 }
-
-.menu-card:active{
-transform:scale(.98);
-}
-
+.menu-card:active{transform:scale(.98)}
 .icon-box{
-width:40px;
-height:40px;
-border-radius:11px;
-background:var(--soft);
-color:var(--primary);
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:12px;
+ width:40px;height:40px;border-radius:11px;background:var(--soft);color:var(--primary);
+ display:flex;align-items:center;justify-content:center;margin-bottom:12px
 }
-
-.icon-box svg{
-width:21px;
-height:21px;
-}
-
-.menu-card h3{
-font-size:14px;
-}
-
-.menu-card p{
-margin-top:5px;
-color:var(--muted);
-font-size:11px;
-}
-
-
-/* =========================
-SHLOK
-========================= */
+.icon-box svg{width:21px;height:21px}
+.menu-card h3{font-size:14px}
+.menu-card p{margin-top:5px;color:var(--muted);font-size:11px}
 
 .shlok-card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-padding:17px;
-margin-bottom:12px;
-box-shadow:0 3px 14px rgba(70,45,20,.025);
+ background:var(--card);border:1px solid var(--border);border-radius:18px;
+ padding:17px;margin-bottom:12px;box-shadow:0 3px 14px rgba(70,45,20,.025)
 }
-
-.shlok-top{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:8px;
+.shlok-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.chapter{color:var(--primary);font-size:11px;font-weight:700}
+.shlok-actions{display:flex;gap:5px}
+.icon-btn{
+ width:33px;height:33px;border:1px solid var(--border);background:var(--card);
+ color:var(--muted);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer
 }
+.icon-btn svg{width:16px;height:16px}
+.shlok{margin-top:13px;font-family:"Noto Sans Devanagari",serif;font-size:19px;line-height:1.95}
+.meaning-box{margin-top:14px;padding-top:13px;border-top:1px solid var(--border)}
+.meaning-label{color:var(--primary);font-size:11px;font-weight:700;margin-bottom:6px}
+.meaning-text{color:var(--muted);font-size:14px;line-height:1.8}
 
-.chapter{
-color:var(--primary);
-font-size:11px;
-font-weight:700;
-}
-
-.shlok{
-margin-top:13px;
-font-family:"Noto Sans Devanagari",serif;
-font-size:19px;
-line-height:1.95;
-}
-
-.meaning-box{
-margin-top:14px;
-padding-top:13px;
-border-top:1px solid var(--border);
-}
-
-.meaning-label{
-color:var(--primary);
-font-size:11px;
-font-weight:700;
-margin-bottom:6px;
-}
-
-.meaning-text{
-color:var(--muted);
-font-size:14px;
-line-height:1.8;
-}
-
-
-/* =========================
-LANGUAGE
-========================= */
-
-.language-tabs{
-display:flex;
-gap:7px;
-overflow-x:auto;
-padding:2px 0 12px;
-}
-
+.language-tabs{display:flex;gap:7px;overflow-x:auto;padding:2px 0 12px}
 .language-tabs button{
-flex:0 0 auto;
-border:1px solid var(--border);
-background:var(--card);
-color:var(--muted);
-padding:8px 13px;
-border-radius:9px;
-font-size:12px;
-cursor:pointer;
+ flex:0 0 auto;border:1px solid var(--border);background:var(--card);color:var(--muted);
+ padding:8px 13px;border-radius:9px;font-size:12px;cursor:pointer
 }
-
-.language-tabs button.active{
-background:var(--primary);
-color:#fff;
-border-color:var(--primary);
-}
-
-
-/* =========================
-CHAPTER
-========================= */
+.language-tabs button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 
 .chapter-card{
-display:flex;
-align-items:center;
-gap:13px;
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-padding:15px;
-margin-bottom:10px;
-cursor:pointer;
+ display:flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--border);
+ border-radius:16px;padding:15px;margin-bottom:10px;cursor:pointer
 }
-
 .chapter-number{
-min-width:43px;
-height:43px;
-border-radius:11px;
-background:var(--soft);
-color:var(--primary);
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:700;
+ min-width:43px;height:43px;border-radius:11px;background:var(--soft);color:var(--primary);
+ display:flex;align-items:center;justify-content:center;font-weight:700
 }
-
-.chapter-info{
-flex:1;
-}
-
-.chapter-info h3{
-font-size:14px;
-}
-
-.chapter-info p{
-color:var(--muted);
-font-size:11px;
-margin-top:4px;
-}
-
-.arrow{
-color:var(--muted);
-}
-
-.arrow svg{
-width:18px;
-}
-
-
-/* =========================
-BACK
-========================= */
-
-.back-button{
-display:flex;
-align-items:center;
-gap:7px;
-border:0;
-background:none;
-color:var(--primary);
-font-size:13px;
-cursor:pointer;
-}
-
-.back-button svg{
-width:18px;
-}
-
-
-/* =========================
-DETAIL
-========================= */
+.chapter-info{flex:1}.chapter-info h3{font-size:14px}
+.chapter-info p{color:var(--muted);font-size:11px;margin-top:4px}
+.arrow{color:var(--muted)}.arrow svg{width:18px}
 
 .detail-header{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:18px;
-padding:18px;
-margin-bottom:13px;
+ background:var(--card);border:1px solid var(--border);border-radius:18px;
+ padding:18px;margin-bottom:13px
 }
+.detail-header h2{font-size:19px}.detail-header p{margin-top:5px;color:var(--muted);font-size:12px}
 
-.detail-header h2{
-font-size:19px;
+.empty{text-align:center;padding:55px 20px;color:var(--muted)}
+.empty svg{width:43px;height:43px;color:var(--primary);margin-bottom:13px}
+
+.setting-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.setting-row{padding:17px;border-bottom:1px solid var(--border);cursor:pointer}
+.setting-row:last-child{border-bottom:0}
+.setting-row h3{font-size:14px}.setting-row p{margin-top:5px;color:var(--muted);font-size:11px}
+
+.page{display:none}.page.active{display:block}
+
+.japa-head{display:flex;align-items:center;gap:8px;margin:5px 0 16px}
+.back-button{
+ display:flex;align-items:center;gap:7px;border:0;background:none;color:var(--primary);
+ font-size:13px;cursor:pointer
 }
-
-.detail-header p{
-margin-top:5px;
-color:var(--muted);
-font-size:12px;
-}
-
-
-/* =========================
-EMPTY
-========================= */
-
-.empty{
-text-align:center;
-padding:55px 20px;
-color:var(--muted);
-}
-
-
-/* =========================
-SETTINGS
-========================= */
-
-.setting-card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-overflow:hidden;
-}
-
-.setting-row{
-padding:17px;
-border-bottom:1px solid var(--border);
-cursor:pointer;
-}
-
-.setting-row:last-child{
-border-bottom:0;
-}
-
-.setting-row h3{
-font-size:14px;
-}
-
-.setting-row p{
-margin-top:5px;
-color:var(--muted);
-font-size:11px;
-}
-
-
-/* =========================
-JAPA
-========================= */
-
-.japa-head{
-display:flex;
-align-items:center;
-gap:8px;
-margin:5px 0 16px;
-}
-
-.japa-title{
-font-size:24px;
-margin-bottom:14px;
-}
-
-.mantra-tabs{
-display:flex;
-gap:8px;
-overflow-x:auto;
-padding-bottom:18px;
-}
-
+.back-button svg{width:18px}
+.japa-title{font-size:24px;margin-bottom:14px}
+.mantra-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:18px}
 .mantra-tab{
-white-space:nowrap;
-border:1px solid var(--border);
-background:var(--card);
-color:var(--text);
-border-radius:11px;
-padding:10px 13px;
-font-size:12px;
+ white-space:nowrap;border:1px solid var(--border);background:var(--card);color:var(--text);
+ border-radius:11px;padding:10px 13px;font-size:12px
 }
-
-.mantra-tab.active{
-background:var(--primary);
-color:#fff;
-border-color:var(--primary);
-}
+.mantra-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 
 .mala-wrap{
-display:flex;
-justify-content:center;
-align-items:center;
-padding:12px 0 8px;
+ display:flex;justify-content:center;align-items:center;
+ padding:12px 0 8px
 }
-
 .mala{
-width:270px;
-height:270px;
-border-radius:50%;
-border:24px dotted #87562f;
-box-shadow:0 0 0 7px rgba(139,94,52,.08);
-position:relative;
-display:flex;
-align-items:center;
-justify-content:center;
+ width:270px;height:270px;border-radius:50%;
+ border:24px dotted #87562f;
+ box-shadow:0 0 0 7px rgba(139,94,52,.08);
+ position:relative;display:flex;align-items:center;justify-content:center
 }
-
 .mala::before{
-content:"ॐ";
-font-family:"Noto Sans Devanagari",serif;
-font-size:82px;
-color:var(--primary);
+ content:"ॐ";font-family:"Noto Sans Devanagari",serif;font-size:82px;color:var(--primary);
 }
-
 .mala::after{
-content:"";
-position:absolute;
-width:22px;
-height:34px;
-background:#87562f;
-border-radius:50% 50% 45% 45%;
-top:-29px;
-left:50%;
-transform:translateX(-50%);
+ content:"";position:absolute;width:22px;height:34px;background:#87562f;
+ border-radius:50% 50% 45% 45%;top:-29px;left:50%;transform:translateX(-50%)
 }
+.japa-mantra{text-align:center;font-family:"Noto Sans Devanagari",serif;color:var(--primary);font-size:23px;font-weight:700;margin:8px 0 16px}
 
-.japa-mantra{
-text-align:center;
-font-family:"Noto Sans Devanagari",serif;
-color:var(--primary);
-font-size:23px;
-font-weight:700;
-margin:8px 0 16px;
-}
-
-.japa-count{
-text-align:center;
-font-size:42px;
-font-weight:800;
-}
-
-.japa-sub{
-text-align:center;
-color:var(--muted);
-font-size:13px;
-margin-top:2px;
-}
-
+.japa-count{text-align:center;font-size:42px;font-weight:800}
+.japa-sub{text-align:center;color:var(--muted);font-size:13px;margin-top:2px}
 .japa-progress{
-height:7px;
-background:var(--soft);
-border-radius:20px;
-overflow:hidden;
-margin:14px 5px 5px;
+ height:7px;background:var(--soft);border-radius:20px;overflow:hidden;margin:14px 5px 5px
 }
-
-.japa-progress div{
-height:100%;
-width:0;
-background:var(--primary);
-transition:.18s;
-}
-
-.japa-actions{
-display:flex;
-gap:10px;
-margin-top:18px;
-}
-
+.japa-progress div{height:100%;width:0;background:var(--primary);transition:.18s}
+.japa-actions{display:flex;gap:10px;margin-top:18px}
 .japa-main{
-flex:1;
-background:var(--primary);
-color:#fff;
-border:0;
-border-radius:15px;
-padding:16px;
-font-size:17px;
-font-weight:700;
-cursor:pointer;
+ flex:1;background:var(--primary);color:#fff;border:0;border-radius:15px;
+ padding:16px;font-size:17px;font-weight:700;cursor:pointer
 }
-
 .japa-secondary{
-flex:1;
-background:var(--card);
-color:var(--text);
-border:1px solid var(--border);
-border-radius:15px;
-padding:15px;
-font-size:13px;
-cursor:pointer;
+ flex:1;background:var(--card);color:var(--text);border:1px solid var(--border);
+ border-radius:15px;padding:15px;font-size:13px;cursor:pointer
 }
-
 .japa-quote{
-margin-top:18px;
-background:var(--soft);
-border-radius:18px;
-padding:20px;
-text-align:center;
-font-size:15px;
-line-height:1.8;
+ margin-top:18px;background:var(--soft);border-radius:18px;padding:20px;
+ text-align:center;font-size:15px;line-height:1.8
 }
-
-.japa-quote small{
-display:block;
-margin-top:8px;
-color:var(--muted);
-font-size:11px;
-}
-
-
-/* =========================
-PAGES
-========================= */
-
-.page{
-display:none;
-}
-
-.page.active{
-display:block;
-}
-
-
-/* =========================
-BOTTOM NAV
-========================= */
+.japa-quote small{display:block;margin-top:8px;color:var(--muted);font-size:11px}
 
 .bottom-nav{
-position:fixed;
-bottom:0;
-left:50%;
-transform:translateX(-50%);
-width:100%;
-max-width:560px;
-height:72px;
-background:rgba(255,255,255,.96);
-backdrop-filter:blur(12px);
-border-top:1px solid var(--border);
-display:grid;
-grid-template-columns:repeat(4,1fr);
-z-index:100;
+ position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:560px;
+ height:72px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);
+ border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(4,1fr);z-index:100
 }
-
 .nav-item{
-border:0;
-background:none;
-color:var(--muted);
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-gap:5px;
-font-size:10px;
-cursor:pointer;
+ border:0;background:none;color:var(--muted);display:flex;flex-direction:column;
+ align-items:center;justify-content:center;gap:5px;font-size:10px;cursor:pointer
 }
-
-.nav-item svg{
-width:20px;
-height:20px;
-}
-
-.nav-item.active{
-color:var(--primary);
-font-weight:700;
-}
-
-
-/* =========================
-DARK
-========================= */
+.nav-item svg{width:20px;height:20px}.nav-item.active{color:var(--primary);font-weight:700}
 
 body.dark{
---bg:#181512;
---card:#241f1a;
---text:#eee6dc;
---muted:#aaa095;
---primary:#c28a52;
---primary-dark:#e1b27d;
---border:#3a3129;
---soft:#322a23;
+ --bg:#181512;--card:#241f1a;--text:#eee6dc;--muted:#aaa095;
+ --primary:#c28a52;--primary-dark:#e1b27d;--border:#3a3129;--soft:#322a23
+}
+body.dark .bottom-nav{background:rgba(36,31,26,.97)}
+
+@media(min-width:700px){
+ body{background:#e8e1d8}.app{box-shadow:0 0 35px rgba(0,0,0,.08)}
 }
 
-body.dark .bottom-nav{
-background:rgba(36,31,26,.97);
-}
+.feature-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;margin-top:12px;box-shadow:var(--shadow);cursor:pointer}
+.feature-card:active{transform:scale(.99)}
+.feature-card h3{font-size:16px}.feature-card p{margin-top:6px;color:var(--muted);font-size:12px;line-height:1.6}
+.feature-link{display:inline-block;margin-top:10px;color:var(--primary);font-size:12px;font-weight:700}
+.profile-card{text-align:center}.profile-avatar{width:86px;height:86px;margin:4px auto 12px;border-radius:50%;background:var(--soft);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:34px}
+.profile-name{font-size:19px;font-weight:800}.profile-sub{margin-top:5px;color:var(--muted);font-size:12px}
+.form-row{margin-top:12px;text-align:left}.form-row label{display:block;font-size:12px;font-weight:700;margin-bottom:6px}
+.form-row input,.form-row select{width:100%;padding:12px;border:1px solid var(--border);background:var(--card);border-radius:11px;color:var(--text);outline:none}
+.lang-buttons{display:flex;gap:8px;margin-top:10px}.lang-buttons button{flex:1;border:1px solid var(--border);background:var(--card);color:var(--muted);padding:11px 8px;border-radius:10px;cursor:pointer;font-size:12px}.lang-buttons button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.info-list{margin-top:12px;display:grid;gap:8px}.info-item{padding:12px;background:var(--soft);border-radius:11px}.info-item b{font-size:13px}.info-item span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.gita700-list{margin-top:12px}
 
 </style>
 </head>
 
-
 <body>
-
 <div class="app">
 
-
 <header class="header">
-
 <div class="brand">
-
 <div class="brand-mark">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.5">
-
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
 <path d="M12 20C8 18 5 15 5 11C8 12 10 14 12 17C14 14 16 12 19 11C19 15 16 18 12 20Z"/>
-
 <path d="M12 17C10 13 10 9 12 5C14 9 16 13 12 17Z"/>
-
-<path d="M5 11C7 10 9 10 12 12"/>
-
-<path d="M19 11C17 10 15 10 12 12"/>
-
+<path d="M5 11C7 10 9 10 12 12"/><path d="M19 11C17 10 15 10 12 12"/>
 </svg>
-
 </div>
-
-<div>
-
-<h1>BRAHMANSH</h1>
-
-<p>ज्ञान • भक्ति • संस्कार</p>
-
+<div><h1>BRAHMANSH</h1><p>ज्ञान • भक्ति • संस्कार</p></div>
 </div>
-
-</div>
-
 
 <div class="search-box">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2">
-
-<circle cx="11" cy="11" r="7"/>
-
-<path d="m20 20-4-4"/>
-
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>
 </svg>
-
-<input
-id="searchInput"
-type="search"
-placeholder="શ્લોક, ગ્રંથ અથવા વાણી શોધો..."
-oninput="searchContent()">
-
+<input id="searchInput" type="search" placeholder="શ્લોક, ગ્રંથ અથવા વાણી શોધો..." oninput="searchContent()">
 </div>
-
 </header>
 
-
-<!-- HOME -->
-
 <main id="homePage" class="page active">
-
 <div class="content">
 
-<div class="section-title">
-
-<h2>આજની વાણી</h2>
-
-</div>
-
-
+<div class="section-title"><h2>આજની વાણી</h2></div>
 <section class="daily">
-
-<small>
-ભગવદ્ ગીતા • અધ્યાય ૨ • શ્લોક ૨૦
-</small>
-
-<h2>
-આત્માનું જ્ઞાન
-</h2>
-
-<div class="sanskrit">
-न जायते म्रियते वा कदाचित् ।
-</div>
-
-<div class="meaning">
-આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું
-ક્યારેય મૃત્યુ પણ થતું નથી.
-</div>
-
+<small>ભગવદ્ ગીતા • અધ્યાય ૨ • શ્લોક ૨૦</small>
+<h2>આત્માનું જ્ઞાન</h2>
+<div class="sanskrit">न जायते म्रियते वा कदाचित् ।</div>
+<div class="meaning">આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું ક્યારેય મૃત્યુ પણ થતું નથી.</div>
 <div class="daily-actions">
-
-<button
-class="btn btn-light"
-onclick="copyText('न जायते म्रियते वा कदाचित् ।')">
-
-Copy
-
-</button>
-
-<button
-class="btn btn-outline"
-onclick="shareText('न जायते म्रियते वा कदाचित् ।')">
-
-Share
-
-</button>
-
+<button class="btn btn-light" onclick="copyText('न जायते म्रियते वा कदाचित् ।')">Copy</button>
+<button class="btn btn-outline" onclick="shareText('न जायते म्रियते वा कदाचित् ।')">Share</button>
 </div>
-
 </section>
 
-
-<div class="section-title">
-
-<h2>વિભાગો</h2>
-
-</div>
-
-
+<div class="section-title"><h2>વિભાગો</h2></div>
 <div class="grid">
-
-
-<!-- GITA -->
-
-<div class="menu-card"
-onclick="showChapters()">
-
-<div class="icon-box">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.6">
-
-<path d="M5 5h14v14H5z"/>
-
-<path d="M8 8h8"/>
-
-<path d="M8 12h8"/>
-
-<path d="M8 16h5"/>
-
-</svg>
-
+<div class="menu-card" onclick="showChapters()"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 5h14v14H5z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></div><h3>ભગવદ્ ગીતા</h3><p>૧૮ અધ્યાય</p></div>
+<div class="menu-card" onclick="openMandir()"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20h18"/><path d="M5 20V11h14v9"/><path d="M4 11 12 5l8 6"/><path d="M9 20v-5h6v5"/></svg></div><h3>મંદિર</h3><p>પવિત્ર તીર્થસ્થળો</p></div>
+<div class="menu-card" onclick="openJapa()"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></div><h3>જાપ</h3><p>મંત્ર જાપ કરો</p></div>
+<div class="menu-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16"/><path d="M6 7v12"/><path d="M18 7v12"/><path d="M8 11h8"/><path d="M8 15h6"/></svg></div><h3>સ્તોત્ર</h3><p>પ્રાર્થના અને સ્તોત્ર</p></div>
+<div class="menu-card" onclick="openGrantho()"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6h16v14H4z"/><path d="M8 6V4h8v2"/><path d="M8 10h8"/><path d="M8 14h6"/></svg></div><h3>ગ્રંથો</h3><p>પવિત્ર ગ્રંથો</p></div>
 </div>
+<div class="feature-card" onclick="openSuvichar()"><h3>સુવિચાર</h3><p>આજનો એક સુંદર આધ્યાત્મિક વિચાર — જીવનમાં જ્ઞાન, શાંતિ અને સદાચાર માટે.</p><span class="feature-link">વધુ સુવિચાર જુઓ →</span></div>
+<div class="feature-card" onclick="openSanatanGyan()"><h3>સનાતન જ્ઞાન</h3><p>વેદ, પુરાણ, ઉપનિષદ, દર્શન, જ્યોતિર્લિંગ, શક્તિપીઠ અને સનાતન પરંપરાનું જ્ઞાન.</p><span class="feature-link">જાણો →</span></div>
 
-<h3>
-ભગવદ્ ગીતા
-</h3>
-
-<p>
-૧૮ અધ્યાય
-</p>
-
-</div>
-
-
-<!-- JAPA -->
-
-<div class="menu-card"
-onclick="openJapa()">
-
-<div class="icon-box">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.6">
-
-<circle cx="12" cy="12" r="8"/>
-
-<path d="M12 7v5l3 2"/>
-
-</svg>
-
-</div>
-
-<h3>
-જાપ
-</h3>
-
-<p>
-મંત્ર જાપ કરો
-</p>
-
-</div>
-
-
-<!-- STOTRA -->
-
-<div class="menu-card">
-
-<div class="icon-box">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.6">
-
-<path d="M4 7h16"/>
-
-<path d="M6 7v12"/>
-
-<path d="M18 7v12"/>
-
-<path d="M8 11h8"/>
-
-<path d="M8 15h6"/>
-
-</svg>
-
-</div>
-
-<h3>
-સ્તોત્ર
-</h3>
-
-<p>
-પ્રાર્થના અને સ્તોત્ર
-</p>
-
-</div>
-
-
-<!-- GRANTH -->
-
-<div class="menu-card">
-
-<div class="icon-box">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.6">
-
-<path d="M4 6h16v14H4z"/>
-
-<path d="M8 6V4h8v2"/>
-
-<path d="M8 10h8"/>
-
-<path d="M8 14h6"/>
-
-</svg>
-
-</div>
-
-<h3>
-ગ્રંથો
-</h3>
-
-<p>
-પવિત્ર ગ્રંથો
-</p>
-
-</div>
-
-</div>
-
-
-<div class="section-title">
-
-<h2>
-તાજેતરના શ્લોક
-</h2>
-
-<button onclick="openShloks()">
-બધા જુઓ
-</button>
-
-</div>
-
-
+<div class="section-title"><h2>તાજેતરના શ્લોક</h2><button onclick="openShloks()">બધા જુઓ</button></div>
 <div id="recentShloks"></div>
-
 </div>
-
 </main>
 
-
-<!-- JAPA PAGE -->
-
 <main id="japaPage" class="page">
-
 <div class="content">
 
 <div class="japa-head">
-
-<button
-class="back-button"
-onclick="goHome()">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2">
-
-<path d="m15 18-6-6 6-6"/>
-
-</svg>
-
+<button class="back-button" onclick="goHome()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
 પાછા
-
 </button>
-
 </div>
 
-
-<h2 class="japa-title">
-જાપ
-</h2>
-
+<h2 class="japa-title">જાપ</h2>
 
 <div class="mantra-tabs">
-
-<button class="mantra-tab active">
-ૐ નમઃ શિવાય
-</button>
-
-<button class="mantra-tab">
-ૐ નમો ભગવતે વાસુદેવાય
-</button>
-
-<button class="mantra-tab">
-શ્રી રામ જય રામ
-</button>
-
+<button class="mantra-tab active">ૐ નમઃ શિવાય</button>
+<button class="mantra-tab">ૐ નમો ભગવતે વાસુદેવાય</button>
+<button class="mantra-tab">શ્રી રામ જય રામ</button>
 </div>
 
+<div class="mala-wrap"><div class="mala"></div></div>
+<div class="japa-mantra">ૐ નમઃ શિવાય</div>
 
-<div class="mala-wrap">
+<div class="japa-count" id="japaCount">0</div>
+<div class="japa-sub">જાપ</div>
 
-<div class="mala"></div>
-
-</div>
-
-
-<div class="japa-mantra">
-ૐ નમઃ શિવાય
-</div>
-
-
-<div
-class="japa-count"
-id="japaCount">
-
-0
-
-</div>
-
-
-<div class="japa-sub">
-જાપ
-</div>
-
-
-<div class="japa-progress">
-
-<div id="japaProgress"></div>
-
-</div>
-
-
-<div class="japa-sub">
-
-<span id="japaText">
-0 / 108
-</span>
-
-•
-
-<span id="malaText">
-0 માળા
-</span>
-
-</div>
-
+<div class="japa-progress"><div id="japaProgress"></div></div>
+<div class="japa-sub"><span id="japaText">0 / 108</span> • <span id="malaText">0 માળા</span></div>
 
 <div class="japa-actions">
-
-<button
-class="japa-main"
-onclick="addJapa()">
-
-+ જાપ
-
-</button>
-
-
-<button
-class="japa-secondary"
-onclick="resetJapa()">
-
-રીસેટ
-
-</button>
-
+<button class="japa-main" onclick="addJapa()">+ જાપ</button>
+<button class="japa-secondary" onclick="resetJapa()">રીસેટ</button>
 </div>
-
 
 <div class="japa-quote">
-
 “મનને શાંત કરવા માટે જાપ સર્વોત્તમ સાધન છે.”
-
-<small>
-— સંસ્કાર વાણી
-</small>
-
+<small>— સંસ્કાર વાણી</small>
 </div>
 
 </div>
-
 </main>
-
-
-<!-- SHLOK PAGE -->
 
 <main id="shlokPage" class="page">
-
 <div class="content">
-
-<div class="section-title">
-
-<h2>
-શ્લોક
-</h2>
-
-</div>
-
-
+<div class="section-title"><h2>શ્લોક</h2></div>
 <div class="language-tabs">
-
-<button
-id="langGu"
-onclick="setLanguage('gu')">
-
-ગુજરાતી
-
-</button>
-
-<button
-id="langHi"
-onclick="setLanguage('hi')">
-
-हिन्दी
-
-</button>
-
-<button
-id="langEn"
-onclick="setLanguage('en')">
-
-English
-
-</button>
-
+<button id="langGu" onclick="setLanguage('gu')">ગુજરાતી</button>
+<button id="langHi" onclick="setLanguage('hi')">हिन्दी</button>
+<button id="langEn" onclick="setLanguage('en')">English</button>
 </div>
-
-
 <div id="shlokList"></div>
-
 </div>
-
 </main>
-
-
-<!-- GITA -->
 
 <main id="gitaPage" class="page">
-
-<div class="content">
-
-<div class="section-title">
-
-<h2>
-ભગવદ્ ગીતા
-</h2>
-
-</div>
-
-<div id="chapterList"></div>
-
-</div>
-
+<div class="content"><div class="section-title"><h2>ભગવદ્ ગીતા</h2></div><div id="gita700List" class="gita700-list"></div></div>
 </main>
-
-
-<!-- CHAPTER -->
 
 <main id="chapterPage" class="page">
-
 <div class="content">
-
-<button
-class="back-button"
-onclick="showChapters()">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2">
-
-<path d="m15 18-6-6 6-6"/>
-
-</svg>
-
+<button class="back-button" onclick="showChapters()">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
 બધા અધ્યાય
-
 </button>
-
-
 <div id="chapterDetail"></div>
-
 </div>
-
 </main>
-
-
-<!-- SEARCH -->
 
 <main id="searchPage" class="page">
-
-<div class="content">
-
-<div class="section-title">
-
-<h2>
-શોધ પરિણામ
-</h2>
-
-</div>
-
-<div id="searchResults"></div>
-
-</div>
-
+<div class="content"><div class="section-title"><h2>શોધ પરિણામ</h2></div><div id="searchResults"></div></div>
 </main>
-
-
-<!-- FAVORITES -->
 
 <main id="favoritePage" class="page">
-
-<div class="content">
-
-<div class="section-title">
-
-<h2>
-મારા મનપસંદ
-</h2>
-
-</div>
-
-<div id="favoriteList"></div>
-
-</div>
-
+<div class="content"><div class="section-title"><h2>મારા મનપસંદ</h2></div><div id="favoriteList"></div></div>
 </main>
-
-
-<!-- SETTINGS -->
 
 <main id="settingsPage" class="page">
-
 <div class="content">
-
-<div class="section-title">
-
-<h2>
-Settings
-</h2>
-
-</div>
-
-
+<div class="section-title"><h2>Settings</h2></div>
 <div class="setting-card">
-
-<div
-class="setting-row"
-onclick="toggleDarkMode()">
-
-<h3>
-Appearance
-</h3>
-
-<p>
-Light / Dark Mode
-</p>
-
+<div class="setting-row" onclick="openProfile()"><h3>મારી Profile</h3><p>નામ, જન્મ તારીખ, લિંગ અને મારા ઇષ્ટદેવ</p></div>
+<div class="setting-row"><h3>ભાષા</h3><p>આખી appની ભાષા પસંદ કરો</p><div class="lang-buttons"><button id="appLangGu" onclick="setAppLanguage('gu')">ગુજરાતી</button><button id="appLangHi" onclick="setAppLanguage('hi')">हिन्दी</button><button id="appLangEn" onclick="setAppLanguage('en')">English</button></div></div>
+<div class="setting-row" onclick="toggleDarkMode()"><h3>Appearance</h3><p>Light / Dark Mode</p></div>
+<div class="setting-row" onclick="clearFavorites()"><h3>Clear Favorites</h3><p>સાચવેલા બધા મનપસંદ શ્લોક દૂર કરો.</p></div>
+<div class="setting-row"><h3>About BRAHMANSH</h3><p>ज्ञान • भक्ति • संस्कार</p></div>
 </div>
-
-
-<div
-class="setting-row"
-onclick="clearFavorites()">
-
-<h3>
-Clear Favorites
-</h3>
-
-<p>
-સાચવેલા બધા મનપસંદ શ્લોક દૂર કરો.
-</p>
-
 </div>
-
-
-<div class="setting-row">
-
-<h3>
-About BRAHMANSH
-</h3>
-
-<p>
-ज्ञान • भक्ति • संस्कार
-</p>
-
-</div>
-
-</div>
-
-</div>
-
 </main>
 
 
-<!-- BOTTOM NAV -->
+<main id="mandirPage" class="page"><div class="content"><div class="section-title"><h2>મંદિર</h2></div>
+<div class="feature-card"><h3>૧૨ જ્યોતિર્લિંગ</h3><p>ભારતના પવિત્ર જ્યોતિર્લિંગોની માહિતી.</p></div>
+<div class="feature-card"><h3>૫૧ શક્તિપીઠ</h3><p>શક્તિ ઉપાસનાના પવિત્ર તીર્થોની માહિતી.</p></div>
+<div class="feature-card"><h3>ચાર ધામ</h3><p>ભારતના ચાર મુખ્ય ધામોની માહિતી.</p></div>
+<div class="feature-card"><h3>પ્રસિદ્ધ મંદિરો</h3><p>દેશભરના મહત્વપૂર્ણ મંદિરો અને તીર્થસ્થળો.</p></div></div></main>
+
+<main id="granthoPage" class="page"><div class="content"><div class="section-title"><h2>ગ્રંથો</h2></div>
+<div class="feature-card" onclick="showChapters()"><h3>ભગવદ્ ગીતા</h3><p>૧૮ અધ્યાય • ૭૦૦ શ્લોક</p></div>
+<div class="feature-card"><h3>શ્રીમદ્ ભાગવત</h3><p>૧૨ સ્કંધ</p></div>
+<div class="feature-card"><h3>વાલ્મીકિ રામાયણ</h3><p>૭ કાંડ</p></div>
+<div class="feature-card"><h3>ઉપનિષદો</h3><p>વેદાંત જ્ઞાનના પવિત્ર ગ્રંથો</p></div></div></main>
+
+<main id="suvicharPage" class="page"><div class="content"><div class="section-title"><h2>સુવિચાર</h2></div><div class="feature-card"><h3>આજનો વિચાર</h3><p style="font-size:15px">જ્ઞાનને જીવનમાં ઉતારવાથી જ જીવનમાં સાચું પરિવર્તન આવે છે.</p></div></div></main>
+
+<main id="sanatanGyanPage" class="page"><div class="content"><div class="section-title"><h2>સનાતન જ્ઞાન</h2></div><div class="info-list">
+<div class="info-item"><b>૪ વેદ</b><span>ઋગ્વેદ, યજુર્વેદ, સામવેદ, અથર્વવેદ</span></div>
+<div class="info-item"><b>૧૮ મહાપુરાણ</b><span>પુરાણ પરંપરાનું વિશાળ જ્ઞાન</span></div>
+<div class="info-item"><b>૬ વેદાંગ</b><span>શિક્ષા, કલ્પ, વ્યાકરણ, નિરુક્ત, છંદ અને જ્યોતિષ</span></div>
+<div class="info-item"><b>૬ દર્શન</b><span>ભારતીય દર્શન પરંપરાના છ મુખ્ય દર્શન</span></div>
+<div class="info-item"><b>૧૨ જ્યોતિર્લિંગ</b><span>ભગવાન શિવના પવિત્ર જ્યોતિર્લિંગો</span></div>
+<div class="info-item"><b>૫૧ શક્તિપીઠ</b><span>શક્તિ ઉપાસનાના પવિત્ર તીર્થો</span></div>
+<div class="info-item"><b>ભગવદ્ ગીતા</b><span>૧૮ અધ્યાય અને પરંપરાગત ગણતરી મુજબ ૭૦૦ શ્લોક</span></div>
+</div></div></main>
+
+<main id="profilePage" class="page"><div class="content"><div class="section-title"><h2>મારી Profile</h2></div>
+<div class="feature-card profile-card"><div class="profile-avatar" id="profileAvatar">ૐ</div><div class="profile-name" id="profileDisplayName">તમારું નામ</div><div class="profile-sub" id="profileDisplayIsht">મારા ઇષ્ટદેવ: પસંદ કરો</div>
+<div class="form-row"><label>નામ</label><input id="profileName" placeholder="તમારું નામ"></div>
+<div class="form-row"><label>જન્મ તારીખ</label><input id="profileDob" type="date"></div>
+<div class="form-row"><label>લિંગ</label><select id="profileGender"><option value="">પસંદ કરો</option><option>પુરુષ</option><option>સ્ત્રી</option><option>જણાવવું નથી</option></select></div>
+<div class="form-row"><label>મારા ઇષ્ટદેવ</label><select id="profileIsht" onchange="saveProfile()"><option value="">પસંદ કરો</option><option>ભગવાન શિવ</option><option>શ્રી કૃષ્ણ</option><option>શ્રી રામ</option><option>શ્રી ગણેશ</option><option>હનુમાનજી</option><option>માતા દુર્ગા</option><option>માતા લક્ષ્મી</option><option>માતા સરસ્વતી</option><option>શ્રી વિષ્ણુ</option><option>દત્તાત્રેય</option><option>અન્ય</option></select></div>
+<button class="japa-main" style="margin-top:14px" onclick="saveProfile()">Profile સાચવો</button></div></div></main>
 
 <nav class="bottom-nav">
-
-<button
-class="nav-item active"
-onclick="goHome(this)">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.7">
-
-<path d="M4 11.5 12 5l8 6.5"/>
-
-<path d="M6 10.5V20h12v-9.5"/>
-
-<path d="M10 20v-5h4v5"/>
-
-</svg>
-
+<button class="nav-item active" onclick="goHome(this)">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 11.5 12 5l8 6.5"/><path d="M6 10.5V20h12v-9.5"/><path d="M10 20v-5h4v5"/></svg>
 Home
-
 </button>
-
-
-<button
-class="nav-item"
-onclick="showChapters(this)">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.7">
-
-<path d="M5 5h14v14H5z"/>
-
-<path d="M8 8h8"/>
-
-<path d="M8 12h8"/>
-
-<path d="M8 16h5"/>
-
-</svg>
-
+<button class="nav-item" onclick="showChapters(this)">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 5h14v14H5z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
 ગીતા
-
 </button>
-
-
-<button
-class="nav-item"
-onclick="openFavorites(this)">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.7">
-
-<path d="M20 8c0 5-8 10-8 10S4 13 4 8a4 4 0 0 1 7-2a4 4 0 0 1 9 2Z"/>
-
-</svg>
-
+<button class="nav-item" onclick="openFavorites(this)">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 8c0 5-8 10-8 10S4 13 4 8a4 4 0 0 1 7-2a4 4 0 0 1 9 2Z"/></svg>
 Favorites
-
 </button>
-
-
-<button
-class="nav-item"
-onclick="openSettings(this)">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.7">
-
-<circle cx="12" cy="12" r="3"/>
-
-</svg>
-
+<button class="nav-item" onclick="openSettings(this)">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3a1.7 1.7 0 0 0-1 1.5V20h-2.6v-.1a1.7 1.7 0 0 0-1-1.5a1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6v-2.6h.5A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9-.3l.1-.1V5h2.6v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.5V14h-.5a1.7 1.7 0 0 0-1.5 1Z"/></svg>
 Settings
-
 </button>
-
 </nav>
-
 </div>
-
 
 <script>
-
-/* =========================
-DATABASE
-========================= */
-
 const chapters=[
-
 {n:1,name:"અર્જુનવિષાદ યોગ",en:"Arjuna Vishada Yoga"},
-
 {n:2,name:"સાંખ્ય યોગ",en:"Sankhya Yoga"},
-
 {n:3,name:"કર્મ યોગ",en:"Karma Yoga"},
-
 {n:4,name:"જ્ઞાન કર્મ સંન્યાસ યોગ",en:"Jnana Karma Sannyasa Yoga"},
-
 {n:5,name:"કર્મ સંન્યાસ યોગ",en:"Karma Sannyasa Yoga"},
-
 {n:6,name:"ધ્યાન યોગ",en:"Dhyana Yoga"},
-
 {n:7,name:"જ્ઞાન વિજ્ઞાન યોગ",en:"Jnana Vijnana Yoga"},
-
 {n:8,name:"અક્ષર બ્રહ્મ યોગ",en:"Akshara Brahma Yoga"},
-
 {n:9,name:"રાજવિદ્યા રાજગુહ્ય યોગ",en:"Raja Vidya Raja Guhya Yoga"},
-
 {n:10,name:"વિભૂતિ યોગ",en:"Vibhuti Yoga"},
-
 {n:11,name:"વિશ્વરૂપ દર્શન યોગ",en:"Vishvarupa Darshana Yoga"},
-
 {n:12,name:"ભક્તિ યોગ",en:"Bhakti Yoga"},
-
 {n:13,name:"ક્ષેત્ર ક્ષેત્રજ્ઞ વિભાગ યોગ",en:"Kshetra Kshetrajna Vibhaga Yoga"},
-
 {n:14,name:"ગુણત્રય વિભાગ યોગ",en:"Gunatraya Vibhaga Yoga"},
-
 {n:15,name:"પુરુષોત્તમ યોગ",en:"Purushottama Yoga"},
-
 {n:16,name:"દૈવાસુર સંપદ્ વિભાગ યોગ",en:"Daivasura Sampad Vibhaga Yoga"},
-
 {n:17,name:"શ્રદ્ધાત્રય વિભાગ યોગ",en:"Shraddhatraya Vibhaga Yoga"},
-
 {n:18,name:"મોક્ષ સંન્યાસ યોગ",en:"Moksha Sannyasa Yoga"}
-
 ];
-
 
 const shloks=[
-
-{
-id:"2.20",
-chapter:2,
-verse:20,
-sanskrit:"न जायते म्रियते वा कदाचित् ।",
-gu:"આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું ક્યારેય મૃત્યુ પણ થતું નથી.",
-hi:"आत्मा का कभी जन्म नहीं होता और न ही कभी मृत्यु होती है।",
-en:"The soul is never born and it never dies."
-},
-
-{
-id:"2.47",
-chapter:2,
-verse:47,
-sanskrit:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।",
-gu:"તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.",
-hi:"तुम्हारा अधिकार केवल कर्म करने में है, उसके फल में कभी नहीं।",
-en:"You have a right to perform your duty, but not to the fruits of your actions."
-},
-
-{
-id:"4.7",
-chapter:4,
-verse:7,
-sanskrit:"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।",
-gu:"હે ભારત, જ્યારે જ્યારે ધર્મની હાનિ થાય છે ત્યારે હું પ્રગટ થાઉં છું.",
-hi:"हे भारत, जब-जब धर्म की हानि होती है तब मैं प्रकट होता हूँ।",
-en:"Whenever righteousness declines, I manifest Myself."
-},
-
-{
-id:"4.8",
-chapter:4,
-verse:8,
-sanskrit:"परित्राणाय साधूनां विनाशाय च दुष्कृताम् ।",
-gu:"સાધુઓના રક્ષણ માટે અને દુષ્ટોના વિનાશ માટે હું પ્રગટ થાઉં છું.",
-hi:"साधुओं की रक्षा और दुष्टों के विनाश के लिए मैं प्रकट होता हूँ।",
-en:"I manifest to protect the righteous and to destroy evil."
-},
-
-{
-id:"12.13",
-chapter:12,
-verse:13,
-sanskrit:"अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च ।",
-gu:"જે કોઈ પ્રાણી પ્રત્યે દ્વેષ રાખતો નથી, સૌનો મિત્ર અને કરુણાશીલ છે.",
-hi:"जो किसी प्राणी से द्वेष नहीं करता, सबका मित्र और करुणामय है।",
-en:"One who has no hatred toward any being and is friendly and compassionate."
-}
-
+{id:"2.20",chapter:2,verse:20,sanskrit:"न जायते म्रियते वा कदाचित् ।",gu:"આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું ક્યારેય મૃત્યુ પણ થતું નથી.",hi:"आत्मा का कभी जन्म नहीं होता और न ही कभी मृत्यु होती है।",en:"The soul is never born and it never dies."},
+{id:"2.47",chapter:2,verse:47,sanskrit:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।",gu:"તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.",hi:"तुम्हारा अधिकार केवल कर्म करने में है, उसके फल में कभी नहीं।",en:"You have a right to perform your duty, but not to the fruits of your actions."},
+{id:"4.7",chapter:4,verse:7,sanskrit:"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।",gu:"હે ભારત, જ્યારે જ્યારે ધર્મની હાનિ થાય છે ત્યારે હું પ્રગટ થાઉં છું.",hi:"हे भारत, जब-जब धर्म की हानि होती है customary मैं प्रकट होता हूँ।",en:"Whenever righteousness declines, I manifest Myself."},
+{id:"4.8",chapter:4,verse:8,sanskrit:"परित्राणाय साधूनां विनाशाय च दुष्कृताम् ।",gu:"સાધુઓના રક્ષણ માટે અને દુષ્ટોના વિનાશ માટે હું પ્રગટ થાઉં છું.",hi:"साधुओं की रक्षा और दुष्टों के विनाश के लिए मैं प्रकट होता हूँ।",en:"I manifest to protect the righteous and to destroy evil."},
+{id:"12.13",chapter:12,verse:13,sanskrit:"अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च ।",gu:"જે કોઈ પ્રાણી પ્રત્યે દ્વેષ રાખતો નથી, સૌનો મિત્ર અને કરુણાશીલ છે.",hi:"जो किसी प्राणी से द्वेष नहीं करता, सबका मित्र और करुणामय है।",en:"One who has no hatred toward any being and is friendly and compassionate."}
 ];
 
-
-let currentLanguage=
-localStorage.getItem("brahmanshLanguage")||"gu";
-
-let favorites=
-JSON.parse(
-localStorage.getItem("brahmanshFavorites")||"[]"
-);
-
-
-/* =========================
-JAPA
-========================= */
-
-let japCount=
-Number(
-localStorage.getItem("brahmanshJapCount")||"0"
-);
-
-
-function openJapa(){
-
-openPage("japaPage");
-
-document
-.querySelectorAll(".nav-item")
-.forEach(i=>i.classList.remove("active"));
-
-renderJapa();
-
-}
-
-
-function addJapa(){
-
-japCount++;
-
-localStorage.setItem(
-"brahmanshJapCount",
-japCount
-);
-
-renderJapa();
-
-}
-
-
-function resetJapa(){
-
-if(japCount===0){
-
-return;
-
-}
-
-if(
-confirm("જાપની ગણતરી Reset કરવી છે?")
-){
-
-japCount=0;
-
-localStorage.setItem(
-"brahmanshJapCount",
-"0"
-);
-
-renderJapa();
-
-}
-
-}
-
-
-function renderJapa(){
-
-const count=
-document.getElementById("japaCount");
-
-const bar=
-document.getElementById("japaProgress");
-
-const txt=
-document.getElementById("japaText");
-
-const mala=
-document.getElementById("malaText");
-
-if(!count){
-
-return;
-
-}
-
-count.textContent=japCount;
-
-const current=
-japCount%108;
-
-bar.style.width=
-(
-current===0 && japCount>0
-?100
-:(current/108)*100
-)+"%";
-
-txt.textContent=
-(
-current===0 && japCount>0
-?108
-:current
-)
-+" / 108";
-
-mala.textContent=
-Math.floor(japCount/108)
-+" માળા";
-
-}
-
-
-/* =========================
-NAVIGATION
-========================= */
+let currentLanguage=localStorage.getItem("brahmanshLanguage")||"gu";
+let favorites=JSON.parse(localStorage.getItem("brahmanshFavorites")||"[]");
+let japCount=Number(localStorage.getItem("brahmanshJapCount")||"0");
 
 function openPage(id){
-
-document
-.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
-
-const target=
-document.getElementById(id);
-
-if(target){
-
-target.classList.add("active");
-
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ const target=document.getElementById(id);
+ if(target)target.classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
 }
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
 function setActiveNav(button){
-
-document
-.querySelectorAll(".nav-item")
-.forEach(i=>i.classList.remove("active"));
-
-if(button){
-
-button.classList.add("active");
-
+ document.querySelectorAll(".nav-item").forEach(i=>i.classList.remove("active"));
+ if(button)button.classList.add("active");
 }
-
-}
-
-
 function goHome(button){
-
-openPage("homePage");
-
-setActiveNav(button);
-
+ openPage("homePage");setActiveNav(button);
 }
-
+function openJapa(){
+ openPage("japaPage");
+ document.querySelectorAll(".nav-item").forEach(i=>i.classList.remove("active"));
+ renderJapa();
+}
+function addJapa(){
+ japCount++;
+ localStorage.setItem("brahmanshJapCount",japCount);
+ renderJapa();
+}
+function resetJapa(){
+ if(japCount===0)return;
+ if(confirm("જાપની ગણતરી Reset કરવી છે?")){
+  japCount=0;
+  localStorage.setItem("brahmanshJapCount","0");
+  renderJapa();
+ }
+}
+function renderJapa(){
+ const count=document.getElementById("japaCount");
+ const bar=document.getElementById("japaProgress");
+ const txt=document.getElementById("japaText");
+ const mala=document.getElementById("malaText");
+ if(!count)return;
+ count.textContent=japCount;
+ const current=japCount%108;
+ bar.style.width=((current===0&&japCount>0)?100:(current/108)*100)+"%";
+ txt.textContent=(current===0&&japCount>0?108:current)+" / 108";
+ mala.textContent=Math.floor(japCount/108)+" માળા";
+}
 
 function openShloks(button=null){
-
-openPage("shlokPage");
-
-setActiveNav(button);
-
-renderShloks();
-
+ openPage("shlokPage");setActiveNav(button);renderShloks();
 }
-
-
-function openFavorites(button){
-
-openPage("favoritePage");
-
-setActiveNav(button);
-
-const data=
-shloks.filter(
-s=>favorites.includes(s.id)
-);
-
-document.getElementById(
-"favoriteList"
-).innerHTML=
-
-data.length
-?
-data.map(createShlokCard).join("")
-:
-`<div class="empty">
-<p>હજુ કોઈ શ્લોક મનપસંદમાં ઉમેર્યો નથી.</p>
-</div>`;
-
-}
-
-
-function openSettings(button){
-
-openPage("settingsPage");
-
-setActiveNav(button);
-
-}
-
-
-/* =========================
-SHLOK
-========================= */
-
 function createShlokCard(item){
-
-let meaning=
-currentLanguage==="hi"
-?item.hi
-:currentLanguage==="en"
-?item.en
-:item.gu;
-
-let label=
-currentLanguage==="hi"
-?"हिन्दी अर्थ"
-:currentLanguage==="en"
-?"English Meaning"
-:"ગુજરાતી અર્થ";
-
-return `
-
-<div class="shlok-card">
-
-<div class="shlok-top">
-
-<span class="chapter">
-
-ભગવદ્ ગીતા •
-${item.chapter}.${item.verse}
-
-</span>
-
-</div>
-
-<div class="shlok">
-
-${item.sanskrit}
-
-</div>
-
-<div class="meaning-box">
-
-<div class="meaning-label">
-
-${label}
-
-</div>
-
-<div class="meaning-text">
-
-${meaning}
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
+ let meaning=currentLanguage==="hi"?item.hi:currentLanguage==="en"?item.en:item.gu;
+ let label=currentLanguage==="hi"?"हिन्दी अर्थ":currentLanguage==="en"?"English Meaning":"ગુજરાતી અર્થ";
+ return `<div class="shlok-card">
+ <div class="shlok-top"><span class="chapter">ભગવદ્ ગીતા • ${item.chapter}.${item.verse}</span></div>
+ <div class="shlok">${item.sanskrit}</div>
+ <div class="meaning-box"><div class="meaning-label">${label}</div><div class="meaning-text">${meaning}</div></div>
+ </div>`;
 }
-
-
 function renderShloks(data=shloks){
-
-document.getElementById(
-"shlokList"
-).innerHTML=
-data.map(createShlokCard).join("");
-
+ document.getElementById("shlokList").innerHTML=data.map(createShlokCard).join("");
 }
-
-
 function renderRecent(){
-
-document.getElementById(
-"recentShloks"
-).innerHTML=
-shloks
-.slice(0,3)
-.map(createShlokCard)
-.join("");
-
+ document.getElementById("recentShloks").innerHTML=shloks.slice(0,3).map(createShlokCard).join("");
 }
-
-
 function setLanguage(lang){
-
-currentLanguage=lang;
-
-localStorage.setItem(
-"brahmanshLanguage",
-lang
-);
-
-renderShloks();
-
-renderRecent();
-
+ currentLanguage=lang;localStorage.setItem("brahmanshLanguage",lang);
+ renderShloks();renderRecent();
 }
-
-
-/* =========================
-GITA
-========================= */
-
 function showChapters(button=null){
-
-openPage("gitaPage");
-
-setActiveNav(button);
-
-document.getElementById(
-"chapterList"
-).innerHTML=
-
-chapters.map(ch=>`
-
-<div
-class="chapter-card"
-onclick="openChapter(${ch.n})">
-
-<div class="chapter-number">
-
-${ch.n}
-
-</div>
-
-<div class="chapter-info">
-
-<h3>
-${ch.name}
-</h3>
-
-<p>
-${ch.en}
-</p>
-
-</div>
-
-<div class="arrow">
-
-<svg
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.8">
-
-<path d="m9 18 6-6-6-6"/>
-
-</svg>
-
-</div>
-
-</div>
-
-`).join("");
-
+  openPage("gitaPage");setActiveNav(button);
+  if(typeof renderGita==="function") renderGita();
 }
-
-
 function openChapter(number){
-
-openPage("chapterPage");
-
-const ch=
-chapters.find(
-c=>c.n===number
-);
-
-const data=
-shloks.filter(
-s=>s.chapter===number
-);
-
-document.getElementById(
-"chapterDetail"
-).innerHTML=
-
-`
-
-<div class="detail-header">
-
-<h2>
-અધ્યાય ${ch.n}
-</h2>
-
-<p>
-${ch.name}
-</p>
-
-</div>
-
-${
-data.length
-?
-data.map(createShlokCard).join("")
-:
-`
-<div class="empty">
-
-<p>
-આ અધ્યાયના સંપૂર્ણ શ્લોકો databaseમાં ઉમેરવાના બાકી છે.
-</p>
-
-</div>
-`
+ openPage("chapterPage");
+ const ch=chapters.find(c=>c.n===number);
+ const data=shloks.filter(s=>s.chapter===number);
+ document.getElementById("chapterDetail").innerHTML=`
+ <div class="detail-header"><h2>અધ્યાય ${ch.n}</h2><p>${ch.name}</p></div>
+ ${data.length?data.map(createShlokCard).join(""):`<div class="empty"><p>આ અધ્યાયના સંપૂર્ણ શ્લોકો databaseમાં ઉમેરવાના બાકી છે.</p></div>`}`;
 }
-
-`;
-
+function openFavorites(button){
+ openPage("favoritePage");setActiveNav(button);
+ const data=shloks.filter(s=>favorites.includes(s.id));
+ document.getElementById("favoriteList").innerHTML=data.length?data.map(createShlokCard).join(""):`<div class="empty"><p>હજુ કોઈ શ્લોક મનપસંદમાં ઉમેર્યો નથી.</p></div>`;
 }
-
-
-/* =========================
-FAVORITES
-========================= */
-
+function openSettings(button){openPage("settingsPage");setActiveNav(button)}
 function clearFavorites(){
-
-if(
-confirm("બધા Favorites દૂર કરવા છે?")
-){
-
-favorites=[];
-
-localStorage.removeItem(
-"brahmanshFavorites"
-);
-
-openFavorites();
-
+ if(confirm("બધા Favorites દૂર કરવા છે?")){
+  favorites=[];localStorage.removeItem("brahmanshFavorites");openFavorites();
+ }
 }
-
-}
-
-
-/* =========================
-SEARCH
-========================= */
-
 function searchContent(){
-
-const q=
-document.getElementById(
-"searchInput"
-)
-.value
-.toLowerCase()
-.trim();
-
-if(!q){
-
-goHome();
-
-return;
-
+ const q=document.getElementById("searchInput").value.toLowerCase().trim();
+ if(!q){goHome();return}
+ const results=shloks.filter(s=>
+  s.sanskrit.toLowerCase().includes(q)||s.gu.toLowerCase().includes(q)||
+  s.hi.toLowerCase().includes(q)||s.en.toLowerCase().includes(q)||
+  String(s.chapter).includes(q)||String(s.verse).includes(q));
+ openPage("searchPage");
+ document.getElementById("searchResults").innerHTML=results.length?results.map(createShlokCard).join(""):`<div class="empty"><p>કોઈ પરિણામ મળ્યું નથી.</p></div>`;
 }
-
-const results=
-shloks.filter(s=>
-
-s.sanskrit
-.toLowerCase()
-.includes(q)
-
-||
-
-s.gu
-.toLowerCase()
-.includes(q)
-
-||
-
-s.hi
-.toLowerCase()
-.includes(q)
-
-||
-
-s.en
-.toLowerCase()
-.includes(q)
-
-||
-
-String(s.chapter)
-.includes(q)
-
-||
-
-String(s.verse)
-.includes(q)
-
-);
-
-openPage("searchPage");
-
-document.getElementById(
-"searchResults"
-).innerHTML=
-
-results.length
-?
-results.map(createShlokCard).join("")
-:
-`
-<div class="empty">
-
-<p>
-કોઈ પરિણામ મળ્યું નથી.
-</p>
-
-</div>
-`;
-
-}
-
-
-/* =========================
-COPY
-========================= */
-
 function copyText(text){
-
-if(
-navigator.clipboard &&
-window.isSecureContext
-){
-
-navigator.clipboard
-.writeText(text)
-.then(
-()=>alert("Copy થયો.")
-);
-
+ if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(text).then(()=>alert("Copy થયો."));
+ else{const a=document.createElement("textarea");a.value=text;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove();alert("Copy થયો.")}
 }
-
-else{
-
-const a=
-document.createElement("textarea");
-
-a.value=text;
-
-document.body.appendChild(a);
-
-a.select();
-
-document.execCommand("copy");
-
-a.remove();
-
-alert("Copy થયો.");
-
-}
-
-}
-
-
-/* =========================
-SHARE
-========================= */
-
 function shareText(text){
-
-if(navigator.share){
-
-navigator.share({
-
-title:"BRAHMANSH",
-
-text:text
-
-});
-
+ if(navigator.share)navigator.share({title:"BRAHMANSH",text:text});else copyText(text);
 }
 
-else{
-
-copyText(text);
-
+function openMandir(){openPage("mandirPage");setActiveNav(null)}
+function openGrantho(){openPage("granthoPage");setActiveNav(null)}
+function openSuvichar(){openPage("suvicharPage");setActiveNav(null)}
+function openSanatanGyan(){openPage("sanatanGyanPage");setActiveNav(null)}
+function openProfile(){openPage("profilePage");loadProfile()}
+function saveProfile(){
+ const p={name:document.getElementById("profileName")?.value||"",dob:document.getElementById("profileDob")?.value||"",gender:document.getElementById("profileGender")?.value||"",isht:document.getElementById("profileIsht")?.value||""};
+ localStorage.setItem("brahmanshProfile",JSON.stringify(p));loadProfile();alert("Profile સાચવાઈ ગઈ.");
 }
-
+function loadProfile(){
+ let p={};try{p=JSON.parse(localStorage.getItem("brahmanshProfile")||"{}")}catch{}
+ const n=document.getElementById("profileName"),d=document.getElementById("profileDob"),g=document.getElementById("profileGender"),i=document.getElementById("profileIsht");
+ if(n)n.value=p.name||"";if(d)d.value=p.dob||"";if(g)g.value=p.gender||"";if(i)i.value=p.isht||"";
+ const dn=document.getElementById("profileDisplayName"),di=document.getElementById("profileDisplayIsht");
+ if(dn)dn.textContent=p.name||"તમારું નામ";if(di)di.textContent=p.isht?"મારા ઇષ્ટદેવ: "+p.isht:"મારા ઇષ્ટદેવ: પસંદ કરો";
 }
-
-
-/* =========================
-DARK MODE
-========================= */
+function setAppLanguage(lang){
+ localStorage.setItem("brahmanshLanguage",lang);currentLanguage=lang;
+ ["appLangGu","appLangHi","appLangEn"].forEach(id=>document.getElementById(id)?.classList.remove("active"));
+ document.getElementById({gu:"appLangGu",hi:"appLangHi",en:"appLangEn"}[lang])?.classList.add("active");
+ renderShloks();renderRecent();
+}
+function initAppLanguage(){setAppLanguage(localStorage.getItem("brahmanshLanguage")||"gu")}
 
 function toggleDarkMode(){
-
-document.body.classList.toggle(
-"dark"
-);
-
-localStorage.setItem(
-"brahmanshDark",
-document.body.classList.contains("dark")
-);
-
+ document.body.classList.toggle("dark");
+ localStorage.setItem("brahmanshDark",document.body.classList.contains("dark"));
 }
-
-
-/* =========================
-INITIALIZE
-========================= */
-
-if(
-localStorage.getItem(
-"brahmanshDark"
-)==="true"
-){
-
-document.body.classList.add("dark");
-
-}
-
+if(localStorage.getItem("brahmanshDark")==="true")document.body.classList.add("dark");
 renderRecent();
-
 renderShloks();
-
+initAppLanguage();
+loadProfile();
 </script>
-
+<script src="gita(2).js"></script>
 </body>
 </html>
