@@ -59,7 +59,6 @@ button{
     padding-bottom:90px;
 }
 
-
 /* =========================
    HEADER
 ========================= */
@@ -105,7 +104,6 @@ button{
     color:var(--muted);
 }
 
-
 /* =========================
    SEARCH
 ========================= */
@@ -139,7 +137,6 @@ button{
     border-color:var(--primary);
 }
 
-
 /* =========================
    CONTENT
 ========================= */
@@ -166,7 +163,6 @@ button{
     font-size:12px;
     cursor:pointer;
 }
-
 
 /* =========================
    DAILY
@@ -228,7 +224,6 @@ button{
     color:white;
 }
 
-
 /* =========================
    GRID
 ========================= */
@@ -279,7 +274,6 @@ button{
     font-size:11px;
 }
 
-
 /* =========================
    LANGUAGE TABS
 ========================= */
@@ -307,7 +301,6 @@ button{
     color:#fff;
     border-color:var(--primary);
 }
-
 
 /* =========================
    SHLOK CARD
@@ -389,7 +382,6 @@ button{
     line-height:1.8;
 }
 
-
 /* =========================
    CHAPTER
 ========================= */
@@ -440,7 +432,6 @@ button{
     width:18px;
 }
 
-
 /* =========================
    BACK
 ========================= */
@@ -460,7 +451,6 @@ button{
 .back-button svg{
     width:17px;
 }
-
 
 /* =========================
    DETAIL HEADER
@@ -484,7 +474,6 @@ button{
     font-size:12px;
 }
 
-
 /* =========================
    EMPTY
 ========================= */
@@ -501,7 +490,6 @@ button{
     color:var(--primary);
     margin-bottom:13px;
 }
-
 
 /* =========================
    SETTINGS
@@ -533,7 +521,6 @@ button{
     color:var(--muted);
     font-size:11px;
 }
-
 
 /* =========================
    BOTTOM NAV
@@ -578,7 +565,6 @@ button{
     font-weight:700;
 }
 
-
 /* =========================
    PAGES
 ========================= */
@@ -590,7 +576,6 @@ button{
 .page.active{
     display:block;
 }
-
 
 /* =========================
    DARK
@@ -611,7 +596,6 @@ body.dark .bottom-nav{
     background:rgba(36,31,26,.97);
 }
 
-
 /* =========================
    DESKTOP
 ========================= */
@@ -629,11 +613,9 @@ body.dark .bottom-nav{
 </style>
 </head>
 
-
 <body>
 
 <div class="app">
-
 
 <!-- =========================
      HEADER
@@ -669,7 +651,6 @@ stroke-width="1.5">
 
 </div>
 
-
 <div class="search-box">
 
 <svg viewBox="0 0 24 24"
@@ -692,7 +673,6 @@ oninput="searchContent()">
 
 </header>
 
-
 <!-- =========================
      HOME
 ========================= -->
@@ -704,7 +684,6 @@ oninput="searchContent()">
 <div class="section-title">
 <h2>આજની વાણી</h2>
 </div>
-
 
 <section class="daily">
 
@@ -737,14 +716,11 @@ Share
 
 </section>
 
-
 <div class="section-title">
 <h2>વિભાગો</h2>
 </div>
 
-
 <div class="grid">
-
 
 <div class="menu-card"
 onclick="showChapters()">
@@ -770,7 +746,6 @@ stroke-width="1.6">
 
 </div>
 
-
 <div class="menu-card"
 onclick="openShloks()">
 
@@ -795,7 +770,6 @@ stroke-width="1.6">
 
 </div>
 
-
 <div class="menu-card">
 
 <div class="icon-box">
@@ -819,7 +793,6 @@ stroke-width="1.6">
 <p>પ્રાર્થના અને સ્તોત્ર</p>
 
 </div>
-
 
 <div class="menu-card">
 
@@ -846,7 +819,6 @@ stroke-width="1.6">
 
 </div>
 
-
 <div class="section-title">
 
 <h2>તાજેતરના શ્લોક</h2>
@@ -857,39 +829,48 @@ stroke-width="1.6">
 
 </div>
 
-
 <div id="recentShloks"></div>
 
 </div>
 
 </main>
 
-
 <!-- =========================
-      JAAP
+     SHLOKS
 ========================= -->
 
-<div class="menu-card" onclick="openJapa()">
+<main id="shlokPage" class="page">
 
-<div class="icon-box">
+<div class="content">
 
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="1.6">
+<div class="section-title">
+<h2>શ્લોક</h2>
+</div>
 
-<circle cx="12" cy="12" r="8"/>
-<path d="M12 7v5l3 2"/>
+<div class="language-tabs">
 
-</svg>
+<button id="langGu"
+onclick="setLanguage('gu')">
+ગુજરાતી
+</button>
+
+<button id="langHi"
+onclick="setLanguage('hi')">
+हिन्दी
+</button>
+
+<button id="langEn"
+onclick="setLanguage('en')">
+English
+</button>
 
 </div>
 
-<h3>જાપ</h3>
-<p>મંત્ર જાપ કરો</p>
+<div id="shlokList"></div>
 
 </div>
 
+</main>
 
 <!-- =========================
      GITA
@@ -910,7 +891,6 @@ stroke-width="1.6">
 </div>
 
 </main>
-
 
 <!-- =========================
      CHAPTER
@@ -936,13 +916,11 @@ stroke-width="2">
 
 </button>
 
-
 <div id="chapterDetail"></div>
 
 </div>
 
 </main>
-
 
 <!-- =========================
      SEARCH
@@ -964,7 +942,6 @@ stroke-width="2">
 
 </main>
 
-
 <!-- =========================
      FAVORITES
 ========================= -->
@@ -985,7 +962,6 @@ stroke-width="2">
 
 </main>
 
-
 <!-- =========================
      SETTINGS
 ========================= -->
@@ -1000,7 +976,6 @@ stroke-width="2">
 
 </div>
 
-
 <div class="setting-card">
 
 <div class="setting-row"
@@ -1014,7 +989,6 @@ Light / Dark Mode
 
 </div>
 
-
 <div class="setting-row"
 onclick="clearFavorites()">
 
@@ -1025,7 +999,6 @@ onclick="clearFavorites()">
 </p>
 
 </div>
-
 
 <div class="setting-row">
 
@@ -1043,13 +1016,11 @@ onclick="clearFavorites()">
 
 </main>
 
-
 <!-- =========================
      BOTTOM NAV
 ========================= -->
 
 <nav class="bottom-nav">
-
 
 <button class="nav-item active"
 onclick="goHome(this)">
@@ -1068,7 +1039,6 @@ stroke-width="1.7">
 Home
 
 </button>
-
 
 <button class="nav-item"
 onclick="showChapters(this)">
@@ -1089,7 +1059,6 @@ stroke-width="1.7">
 
 </button>
 
-
 <button class="nav-item"
 onclick="openFavorites(this)">
 
@@ -1105,7 +1074,6 @@ stroke-width="1.7">
 Favorites
 
 </button>
-
 
 <button class="nav-item"
 onclick="openSettings(this)">
@@ -1128,7 +1096,6 @@ Settings
 </nav>
 
 </div>
-
 
 <script>
 
@@ -1266,7 +1233,6 @@ en:"Moksha Sannyasa Yoga"
 
 ];
 
-
 /* =====================================================
    SHLOK DATA
 ===================================================== */
@@ -1365,7 +1331,6 @@ en:
 
 ];
 
-
 /* =====================================================
    STATE
 ===================================================== */
@@ -1377,7 +1342,6 @@ let favorites =
 JSON.parse(
 localStorage.getItem("brahmanshFavorites") || "[]"
 );
-
 
 /* =====================================================
    PAGE NAVIGATION
@@ -1403,7 +1367,6 @@ behavior:"smooth"
 
 }
 
-
 function setActiveNav(button){
 
 document.querySelectorAll(".nav-item")
@@ -1417,7 +1380,6 @@ button.classList.add("active");
 
 }
 
-
 function goHome(button){
 
 openPage("homePage");
@@ -1425,7 +1387,6 @@ openPage("homePage");
 setActiveNav(button);
 
 }
-
 
 function openShloks(button=null){
 
@@ -1439,7 +1400,6 @@ renderShloks();
 
 }
 
-
 function openFavorites(button){
 
 openPage("favoritePage");
@@ -1450,7 +1410,6 @@ renderFavorites();
 
 }
 
-
 function openSettings(button){
 
 openPage("settingsPage");
@@ -1458,7 +1417,6 @@ openPage("settingsPage");
 setActiveNav(button);
 
 }
-
 
 /* =====================================================
    CHAPTERS
@@ -1513,7 +1471,6 @@ stroke-width="1.8">
 `).join("");
 
 }
-
 
 /* =====================================================
    CHAPTER DETAIL
@@ -1570,7 +1527,6 @@ English
 
 `;
 
-
 if(!data.length){
 
 html+=`
@@ -1592,13 +1548,11 @@ data.map(createShlokCard).join("");
 
 }
 
-
 document.getElementById(
 "chapterDetail"
 ).innerHTML=html;
 
 }
-
 
 function setChapterLanguage(lang,chapter){
 
@@ -1612,7 +1566,6 @@ lang
 openChapter(chapter);
 
 }
-
 
 /* =====================================================
    SHLOK CARD
@@ -1637,12 +1590,10 @@ label="English Meaning";
 
 }
 
-
 const active=
 favorites.includes(item.id)
 ? "favorite-active"
 : "";
-
 
 return `
 
@@ -1657,9 +1608,7 @@ ${item.chapter}.${item.verse}
 
 </span>
 
-
 <div class="shlok-actions">
-
 
 <button
 class="icon-btn"
@@ -1682,7 +1631,6 @@ rx="2"/>
 
 </button>
 
-
 <button
 class="icon-btn"
 title="Share"
@@ -1704,7 +1652,6 @@ stroke-width="1.7">
 
 </button>
 
-
 <button
 class="icon-btn"
 title="Read"
@@ -1724,7 +1671,6 @@ stroke-width="1.7">
 </svg>
 
 </button>
-
 
 <button
 class="icon-btn ${active}"
@@ -1746,11 +1692,9 @@ stroke-width="1.7">
 
 </div>
 
-
 <div class="shlok">
 ${item.sanskrit}
 </div>
-
 
 <div class="meaning-box">
 
@@ -1769,7 +1713,6 @@ ${meaning}
 `;
 
 }
-
 
 /* =====================================================
    SHLOK LIST
@@ -1800,7 +1743,6 @@ data.map(createShlokCard).join("");
 renderLanguageButtons();
 
 }
-
 
 /* =====================================================
    LANGUAGE
@@ -1835,7 +1777,6 @@ active.classList.add("active");
 
 }
 
-
 function setLanguage(lang){
 
 currentLanguage=lang;
@@ -1852,7 +1793,6 @@ renderShloks();
 renderRecent();
 
 }
-
 
 /* =====================================================
    FAVORITES
@@ -1882,7 +1822,6 @@ renderFavorites();
 
 }
 
-
 function renderFavorites(){
 
 const box=
@@ -1892,7 +1831,6 @@ const data=
 shloks.filter(
 item=>favorites.includes(item.id)
 );
-
 
 if(!data.length){
 
@@ -1921,12 +1859,10 @@ return;
 
 }
 
-
 box.innerHTML=
 data.map(createShlokCard).join("");
 
 }
-
 
 function clearFavorites(){
 
@@ -1937,7 +1873,6 @@ alert("Favorites પહેલેથી ખાલી છે.");
 return;
 
 }
-
 
 if(confirm("બધા Favorites દૂર કરવા છે?")){
 
@@ -1954,7 +1889,6 @@ renderRecent();
 }
 
 }
-
 
 /* =====================================================
    RECENT
@@ -1973,7 +1907,6 @@ shloks
 
 }
 
-
 /* =====================================================
    SEARCH
 ===================================================== */
@@ -1985,7 +1918,6 @@ document.getElementById("searchInput")
 .value
 .toLowerCase()
 .trim();
-
 
 if(!query){
 
@@ -2001,7 +1933,6 @@ goHome();
 return;
 
 }
-
 
 const results=
 shloks.filter(item=>{
@@ -2044,19 +1975,15 @@ String(item.verse)
 
 });
 
-
 openPage("searchPage");
-
 
 document.querySelectorAll(".nav-item")
 .forEach(item=>{
 item.classList.remove("active");
 });
 
-
 const box=
 document.getElementById("searchResults");
-
 
 if(!results.length){
 
@@ -2076,12 +2003,10 @@ return;
 
 }
 
-
 box.innerHTML=
 results.map(createShlokCard).join("");
 
 }
-
 
 /* =====================================================
    COPY
@@ -2104,7 +2029,6 @@ return;
 
 }
 
-
 const area=
 document.createElement("textarea");
 
@@ -2121,7 +2045,6 @@ area.remove();
 alert("શ્લોક Copy થયો.");
 
 }
-
 
 /* =====================================================
    SHARE
@@ -2146,7 +2069,6 @@ copyText(text);
 }
 
 }
-
 
 /* =====================================================
    TEXT TO SPEECH
@@ -2177,7 +2099,6 @@ speechSynthesis.speak(utterance);
 
 }
 
-
 /* =====================================================
    DARK MODE
 ===================================================== */
@@ -2192,7 +2113,6 @@ document.body.classList.contains("dark")
 );
 
 }
-
 
 /* =====================================================
    INITIALIZE
@@ -2209,209 +2129,10 @@ document.body.classList.add("dark");
 renderRecent();
 
 renderShloks();
-<!-- =========================
-     JAPA
-========================= -->
-
-<main id="japaPage" class="page">
-
-<div class="content">
-
-<button class="back-button"
-onclick="goHome()">
-
-<svg viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2">
-
-<path d="m15 18-6-6 6-6"/>
-
-</svg>
-
-પાછા
-
-</button>
-
-
-<div class="section-title">
-
-<h2>જાપ</h2>
-
-</div>
-
-
-<section class="japa-card">
-
-<small>BRAHMANSH • જાપ</small>
-
-<h2>ૐ નમઃ શિવાય</h2>
-
-
-<div class="japa-circle"></div>
-
-
-<div class="japa-count"
-id="japaCount">
-
-0
-
-</div>
-
-<div class="japa-label">
-જાપ
-</div>
-
-
-<div class="japa-progress">
-
-<div
-id="japaProgress"
-class="japa-progress-bar">
-</div>
-
-</div>
-
-
-<div class="japa-info">
-
-<span id="japaText">
-0 / 108
-</span>
-
-&nbsp; • &nbsp;
-
-<span id="malaText">
-0 માળા
-</span>
-
-</div>
-
-
-<div class="japa-buttons">
-
-<button
-class="japa-add"
-onclick="addJapa()">
-
-+ જાપ
-
-</button>
-
-
-<button
-class="japa-reset"
-onclick="resetJapa()">
-
-Reset
-
-</button>
-
-</div>
-
-</section>
-
-</div>
-
-</main>
-/* =====================================================
-   JAPA
-===================================================== */
-
-let japCount =
-Number(
-localStorage.getItem("brahmanshJapCount") || "0"
-);
-
-
-function openJapa(){
-
-openPage("japaPage");
-
-renderJapa();
-
-}
-
-
-function addJapa(){
-
-japCount++;
-
-localStorage.setItem(
-"brahmanshJapCount",
-japCount
-);
-
-renderJapa();
-
-}
-
-
-function resetJapa(){
-
-if(japCount === 0){
-return;
-}
-
-if(confirm("જાપની ગણતરી Reset કરવી છે?")){
-
-japCount = 0;
-
-localStorage.setItem(
-"brahmanshJapCount",
-"0"
-);
-
-renderJapa();
-
-}
-
-}
-
-
-function renderJapa(){
-
-const count =
-document.getElementById("japaCount");
-
-const progress =
-document.getElementById("japaProgress");
-
-const text =
-document.getElementById("japaText");
-
-const mala =
-document.getElementById("malaText");
-
-if(!count){
-return;
-}
-
-count.textContent =
-japCount;
-
-const current =
-japCount % 108;
-
-const percentage =
-current === 0 && japCount > 0
-? 100
-: (current / 108) * 100;
-
-progress.style.width =
-percentage + "%";
-
-text.textContent =
-(current === 0 && japCount > 0
-? 108
-: current) + " / 108";
-
-mala.textContent =
-Math.floor(japCount / 108) + " માળા";
-
-}
 
 </script>
 
 </body>
 </html>
+
+ A code che maro haave ama “વિભાગ” જે શ્લોક વાળું બટન છે આની જગ્યા પર આપડે જાપ નું મૂકવાનું છે 
