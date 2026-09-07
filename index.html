@@ -234,6 +234,18 @@ body.dark .bottom-nav{background:rgba(36,31,26,.97)}
 .info-list{margin-top:12px;display:grid;gap:8px}.info-item{padding:12px;background:var(--soft);border-radius:11px}.info-item b{font-size:13px}.info-item span{display:block;color:var(--muted);font-size:11px;margin-top:3px}
 .gita700-list{margin-top:12px}
 
+
+.profile-avatar img{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;display:block
+}
+.isht-avatar{
+  width:86px;height:86px;margin:4px auto 12px;border-radius:50%;
+  background:var(--soft);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--primary);overflow:hidden
+}
+.isht-avatar svg{width:48px;height:48px}
+
 </style>
 </head>
 
@@ -404,11 +416,11 @@ body.dark .bottom-nav{background:rgba(36,31,26,.97)}
 </div></div></main>
 
 <main id="profilePage" class="page"><div class="content"><div class="section-title"><h2>મારી Profile</h2></div>
-<div class="feature-card profile-card"><div class="profile-avatar" id="profileAvatar">ૐ</div><div class="profile-name" id="profileDisplayName">તમારું નામ</div><div class="profile-sub" id="profileDisplayIsht">મારા ઇષ્ટદેવ: પસંદ કરો</div>
+<div class="feature-card profile-card"><div class="isht-avatar" id="profileAvatar" aria-label="Ishtadev avatar"></div><div class="profile-name" id="profileDisplayName">તમારું નામ</div><div class="profile-sub" id="profileDisplayIsht">મારા ઇષ્ટદેવ: પસંદ કરો</div>
 <div class="form-row"><label>નામ</label><input id="profileName" placeholder="તમારું નામ"></div>
 <div class="form-row"><label>જન્મ તારીખ</label><input id="profileDob" type="date"></div>
 <div class="form-row"><label>લિંગ</label><select id="profileGender"><option value="">પસંદ કરો</option><option>પુરુષ</option><option>સ્ત્રી</option><option>જણાવવું નથી</option></select></div>
-<div class="form-row"><label>મારા ઇષ્ટદેવ</label><select id="profileIsht" onchange="saveProfile()"><option value="">પસંદ કરો</option><option>ભગવાન શિવ</option><option>શ્રી કૃષ્ણ</option><option>શ્રી રામ</option><option>શ્રી ગણેશ</option><option>હનુમાનજી</option><option>માતા દુર્ગા</option><option>માતા લક્ષ્મી</option><option>માતા સરસ્વતી</option><option>શ્રી વિષ્ણુ</option><option>દત્તાત્રેય</option><option>અન્ય</option></select></div>
+<div class="form-row"><label>મારા ઇષ્ટદેવ</label><select id="profileIsht" onchange="updateIshtAvatar();saveProfile()"><option value="">પસંદ કરો</option><option>ભગવાન શિવ</option><option>શ્રી કૃષ્ણ</option><option>શ્રી રામ</option><option>શ્રી ગણેશ</option><option>હનુમાનજી</option><option>માતા દુર્ગા</option><option>માતા લક્ષ્મી</option><option>માતા સરસ્વતી</option><option>શ્રી વિષ્ણુ</option><option>દત્તાત્રેય</option><option>અન્ય</option></select></div>
 <button class="japa-main" style="margin-top:14px" onclick="saveProfile()">Profile સાચવો</button></div></div></main>
 
 <nav class="bottom-nav">
@@ -456,7 +468,7 @@ const chapters=[
 const shloks=[
 {id:"2.20",chapter:2,verse:20,sanskrit:"न जायते म्रियते वा कदाचित् ।",gu:"આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું ક્યારેય મૃત્યુ પણ થતું નથી.",hi:"आत्मा का कभी जन्म नहीं होता और न ही कभी मृत्यु होती है।",en:"The soul is never born and it never dies."},
 {id:"2.47",chapter:2,verse:47,sanskrit:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।",gu:"તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.",hi:"तुम्हारा अधिकार केवल कर्म करने में है, उसके फल में कभी नहीं।",en:"You have a right to perform your duty, but not to the fruits of your actions."},
-{id:"4.7",chapter:4,verse:7,sanskrit:"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।",gu:"હે ભારત, જ્યારે જ્યારે ધર્મની હાનિ થાય છે ત્યારે હું પ્રગટ થાઉં છું.",hi:"हे भारत, जब-जब धर्म की हानि होती है customary मैं प्रकट होता हूँ।",en:"Whenever righteousness declines, I manifest Myself."},
+{id:"4.7",chapter:4,verse:7,sanskrit:"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।",gu:"હે ભારત, જ્યારે જ્યારે ધર્મની હાનિ થાય છે ત્યારે હું પ્રગટ થાઉં છું.",hi:"हे भारत, जब-जब धर्म की हानि होती है तब मैं प्रकट होता हूँ।",en:"Whenever righteousness declines, I manifest Myself."},
 {id:"4.8",chapter:4,verse:8,sanskrit:"परित्राणाय साधूनां विनाशाय च दुष्कृताम् ।",gu:"સાધુઓના રક્ષણ માટે અને દુષ્ટોના વિનાશ માટે હું પ્રગટ થાઉં છું.",hi:"साधुओं की रक्षा और दुष्टों के विनाश के लिए मैं प्रकट होता हूँ।",en:"I manifest to protect the righteous and to destroy evil."},
 {id:"12.13",chapter:12,verse:13,sanskrit:"अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च ।",gu:"જે કોઈ પ્રાણી પ્રત્યે દ્વેષ રાખતો નથી, સૌનો મિત્ર અને કરુણાશીલ છે.",hi:"जो किसी प्राणी से द्वेष नहीं करता, सबका मित्र और करुणामय है।",en:"One who has no hatred toward any being and is friendly and compassionate."}
 ];
@@ -606,6 +618,111 @@ renderShloks();
 initAppLanguage();
 loadProfile();
 </script>
+
+<script>
+/* BRAHMANSH - Complete App Language Switcher */
+(function(){
+const T={
+gu:{tag:"જ્ઞાન • ભક્તિ • સંસ્કાર",search:"શ્લોક, ગ્રંથ અથવા વાણી શોધો...",today:"આજની વાણી",sections:"વિભાગો",gita:"ભગવદ્ ગીતા",temple:"મંદિર",japa:"જાપ",stotra:"સ્તોત્ર",books:"ગ્રંથો",recent:"તાજેતરના શ્લોક",all:"બધા જુઓ",copy:"Copy",share:"Share",settings:"Settings",profile:"મારી Profile",language:"ભાષા",appearance:"Appearance",clear:"Clear Favorites",favorites:"Favorites",home:"Home",shlok:"શ્લોક",back:"પાછા",save:"Profile સાચવો"},
+hi:{tag:"ज्ञान • भक्ति • संस्कार",search:"श्लोक, ग्रंथ या वाणी खोजें...",today:"आज की वाणी",sections:"विभाग",gita:"भगवद् गीता",temple:"मंदिर",japa:"जाप",stotra:"स्तोत्र",books:"ग्रंथ",recent:"हाल के श्लोक",all:"सभी देखें",copy:"कॉपी",share:"शेयर",settings:"सेटिंग्स",profile:"मेरी प्रोफ़ाइल",language:"भाषा",appearance:"दिखावट",clear:"Favorites साफ करें",favorites:"Favorites",home:"Home",shlok:"श्लोक",back:"वापस",save:"प्रोफ़ाइल सेव करें"},
+en:{tag:"Knowledge • Devotion • Values",search:"Search shlok, scripture or wisdom...",today:"Today's Wisdom",sections:"Sections",gita:"Bhagavad Gita",temple:"Temple",japa:"Japa",stotra:"Stotra",books:"Scriptures",recent:"Recent Shlokas",all:"View All",copy:"Copy",share:"Share",settings:"Settings",profile:"My Profile",language:"Language",appearance:"Appearance",clear:"Clear Favorites",favorites:"Favorites",home:"Home",shlok:"Shloka",back:"Back",save:"Save Profile"}
+};
+function tx(k,l){return T[l]?.[k]||T.gu[k]||k}
+window.setAppLanguage=function(lang){
+ lang=T[lang]?lang:"gu";
+ currentLanguage=lang;localStorage.setItem("brahmanshLanguage",lang);
+ ["appLangGu","appLangHi","appLangEn"].forEach(id=>document.getElementById(id)?.classList.remove("active"));
+ document.getElementById({gu:"appLangGu",hi:"appLangHi",en:"appLangEn"}[lang])?.classList.add("active");
+
+ document.querySelector(".brand p")?.replaceChildren(document.createTextNode(tx("tag",lang)));
+ const si=document.getElementById("searchInput"); if(si)si.placeholder=tx("search",lang);
+
+ const titleMap={
+ "આજની વાણી":"today","आज की वाणी":"today","Today's Wisdom":"today",
+ "વિભાગો":"sections","विभाग":"sections","Sections":"sections",
+ "તાજેતરના શ્લોક":"recent","हाल के श्लोक":"recent","Recent Shlokas":"recent",
+ "શોધ પરિણામ":"recent","खोज परिणाम":"recent","Search Results":"recent",
+ "મારા મનપસંદ":"favorites","मेरे पसंदीदा":"favorites","My Favorites":"favorites",
+ "Settings":"settings","सेटिंग्स":"settings",
+ "મંદિર":"temple","मंदिर":"temple","Temple":"temple",
+ "જાપ":"japa","जाप":"japa","Japa":"japa",
+ "સ્તોત્ર":"stotra","स्तोत्र":"stotra","Stotra":"stotra",
+ "ગ્રંથો":"books","ग्रंथ":"books","Scriptures":"books",
+ "શ્લોક":"shlok","श्लोक":"shlok","Shloka":"shlok",
+ "મારી Profile":"profile","मेरी प्रोफ़ाइल":"profile","My Profile":"profile"
+ };
+ document.querySelectorAll(".section-title h2").forEach(el=>{
+   const k=titleMap[el.textContent.trim()]; if(k)el.textContent=tx(k,lang);
+ });
+
+ const menuMap={"ભગવદ્ ગીતા":"gita","भगवद् गीता":"gita","Bhagavad Gita":"gita","મંદિર":"temple","मंदिर":"temple","Temple":"temple","જાપ":"japa","जाप":"japa","Japa":"japa","સ્તોત્ર":"stotra","स्तोत्र":"stotra","Stotra":"stotra","ગ્રંથો":"books","ग्रंथ":"books","Scriptures":"books"};
+ document.querySelectorAll(".menu-card h3").forEach(el=>{const k=menuMap[el.textContent.trim()];if(k)el.textContent=tx(k,lang)});
+
+ document.querySelectorAll(".section-title button").forEach(el=>{
+   if(/બધા જુઓ|सभी देखें|View All/.test(el.textContent.trim()))el.textContent=tx("all",lang);
+ });
+ document.querySelectorAll(".daily .btn").forEach((el,i)=>el.textContent=i?tx("share",lang):tx("copy",lang));
+
+ const s=document.querySelector("#settingsPage .section-title h2"); if(s)s.textContent=tx("settings",lang);
+ const rows=document.querySelectorAll("#settingsPage .setting-row");
+ if(rows[0])rows[0].querySelector("h3").textContent=tx("profile",lang);
+ if(rows[1]){rows[1].querySelector("h3").textContent=tx("language",lang);}
+ if(rows[2])rows[2].querySelector("h3").textContent=tx("appearance",lang);
+ if(rows[3])rows[3].querySelector("h3").textContent=tx("clear",lang);
+
+ const p=document.querySelector("#profilePage .section-title h2");if(p)p.textContent=tx("profile",lang);
+ const save=document.querySelector("#profilePage .japa-main");if(save)save.textContent=tx("save",lang);
+
+ document.querySelectorAll(".bottom-nav .nav-item").forEach(el=>{
+   const raw=el.textContent.trim();
+   if(/^(Home|ઘર)/.test(raw))el.lastChild.textContent=" "+tx("home",lang);
+   else if(/^(ગીતા|Gita|गीता)/.test(raw))el.lastChild.textContent=" "+tx("gita",lang);
+   else if(/^(Favorites|મનપસંદ)/.test(raw))el.lastChild.textContent=" "+tx("favorites",lang);
+   else if(/^(Settings|સેટિંગ્સ)/.test(raw))el.lastChild.textContent=" "+tx("settings",lang);
+ });
+ if(typeof renderShloks==="function")renderShloks();
+ if(typeof renderRecent==="function")renderRecent();
+};
+window.addEventListener("load",()=>window.setAppLanguage(localStorage.getItem("brahmanshLanguage")||"gu"));
+})();
+</script>
+
+
+<script>
+(function(){
+  const AV={
+    "ભગવાન શિવ":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M20 29c5-7 19-9 25 0"/><path d="M23 39c5 5 13 6 19 0"/><path d="M32 11v10"/><path d="M25 18c4 3 10 3 14 0"/><path d="M27 25h10"/></svg>`,
+    "શ્રી કૃષ્ણ":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><circle cx="32" cy="34" r="12"/><path d="M22 28c4-7 17-9 21-1"/><path d="M27 19c5-5 12-5 17 0"/><path d="M20 16c7 3 16 2 23-3"/><path d="M23 48c5-3 13-3 18 0"/></svg>`,
+    "શ્રી રામ":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M23 27c5-7 14-7 19 0"/><path d="M25 38c5 4 10 4 15 0"/><path d="M32 12v12"/><path d="M25 18h14"/><path d="M27 43h10"/></svg>`,
+    "શ્રી ગણેશ":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M22 27c1-8 19-10 20 1v12c-3 6-15 6-19 0z"/><path d="M22 29c-7-1-8 8-1 9"/><path d="M42 29c7-1 8 8 1 9"/><path d="M31 35c-5 5 1 9 6 4"/></svg>`,
+    "હનુમાનજી":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M21 28c2-9 20-10 22 0v12c-4 7-18 7-22 0z"/><path d="M25 22l-5-7 9 5"/><path d="M39 22l5-7-9 5"/><path d="M25 35h4M35 35h4"/><path d="M29 42c2 2 4 2 6 0"/></svg>`,
+    "માતા દુર્ગા":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M24 27c3-8 13-9 17 0v13c-4 6-13 6-17 0z"/><path d="M27 20l5-7 5 7"/><path d="M20 39l-7 4M44 39l7 4M22 32l-8-2M42 32l8-2"/></svg>`,
+    "માતા લક્ષ્મી":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M24 28c3-8 13-8 17 0v12c-4 6-13 6-17 0z"/><path d="M20 47c4-7 20-7 24 0"/><path d="M20 36l-8-7M44 36l8-7"/></svg>`,
+    "માતા સરસ્વતી":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M24 27c3-8 13-8 17 0v12c-4 6-13 6-17 0z"/><path d="M22 46c6-5 14-5 20 0"/><path d="M43 34c7 0 9 6 4 9M47 43l6 3"/></svg>`,
+    "શ્રી વિષ્ણુ":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M23 27c3-8 15-8 18 0v13c-4 6-14 6-18 0z"/><path d="M27 20l5-8 5 8"/><path d="M17 38l-7 5M47 38l7 5"/></svg>`,
+    "દત્તાત્રેય":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M23 27c3-8 15-8 18 0v13c-4 6-14 6-18 0z"/><path d="M22 21c5-6 15-6 20 0"/><path d="M19 47c7-5 19-5 26 0"/></svg>`,
+    "અન્ય":`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M22 39c5 6 17 6 22 0"/><circle cx="25" cy="29" r="2"/><circle cx="39" cy="29" r="2"/></svg>`
+  };
+  window.updateIshtAvatar=function(){
+    const el=document.getElementById("profileAvatar");
+    const val=document.getElementById("profileIsht")?.value;
+    if(!el)return;
+    el.innerHTML=AV[val]||`<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2"><circle cx="32" cy="32" r="29"/><path d="M32 17v30M20 32h24"/><circle cx="32" cy="32" r="7"/></svg>`;
+  };
+  const oldLoad=window.loadProfile;
+  window.loadProfile=function(){
+    if(typeof oldLoad==="function")oldLoad();
+    updateIshtAvatar();
+  };
+  const oldSave=window.saveProfile;
+  window.saveProfile=function(){
+    if(typeof oldSave==="function")oldSave();
+    updateIshtAvatar();
+  };
+  window.addEventListener("load",updateIshtAvatar);
+})();
+</script>
+
 <script src="gita(2).js"></script>
 </body>
 </html>
