@@ -2,10 +2,11 @@
 <html lang="gu">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#8B5E34">
+<meta name="description" content="BRAHMANSH - ज्ञान, भक्ति और संस्कार">
 
-<title>Ishvar Vaani</title>
+<title>BRAHMANSH</title>
 
 <style>
 *{
@@ -24,6 +25,7 @@
     --border:#e5ddd2;
     --soft:#efe7dc;
     --danger:#a33b32;
+    --shadow:0 8px 25px rgba(70,45,20,.07);
 }
 
 body{
@@ -32,11 +34,21 @@ body{
     BlinkMacSystemFont,
     "Noto Sans Gujarati",
     "Noto Sans Devanagari",
-    Arial,sans-serif;
+    Arial,
+    sans-serif;
 
     background:var(--bg);
     color:var(--text);
     min-height:100vh;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    -webkit-tap-highlight-color:transparent;
 }
 
 .app{
@@ -44,13 +56,16 @@ body{
     margin:auto;
     min-height:100vh;
     background:var(--bg);
-    padding-bottom:88px;
+    padding-bottom:90px;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 .header{
-    padding:20px 18px 14px;
+    padding:20px 18px 15px;
     background:var(--bg);
     position:sticky;
     top:0;
@@ -64,8 +79,8 @@ body{
 }
 
 .brand-mark{
-    width:44px;
-    height:44px;
+    width:45px;
+    height:45px;
     border:1.5px solid var(--primary);
     border-radius:50%;
     display:flex;
@@ -75,22 +90,25 @@ body{
 }
 
 .brand-mark svg{
-    width:23px;
-    height:23px;
+    width:24px;
+    height:24px;
 }
 
 .brand h1{
     font-size:22px;
-    font-weight:700;
+    letter-spacing:.4px;
 }
 
 .brand p{
-    font-size:12px;
-    color:var(--muted);
     margin-top:2px;
+    font-size:11px;
+    color:var(--muted);
 }
 
-/* SEARCH */
+
+/* =========================
+   SEARCH
+========================= */
 
 .search-box{
     margin-top:17px;
@@ -99,7 +117,7 @@ body{
 
 .search-box svg{
     position:absolute;
-    left:15px;
+    left:14px;
     top:50%;
     transform:translateY(-50%);
     width:19px;
@@ -108,20 +126,23 @@ body{
 
 .search-box input{
     width:100%;
+    padding:14px 15px 14px 44px;
     border:1px solid var(--border);
     background:var(--card);
     border-radius:14px;
-    padding:14px 15px 14px 45px;
-    font-size:14px;
-    outline:none;
     color:var(--text);
+    outline:none;
+    font-size:14px;
 }
 
 .search-box input:focus{
     border-color:var(--primary);
 }
 
-/* CONTENT */
+
+/* =========================
+   CONTENT
+========================= */
 
 .content{
     padding:4px 17px 20px;
@@ -142,21 +163,26 @@ body{
     border:0;
     background:none;
     color:var(--primary);
-    font-size:13px;
+    font-size:12px;
+    cursor:pointer;
 }
 
-/* DAILY */
+
+/* =========================
+   DAILY
+========================= */
 
 .daily{
     background:var(--primary);
     color:white;
-    border-radius:20px;
-    padding:21px;
+    border-radius:21px;
+    padding:22px;
+    box-shadow:var(--shadow);
 }
 
 .daily small{
-    opacity:.8;
     font-size:11px;
+    opacity:.8;
 }
 
 .daily h2{
@@ -168,7 +194,7 @@ body{
     margin-top:14px;
     font-family:"Noto Sans Devanagari",serif;
     font-size:20px;
-    line-height:1.8;
+    line-height:1.9;
 }
 
 .daily .meaning{
@@ -184,25 +210,28 @@ body{
 }
 
 .btn{
-    border:0;
     border-radius:10px;
     padding:10px 14px;
-    font-size:13px;
+    font-size:12px;
     cursor:pointer;
 }
 
 .btn-light{
-    background:white;
+    background:#fff;
+    border:0;
     color:var(--primary-dark);
 }
 
 .btn-outline{
-    color:white;
     background:transparent;
-    border:1px solid rgba(255,255,255,.5);
+    border:1px solid rgba(255,255,255,.55);
+    color:white;
 }
 
-/* GRID */
+
+/* =========================
+   GRID
+========================= */
 
 .grid{
     display:grid;
@@ -246,18 +275,51 @@ body{
 
 .menu-card p{
     margin-top:5px;
-    font-size:11px;
     color:var(--muted);
+    font-size:11px;
 }
 
-/* SHLOK CARD */
+
+/* =========================
+   LANGUAGE TABS
+========================= */
+
+.language-tabs{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    padding:2px 0 12px;
+}
+
+.language-tabs button{
+    flex:0 0 auto;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--muted);
+    padding:8px 13px;
+    border-radius:9px;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.language-tabs button.active{
+    background:var(--primary);
+    color:#fff;
+    border-color:var(--primary);
+}
+
+
+/* =========================
+   SHLOK CARD
+========================= */
 
 .shlok-card{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:17px;
+    border-radius:18px;
     padding:17px;
     margin-bottom:12px;
+    box-shadow:0 3px 14px rgba(70,45,20,.025);
 }
 
 .shlok-top{
@@ -270,7 +332,7 @@ body{
 .chapter{
     color:var(--primary);
     font-size:11px;
-    font-weight:600;
+    font-weight:700;
 }
 
 .shlok-actions{
@@ -279,12 +341,12 @@ body{
 }
 
 .icon-btn{
-    width:34px;
-    height:34px;
-    border-radius:9px;
+    width:33px;
+    height:33px;
     border:1px solid var(--border);
     background:var(--card);
     color:var(--muted);
+    border-radius:9px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -292,8 +354,8 @@ body{
 }
 
 .icon-btn svg{
-    width:17px;
-    height:17px;
+    width:16px;
+    height:16px;
 }
 
 .icon-btn.favorite-active{
@@ -305,11 +367,11 @@ body{
     margin-top:13px;
     font-family:"Noto Sans Devanagari",serif;
     font-size:19px;
-    line-height:1.9;
+    line-height:1.95;
 }
 
 .meaning-box{
-    margin-top:13px;
+    margin-top:14px;
     padding-top:13px;
     border-top:1px solid var(--border);
 }
@@ -318,57 +380,35 @@ body{
     color:var(--primary);
     font-size:11px;
     font-weight:700;
-    margin-bottom:5px;
+    margin-bottom:6px;
 }
 
 .meaning-text{
+    color:var(--muted);
     font-size:14px;
-    line-height:1.75;
-    color:var(--muted);
+    line-height:1.8;
 }
 
-/* LANGUAGE */
 
-.language-tabs{
-    display:flex;
-    gap:7px;
-    overflow-x:auto;
-    padding:3px 0 10px;
-}
-
-.language-tabs button{
-    flex:0 0 auto;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--muted);
-    padding:8px 13px;
-    border-radius:9px;
-    font-size:12px;
-}
-
-.language-tabs button.active{
-    background:var(--primary);
-    border-color:var(--primary);
-    color:white;
-}
-
-/* CHAPTER */
+/* =========================
+   CHAPTER
+========================= */
 
 .chapter-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:16px;
-    margin-bottom:10px;
     display:flex;
     align-items:center;
     gap:13px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:10px;
     cursor:pointer;
 }
 
 .chapter-number{
-    min-width:42px;
-    height:42px;
+    min-width:43px;
+    height:43px;
     border-radius:11px;
     background:var(--soft);
     color:var(--primary);
@@ -400,7 +440,10 @@ body{
     width:18px;
 }
 
-/* BACK */
+
+/* =========================
+   BACK
+========================= */
 
 .back-button{
     display:flex;
@@ -410,15 +453,18 @@ body{
     background:none;
     color:var(--primary);
     font-size:13px;
-    margin:3px 0 15px;
     cursor:pointer;
+    margin:3px 0 14px;
 }
 
 .back-button svg{
     width:17px;
 }
 
-/* DETAIL */
+
+/* =========================
+   DETAIL HEADER
+========================= */
 
 .detail-header{
     background:var(--card);
@@ -438,7 +484,10 @@ body{
     font-size:12px;
 }
 
-/* EMPTY */
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty{
     text-align:center;
@@ -449,11 +498,14 @@ body{
 .empty svg{
     width:43px;
     height:43px;
-    margin-bottom:14px;
     color:var(--primary);
+    margin-bottom:13px;
 }
 
-/* SETTINGS */
+
+/* =========================
+   SETTINGS
+========================= */
 
 .setting-card{
     background:var(--card);
@@ -477,17 +529,20 @@ body{
 }
 
 .setting-row p{
+    margin-top:5px;
     color:var(--muted);
     font-size:11px;
-    margin-top:5px;
 }
 
-/* BOTTOM NAV */
+
+/* =========================
+   BOTTOM NAV
+========================= */
 
 .bottom-nav{
     position:fixed;
-    left:50%;
     bottom:0;
+    left:50%;
     transform:translateX(-50%);
     width:100%;
     max-width:560px;
@@ -523,7 +578,10 @@ body{
     font-weight:700;
 }
 
-/* PAGES */
+
+/* =========================
+   PAGES
+========================= */
 
 .page{
     display:none;
@@ -533,7 +591,10 @@ body{
     display:block;
 }
 
-/* DARK */
+
+/* =========================
+   DARK
+========================= */
 
 body.dark{
     --bg:#181512;
@@ -550,7 +611,10 @@ body.dark .bottom-nav{
     background:rgba(36,31,26,.97);
 }
 
-/* DESKTOP */
+
+/* =========================
+   DESKTOP
+========================= */
 
 @media(min-width:700px){
 
@@ -565,37 +629,57 @@ body.dark .bottom-nav{
 </style>
 </head>
 
+
 <body>
 
 <div class="app">
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
 <div class="brand">
 
 <div class="brand-mark">
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.5">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.5">
+
 <path d="M12 20C8 18 5 15 5 11C8 12 10 14 12 17C14 14 16 12 19 11C19 15 16 18 12 20Z"/>
 <path d="M12 17C10 13 10 9 12 5C14 9 14 13 12 17Z"/>
 <path d="M5 11C7 10 9 10 12 12"/>
 <path d="M19 11C17 10 15 10 12 12"/>
+
 </svg>
+
 </div>
 
 <div>
-<h1>Ishvar Vaani</h1>
+
+<h1>BRAHMANSH</h1>
+
 <p>ज्ञान • भक्ति • संस्कार</p>
+
 </div>
 
 </div>
+
 
 <div class="search-box">
 
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="2">
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2">
+
 <circle cx="11" cy="11" r="7"/>
 <path d="m20 20-4-4"/>
+
 </svg>
 
 <input
@@ -609,15 +693,18 @@ oninput="searchContent()">
 </header>
 
 
-<!-- HOME -->
+<!-- =========================
+     HOME
+========================= -->
 
 <main id="homePage" class="page active">
 
 <div class="content">
 
 <div class="section-title">
-<h2>આજની ઈશ્વર વાણી</h2>
+<h2>આજની વાણી</h2>
 </div>
+
 
 <section class="daily">
 
@@ -655,38 +742,52 @@ Share
 <h2>વિભાગો</h2>
 </div>
 
+
 <div class="grid">
+
 
 <div class="menu-card"
 onclick="showChapters()">
 
 <div class="icon-box">
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.6">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.6">
+
 <path d="M5 5h14v14H5z"/>
 <path d="M8 8h8"/>
 <path d="M8 12h8"/>
 <path d="M8 16h5"/>
+
 </svg>
+
 </div>
 
 <h3>ભગવદ્ ગીતા</h3>
-<p>૧૮ અધ્યાય અને શ્લોક</p>
+<p>૧૮ અધ્યાય</p>
 
 </div>
 
 
 <div class="menu-card"
-onclick="openPage('shlokPage')">
+onclick="openShloks()">
 
 <div class="icon-box">
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.6">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.6">
+
 <path d="M6 4h12v16H6z"/>
 <path d="M9 8h6"/>
 <path d="M9 12h6"/>
 <path d="M9 16h4"/>
+
 </svg>
+
 </div>
 
 <h3>શ્લોક</h3>
@@ -698,14 +799,20 @@ stroke="currentColor" stroke-width="1.6">
 <div class="menu-card">
 
 <div class="icon-box">
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.6">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.6">
+
 <path d="M4 7h16"/>
 <path d="M6 7v12"/>
 <path d="M18 7v12"/>
 <path d="M8 11h8"/>
 <path d="M8 15h6"/>
+
 </svg>
+
 </div>
 
 <h3>સ્તોત્ર</h3>
@@ -717,13 +824,19 @@ stroke="currentColor" stroke-width="1.6">
 <div class="menu-card">
 
 <div class="icon-box">
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.6">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.6">
+
 <path d="M4 6h16v14H4z"/>
 <path d="M8 6V4h8v2"/>
 <path d="M8 10h8"/>
 <path d="M8 14h6"/>
+
 </svg>
+
 </div>
 
 <h3>ગ્રંથો</h3>
@@ -735,11 +848,15 @@ stroke="currentColor" stroke-width="1.6">
 
 
 <div class="section-title">
+
 <h2>તાજેતરના શ્લોક</h2>
-<button onclick="openPage('shlokPage')">
+
+<button onclick="openShloks()">
 બધા જુઓ
 </button>
+
 </div>
+
 
 <div id="recentShloks"></div>
 
@@ -748,7 +865,9 @@ stroke="currentColor" stroke-width="1.6">
 </main>
 
 
-<!-- SHLOK PAGE -->
+<!-- =========================
+     SHLOKS
+========================= -->
 
 <main id="shlokPage" class="page">
 
@@ -758,22 +877,26 @@ stroke="currentColor" stroke-width="1.6">
 <h2>શ્લોક</h2>
 </div>
 
+
 <div class="language-tabs">
 
-<button class="active"
-onclick="setLanguage('gu',this)">
+<button id="langGu"
+onclick="setLanguage('gu')">
 ગુજરાતી
 </button>
 
-<button onclick="setLanguage('hi',this)">
+<button id="langHi"
+onclick="setLanguage('hi')">
 हिन्दी
 </button>
 
-<button onclick="setLanguage('en',this)">
+<button id="langEn"
+onclick="setLanguage('en')">
 English
 </button>
 
 </div>
+
 
 <div id="shlokList"></div>
 
@@ -782,14 +905,18 @@ English
 </main>
 
 
-<!-- GITA CHAPTERS -->
+<!-- =========================
+     GITA
+========================= -->
 
 <main id="gitaPage" class="page">
 
 <div class="content">
 
 <div class="section-title">
+
 <h2>ભગવદ્ ગીતા</h2>
+
 </div>
 
 <div id="chapterList"></div>
@@ -799,7 +926,9 @@ English
 </main>
 
 
-<!-- CHAPTER DETAIL -->
+<!-- =========================
+     CHAPTER
+========================= -->
 
 <main id="chapterPage" class="page">
 
@@ -808,14 +937,19 @@ English
 <button class="back-button"
 onclick="showChapters()">
 
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="2">
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2">
+
 <path d="m15 18-6-6 6-6"/>
+
 </svg>
 
 બધા અધ્યાય
 
 </button>
+
 
 <div id="chapterDetail"></div>
 
@@ -824,14 +958,18 @@ stroke="currentColor" stroke-width="2">
 </main>
 
 
-<!-- SEARCH -->
+<!-- =========================
+     SEARCH
+========================= -->
 
 <main id="searchPage" class="page">
 
 <div class="content">
 
 <div class="section-title">
+
 <h2>શોધ પરિણામ</h2>
+
 </div>
 
 <div id="searchResults"></div>
@@ -841,14 +979,18 @@ stroke="currentColor" stroke-width="2">
 </main>
 
 
-<!-- FAVORITES -->
+<!-- =========================
+     FAVORITES
+========================= -->
 
 <main id="favoritePage" class="page">
 
 <div class="content">
 
 <div class="section-title">
+
 <h2>મારા મનપસંદ</h2>
+
 </div>
 
 <div id="favoriteList"></div>
@@ -858,15 +1000,20 @@ stroke="currentColor" stroke-width="2">
 </main>
 
 
-<!-- SETTINGS -->
+<!-- =========================
+     SETTINGS
+========================= -->
 
 <main id="settingsPage" class="page">
 
 <div class="content">
 
 <div class="section-title">
+
 <h2>Settings</h2>
+
 </div>
+
 
 <div class="setting-card">
 
@@ -874,22 +1021,33 @@ stroke="currentColor" stroke-width="2">
 onclick="toggleDarkMode()">
 
 <h3>Appearance</h3>
-<p>Light / Dark Mode બદલવા માટે અહીં પસંદ કરો.</p>
+
+<p>
+Light / Dark Mode
+</p>
 
 </div>
+
 
 <div class="setting-row"
 onclick="clearFavorites()">
 
 <h3>Clear Favorites</h3>
-<p>સાચવેલા બધા મનપસંદ શ્લોક દૂર કરો.</p>
+
+<p>
+સાચવેલા બધા મનપસંદ શ્લોક દૂર કરો.
+</p>
 
 </div>
 
+
 <div class="setting-row">
 
-<h3>About Ishvar Vaani</h3>
-<p>ज्ञान • भक्ति • संस्कार</p>
+<h3>About BRAHMANSH</h3>
+
+<p>
+ज्ञान • भक्ति • संस्कार
+</p>
 
 </div>
 
@@ -900,18 +1058,25 @@ onclick="clearFavorites()">
 </main>
 
 
-<!-- BOTTOM NAV -->
+<!-- =========================
+     BOTTOM NAV
+========================= -->
 
 <nav class="bottom-nav">
 
-<button class="nav-item active"
-onclick="openPage('homePage',this)">
 
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.7">
+<button class="nav-item active"
+onclick="goHome(this)">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.7">
+
 <path d="M4 11.5 12 5l8 6.5"/>
 <path d="M6 10.5V20h12v-9.5"/>
 <path d="M10 20v-5h4v5"/>
+
 </svg>
 
 Home
@@ -922,12 +1087,16 @@ Home
 <button class="nav-item"
 onclick="showChapters(this)">
 
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.7">
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.7">
+
 <path d="M5 5h14v14H5z"/>
 <path d="M8 8h8"/>
 <path d="M8 12h8"/>
 <path d="M8 16h5"/>
+
 </svg>
 
 ગીતા
@@ -936,11 +1105,15 @@ stroke="currentColor" stroke-width="1.7">
 
 
 <button class="nav-item"
-onclick="openPage('favoritePage',this);renderFavorites()">
+onclick="openFavorites(this)">
 
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.7">
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.7">
+
 <path d="M20 8c0 5-8 10-8 10S4 13 4 8a4 4 0 0 1 7-2a4 4 0 0 1 9 2Z"/>
+
 </svg>
 
 Favorites
@@ -949,12 +1122,17 @@ Favorites
 
 
 <button class="nav-item"
-onclick="openPage('settingsPage',this)">
+onclick="openSettings(this)">
 
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.7">
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.7">
+
 <circle cx="12" cy="12" r="3"/>
+
 <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3a1.7 1.7 0 0 0-1 1.5V20h-2.6v-.1a1.7 1.7 0 0 0-1-1.5a1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8 15a1.7 1.7 0 0 0-1.5-1H6v-2.6h.5A1.7 1.7 0 0 0 8 10a1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3a1.7 1.7 0 0 0 1-1.5V5h2.6v.1a1.7 1.7 0 0 0 1 1.5a1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9a1.7 1.7 0 0 0 1.5 1h.5V14h-.5a1.7 1.7 0 0 0-1.5 1Z"/>
+
 </svg>
 
 Settings
@@ -968,49 +1146,144 @@ Settings
 
 <script>
 
-/* =========================================================
-   ISHVAR VAANI DATA
-========================================================= */
+/* =====================================================
+   BRAHMANSH DATABASE
+===================================================== */
 
 const chapters = [
 
-{n:1,name:"અર્જુનવિષાદ યોગ",hi:"अर्जुनविषाद योग",en:"Arjuna Vishada Yoga"},
-{n:2,name:"સાંખ્ય યોગ",hi:"सांख्य योग",en:"Sankhya Yoga"},
-{n:3,name:"કર્મ યોગ",hi:"कर्म योग",en:"Karma Yoga"},
-{n:4,name:"જ્ઞાન કર્મ સંન્યાસ યોગ",hi:"ज्ञान कर्म संन्यास योग",en:"Jnana Karma Sannyasa Yoga"},
-{n:5,name:"કર્મ સંન્યાસ યોગ",hi:"कर्म संन्यास योग",en:"Karma Sannyasa Yoga"},
-{n:6,name:"ધ્યાન યોગ",hi:"ध्यान योग",en:"Dhyana Yoga"},
-{n:7,name:"જ્ઞાન વિજ્ઞાન યોગ",hi:"ज्ञान विज्ञान योग",en:"Jnana Vijnana Yoga"},
-{n:8,name:"અક્ષર બ્રહ્મ યોગ",hi:"अक्षर ब्रह्म योग",en:"Akshara Brahma Yoga"},
-{n:9,name:"રાજવિદ્યા રાજગુહ્ય યોગ",hi:"राजविद्या राजगुह्य योग",en:"Raja Vidya Raja Guhya Yoga"},
-{n:10,name:"વિભૂતિ યોગ",hi:"विभूति योग",en:"Vibhuti Yoga"},
-{n:11,name:"વિશ્વરૂપ દર્શન યોગ",hi:"विश्वरूप दर्शन योग",en:"Vishvarupa Darshana Yoga"},
-{n:12,name:"ભક્તિ યોગ",hi:"भक्ति योग",en:"Bhakti Yoga"},
-{n:13,name:"ક્ષેત્ર ક્ષેત્રજ્ઞ વિભાગ યોગ",hi:"क्षेत्र क्षेत्रज्ञ विभाग योग",en:"Kshetra Kshetrajna Vibhaga Yoga"},
-{n:14,name:"ગુણત્રય વિભાગ યોગ",hi:"गुणत्रय विभाग योग",en:"Gunatraya Vibhaga Yoga"},
-{n:15,name:"પુરુષોત્તમ યોગ",hi:"पुरुषोत्तम योग",en:"Purushottama Yoga"},
-{n:16,name:"દૈવાસુર સંપદ્ વિભાગ યોગ",hi:"दैवासुर सम्पद् विभाग योग",en:"Daivasura Sampad Vibhaga Yoga"},
-{n:17,name:"શ્રદ્ધાત્રય વિભાગ યોગ",hi:"श्रद्धात्रय विभाग योग",en:"Shraddhatraya Vibhaga Yoga"},
-{n:18,name:"મોક્ષ સંન્યાસ યોગ",hi:"मोक्ष संन्यास योग",en:"Moksha Sannyasa Yoga"}
+{
+n:1,
+name:"અર્જુનવિષાદ યોગ",
+hi:"अर्जुनविषाद योग",
+en:"Arjuna Vishada Yoga"
+},
+
+{
+n:2,
+name:"સાંખ્ય યોગ",
+hi:"सांख्य योग",
+en:"Sankhya Yoga"
+},
+
+{
+n:3,
+name:"કર્મ યોગ",
+hi:"कर्म योग",
+en:"Karma Yoga"
+},
+
+{
+n:4,
+name:"જ્ઞાન કર્મ સંન્યાસ યોગ",
+hi:"ज्ञान कर्म संन्यास योग",
+en:"Jnana Karma Sannyasa Yoga"
+},
+
+{
+n:5,
+name:"કર્મ સંન્યાસ યોગ",
+hi:"कर्म संन्यास योग",
+en:"Karma Sannyasa Yoga"
+},
+
+{
+n:6,
+name:"ધ્યાન યોગ",
+hi:"ध्यान योग",
+en:"Dhyana Yoga"
+},
+
+{
+n:7,
+name:"જ્ઞાન વિજ્ઞાન યોગ",
+hi:"ज्ञान विज्ञान योग",
+en:"Jnana Vijnana Yoga"
+},
+
+{
+n:8,
+name:"અક્ષર બ્રહ્મ યોગ",
+hi:"अक्षर ब्रह्म योग",
+en:"Akshara Brahma Yoga"
+},
+
+{
+n:9,
+name:"રાજવિદ્યા રાજગુહ્ય યોગ",
+hi:"राजविद्या राजगुह्य योग",
+en:"Raja Vidya Raja Guhya Yoga"
+},
+
+{
+n:10,
+name:"વિભૂતિ યોગ",
+hi:"विभूति योग",
+en:"Vibhuti Yoga"
+},
+
+{
+n:11,
+name:"વિશ્વરૂપ દર્શન યોગ",
+hi:"विश्वरूप दर्शन योग",
+en:"Vishvarupa Darshana Yoga"
+},
+
+{
+n:12,
+name:"ભક્તિ યોગ",
+hi:"भक्ति योग",
+en:"Bhakti Yoga"
+},
+
+{
+n:13,
+name:"ક્ષેત્ર ક્ષેત્રજ્ઞ વિભાગ યોગ",
+hi:"क्षेत्र क्षेत्रज्ञ विभाग योग",
+en:"Kshetra Kshetrajna Vibhaga Yoga"
+},
+
+{
+n:14,
+name:"ગુણત્રય વિભાગ યોગ",
+hi:"गुणत्रय विभाग योग",
+en:"Gunatraya Vibhaga Yoga"
+},
+
+{
+n:15,
+name:"પુરુષોત્તમ યોગ",
+hi:"पुरुषोत्तम योग",
+en:"Purushottama Yoga"
+},
+
+{
+n:16,
+name:"દૈવાસુર સંપદ્ વિભાગ યોગ",
+hi:"दैवासुर सम्पद् विभाग योग",
+en:"Daivasura Sampad Vibhaga Yoga"
+},
+
+{
+n:17,
+name:"શ્રદ્ધાત્રય વિભાગ યોગ",
+hi:"श्रद्धात्रय विभाग योग",
+en:"Shraddhatraya Vibhaga Yoga"
+},
+
+{
+n:18,
+name:"મોક્ષ સંન્યાસ યોગ",
+hi:"मोक्ष संन्यास योग",
+en:"Moksha Sannyasa Yoga"
+}
 
 ];
 
 
-/*
-   અહીં પછી વધુ શ્લોકો સરળતાથી ઉમેરી શકાય છે.
-
-   format:
-
-   {
-      id:"2.47",
-      chapter:2,
-      verse:47,
-      sanskrit:"...",
-      gu:"...",
-      hi:"...",
-      en:"..."
-   }
-*/
+/* =====================================================
+   SHLOK DATA
+===================================================== */
 
 const shloks = [
 
@@ -1018,88 +1291,123 @@ const shloks = [
 id:"2.20",
 chapter:2,
 verse:20,
-sanskrit:"न जायते म्रियते वा कदाचित् ।",
-gu:"આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું ક્યારેય મૃત્યુ પણ થતું નથી.",
-hi:"आत्मा का कभी जन्म नहीं होता और न ही कभी मृत्यु होती है।",
-en:"The soul is never born and it never dies."
+
+sanskrit:
+"न जायते म्रियते वा कदाचित् ।",
+
+gu:
+"આત્માનો ક્યારેય જન્મ થતો નથી અને આત્માનું ક્યારેય મૃત્યુ પણ થતું નથી.",
+
+hi:
+"आत्मा का कभी जन्म नहीं होता और न ही कभी मृत्यु होती है।",
+
+en:
+"The soul is never born and it never dies."
 },
 
 {
 id:"2.47",
 chapter:2,
 verse:47,
-sanskrit:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।",
-gu:"તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.",
-hi:"तुम्हारा अधिकार केवल कर्म करने में है, उसके फल में कभी नहीं।",
-en:"You have a right to perform your duty, but not to the fruits of your actions."
+
+sanskrit:
+"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।",
+
+gu:
+"તારો અધિકાર માત્ર કર્મ કરવામાં છે, તેના ફળમાં ક્યારેય નથી.",
+
+hi:
+"तुम्हारा अधिकार केवल कर्म करने में है, उसके फल में कभी नहीं।",
+
+en:
+"You have a right to perform your duty, but not to the fruits of your actions."
 },
 
 {
 id:"4.7",
 chapter:4,
 verse:7,
-sanskrit:"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।",
-gu:"હે ભારત, જ્યારે જ્યારે ધર્મની હાનિ થાય છે ત્યારે હું પ્રગટ થાઉં છું.",
-hi:"हे भारत, जब-जब धर्म की हानि होती है तब मैं प्रकट होता हूँ।",
-en:"Whenever righteousness declines, I manifest Myself."
+
+sanskrit:
+"यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।",
+
+gu:
+"હે ભારત, જ્યારે જ્યારે ધર્મની હાનિ થાય છે ત્યારે હું પ્રગટ થાઉં છું.",
+
+hi:
+"हे भारत, जब-जब धर्म की हानि होती है तब मैं प्रकट होता हूँ।",
+
+en:
+"Whenever righteousness declines, I manifest Myself."
 },
 
 {
 id:"4.8",
 chapter:4,
 verse:8,
-sanskrit:"परित्राणाय साधूनां विनाशाय च दुष्कृताम् ।",
-gu:"સાધુઓના રક્ષણ માટે અને દુષ્ટોના વિનાશ માટે હું પ્રગટ થાઉં છું.",
-hi:"साधुओं की रक्षा और दुष्टों के विनाश के लिए मैं प्रकट होता हूँ।",
-en:"I manifest to protect the righteous and to destroy evil."
+
+sanskrit:
+"परित्राणाय साधूनां विनाशाय च दुष्कृताम् ।",
+
+gu:
+"સાધુઓના રક્ષણ માટે અને દુષ્ટોના વિનાશ માટે હું પ્રગટ થાઉં છું.",
+
+hi:
+"साधुओं की रक्षा और दुष्टों के विनाश के लिए मैं प्रकट होता हूँ।",
+
+en:
+"I manifest to protect the righteous and to destroy evil."
 },
 
 {
 id:"12.13",
 chapter:12,
 verse:13,
-sanskrit:"अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च ।",
-gu:"જે કોઈ પ્રાણી પ્રત્યે દ્વેષ રાખતો નથી, સૌનો મિત્ર અને કરુણાશીલ છે.",
-hi:"जो किसी प्राणी से द्वेष नहीं करता, सबका मित्र और करुणामय है।",
-en:"One who has no hatred toward any being and is friendly and compassionate."
+
+sanskrit:
+"अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च ।",
+
+gu:
+"જે કોઈ પ્રાણી પ્રત્યે દ્વેષ રાખતો નથી, સૌનો મિત્ર અને કરુણાશીલ છે.",
+
+hi:
+"जो किसी प्राणी से द्वेष नहीं करता, सबका मित्र और करुणामय है।",
+
+en:
+"One who has no hatred toward any being and is friendly and compassionate."
 }
 
 ];
 
 
-/* =========================================================
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
 
 let currentLanguage =
-localStorage.getItem("ishvarLanguage") || "gu";
+localStorage.getItem("brahmanshLanguage") || "gu";
 
 let favorites =
-JSON.parse(localStorage.getItem("ishvarFavorites") || "[]");
+JSON.parse(
+localStorage.getItem("brahmanshFavorites") || "[]"
+);
 
 
-/* =========================================================
-   PAGE
-========================================================= */
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
 
-function openPage(pageId,button=null){
+function openPage(id){
 
 document.querySelectorAll(".page")
-.forEach(p=>p.classList.remove("active"));
+.forEach(page=>{
+page.classList.remove("active");
+});
 
-const page=document.getElementById(pageId);
+const target=document.getElementById(id);
 
-if(page){
-page.classList.add("active");
-}
-
-if(button){
-
-document.querySelectorAll(".nav-item")
-.forEach(n=>n.classList.remove("active"));
-
-button.classList.add("active");
-
+if(target){
+target.classList.add("active");
 }
 
 window.scrollTo({
@@ -1110,211 +1418,77 @@ behavior:"smooth"
 }
 
 
-/* =========================================================
-   HOME
-========================================================= */
+function setActiveNav(button){
 
-function renderRecent(){
-
-const box=document.getElementById("recentShloks");
-
-box.innerHTML=shloks
-.slice(0,3)
-.map(item=>createShlokCard(item))
-.join("");
-
-}
-
-
-/* =========================================================
-   SHLOK CARD
-========================================================= */
-
-function createShlokCard(item){
-
-const favorite=
-favorites.includes(item.id)
-? "favorite-active"
-: "";
-
-let meaning=item.gu;
-
-if(currentLanguage==="hi"){
-meaning=item.hi;
-}
-
-if(currentLanguage==="en"){
-meaning=item.en;
-}
-
-let label="ગુજરાતી અર્થ";
-
-if(currentLanguage==="hi"){
-label="हिन्दी अर्थ";
-}
-
-if(currentLanguage==="en"){
-label="English Meaning";
-}
-
-return `
-
-<div class="shlok-card">
-
-<div class="shlok-top">
-
-<span class="chapter">
-भगवद् गीता • ${item.chapter}.${item.verse}
-</span>
-
-<div class="shlok-actions">
-
-<button class="icon-btn"
-title="Copy"
-onclick="copyText(${JSON.stringify(item.sanskrit)})">
-
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.7">
-<rect x="8" y="8" width="11" height="11" rx="2"/>
-<path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>
-</svg>
-
-</button>
-
-
-<button class="icon-btn"
-title="Share"
-onclick="shareText(${JSON.stringify(item.sanskrit)})">
-
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.7">
-<circle cx="18" cy="5" r="2"/>
-<circle cx="6" cy="12" r="2"/>
-<circle cx="18" cy="19" r="2"/>
-<path d="m8 11 8-5"/>
-<path d="m8 13 8 5"/>
-</svg>
-
-</button>
-
-
-<button class="icon-btn"
-title="Speak"
-onclick="speakText(${JSON.stringify(item.sanskrit)})">
-
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.7">
-<path d="M4 10v4"/>
-<path d="M8 7v10"/>
-<path d="M12 4v16"/>
-<path d="M16 8v8"/>
-<path d="M20 10v4"/>
-</svg>
-
-</button>
-
-
-<button class="icon-btn ${favorite}"
-title="Favorite"
-onclick="toggleFavorite('${item.id}')">
-
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.7">
-<path d="M20 8c0 5-8 10-8 10S4 13 4 8a4 4 0 0 1 7-2a4 4 0 0 1 9 2Z"/>
-</svg>
-
-</button>
-
-</div>
-
-</div>
-
-<div class="shlok">
-${item.sanskrit}
-</div>
-
-<div class="meaning-box">
-
-<div class="meaning-label">
-${label}
-</div>
-
-<div class="meaning-text">
-${meaning}
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================================================
-   SHLOK PAGE
-========================================================= */
-
-function renderShloks(data=shloks){
-
-const list=document.getElementById("shlokList");
-
-if(!data.length){
-
-list.innerHTML=`
-<div class="empty">
-<p>કોઈ શ્લોક મળ્યો નથી.</p>
-</div>
-`;
-
-return;
-
-}
-
-list.innerHTML=data.map(createShlokCard).join("");
-
-}
-
-
-/* =========================================================
-   LANGUAGE
-========================================================= */
-
-function setLanguage(lang,button){
-
-currentLanguage=lang;
-
-localStorage.setItem(
-"ishvarLanguage",
-lang
-);
-
-document.querySelectorAll(".language-tabs button")
-.forEach(b=>b.classList.remove("active"));
+document.querySelectorAll(".nav-item")
+.forEach(item=>{
+item.classList.remove("active");
+});
 
 if(button){
 button.classList.add("active");
 }
 
-renderShloks(shloks);
+}
 
-renderRecent();
+
+function goHome(button){
+
+openPage("homePage");
+
+setActiveNav(button);
 
 }
 
 
-/* =========================================================
+function openShloks(button=null){
+
+openPage("shlokPage");
+
+setActiveNav(button);
+
+renderLanguageButtons();
+
+renderShloks();
+
+}
+
+
+function openFavorites(button){
+
+openPage("favoritePage");
+
+setActiveNav(button);
+
+renderFavorites();
+
+}
+
+
+function openSettings(button){
+
+openPage("settingsPage");
+
+setActiveNav(button);
+
+}
+
+
+/* =====================================================
    CHAPTERS
-========================================================= */
+===================================================== */
 
 function showChapters(button=null){
 
-openPage("gitaPage",button);
+openPage("gitaPage");
 
-const list=document.getElementById("chapterList");
+setActiveNav(button);
 
-list.innerHTML=chapters.map(ch=>`
+const list=
+document.getElementById("chapterList");
+
+list.innerHTML=
+chapters.map(ch=>`
 
 <div class="chapter-card"
 onclick="openChapter(${ch.n})">
@@ -1337,8 +1511,10 @@ ${ch.en}
 
 <div class="arrow">
 
-<svg viewBox="0 0 24 24" fill="none"
-stroke="currentColor" stroke-width="1.8">
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.8">
 
 <path d="m9 18 6-6-6-6"/>
 
@@ -1353,9 +1529,9 @@ stroke="currentColor" stroke-width="1.8">
 }
 
 
-/* =========================================================
+/* =====================================================
    CHAPTER DETAIL
-========================================================= */
+===================================================== */
 
 function openChapter(number){
 
@@ -1384,23 +1560,30 @@ ${chapter.name}
 <div class="language-tabs">
 
 <button class="${currentLanguage==="gu"?"active":""}"
-onclick="setChapterLanguage('gu',this,${number})">
+onclick="setChapterLanguage('gu',${number})">
+
 ગુજરાતી
+
 </button>
 
 <button class="${currentLanguage==="hi"?"active":""}"
-onclick="setChapterLanguage('hi',this,${number})">
+onclick="setChapterLanguage('hi',${number})">
+
 हिन्दी
+
 </button>
 
 <button class="${currentLanguage==="en"?"active":""}"
-onclick="setChapterLanguage('en',this,${number})">
+onclick="setChapterLanguage('en',${number})">
+
 English
+
 </button>
 
 </div>
 
 `;
+
 
 if(!data.length){
 
@@ -1409,7 +1592,7 @@ html+=`
 <div class="empty">
 
 <p>
-આ અધ્યાયના વધુ શ્લોકો ટૂંક સમયમાં ઉમેરવામાં આવશે.
+આ અધ્યાયના સંપૂર્ણ શ્લોકો databaseમાં ઉમેરવાના બાકી છે.
 </p>
 
 </div>
@@ -1418,21 +1601,25 @@ html+=`
 
 }else{
 
-html+=data.map(createShlokCard).join("");
+html+=
+data.map(createShlokCard).join("");
 
 }
 
-document.getElementById("chapterDetail").innerHTML=html;
+
+document.getElementById(
+"chapterDetail"
+).innerHTML=html;
 
 }
 
 
-function setChapterLanguage(lang,button,chapter){
+function setChapterLanguage(lang,chapter){
 
 currentLanguage=lang;
 
 localStorage.setItem(
-"ishvarLanguage",
+"brahmanshLanguage",
 lang
 );
 
@@ -1441,9 +1628,249 @@ openChapter(chapter);
 }
 
 
-/* =========================================================
+/* =====================================================
+   SHLOK CARD
+===================================================== */
+
+function createShlokCard(item){
+
+let meaning=item.gu;
+let label="ગુજરાતી અર્થ";
+
+if(currentLanguage==="hi"){
+
+meaning=item.hi;
+label="हिन्दी अर्थ";
+
+}
+
+if(currentLanguage==="en"){
+
+meaning=item.en;
+label="English Meaning";
+
+}
+
+
+const active=
+favorites.includes(item.id)
+? "favorite-active"
+: "";
+
+
+return `
+
+<div class="shlok-card">
+
+<div class="shlok-top">
+
+<span class="chapter">
+
+ભગવદ્ ગીતા •
+${item.chapter}.${item.verse}
+
+</span>
+
+
+<div class="shlok-actions">
+
+
+<button
+class="icon-btn"
+title="Copy"
+onclick='copyText(${JSON.stringify(item.sanskrit)})'>
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.7">
+
+<rect x="8" y="8"
+width="11"
+height="11"
+rx="2"/>
+
+<path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>
+
+</svg>
+
+</button>
+
+
+<button
+class="icon-btn"
+title="Share"
+onclick='shareText(${JSON.stringify(item.sanskrit)})'>
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.7">
+
+<circle cx="18" cy="5" r="2"/>
+<circle cx="6" cy="12" r="2"/>
+<circle cx="18" cy="19" r="2"/>
+
+<path d="m8 11 8-5"/>
+<path d="m8 13 8 5"/>
+
+</svg>
+
+</button>
+
+
+<button
+class="icon-btn"
+title="Read"
+onclick='speakText(${JSON.stringify(item.sanskrit)})'>
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.7">
+
+<path d="M4 10v4"/>
+<path d="M8 7v10"/>
+<path d="M12 4v16"/>
+<path d="M16 8v8"/>
+<path d="M20 10v4"/>
+
+</svg>
+
+</button>
+
+
+<button
+class="icon-btn ${active}"
+title="Favorite"
+onclick="toggleFavorite('${item.id}')">
+
+<svg viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="1.7">
+
+<path d="M20 8c0 5-8 10-8 10S4 13 4 8a4 4 0 0 1 7-2a4 4 0 0 1 9 2Z"/>
+
+</svg>
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="shlok">
+${item.sanskrit}
+</div>
+
+
+<div class="meaning-box">
+
+<div class="meaning-label">
+${label}
+</div>
+
+<div class="meaning-text">
+${meaning}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   SHLOK LIST
+===================================================== */
+
+function renderShloks(data=shloks){
+
+const list=
+document.getElementById("shlokList");
+
+if(!data.length){
+
+list.innerHTML=`
+
+<div class="empty">
+<p>કોઈ શ્લોક મળ્યો નથી.</p>
+</div>
+
+`;
+
+return;
+
+}
+
+list.innerHTML=
+data.map(createShlokCard).join("");
+
+renderLanguageButtons();
+
+}
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+function renderLanguageButtons(){
+
+["Gu","Hi","En"].forEach(x=>{
+
+const btn=
+document.getElementById("lang"+x);
+
+if(btn){
+btn.classList.remove("active");
+}
+
+});
+
+const id=
+currentLanguage==="gu"
+? "langGu"
+: currentLanguage==="hi"
+? "langHi"
+: "langEn";
+
+const active=
+document.getElementById(id);
+
+if(active){
+active.classList.add("active");
+}
+
+}
+
+
+function setLanguage(lang){
+
+currentLanguage=lang;
+
+localStorage.setItem(
+"brahmanshLanguage",
+lang
+);
+
+renderLanguageButtons();
+
+renderShloks();
+
+renderRecent();
+
+}
+
+
+/* =====================================================
    FAVORITES
-========================================================= */
+===================================================== */
 
 function toggleFavorite(id){
 
@@ -1459,20 +1886,16 @@ favorites.push(id);
 }
 
 localStorage.setItem(
-"ishvarFavorites",
+"brahmanshFavorites",
 JSON.stringify(favorites)
 );
 
-renderShloks(shloks);
+renderShloks();
 renderRecent();
 renderFavorites();
 
 }
 
-
-/* =========================================================
-   FAVORITE LIST
-========================================================= */
 
 function renderFavorites(){
 
@@ -1480,7 +1903,10 @@ const box=
 document.getElementById("favoriteList");
 
 const data=
-shloks.filter(s=>favorites.includes(s.id));
+shloks.filter(
+item=>favorites.includes(item.id)
+);
+
 
 if(!data.length){
 
@@ -1509,6 +1935,7 @@ return;
 
 }
 
+
 box.innerHTML=
 data.map(createShlokCard).join("");
 
@@ -1525,16 +1952,17 @@ return;
 
 }
 
+
 if(confirm("બધા Favorites દૂર કરવા છે?")){
 
 favorites=[];
 
 localStorage.removeItem(
-"ishvarFavorites"
+"brahmanshFavorites"
 );
 
 renderFavorites();
-renderShloks(shloks);
+renderShloks();
 renderRecent();
 
 }
@@ -1542,9 +1970,27 @@ renderRecent();
 }
 
 
-/* =========================================================
+/* =====================================================
+   RECENT
+===================================================== */
+
+function renderRecent(){
+
+const box=
+document.getElementById("recentShloks");
+
+box.innerHTML=
+shloks
+.slice(0,3)
+.map(createShlokCard)
+.join("");
+
+}
+
+
+/* =====================================================
    SEARCH
-========================================================= */
+===================================================== */
 
 function searchContent(){
 
@@ -1554,14 +2000,27 @@ document.getElementById("searchInput")
 .toLowerCase()
 .trim();
 
+
 if(!query){
+
+if(
+document.getElementById("searchPage")
+.classList.contains("active")
+){
+
+goHome();
+
+}
 
 return;
 
 }
 
+
 const results=
-shloks.filter(item=>
+shloks.filter(item=>{
+
+return (
 
 item.sanskrit
 .toLowerCase()
@@ -1597,17 +2056,32 @@ String(item.verse)
 
 );
 
+});
+
+
 openPage("searchPage");
+
+
+document.querySelectorAll(".nav-item")
+.forEach(item=>{
+item.classList.remove("active");
+});
+
 
 const box=
 document.getElementById("searchResults");
+
 
 if(!results.length){
 
 box.innerHTML=`
 
 <div class="empty">
-<p>કોઈ પરિણામ મળ્યું નથી.</p>
+
+<p>
+કોઈ પરિણામ મળ્યું નથી.
+</p>
+
 </div>
 
 `;
@@ -1616,19 +2090,23 @@ return;
 
 }
 
+
 box.innerHTML=
 results.map(createShlokCard).join("");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    COPY
-========================================================= */
+===================================================== */
 
 function copyText(text){
 
-if(navigator.clipboard){
+if(
+navigator.clipboard &&
+window.isSecureContext
+){
 
 navigator.clipboard
 .writeText(text)
@@ -1636,9 +2114,13 @@ navigator.clipboard
 alert("શ્લોક Copy થયો.");
 });
 
-}else{
+return;
 
-const area=document.createElement("textarea");
+}
+
+
+const area=
+document.createElement("textarea");
 
 area.value=text;
 
@@ -1654,20 +2136,21 @@ alert("શ્લોક Copy થયો.");
 
 }
 
-}
 
-
-/* =========================================================
+/* =====================================================
    SHARE
-========================================================= */
+===================================================== */
 
 function shareText(text){
 
 if(navigator.share){
 
 navigator.share({
-title:"Ishvar Vaani",
+
+title:"BRAHMANSH",
+
 text:text
+
 });
 
 }else{
@@ -1679,15 +2162,17 @@ copyText(text);
 }
 
 
-/* =========================================================
-   SPEECH
-========================================================= */
+/* =====================================================
+   TEXT TO SPEECH
+===================================================== */
 
 function speakText(text){
 
 if(!("speechSynthesis" in window)){
 
-alert("આ deviceમાં Text-to-Speech ઉપલબ્ધ નથી.");
+alert(
+"આ deviceમાં Text-to-Speech ઉપલબ્ધ નથી."
+);
 
 return;
 
@@ -1707,28 +2192,28 @@ speechSynthesis.speak(utterance);
 }
 
 
-/* =========================================================
+/* =====================================================
    DARK MODE
-========================================================= */
+===================================================== */
 
 function toggleDarkMode(){
 
 document.body.classList.toggle("dark");
 
 localStorage.setItem(
-"ishvarDark",
+"brahmanshDark",
 document.body.classList.contains("dark")
 );
 
 }
 
 
-/* =========================================================
-   LOAD
-========================================================= */
+/* =====================================================
+   INITIALIZE
+===================================================== */
 
 if(
-localStorage.getItem("ishvarDark")==="true"
+localStorage.getItem("brahmanshDark")==="true"
 ){
 
 document.body.classList.add("dark");
@@ -1736,7 +2221,8 @@ document.body.classList.add("dark");
 }
 
 renderRecent();
-renderShloks(shloks);
+
+renderShloks();
 
 </script>
 
