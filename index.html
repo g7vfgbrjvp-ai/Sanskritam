@@ -64,6 +64,41 @@ button{cursor:pointer}
 .setup{padding:25px 18px 35px}.setup h1{font-size:20px;text-align:center;margin:5px 0 18px}.setup .back{border:0;background:none;font-size:23px}.setupAvatar{width:96px;height:96px;border-radius:50%;margin:8px auto 20px;background:#eadfd2;display:flex;align-items:center;justify-content:center;color:#7b6b5d}.setupAvatar svg{width:46px;height:46px}.setup .form{padding:0;background:none;border:0}.gender{display:flex;gap:8px}.gender button{flex:1;padding:10px;border-radius:9px;border:1px solid var(--line);background:#fff}.gender button.active{background:var(--brown);color:#fff}.mantraCard{margin-top:15px;background:#f2dfbc;border-radius:15px;padding:16px;text-align:center}.mantraCard .m{font-family:Georgia,serif;font-size:20px;color:#754214}.empty{text-align:center;padding:45px 20px;color:#777;font-size:12px}
 .toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%) translateY(20px);background:#2c2119;color:#fff;padding:10px 14px;border-radius:10px;font-size:11px;opacity:0;pointer-events:none;transition:.2s;z-index:100}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(min-width:700px){#app{box-shadow:0 0 35px rgba(0,0,0,.15)}}
+
+/* ===== BRAHMANSH HOME V2 ===== */
+.homeTop{height:68px;padding:14px 16px 7px}
+.homeTop h1{font-size:19px;letter-spacing:1.3px}
+.homeMenu,.homeBell{width:34px;height:34px;border:0;background:none;color:#3b2b20;display:flex;align-items:center;justify-content:center}
+.homeMenu svg,.homeBell svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.homeContent{padding:12px 14px 92px}
+.homeBanner{height:238px;border-radius:16px;overflow:hidden;position:relative;background:linear-gradient(135deg,#193444 0%,#315c6b 32%,#b1783d 100%);box-shadow:0 7px 20px rgba(72,43,18,.13)}
+.bannerArt{position:absolute;inset:0;overflow:hidden;background:
+radial-gradient(circle at 68% 25%,rgba(239,208,153,.55),transparent 18%),
+linear-gradient(120deg,rgba(10,28,35,.82),rgba(68,45,25,.12))}
+.templeGlow{position:absolute;width:180px;height:180px;right:-20px;bottom:-65px;border-radius:50%;background:radial-gradient(circle,rgba(244,197,113,.65),rgba(171,100,39,.18) 45%,transparent 70%)}
+.shivaSymbol{position:absolute;right:27px;top:25px;color:#f2dfb7;font-family:Georgia,serif;font-size:62px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+.trident{position:absolute;right:100px;bottom:26px;width:3px;height:112px;background:#e4bd7d;transform:rotate(2deg);opacity:.8}
+.trident:before{content:"absolute;top:-15px;left:-14px;width:30px;height:28px;border-left:3px solid #e4bd7d;border-right:3px solid #e4bd7d;border-top:3px solid #e4bd7d;border-radius:50% 50% 0 0"}
+.bannerShade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,13,16,.76) 0%,rgba(7,13,16,.28) 48%,rgba(7,13,16,.04) 100%),linear-gradient(0deg,rgba(0,0,0,.48),transparent 48%)}
+.bannerText{position:absolute;left:18px;bottom:18px;color:#fff;max-width:220px}
+.bannerMantra{font-family:"Noto Serif Devanagari",Georgia,serif;font-size:18px;color:#f2d29c;margin-bottom:8px}
+.bannerTitle{font-family:Georgia,serif;font-size:17px;line-height:1.35;letter-spacing:.2px}
+.bannerDots{height:25px;display:flex;align-items:center;justify-content:center;gap:5px}
+.bannerDots span{width:5px;height:5px;border-radius:50%;background:#c9aa85;opacity:.7}
+.bannerDots span.active{width:7px;height:7px;background:#8b4d17;opacity:1}
+.homeGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.homeTile{min-width:0;min-height:76px;border:1px solid #ecdfcd;border-radius:12px;background:linear-gradient(180deg,#f9eedf,#f3e4d0);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:7px 3px;color:#241b15}
+.homeTile:active{transform:scale(.97)}
+.tileIcon{width:39px;height:39px;border-radius:10px;background:#f7e8d1;display:flex;align-items:center;justify-content:center;color:#8a4d18}
+.tileIcon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.homeTile span{font-size:9.5px;line-height:1.1;margin-top:6px;white-space:nowrap}
+.homeWisdom{margin-top:19px}
+.homeWisdom .sectionHead h2{font-size:19px}
+.wisdomCard{background:linear-gradient(135deg,#f5e1ba,#eed1a1);border-radius:15px;min-height:94px;padding:14px;display:flex;align-items:center;gap:12px}
+.wisdomOm{width:50px;height:50px;border-radius:50%;background:#fff3dc;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:27px;color:#92501a;flex:none}
+.wisdomSanskrit{font-family:"Noto Serif Devanagari",Georgia,serif;font-size:15px;line-height:1.45}
+.wisdomEnglish{font-size:10px;color:#6e6258;margin-top:5px;line-height:1.4}
+
 </style>
 </head>
 <body>
@@ -120,27 +155,131 @@ button{cursor:pointer}
 </section>
 
 <section id="home" class="screen">
-  <header class="top"><button class="plain" onclick="show('search')">☰</button><h1>BRAHMANSH</h1><button class="plain" onclick="toast('Notifications')">♧</button></header>
-  <div class="content">
-    <div class="hero"><div class="lotus">♢</div><div class="heroText"><h2>ॐ नमः शिवाय</h2><p>A journey to Sanatan Wisdom</p></div></div>
-    <div class="dots">••••</div>
-    <div class="grid">
-      <button class="tile" onclick="show('gita')"><div class="ti"><svg class="icon"><path d="M4 5h16v14H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><span>Bhagavad Gita</span></button>
-      <button class="tile" onclick="show('stotra')"><div class="ti"><svg class="icon"><path d="M12 3l3 6 6 1-4.5 4.5L18 21l-6-3.2L6 21l1.5-6.5L3 10l6-1z"/></svg></div><span>Stotra</span></button>
-      <button class="tile" onclick="show('japa')"><div class="ti"><svg class="icon"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></div><span>Japa</span></button>
-      <button class="tile" onclick="show('granth')"><div class="ti"><svg class="icon"><path d="M5 4h14v16H5z"/><path d="M9 4v16"/></svg></div><span>Granth</span></button>
-      <button class="tile" onclick="show('mandir')"><div class="ti"><svg class="icon"><path d="M3 20h18M5 20v-9l7-6 7 6v9M9 20v-5h6v5"/></svg></div><span>Mandir</span></button>
-      <button class="tile" onclick="show('panchang')"><div class="ti"><svg class="icon"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div><span>Panchang</span></button>
-      <button class="tile" onclick="toast('Festival')"><div class="ti"><svg class="icon"><path d="M12 3c3 5 6 7 4 12-1 3-3 5-4 5s-3-2-4-5c-2-5 1-7 4-12z"/></svg></div><span>Festival</span></button>
-      <button class="tile" onclick="show('sanatan')"><div class="ti"><svg class="icon"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg></div><span>Sanatan Gyan</span></button>
-      <button class="tile" onclick="show('suvichar')"><div class="ti"><svg class="icon"><path d="M5 7h14v10H5z"/><path d="M8 10h8M8 13h5"/></svg></div><span>Suvichar</span></button>
-      <button class="tile" onclick="toast('Gallery')"><div class="ti"><svg class="icon"><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1"/><path d="m5 17 5-5 3 3 2-2 4 4"/></svg></div><span>Gallery</span></button>
-      <button class="tile" onclick="toast('Notes')"><div class="ti"><svg class="icon"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><span>Notes</span></button>
-      <button class="tile" onclick="show('more')"><div class="ti"><svg class="icon"><circle cx="6" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="18" cy="12" r="1"/></svg></div><span>More</span></button>
+<header class="top homeTop">
+  <button class="homeMenu" onclick="toast('Menu')" aria-label="Menu">
+    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  </button>
+  <h1>BRAHMANSH</h1>
+  <button class="homeBell" onclick="toast('Notifications')" aria-label="Notifications">
+    <svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10 21h4"/></svg>
+  </button>
+</header>
+
+<div class="content homeContent">
+
+  <div class="homeBanner">
+    <div class="bannerArt">
+      <div class="templeGlow"></div>
+      <div class="shivaSymbol">ॐ</div>
+      <div class="trident"></div>
     </div>
-    <div class="section"><div class="sectionHead"><h2>Today's Wisdom</h2><button onclick="show('shlok')">View All</button></div><div class="quote"><div><p>न जायते म्रियते वा कदाचित् ।</p><small>The soul is never born and never dies.</small></div></div></div>
+    <div class="bannerShade"></div>
+    <div class="bannerText">
+      <div class="bannerMantra">ॐ नमः शिवाय</div>
+      <div class="bannerTitle">A journey to<br>Sanatan Wisdom</div>
+    </div>
   </div>
-  <nav class="bottom"><button class="nav active" onclick="show('home')"><svg class="icon"><path d="M4 11 12 4l8 7v9H4z"/><path d="M9 20v-5h6v5"/></svg>Home</button><button class="nav" onclick="show('search')"><svg class="icon"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>Search</button><button class="nav" onclick="show('granth')"><svg class="icon"><path d="M5 4h14v16H5z"/><path d="M9 4v16"/></svg>Library</button><button class="nav" onclick="show('profile')"><svg class="icon"><circle cx="12" cy="8" r="3"/><path d="M5 20c1-5 13-5 14 0"/></svg>Profile</button></nav>
+
+  <div class="bannerDots">
+    <span class="active"></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="homeGrid">
+    <button class="homeTile" onclick="show('gita')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 4v16M10 8h6M10 12h6M10 16h4"/></svg></div>
+      <span>Bhagavad Gita</span>
+    </button>
+
+    <button class="homeTile" onclick="show('stotra')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><path d="m12 3 2.5 5.5L20 10l-4 4 .9 6-4.9-2.8L7.1 20 8 14l-4-4 5.5-1.5z"/></svg></div>
+      <span>Stotra</span>
+    </button>
+
+    <button class="homeTile" onclick="show('japa')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/><path d="M8 3 6 5M16 3l2 2"/></svg></div>
+      <span>Japa</span>
+    </button>
+
+    <button class="homeTile" onclick="show('granth')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M9 4v16M12 8h4M12 12h4M12 16h3"/></svg></div>
+      <span>Granth</span>
+    </button>
+
+    <button class="homeTile" onclick="show('mandir')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20v-9l7-6 7 6v9"/><path d="M9 20v-5h6v5M8 10h8"/></svg></div>
+      <span>Mandir</span>
+    </button>
+
+    <button class="homeTile" onclick="show('panchang')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h2M12 14h2M16 14h1M8 17h2"/></svg></div>
+      <span>Panchang</span>
+    </button>
+
+    <button class="homeTile" onclick="toast('Festival')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 7 8 4 14-1 2-3 4-4 4s-3-2-4-4c-3-6 0-9 4-14Z"/><path d="M12 12c-1 2-1 4 0 5 2-1 2-3 0-5Z"/></svg></div>
+      <span>Festival</span>
+    </button>
+
+    <button class="homeTile" onclick="show('sanatan')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/><circle cx="12" cy="12" r="2"/></svg></div>
+      <span>Sanatan Gyan</span>
+    </button>
+
+    <button class="homeTile" onclick="show('suvichar')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><path d="M5 5h14v11H8l-3 3z"/><path d="M8 9h8M8 12h5"/></svg></div>
+      <span>Suvichar</span>
+    </button>
+
+    <button class="homeTile" onclick="toast('Gallery')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><circle cx="9" cy="10" r="1.3"/><path d="m5 17 5-5 3 3 2-2 4 4"/></svg></div>
+      <span>Gallery</span>
+    </button>
+
+    <button class="homeTile" onclick="toast('Notes')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+      <span>Notes</span>
+    </button>
+
+    <button class="homeTile" onclick="show('more')">
+      <div class="tileIcon"><svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/></svg></div>
+      <span>More</span>
+    </button>
+  </div>
+
+  <div class="section homeWisdom">
+    <div class="sectionHead">
+      <h2>Today's Wisdom</h2>
+      <button onclick="show('shlok')">View All</button>
+    </div>
+    <div class="wisdomCard">
+      <div class="wisdomOm">ॐ</div>
+      <div>
+        <div class="wisdomSanskrit">न जायते म्रियते वा कदाचित् ।</div>
+        <div class="wisdomEnglish">The soul is never born and never dies.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<nav class="bottom">
+  <button class="nav active" onclick="show('home')">
+    <svg class="icon"><path d="M4 11 12 4l8 7v9H4z"/><path d="M9 20v-5h6v5"/></svg>
+    Home
+  </button>
+  <button class="nav" onclick="show('search')">
+    <svg class="icon"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+    Search
+  </button>
+  <button class="nav" onclick="show('granth')">
+    <svg class="icon"><path d="M5 4h14v16H5z"/><path d="M9 4v16"/></svg>
+    Library
+  </button>
+  <button class="nav" onclick="show('profile')">
+    <svg class="icon"><circle cx="12" cy="8" r="3"/><path d="M5 20c1-5 13-5 14 0"/></svg>
+    Profile
+  </button>
+</nav>
 </section>
 
 <section id="gita" class="screen">
@@ -151,7 +290,7 @@ button{cursor:pointer}
 
 <section id="reader" class="screen">
   <header class="top"><button class="plain" onclick="show('gita')">‹</button><h1 id="readerTitle">अध्याय २</h1><button class="plain" onclick="toast('Bookmark saved')">♧</button></header>
-  <div class="content reader"><div class="verseNo">(2.47)</div><div class="verse">कर्मण्येवाधिकारस्ते<br>मा फलेषु कदाचन ।<br>मा कर्मफलहेतुर्भूर्मा<br>ते सङ्गोऽस्त्वकर्मणि ॥</div><div class="readerActions"><button class="circleBtn" onclick="speak()">▶</button><button class="circleBtn" onclick="toast('Saved')">♧</button><button class="circleBtn" onclick="share()">↗</button></div><div class="meaning"><h3>हिन्दी अर्थ</h3><p>तुम्हें केवल कर्म करने का अधिकार है, फल में कभी नहीं। तुम कर्मफल के हेतु मत बनो और अकर्मण्यता में भी आसक्त मत हो।</p><h3 style="margin-top:14px">English Meaning</h3><p>You have a right to perform your duty only, never to the fruits of your actions. Do not be the cause of the results of your actions, and do not be attached to inaction.</p></div></div>
+  <div class="content reader"><div class="verseNo">(2.47)</div><div class="verse">कर्मण्येवाधिकारस्ते<br>मा फलेषु कदाचन ।<br>मा कर्मफलहेतुर्भूर्मा<br>ते सङ्गोऽस्त्वकर्मणि ॥</div><div class="readerActions"><button class="circleBtn" onclick="speak()">▶</button><button class="circleBtn" onclick="toast('Saved')">♧</button><button class="circleBtn" onclick="share()">↗</button></div><div class="meaning"><h3>हिन्दी अर्थ</h3><p>तुम्हें केवल कर्म करने का अधिकार है, फल में कभी नहीं। तुम कर्मफल के हेतु मत बनो और अकर्मण्यता में भी आसक्त मत holistic हो।</p><h3 style="margin-top:14px">English Meaning</h3><p>You have a right to perform your duty only, never to the fruits of your actions. Do not be the cause of the results of your actions, and do not be attached to inaction.</p></div></div>
   <nav class="bottom"><button class="nav" onclick="show('home')">Home</button><button class="nav" onclick="show('search')">Search</button><button class="nav active" onclick="show('gita')">Library</button><button class="nav" onclick="show('profile')">Profile</button></nav>
 </section>
 
