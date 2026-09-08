@@ -18,11 +18,14 @@
   --cream:#f8e8c4;
   --muted:#c6a989;
   --border:rgba(214,168,79,.25);
-  --danger:#b94a48;
   --shadow:0 12px 35px rgba(0,0,0,.28);
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
@@ -32,7 +35,20 @@ body{
   min-height:100vh;
 }
 
-button,input,textarea,select{font:inherit}
+body.light{
+  --bg:#f8efe0;
+  --bg2:#fff8ed;
+  --card:#fffaf2;
+  --card2:#f4e6d0;
+  --cream:#382117;
+  --muted:#765e4c;
+  --border:rgba(120,74,24,.2);
+  background:#f8efe0;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
 
 button{
   border:0;
@@ -61,6 +77,10 @@ button{
   background:rgba(23,9,11,.94);
   backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
+}
+
+body.light .topbar{
+  background:rgba(255,250,242,.96);
 }
 
 .brand{
@@ -120,9 +140,17 @@ button{
 }
 
 @keyframes fade{
-  from{opacity:0;transform:translateY(5px)}
-  to{opacity:1;transform:translateY(0)}
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
+
+/* HERO */
 
 .hero{
   padding:25px 20px;
@@ -167,8 +195,7 @@ button{
 .daily{
   padding:20px;
   border-radius:22px;
-  background:
-    linear-gradient(135deg,#432019,#291115);
+  background:linear-gradient(135deg,#432019,#291115);
   border:1px solid var(--border);
   margin-bottom:18px;
   box-shadow:var(--shadow);
@@ -194,6 +221,7 @@ button{
 
 .card-actions{
   display:flex;
+  flex-wrap:wrap;
   gap:8px;
   margin-top:15px;
 }
@@ -206,7 +234,7 @@ button{
   border:1px solid var(--border);
 }
 
-/* SECTION TITLE */
+/* SECTION */
 
 .section-title{
   display:flex;
@@ -217,11 +245,6 @@ button{
 
 .section-title h2{
   font-size:18px;
-}
-
-.section-title span{
-  color:var(--muted);
-  font-size:12px;
 }
 
 /* GRID */
@@ -243,7 +266,7 @@ button{
   box-shadow:0 7px 20px rgba(0,0,0,.18);
 }
 
-.feature .feature-icon{
+.feature-icon{
   width:38px;
   height:38px;
   border-radius:12px;
@@ -254,7 +277,7 @@ button{
   margin-bottom:11px;
 }
 
-.feature svg{
+.feature-icon svg{
   width:21px;
   height:21px;
 }
@@ -376,71 +399,212 @@ button{
 
 /* GITA */
 
-.chapter-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+.gita-card{
+  background:linear-gradient(145deg,#432019,#291115);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:14px;
 }
 
-.chapter{
-  padding:15px;
+.gita-heading{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.gita-round{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--gold);
+  color:var(--gold2);
+  font-size:25px;
+}
+
+.gita-heading h2{
+  font-size:20px;
+}
+
+.gita-heading p{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.gita-language{
+  margin:14px 0;
+}
+
+.gita-language select{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--cream);
+}
+
+.gita-search{
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--cream);
+  outline:none;
+}
+
+.gita-chapter{
+  margin-bottom:13px;
+  padding:16px;
+  border-radius:18px;
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:15px;
-  color:var(--cream);
-  text-align:left;
 }
 
-.chapter strong{
-  color:var(--gold2);
+.gita-chapter-head{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:13px;
 }
 
-.chapter small{
+.gita-number{
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,#d39a2f,#a96808);
+  color:white;
+  font-weight:bold;
+}
+
+.gita-chapter-head strong{
   display:block;
-  color:var(--muted);
-  margin-top:5px;
+  color:var(--cream);
 }
 
-.verse-grid{
+.gita-chapter-head small{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+}
+
+.gita-verse-grid{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:7px;
 }
 
-.verse-number{
-  padding:11px 4px;
-  border-radius:10px;
+.gita-verse-btn{
+  padding:10px 4px;
+  border-radius:9px;
+  background:rgba(214,168,79,.08);
+  color:var(--gold2);
+  border:1px solid var(--border);
+}
+
+.gita-reader{
   background:var(--card);
   border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+}
+
+.gita-reader-title{
+  font-size:20px;
   color:var(--gold2);
 }
 
-.verse-box{
-  background:var(--card);
-  padding:20px;
-  border-radius:19px;
-  border:1px solid var(--border);
-  margin-bottom:13px;
+.gita-reader-meta{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:12px;
 }
 
-.sanskrit{
+.gita-sanskrit{
+  margin-top:20px;
   font-family:Georgia,"Noto Serif Devanagari",serif;
-  font-size:22px;
-  line-height:1.8;
+  font-size:23px;
+  line-height:1.9;
   color:#ffe5a7;
+  white-space:pre-line;
 }
 
-.meaning{
-  margin-top:17px;
-  padding-top:15px;
+.gita-meaning{
+  margin-top:18px;
+  padding-top:16px;
   border-top:1px solid var(--border);
+}
+
+.gita-meaning h3{
+  color:var(--gold2);
+  font-size:15px;
+  margin-bottom:7px;
+}
+
+.gita-meaning p{
+  color:var(--muted);
   line-height:1.7;
+}
+
+.gita-reader-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:18px;
+}
+
+.gita-reader-actions button,
+.gita-navigation button{
+  padding:10px 12px;
+  border-radius:10px;
+  background:rgba(214,168,79,.08);
+  color:var(--gold2);
+  border:1px solid var(--border);
+}
+
+.gita-navigation{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:15px;
+}
+
+.gita-navigation button:disabled{
+  opacity:.35;
+}
+
+.gita-results{
+  margin-top:10px;
+}
+
+.gita-result{
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+
+.gita-result strong{
+  color:var(--gold2);
+}
+
+.gita-loading{
+  padding:30px;
+  text-align:center;
   color:var(--muted);
 }
 
-.loading{
-  text-align:center;
-  padding:35px 10px;
+.gita-error{
+  padding:20px;
+  border-radius:16px;
+  background:var(--card);
+  border:1px solid var(--border);
   color:var(--muted);
 }
 
@@ -548,8 +712,6 @@ textarea{
   border-radius:50%;
   object-fit:cover;
   border:4px solid var(--gold);
-  box-shadow:0 8px 25px rgba(0,0,0,.35);
-  background:#291013;
 }
 
 .profile h2{
@@ -561,8 +723,6 @@ textarea{
   margin-top:5px;
 }
 
-/* FORM */
-
 .form{
   display:flex;
   flex-direction:column;
@@ -570,7 +730,8 @@ textarea{
   margin-top:15px;
 }
 
-.form input,.form select{
+.form input,
+.form select{
   padding:13px 14px;
   border-radius:12px;
   border:1px solid var(--border);
@@ -579,7 +740,7 @@ textarea{
   outline:none;
 }
 
-/* BOTTOM NAV */
+/* BOTTOM */
 
 .bottom-nav{
   position:fixed;
@@ -593,7 +754,10 @@ textarea{
   background:rgba(25,10,12,.97);
   border-top:1px solid var(--border);
   z-index:100;
-  backdrop-filter:blur(18px);
+}
+
+body.light .bottom-nav{
+  background:rgba(255,250,242,.96);
 }
 
 .nav-btn{
@@ -616,42 +780,18 @@ textarea{
   color:var(--gold2);
 }
 
-/* LIGHT */
-
-body.light{
-  --bg:#f8efe0;
-  --bg2:#fff8ed;
-  --card:#fffaf2;
-  --card2:#f4e6d0;
-  --cream:#382117;
-  --muted:#765e4c;
-  --border:rgba(120,74,24,.2);
-  background:#f8efe0;
-}
-
-body.light .topbar,
-body.light .bottom-nav{
-  background:rgba(255,250,242,.96);
-}
-
-body.light .search,
-body.light textarea,
-body.light .form input,
-body.light .form select{
-  background:#fffaf2;
-  color:#382117;
-}
-
-body.light .japa-main{
-  color:white;
-}
-
-/* RESPONSIVE */
-
 @media(max-width:380px){
-  .grid{gap:8px}
-  .feature{padding:13px}
-  .verse-grid{grid-template-columns:repeat(4,1fr)}
+  .grid{
+    gap:8px;
+  }
+
+  .feature{
+    padding:13px;
+  }
+
+  .gita-verse-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
 }
 </style>
 </head>
@@ -661,170 +801,247 @@ body.light .japa-main{
 <div class="app">
 
 <header class="topbar">
+
   <div class="brand">
     <div class="om">ॐ</div>
     <strong>BRAHMANSH</strong>
   </div>
 
   <div class="header-actions">
-    <button class="icon-btn" onclick="show('searchPage')" aria-label="Search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+    <button class="icon-btn" onclick="show('searchPage')">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.8">
         <circle cx="11" cy="11" r="6.5"/>
         <path d="m16 16 5 5"/>
       </svg>
+
     </button>
+
   </div>
+
 </header>
+
 
 <!-- HOME -->
 
 <section id="home" class="screen active">
 
   <div class="hero">
-    <small id="welcomeSmall">સનાતન જ્ઞાન અને આધ્યાત્મિક જીવન</small>
-    <h1 id="welcomeTitle">સ્વાગત છે</h1>
+
+    <small id="welcomeSmall">
+      સનાતન જ્ઞાન અને આધ્યાત્મિક જીવન
+    </small>
+
+    <h1 id="welcomeTitle">
+      સ્વાગત છે
+    </h1>
+
     <p id="welcomeText">
       શ્લોક, મંત્ર, સ્તોત્ર, ગ્રંથ અને સનાતન જ્ઞાન — એક જ સ્થાને.
     </p>
+
   </div>
 
+
   <div class="daily">
-    <div class="daily-label" id="todayLabel">આજની વાણી</div>
+
+    <div class="daily-label" id="todayLabel">
+      આજની વાણી
+    </div>
+
     <h2 id="dailyQuote">
       कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।
     </h2>
+
     <p id="dailyMeaning">
       કર્મ કરવામાં તારો અધિકાર છે, પરંતુ તેના ફળ પર નથી.
     </p>
 
     <div class="card-actions">
-      <button class="small-btn" onclick="copyDaily()" id="copyText">Copy</button>
-      <button class="small-btn" onclick="saveDaily()" id="saveText">Save</button>
-      <button class="small-btn" onclick="shareDaily()" id="shareText">Share</button>
+
+      <button class="small-btn" onclick="copyDaily()">
+        Copy
+      </button>
+
+      <button class="small-btn" onclick="saveDaily()">
+        Save
+      </button>
+
+      <button class="small-btn" onclick="shareDaily()">
+        Share
+      </button>
+
     </div>
+
   </div>
 
+
   <div class="section-title">
-    <h2 id="quickTitle">ઝડપી પ્રવેશ</h2>
+    <h2 id="quickTitle">
+      ઝડપી પ્રવેશ
+    </h2>
   </div>
+
 
   <div class="grid">
 
     <button class="feature" onclick="show('granthPage')">
+
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
           <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z"/>
           <path d="M4 5.5V22"/>
         </svg>
+
       </div>
-      <strong id="gitaCard">ગ્રંથ</strong>
+
+      <strong>ગ્રંથ</strong>
       <small>Gita • Ramayana • Upanishads</small>
+
     </button>
+
 
     <button class="feature" onclick="show('japaPage')">
+
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
           <circle cx="12" cy="12" r="8"/>
           <circle cx="12" cy="12" r="2"/>
-          <path d="M12 4V2M12 22v-2M4 12H2m20 0h-2"/>
         </svg>
+
       </div>
+
       <strong>જપ</strong>
       <small>Mantra Counter</small>
+
     </button>
 
+
     <button class="feature" onclick="show('stotraPage')">
+
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
           <path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7z"/>
           <path d="M9 12h6M12 9v6"/>
         </svg>
+
       </div>
+
       <strong>સ્તોત્ર</strong>
       <small>Stotra Collection</small>
+
     </button>
+
 
     <button class="feature" onclick="show('mandirPage')">
+
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M3 21h18M5 21V10h14v11M3 10l9-7 9 7M8 21v-6h3v6M13 21v-6h3v6"/>
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
+          <path d="M3 21h18M5 21V10h14v11M3 10l9-7 9 7"/>
         </svg>
+
       </div>
+
       <strong>મંદિર</strong>
       <small>Jyotirlinga • Shaktipeeth</small>
+
     </button>
 
+
     <button class="feature" onclick="show('sanatanPage')">
+
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
           <circle cx="12" cy="12" r="8"/>
           <path d="M12 8v4l3 2"/>
         </svg>
+
       </div>
+
       <strong>સનાતન જ્ઞાન</strong>
       <small>Dharma & Culture</small>
+
     </button>
 
+
     <button class="feature" onclick="show('panchangPage')">
+
       <div class="feature-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+        <svg viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.8">
           <rect x="3" y="5" width="18" height="16" rx="2"/>
           <path d="M7 3v4M17 3v4M3 10h18"/>
         </svg>
+
       </div>
+
       <strong>પંચાંગ</strong>
       <small>Tithi • Nakshatra</small>
+
     </button>
 
   </div>
+
 
   <div class="section-title">
     <h2>અન્ય</h2>
   </div>
 
+
   <div class="list">
 
     <button class="list-item" onclick="show('suvicharPage')">
-      <div class="list-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M6 4h12v16H6z"/>
-          <path d="M9 8h6M9 12h6M9 16h4"/>
-        </svg>
-      </div>
+
+      <div class="list-icon">ॐ</div>
+
       <div class="list-content">
         <strong>સુવિચાર</strong>
         <small>Daily spiritual thoughts</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
+
     <button class="list-item" onclick="show('galleryPage')">
-      <div class="list-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <rect x="3" y="4" width="18" height="16" rx="2"/>
-          <circle cx="8" cy="9" r="1.5"/>
-          <path d="m5 17 4-4 3 3 2-2 5 4"/>
-        </svg>
-      </div>
+
+      <div class="list-icon">चित्र</div>
+
       <div class="list-content">
         <strong>ગેલેરી</strong>
         <small>Devotional collection</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
+
     <button class="list-item" onclick="show('notesPage')">
-      <div class="list-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M4 4h16v16H4z"/>
-          <path d="M8 8h8M8 12h8M8 16h5"/>
-        </svg>
-      </div>
+
+      <div class="list-icon">लेख</div>
+
       <div class="list-content">
         <strong>નોંધ</strong>
         <small>તમારી આધ્યાત્મિક નોંધો</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
   </div>
@@ -837,128 +1054,113 @@ body.light .japa-main{
 <section id="granthPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
     </button>
+
     <div class="page-title">
       <h1>ગ્રંથ</h1>
       <p>સનાતન ગ્રંથો</p>
     </div>
+
   </div>
+
 
   <div class="list">
 
     <button class="list-item" onclick="openGita()">
-      <div class="list-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z"/>
-          <path d="M4 5.5V22"/>
-        </svg>
-      </div>
+
+      <div class="list-icon">ॐ</div>
+
       <div class="list-content">
         <strong>શ્રીમદ્ ભગવદ્ ગીતા</strong>
         <small>18 અધ્યાય • 700 શ્લોક</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
+
     <button class="list-item" onclick="comingSoon('શ્રીમદ્ ભાગવત')">
+
       <div class="list-icon">भाग</div>
+
       <div class="list-content">
         <strong>શ્રીમદ્ ભાગવત</strong>
         <small>Bhagavata Purana</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
+
     <button class="list-item" onclick="comingSoon('વાલ્મીકિ રામાયણ')">
+
       <div class="list-icon">राम</div>
+
       <div class="list-content">
         <strong>વાલ્મીકિ રામાયણ</strong>
         <small>Ramayana</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
+
     <button class="list-item" onclick="comingSoon('ઉપનિષદ')">
+
       <div class="list-icon">ॐ</div>
+
       <div class="list-content">
         <strong>ઉપનિષદ</strong>
         <small>Vedantic wisdom</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
   </div>
+
 </section>
 
 
-<!-- GITA CHAPTERS -->
+<!-- GITA -->
 
 <section id="gitaPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('granthPage')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>ભગવદ્ ગીતા</h1>
       <p>18 અધ્યાય • 700 શ્લોક</p>
     </div>
+
   </div>
 
-  <input class="search" id="chapterSearch"
-         placeholder="અધ્યાય શોધો..."
-         oninput="filterChapters()">
 
-  <div id="chapterGrid" class="chapter-grid"></div>
+  <div id="gita700List">
 
-</section>
-
-
-<!-- VERSES -->
-
-<section id="versePage" class="screen">
-
-  <div class="back-row">
-    <button class="back" onclick="show('gitaPage')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="m15 18-6-6 6-6"/>
-      </svg>
-    </button>
-    <div class="page-title">
-      <h1 id="verseTitle">અધ્યાય</h1>
-      <p id="verseSubtitle"></p>
+    <div class="gita-loading">
+      ભગવદ્ ગીતા લોડ થઈ રહી છે...
     </div>
-  </div>
 
-  <div id="verseGrid" class="verse-grid"></div>
-
-</section>
-
-
-<!-- READER -->
-
-<section id="readerPage" class="screen">
-
-  <div class="back-row">
-    <button class="back" onclick="show('versePage')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="m15 18-6-6 6-6"/>
-      </svg>
-    </button>
-    <div class="page-title">
-      <h1 id="readerTitle">શ્લોક</h1>
-      <p id="readerSubtitle"></p>
-    </div>
-  </div>
-
-  <div id="readerBox" class="verse-box">
-    <div class="loading">શ્લોક લોડ થઈ રહ્યો છે...</div>
   </div>
 
 </section>
@@ -969,29 +1171,45 @@ body.light .japa-main{
 <section id="japaPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>જપ</h1>
       <p>મંત્ર જપ કાઉન્ટર</p>
     </div>
+
   </div>
+
 
   <div class="japa-card">
 
-    <div class="japa-mantra">ॐ नमः शिवाय</div>
+    <div class="japa-mantra">
+      ॐ नमः शिवाय
+    </div>
 
-    <div id="japaCount" class="japa-count">0</div>
-    <div class="japa-sub">જપ</div>
+    <div id="japaCount" class="japa-count">
+      0
+    </div>
+
+    <div class="japa-sub">
+      જપ
+    </div>
 
     <div class="progress">
       <div id="japaBar" class="progress-bar"></div>
     </div>
 
-    <div id="japaProgress" class="japa-sub">0 / 108</div>
+    <div id="japaProgress" class="japa-sub">
+      0 / 108
+    </div>
 
     <br>
 
@@ -1000,7 +1218,11 @@ body.light .japa-main{
     </button>
 
     <div class="japa-actions">
-      <button class="secondary" onclick="resetJapa()">Reset</button>
+
+      <button class="secondary" onclick="resetJapa()">
+        Reset
+      </button>
+
     </div>
 
   </div>
@@ -1013,55 +1235,89 @@ body.light .japa-main{
 <section id="stotraPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>સ્તોત્ર</h1>
       <p>પ્રસિદ્ધ સ્તોત્રો</p>
     </div>
+
   </div>
 
-  <input class="search" placeholder="સ્તોત્ર શોધો..." oninput="filterList(this,'stotraList')">
+
+  <input
+    class="search"
+    placeholder="સ્તોત્ર શોધો..."
+    oninput="filterList(this,'stotraList')">
+
 
   <div id="stotraList" class="list">
 
-    <button class="list-item" onclick="openStotra('शिव ताण्डव स्तोत्रम्','जटाटवीगलज्जलप्रवाहपावितस्थले...')">
+    <button class="list-item"
+      onclick="openStotra('शिव ताण्डव स्तोत्रम्','जटाटवीगलज्जलप्रवाहपावितस्थले...')">
+
       <div class="list-icon">शि</div>
+
       <div class="list-content">
         <strong>શિવ તાંડવ સ્તોત્ર</strong>
         <small>ભગવાન શિવ</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
-    <button class="list-item" onclick="openStotra('हनुमान चालीसा','श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि...')">
+
+    <button class="list-item"
+      onclick="openStotra('हनुमान चालीसा','श्रीगुरु चरन सरोज रज निज मनु मुकुरु सुधारि...')">
+
       <div class="list-icon">ह</div>
+
       <div class="list-content">
         <strong>હનુમાન ચાલીસા</strong>
         <small>ભગવાન હનુમાન</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
-    <button class="list-item" onclick="openStotra('महिषासुरमर्दिनि स्तोत्रम्','अयि गिरिनन्दिनि नन्दितमेदिनि विश्वविनोदनन्दिनुते...')">
+
+    <button class="list-item"
+      onclick="openStotra('महिषासुरमर्दिनि स्तोत्रम्','अयि गिरिनन्दिनि नन्दितमेदिनि विश्वविनोदनन्दिनुते...')">
+
       <div class="list-icon">दे</div>
+
       <div class="list-content">
         <strong>મહિષાસુરમર્દિની સ્તોત્ર</strong>
         <small>માતા દુર્ગા</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
-    <button class="list-item" onclick="openStotra('विष्णु सहस्रनाम','विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः...')">
+
+    <button class="list-item"
+      onclick="openStotra('विष्णु सहस्रनाम','विश्वं विष्णुर्वषट्कारो भूतभव्यभवत्प्रभुः...')">
+
       <div class="list-icon">वि</div>
+
       <div class="list-content">
         <strong>વિષ્ણુ સહસ્રનામ</strong>
         <small>ભગવાન વિષ્ણુ</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
   </div>
@@ -1074,24 +1330,39 @@ body.light .japa-main{
 <section id="stotraReaderPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('stotraPage')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
 
     <div class="page-title">
       <h1 id="stotraReaderTitle">સ્તોત્ર</h1>
     </div>
+
   </div>
 
-  <div class="verse-box">
-    <div id="stotraText" class="sanskrit"></div>
+
+  <div class="gita-reader">
+
+    <div id="stotraText" class="gita-sanskrit"></div>
 
     <div class="card-actions">
-      <button class="small-btn" onclick="copyStotra()">Copy</button>
-      <button class="small-btn" onclick="speakStotra()">Speak</button>
+
+      <button class="small-btn" onclick="copyStotra()">
+        Copy
+      </button>
+
+      <button class="small-btn" onclick="speakStotra()">
+        Speak
+      </button>
+
     </div>
+
   </div>
 
 </section>
@@ -1102,53 +1373,68 @@ body.light .japa-main{
 <section id="mandirPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>મંદિર</h1>
       <p>ભારતના પવિત્ર તીર્થ</p>
     </div>
+
   </div>
+
 
   <div class="list">
 
-    <button class="list-item" onclick="templeInfo('12 જ્યોતિર્લિંગ')">
+    <button class="list-item"
+      onclick="templeInfo('12 જ્યોતિર્લિંગ')">
+
       <div class="list-icon">ॐ</div>
+
       <div class="list-content">
         <strong>12 જ્યોતિર્લિંગ</strong>
         <small>દ્વાદશ જ્યોતિર્લિંગ</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
-    <button class="list-item" onclick="templeInfo('51 શક્તિપીઠ')">
+
+    <button class="list-item"
+      onclick="templeInfo('51 શક્તિપીઠ')">
+
       <div class="list-icon">श</div>
+
       <div class="list-content">
         <strong>51 શક્તિપીઠ</strong>
         <small>માતા શક્તિના પવિત્ર સ્થાન</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
-    <button class="list-item" onclick="templeInfo('ચાર ધામ')">
+
+    <button class="list-item"
+      onclick="templeInfo('ચાર ધામ')">
+
       <div class="list-icon">ध</div>
+
       <div class="list-content">
         <strong>ચાર ધામ</strong>
         <small>બદ્રીનાથ • દ્વારકા • પુરી • રામેશ્વરમ</small>
       </div>
-      <span class="chevron">›</span>
-    </button>
 
-    <button class="list-item" onclick="templeInfo('પ્રસિદ્ધ મંદિરો')">
-      <div class="list-icon">मं</div>
-      <div class="list-content">
-        <strong>પ્રસિદ્ધ મંદિરો</strong>
-        <small>ભારતના પવિત્ર મંદિરો</small>
-      </div>
       <span class="chevron">›</span>
+
     </button>
 
   </div>
@@ -1161,30 +1447,44 @@ body.light .japa-main{
 <section id="searchPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>શોધ</h1>
       <p>શ્લોક, મંત્ર અને જ્ઞાન</p>
     </div>
+
   </div>
 
-  <input id="globalSearch"
-         class="search"
-         placeholder="શોધો..."
-         oninput="globalSearch()">
+
+  <input
+    id="globalSearch"
+    class="search"
+    placeholder="શોધો..."
+    oninput="globalSearch()">
+
 
   <div id="searchResults" class="list">
 
     <div class="list-item">
+
       <div class="list-icon">ॐ</div>
+
       <div class="list-content">
         <strong>શોધ શરૂ કરો</strong>
-        <small>શ્લોક, સ્તોત્ર, ગ્રંથ અથવા જ્ઞાન શોધો.</small>
+        <small>
+          શ્લોક, સ્તોત્ર, ગ્રંથ અથવા જ્ઞાન શોધો.
+        </small>
       </div>
+
     </div>
 
   </div>
@@ -1197,16 +1497,23 @@ body.light .japa-main{
 <section id="sanatanPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>સનાતન જ્ઞાન</h1>
       <p>ધર્મ અને આધ્યાત્મિક જ્ઞાન</p>
     </div>
+
   </div>
+
 
   <div class="list">
 
@@ -1214,10 +1521,11 @@ body.light .japa-main{
       <div class="list-icon">ध</div>
       <div class="list-content">
         <strong>ધર્મ</strong>
-        <small>ધર્મનો અર્થ અને જીવનમાં તેનું સ્થાન</small>
+        <small>ધર્મ અને સદાચાર</small>
       </div>
       <span class="chevron">›</span>
     </button>
+
 
     <button class="list-item" onclick="knowledge('કર્મ')">
       <div class="list-icon">क</div>
@@ -1228,6 +1536,7 @@ body.light .japa-main{
       <span class="chevron">›</span>
     </button>
 
+
     <button class="list-item" onclick="knowledge('યોગ')">
       <div class="list-icon">यो</div>
       <div class="list-content">
@@ -1236,6 +1545,7 @@ body.light .japa-main{
       </div>
       <span class="chevron">›</span>
     </button>
+
 
     <button class="list-item" onclick="knowledge('તહેવારો')">
       <div class="list-icon">उ</div>
@@ -1256,20 +1566,29 @@ body.light .japa-main{
 <section id="suvicharPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>સુવિચાર</h1>
       <p>આજનો આધ્યાત્મિક વિચાર</p>
     </div>
+
   </div>
+
 
   <div class="daily">
 
-    <div class="daily-label">આજનો સુવિચાર</div>
+    <div class="daily-label">
+      આજનો સુવિચાર
+    </div>
 
     <h2 id="suvicharText">
       अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च ।
@@ -1280,8 +1599,15 @@ body.light .japa-main{
     </p>
 
     <div class="card-actions">
-      <button class="small-btn" onclick="copySuvichar()">Copy</button>
-      <button class="small-btn" onclick="shareSuvichar()">Share</button>
+
+      <button class="small-btn" onclick="copySuvichar()">
+        Copy
+      </button>
+
+      <button class="small-btn" onclick="shareSuvichar()">
+        Share
+      </button>
+
     </div>
 
   </div>
@@ -1294,20 +1620,29 @@ body.light .japa-main{
 <section id="panchangPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>પંચાંગ</h1>
       <p>આજની તારીખ</p>
     </div>
+
   </div>
+
 
   <div class="daily">
 
-    <div class="daily-label">આજ</div>
+    <div class="daily-label">
+      આજ
+    </div>
 
     <h2 id="dateToday"></h2>
 
@@ -1316,19 +1651,30 @@ body.light .japa-main{
     <div class="list" style="margin-top:18px">
 
       <div class="list-item">
+
         <div class="list-icon">ति</div>
+
         <div class="list-content">
           <strong>તિથિ</strong>
-          <small>સ્થાન અનુસાર પંચાંગ માટે ઇન્ટરનેટ જરૂરી હોઈ શકે છે.</small>
+          <small>
+            સ્થાન અનુસાર પંચાંગ માહિતી માટે Internet જરૂરી હોઈ શકે છે.
+          </small>
         </div>
+
       </div>
 
+
       <div class="list-item">
+
         <div class="list-icon">न</div>
+
         <div class="list-content">
           <strong>નક્ષત્ર</strong>
-          <small>સ્થાન આધારિત માહિતી</small>
+          <small>
+            સ્થાન આધારિત માહિતી
+          </small>
         </div>
+
       </div>
 
     </div>
@@ -1343,16 +1689,23 @@ body.light .japa-main{
 <section id="galleryPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>ગેલેરી</h1>
       <p>આધ્યાત્મિક સંગ્રહ</p>
     </div>
+
   </div>
+
 
   <div class="grid">
 
@@ -1390,22 +1743,39 @@ body.light .japa-main{
 <section id="notesPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>નોંધ</h1>
-      <p>તમારી નોંધ</p>
+      <p>તમારી આધ્યાત્મિક નોંધ</p>
     </div>
+
   </div>
 
-  <textarea id="notesBox" placeholder="અહીં તમારી આધ્યાત્મિક નોંધ લખો..."></textarea>
+
+  <textarea
+    id="notesBox"
+    placeholder="અહીં તમારી આધ્યાત્મિક નોંધ લખો..."></textarea>
+
 
   <div class="card-actions">
-    <button class="primary" onclick="saveNotes()">નોંધ સાચવો</button>
-    <button class="secondary" onclick="clearNotes()">સાફ કરો</button>
+
+    <button class="primary" onclick="saveNotes()">
+      નોંધ સાચવો
+    </button>
+
+    <button class="secondary" onclick="clearNotes()">
+      સાફ કરો
+    </button>
+
   </div>
 
 </section>
@@ -1416,16 +1786,23 @@ body.light .japa-main{
 <section id="favoritesPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>મનપસંદ</h1>
-      <p>સાચવેલી વાણી</p>
+      <p>સાચવેલા શ્લોક અને વાણી</p>
     </div>
+
   </div>
+
 
   <div id="favoritesList" class="list"></div>
 
@@ -1437,51 +1814,116 @@ body.light .japa-main{
 <section id="profilePage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>પ્રોફાઇલ</h1>
       <p>તમારી આધ્યાત્મિક પ્રોફાઇલ</p>
     </div>
+
   </div>
+
 
   <div class="profile">
 
-    <img id="profilePhoto"
-         class="deity-photo"
-         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Shiva_as_Mahakala.jpg/240px-Shiva_as_Mahakala.jpg"
-         alt="Ishtadev">
+    <img
+      id="profilePhoto"
+      class="deity-photo"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Shiva_as_Mahakala.jpg/240px-Shiva_as_Mahakala.jpg"
+      alt="Ishtadev">
 
-    <h2 id="profileName">તમારું નામ</h2>
-    <p id="profileDeity">ઇષ્ટદેવ: મહાદેવ</p>
+    <h2 id="profileName">
+      તમારું નામ
+    </h2>
+
+    <p id="profileDeity">
+      ઇષ્ટદેવ: મહાદેવ
+    </p>
+
 
     <div class="form">
 
-      <input id="nameInput" placeholder="નામ">
+      <input
+        id="nameInput"
+        placeholder="નામ">
 
-      <input id="dobInput" type="date">
+
+      <input
+        id="dobInput"
+        type="date">
+
 
       <select id="genderInput">
-        <option value="">લિંગ પસંદ કરો</option>
-        <option value="male">પુરુષ</option>
-        <option value="female">સ્ત્રી</option>
-        <option value="other">અન્ય</option>
+
+        <option value="">
+          લિંગ પસંદ કરો
+        </option>
+
+        <option value="male">
+          પુરુષ
+        </option>
+
+        <option value="female">
+          સ્ત્રી
+        </option>
+
+        <option value="other">
+          અન્ય
+        </option>
+
       </select>
 
-      <select id="deityInput" onchange="changeDeity()">
-        <option value="shiva">મહાદેવ</option>
-        <option value="krishna">શ્રીકૃષ્ણ</option>
-        <option value="ram">શ્રીરામ</option>
-        <option value="ganesh">શ્રી ગણેશ</option>
-        <option value="hanuman">હનુમાનજી</option>
-        <option value="durga">માતા દુર્ગા</option>
-        <option value="vishnu">ભગવાન વિષ્ણુ</option>
+
+      <select
+        id="deityInput"
+        onchange="changeDeity()">
+
+        <option value="shiva">
+          મહાદેવ
+        </option>
+
+        <option value="krishna">
+          શ્રીકૃષ્ણ
+        </option>
+
+        <option value="ram">
+          શ્રીરામ
+        </option>
+
+        <option value="ganesh">
+          શ્રી ગણેશ
+        </option>
+
+        <option value="hanuman">
+          હનુમાનજી
+        </option>
+
+        <option value="durga">
+          માતા દુર્ગા
+        </option>
+
+        <option value="vishnu">
+          ભગવાન વિષ્ણુ
+        </option>
+
       </select>
 
-      <button class="primary" onclick="saveProfile()">પ્રોફાઇલ સાચવો</button>
+
+      <button
+        class="primary"
+        onclick="saveProfile()">
+
+        પ્રોફાઇલ સાચવો
+
+      </button>
 
     </div>
 
@@ -1495,108 +1937,195 @@ body.light .japa-main{
 <section id="settingsPage" class="screen">
 
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+
+      <svg viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2">
         <path d="m15 18-6-6 6-6"/>
       </svg>
+
     </button>
+
     <div class="page-title">
       <h1>Settings</h1>
       <p>App settings</p>
     </div>
+
   </div>
+
 
   <div class="list">
 
     <div class="list-item">
+
       <div class="list-icon">भा</div>
+
       <div class="list-content">
         <strong>ભાષા</strong>
         <small>Gujarati / Hindi / English</small>
       </div>
-      <select id="languageSelect" onchange="changeLanguage()"
-              style="background:transparent;color:var(--gold2);border:0">
-        <option value="gu">ગુજરાતી</option>
-        <option value="hi">हिन्दी</option>
-        <option value="en">English</option>
+
+      <select
+        id="languageSelect"
+        onchange="changeLanguage()"
+        style="background:transparent;color:var(--gold2);border:0">
+
+        <option value="gu">
+          ગુજરાતી
+        </option>
+
+        <option value="hi">
+          हिन्दी
+        </option>
+
+        <option value="en">
+          English
+        </option>
+
       </select>
+
     </div>
 
-    <button class="list-item" onclick="toggleTheme()">
+
+    <button
+      class="list-item"
+      onclick="toggleTheme()">
+
       <div class="list-icon">◐</div>
+
       <div class="list-content">
         <strong>Theme</strong>
         <small>Dark / Light</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
-    <button class="list-item" onclick="speakDaily()">
+
+    <button
+      class="list-item"
+      onclick="speakDaily()">
+
       <div class="list-icon">व</div>
+
       <div class="list-content">
         <strong>વાણી સાંભળો</strong>
         <small>Text to Speech</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
 
+
     <div class="list-item">
+
       <div class="list-icon">i</div>
+
       <div class="list-content">
         <strong>About</strong>
         <small>BRAHMANSH</small>
       </div>
+
     </div>
 
   </div>
 
-  <div style="text-align:center;margin-top:35px;color:var(--muted);font-size:12px">
+
+  <div style="
+    text-align:center;
+    margin-top:35px;
+    color:var(--muted);
+    font-size:12px">
+
     Developed by Vraj Purohit
+
   </div>
 
 </section>
 
 
-<!-- BOTTOM -->
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" data-screen="home" onclick="show('home')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+  <button
+    class="nav-btn active"
+    data-screen="home"
+    onclick="show('home')">
+
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.8">
       <path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>
     </svg>
+
     <span>Home</span>
+
   </button>
 
-  <button class="nav-btn" data-screen="granthPage" onclick="show('granthPage')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+  <button
+    class="nav-btn"
+    data-screen="granthPage"
+    onclick="show('granthPage')">
+
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.8">
       <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z"/>
       <path d="M4 5.5V22"/>
     </svg>
+
     <span>Granth</span>
+
   </button>
 
-  <button class="nav-btn" data-screen="japaPage" onclick="show('japaPage')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+  <button
+    class="nav-btn"
+    data-screen="japaPage"
+    onclick="show('japaPage')">
+
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.8">
       <circle cx="12" cy="12" r="8"/>
       <circle cx="12" cy="12" r="2"/>
     </svg>
+
     <span>Japa</span>
+
   </button>
 
-  <button class="nav-btn" data-screen="favoritesPage" onclick="show('favoritesPage')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+  <button
+    class="nav-btn"
+    data-screen="favoritesPage"
+    onclick="show('favoritesPage')">
+
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.8">
       <path d="m12 20-1.4-1.2C5.5 14.2 3 11.9 3 8.8A4.8 4.8 0 0 1 7.8 4c1.7 0 3.3.8 4.2 2.1A5 5 0 0 1 16.2 4 4.8 4.8 0 0 1 21 8.8c0 3.1-2.5 5.4-7.6 10z"/>
     </svg>
+
     <span>Saved</span>
+
   </button>
 
-  <button class="nav-btn" data-screen="profilePage" onclick="show('profilePage')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+
+  <button
+    class="nav-btn"
+    data-screen="profilePage"
+    onclick="show('profilePage')">
+
+    <svg viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="1.8">
       <circle cx="12" cy="8" r="4"/>
       <path d="M4 21c.7-4 3.4-6 8-6s7.3 2 8 6"/>
     </svg>
+
     <span>Profile</span>
+
   </button>
 
 </nav>
@@ -1610,59 +2139,64 @@ body.light .japa-main{
    BRAHMANSH CORE
 ========================================================= */
 
-var currentChapter = 1;
-var currentVerse = 1;
-var japaCount = parseInt(localStorage.getItem("brahmanshJapa") || "0",10);
+var japaCount =
+  parseInt(
+    localStorage.getItem("brahmanshJapa") || "0",
+    10
+  );
 
-var chapters = [
-  ["અર્જુનવિષાદયોગ",47],
-  ["સાંખ્યયોગ",72],
-  ["કર્મયોગ",43],
-  ["જ્ઞાનકર્મસંન્યાસયોગ",42],
-  ["કર્મસંન્યાસયોગ",29],
-  ["આત્મસંયમયોગ",47],
-  ["જ્ઞાનવિજ્ઞાનયોગ",30],
-  ["અક્ષરબ્રહ્મયોગ",28],
-  ["રાજવિદ્યારાજગુહ્યયોગ",34],
-  ["વિભૂતિયોગ",42],
-  ["વિશ્વરૂપદર્શનયોગ",55],
-  ["ભક્તિયોગ",20],
-  ["ક્ષેત્રક્ષેત્રજ્ઞવિભાગયોગ",34],
-  ["ગુણત્રયવિભાગયોગ",27],
-  ["પુરુષોત્તમયોગ",20],
-  ["દૈવાસુરસંપદ્વિભાગયોગ",24],
-  ["શ્રદ્ધાત્રયવિભાગયોગ",28],
-  ["મોક્ષસંન્યાસયોગ",78]
-];
+var currentStotra = "";
 
 
 /* NAVIGATION */
 
 function show(id){
 
-  var screens = document.querySelectorAll(".screen");
+  var screens =
+    document.querySelectorAll(".screen");
 
   for(var i=0;i<screens.length;i++){
     screens[i].classList.remove("active");
   }
 
-  var target = document.getElementById(id);
+  var target =
+    document.getElementById(id);
 
   if(target){
     target.classList.add("active");
-    window.scrollTo({top:0,behavior:"smooth"});
+    window.scrollTo(0,0);
   }
 
-  var navButtons = document.querySelectorAll(".nav-btn");
+  var navButtons =
+    document.querySelectorAll(".nav-btn");
 
   for(var j=0;j<navButtons.length;j++){
 
     navButtons[j].classList.remove("active");
 
-    if(navButtons[j].getAttribute("data-screen") === id){
+    if(
+      navButtons[j].getAttribute("data-screen")
+      === id
+    ){
       navButtons[j].classList.add("active");
     }
   }
+
+}
+
+
+/* GITA OPEN */
+
+function openGita(){
+
+  show("gitaPage");
+
+  if(typeof loadGita === "function"){
+
+    loadGita();
+
+  }
+
 }
 
 
@@ -1670,220 +2204,72 @@ function show(id){
 
 function renderJapa(){
 
-  var countEl = document.getElementById("japaCount");
-  var progressEl = document.getElementById("japaProgress");
-  var barEl = document.getElementById("japaBar");
+  var countEl =
+    document.getElementById("japaCount");
+
+  var progressEl =
+    document.getElementById("japaProgress");
+
+  var barEl =
+    document.getElementById("japaBar");
 
   if(countEl){
-    countEl.textContent = japaCount;
+    countEl.textContent=japaCount;
   }
 
-  var current = japaCount % 108;
+  var current =
+    japaCount % 108;
 
   if(progressEl){
+
     progressEl.textContent =
-      (current === 0 && japaCount > 0 ? 108 : current) + " / 108";
+      (current===0 && japaCount>0
+        ? 108
+        : current) +
+      " / 108";
+
   }
 
   if(barEl){
-    var percent = current === 0 && japaCount > 0 ? 100 : (current/108)*100;
-    barEl.style.width = percent + "%";
+
+    var percent =
+      current===0 && japaCount>0
+      ? 100
+      : (current/108)*100;
+
+    barEl.style.width =
+      percent+"%";
+
   }
+
 }
+
 
 function addJapa(){
+
   japaCount++;
-  localStorage.setItem("brahmanshJapa",String(japaCount));
+
+  localStorage.setItem(
+    "brahmanshJapa",
+    String(japaCount)
+  );
+
   renderJapa();
+
 }
+
 
 function resetJapa(){
+
   japaCount=0;
-  localStorage.setItem("brahmanshJapa","0");
+
+  localStorage.setItem(
+    "brahmanshJapa",
+    "0"
+  );
+
   renderJapa();
-}
 
-
-/* GITA */
-
-function openGita(){
-  renderChapters();
-  show("gitaPage");
-}
-
-function renderChapters(){
-
-  var box = document.getElementById("chapterGrid");
-
-  if(!box) return;
-
-  var html="";
-
-  for(var i=0;i<chapters.length;i++){
-
-    html +=
-      '<button class="chapter" onclick="openChapter('+(i+1)+')">'+
-      '<strong>અધ્યાય '+(i+1)+'</strong>'+
-      '<small>'+chapters[i][0]+' • '+chapters[i][1]+' શ્લોક</small>'+
-      '</button>';
-  }
-
-  box.innerHTML=html;
-}
-
-function filterChapters(){
-
-  var input=document.getElementById("chapterSearch");
-
-  if(!input) return;
-
-  var q=input.value.toLowerCase();
-
-  var buttons=document.querySelectorAll("#chapterGrid .chapter");
-
-  for(var i=0;i<buttons.length;i++){
-
-    var text=buttons[i].textContent.toLowerCase();
-
-    buttons[i].style.display =
-      text.indexOf(q)>=0 ? "" : "none";
-  }
-}
-
-function openChapter(chapter){
-
-  currentChapter=chapter;
-
-  var title=document.getElementById("verseTitle");
-  var subtitle=document.getElementById("verseSubtitle");
-  var grid=document.getElementById("verseGrid");
-
-  if(title){
-    title.textContent="અધ્યાય "+chapter;
-  }
-
-  if(subtitle){
-    subtitle.textContent=
-      chapters[chapter-1][0]+" • "+chapters[chapter-1][1]+" શ્લોક";
-  }
-
-  if(grid){
-
-    var total=chapters[chapter-1][1];
-    var html="";
-
-    for(var i=1;i<=total;i++){
-
-      html +=
-        '<button class="verse-number" onclick="openVerse('+i+')">'+
-        i+
-        '</button>';
-    }
-
-    grid.innerHTML=html;
-  }
-
-  show("versePage");
-}
-
-function openVerse(verse){
-
-  currentVerse=verse;
-
-  var title=document.getElementById("readerTitle");
-  var subtitle=document.getElementById("readerSubtitle");
-  var box=document.getElementById("readerBox");
-
-  if(title){
-    title.textContent="શ્લોક "+currentChapter+"."+verse;
-  }
-
-  if(subtitle){
-    subtitle.textContent=chapters[currentChapter-1][0];
-  }
-
-  if(box){
-    box.innerHTML='<div class="loading">શ્લોક લોડ થઈ રહ્યો છે...</div>';
-  }
-
-  show("readerPage");
-
-  loadGitaVerse(currentChapter,verse);
-}
-
-
-/*
-  Live Gita data.
-  Internet is required for the full verse text.
-*/
-
-function loadGitaVerse(chapter,verse){
-
-  var box=document.getElementById("readerBox");
-
-  var url =
-    "https://bhagavadgitaapi.in/slok/"+chapter+"/"+verse+"/";
-
-  fetch(url)
-    .then(function(response){
-      if(!response.ok) throw new Error("Network");
-      return response.json();
-    })
-    .then(function(data){
-
-      var sanskrit =
-        data.slok ||
-        data.sanskrit ||
-        data.verse ||
-        "";
-
-      var meaning =
-        data.tej ||
-        data.chinmay ||
-        data.ht ||
-        "";
-
-      if(!sanskrit){
-        throw new Error("No verse");
-      }
-
-      box.innerHTML =
-        '<div class="sanskrit">'+escapeHTML(sanskrit)+'</div>'+
-        '<div class="meaning">'+
-        (meaning ? escapeHTML(meaning) :
-        "આ શ્લોકનું વિસ્તૃત ભાષાંતર મેળવવા માટે ઇન્ટરનેટ કનેક્શન જરૂરી છે.")+
-        '</div>'+
-        '<div class="card-actions">'+
-        '<button class="small-btn" onclick="copyCurrentVerse()">Copy</button>'+
-        '<button class="small-btn" onclick="speakCurrentVerse()">Speak</button>'+
-        '<button class="small-btn" onclick="saveCurrentVerse()">Save</button>'+
-        '</div>';
-
-    })
-    .catch(function(){
-
-      box.innerHTML =
-        '<div class="sanskrit">'+
-        "શ્રીમદ્ ભગવદ્ ગીતા"+
-        '</div>'+
-        '<div class="meaning">'+
-        "હાલ શ્લોક મેળવવામાં સમસ્યા આવી. કૃપા કરીને ઇન્ટરનેટ કનેક્શન તપાસો અને ફરી પ્રયાસ કરો."+
-        '</div>'+
-        '<div class="card-actions">'+
-        '<button class="primary" onclick="loadGitaVerse('+chapter+','+verse+')">ફરી પ્રયાસ કરો</button>'+
-        '</div>';
-    });
-}
-
-
-/* ESCAPE */
-
-function escapeHTML(str){
-
-  var div=document.createElement("div");
-  div.textContent=String(str);
-
-  return div.innerHTML;
 }
 
 
@@ -1891,41 +2277,57 @@ function escapeHTML(str){
 
 function copyText(text){
 
-  if(navigator.clipboard){
+  if(
+    navigator.clipboard &&
+    navigator.clipboard.writeText
+  ){
+
     navigator.clipboard.writeText(text);
+
   }else{
-    var area=document.createElement("textarea");
+
+    var area =
+      document.createElement("textarea");
+
     area.value=text;
+
     document.body.appendChild(area);
+
     area.select();
+
     document.execCommand("copy");
+
     area.remove();
+
   }
+
 }
 
+
 function copyDaily(){
+
   copyText(
     document.getElementById("dailyQuote").textContent+
     "\n"+
     document.getElementById("dailyMeaning").textContent
   );
+
 }
 
-function copyCurrentVerse(){
-
-  var box=document.getElementById("readerBox");
-
-  if(box){
-    copyText(box.innerText);
-  }
-}
 
 function copySuvichar(){
-  copyText(document.getElementById("suvicharText").textContent);
+
+  copyText(
+    document.getElementById("suvicharText").textContent
+  );
+
 }
 
+
 function copyStotra(){
-  copyText(document.getElementById("stotraText").textContent);
+
+  copyText(currentStotra);
+
 }
 
 
@@ -1944,19 +2346,29 @@ function shareText(text){
 
     copyText(text);
     alert("Text copied.");
+
   }
+
 }
 
+
 function shareDaily(){
+
   shareText(
     document.getElementById("dailyQuote").textContent+
     "\n"+
     document.getElementById("dailyMeaning").textContent
   );
+
 }
 
+
 function shareSuvichar(){
-  shareText(document.getElementById("suvicharText").textContent);
+
+  shareText(
+    document.getElementById("suvicharText").textContent
+  );
+
 }
 
 
@@ -1965,9 +2377,13 @@ function shareSuvichar(){
 function saveDaily(){
 
   var favorites =
-    JSON.parse(localStorage.getItem("brahmanshFavorites") || "[]");
+    JSON.parse(
+      localStorage.getItem("brahmanshFavorites") ||
+      "[]"
+    );
 
-  var quote=document.getElementById("dailyQuote").textContent;
+  var quote =
+    document.getElementById("dailyQuote").textContent;
 
   if(favorites.indexOf(quote)===-1){
     favorites.push(quote);
@@ -1981,18 +2397,32 @@ function saveDaily(){
   renderFavorites();
 
   alert("સાચવવામાં આવ્યું.");
+
 }
 
-function saveCurrentVerse(){
 
-  var box=document.getElementById("readerBox");
+function saveGitaFavorite(key){
 
-  if(!box) return;
+  if(
+    typeof gita==="undefined" ||
+    !gita[key]
+  ){
+    return;
+  }
+
+  var v=gita[key];
 
   var favorites =
-    JSON.parse(localStorage.getItem("brahmanshFavorites") || "[]");
+    JSON.parse(
+      localStorage.getItem("brahmanshFavorites") ||
+      "[]"
+    );
 
-  var text=box.innerText;
+  var text =
+    "ભગવદ્ ગીતા "+
+    key+
+    "\n\n"+
+    v.sanskrit;
 
   if(favorites.indexOf(text)===-1){
     favorites.push(text);
@@ -2006,16 +2436,22 @@ function saveCurrentVerse(){
   renderFavorites();
 
   alert("શ્લોક સાચવવામાં આવ્યો.");
+
 }
+
 
 function renderFavorites(){
 
-  var box=document.getElementById("favoritesList");
+  var box =
+    document.getElementById("favoritesList");
 
-  if(!box) return;
+  if(!box)return;
 
   var favorites =
-    JSON.parse(localStorage.getItem("brahmanshFavorites") || "[]");
+    JSON.parse(
+      localStorage.getItem("brahmanshFavorites") ||
+      "[]"
+    );
 
   if(favorites.length===0){
 
@@ -2025,54 +2461,74 @@ function renderFavorites(){
       '<div class="list-content">'+
       '<strong>કોઈ મનપસંદ વસ્તુ નથી</strong>'+
       '<small>શ્લોક અથવા વાણી Save કરો.</small>'+
-      '</div></div>';
+      '</div>'+
+      '</div>';
 
     return;
+
   }
 
   var html="";
 
-  for(var i=0;i<favorites.length;i++){
+  for(
+    var i=0;
+    i<favorites.length;
+    i++
+  ){
 
-    html +=
+    html+=
       '<div class="list-item">'+
       '<div class="list-icon">ॐ</div>'+
       '<div class="list-content">'+
       '<strong>Saved</strong>'+
-      '<small>'+escapeHTML(favorites[i].substring(0,180))+'</small>'+
+      '<small>'+
+      escapeHTML(
+        favorites[i].substring(0,220)
+      )+
+      '</small>'+
       '</div>'+
       '</div>';
+
   }
 
   box.innerHTML=html;
+
 }
 
 
 /* STOTRA */
 
-var currentStotra="";
-
 function openStotra(title,text){
 
   currentStotra=text;
 
-  document.getElementById("stotraReaderTitle").textContent=title;
-  document.getElementById("stotraText").textContent=text;
+  document.getElementById(
+    "stotraReaderTitle"
+  ).textContent=title;
+
+  document.getElementById(
+    "stotraText"
+  ).textContent=text;
 
   show("stotraReaderPage");
+
 }
+
 
 function speakStotra(){
 
-  if(!window.speechSynthesis) return;
+  if(!window.speechSynthesis)return;
 
-  var utterance=
-    new SpeechSynthesisUtterance(currentStotra);
+  var u =
+    new SpeechSynthesisUtterance(
+      currentStotra
+    );
 
-  utterance.lang="hi-IN";
+  u.lang="hi-IN";
 
   speechSynthesis.cancel();
-  speechSynthesis.speak(utterance);
+  speechSynthesis.speak(u);
+
 }
 
 
@@ -2080,28 +2536,42 @@ function speakStotra(){
 
 function filterList(input,id){
 
-  var q=input.value.toLowerCase();
+  var q =
+    input.value.toLowerCase();
 
-  var items=document.querySelectorAll("#"+id+" .list-item");
+  var items =
+    document.querySelectorAll(
+      "#"+id+" .list-item"
+    );
 
   for(var i=0;i<items.length;i++){
 
     items[i].style.display =
-      items[i].textContent.toLowerCase().indexOf(q)>=0
-      ? ""
-      : "none";
+      items[i].textContent
+        .toLowerCase()
+        .indexOf(q)>=0
+        ? ""
+        : "none";
+
   }
+
 }
+
 
 function globalSearch(){
 
-  var input=document.getElementById("globalSearch");
+  var input =
+    document.getElementById("globalSearch");
 
-  var results=document.getElementById("searchResults");
+  var results =
+    document.getElementById("searchResults");
 
-  if(!input || !results) return;
+  if(!input || !results)return;
 
-  var q=input.value.toLowerCase().trim();
+  var q =
+    input.value
+      .toLowerCase()
+      .trim();
 
   if(!q){
 
@@ -2111,9 +2581,11 @@ function globalSearch(){
       '<div class="list-content">'+
       '<strong>શોધ શરૂ કરો</strong>'+
       '<small>શ્લોક, સ્તોત્ર, ગ્રંથ અથવા જ્ઞાન શોધો.</small>'+
-      '</div></div>';
+      '</div>'+
+      '</div>';
 
     return;
+
   }
 
   var data=[
@@ -2130,22 +2602,34 @@ function globalSearch(){
 
   for(var i=0;i<data.length;i++){
 
-    var text=(data[i][0]+" "+data[i][1]).toLowerCase();
+    var text =
+      (
+        data[i][0]+
+        " "+
+        data[i][1]
+      ).toLowerCase();
 
     if(text.indexOf(q)>=0){
 
-      html +=
-        '<button class="list-item" onclick="show(\''+
+      html+=
+        '<button class="list-item" '+
+        'onclick="show(\''+
         data[i][2]+
         '\')">'+
         '<div class="list-icon">ॐ</div>'+
         '<div class="list-content">'+
-        '<strong>'+data[i][0]+'</strong>'+
-        '<small>'+data[i][1]+'</small>'+
+        '<strong>'+
+        data[i][0]+
+        '</strong>'+
+        '<small>'+
+        data[i][1]+
+        '</small>'+
         '</div>'+
         '<span class="chevron">›</span>'+
         '</button>';
+
     }
+
   }
 
   if(!html){
@@ -2155,10 +2639,13 @@ function globalSearch(){
       '<div class="list-content">'+
       '<strong>કોઈ પરિણામ મળ્યું નથી</strong>'+
       '<small>બીજો શબ્દ શોધો.</small>'+
-      '</div></div>';
+      '</div>'+
+      '</div>';
+
   }
 
   results.innerHTML=html;
+
 }
 
 
@@ -2166,31 +2653,55 @@ function globalSearch(){
 
 function loadNotes(){
 
-  var box=document.getElementById("notesBox");
+  var box =
+    document.getElementById("notesBox");
 
   if(box){
-    box.value=localStorage.getItem("brahmanshNotes") || "";
+
+    box.value =
+      localStorage.getItem(
+        "brahmanshNotes"
+      ) || "";
+
   }
+
 }
+
 
 function saveNotes(){
 
-  var box=document.getElementById("notesBox");
+  var box =
+    document.getElementById("notesBox");
 
   if(box){
-    localStorage.setItem("brahmanshNotes",box.value);
+
+    localStorage.setItem(
+      "brahmanshNotes",
+      box.value
+    );
+
     alert("નોંધ સાચવવામાં આવી.");
+
   }
+
 }
+
 
 function clearNotes(){
 
-  var box=document.getElementById("notesBox");
+  var box =
+    document.getElementById("notesBox");
 
   if(box){
+
     box.value="";
-    localStorage.removeItem("brahmanshNotes");
+
+    localStorage.removeItem(
+      "brahmanshNotes"
+    );
+
   }
+
 }
 
 
@@ -2218,9 +2729,12 @@ var deityImages={
 
   vishnu:
   "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Vishnu.jpg/240px-Vishnu.jpg"
+
 };
 
+
 var deityNames={
+
   shiva:"મહાદેવ",
   krishna:"શ્રીકૃષ્ણ",
   ram:"શ્રીરામ",
@@ -2228,36 +2742,62 @@ var deityNames={
   hanuman:"હનુમાનજી",
   durga:"માતા દુર્ગા",
   vishnu:"ભગવાન વિષ્ણુ"
+
 };
+
 
 function changeDeity(){
 
-  var select=document.getElementById("deityInput");
+  var select =
+    document.getElementById("deityInput");
 
-  if(!select) return;
+  if(!select)return;
 
   var value=select.value;
 
-  var photo=document.getElementById("profilePhoto");
+  var photo =
+    document.getElementById("profilePhoto");
 
-  if(photo && deityImages[value]){
-    photo.src=deityImages[value];
+  if(
+    photo &&
+    deityImages[value]
+  ){
+
+    photo.src=
+      deityImages[value];
+
   }
 
-  var deity=document.getElementById("profileDeity");
+  var deity =
+    document.getElementById("profileDeity");
 
   if(deity){
-    deity.textContent="ઇષ્ટદેવ: "+deityNames[value];
+
+    deity.textContent =
+      "ઇષ્ટદેવ: "+
+      deityNames[value];
+
   }
+
 }
+
 
 function saveProfile(){
 
   var data={
-    name:document.getElementById("nameInput").value,
-    dob:document.getElementById("dobInput").value,
-    gender:document.getElementById("genderInput").value,
-    deity:document.getElementById("deityInput").value
+
+    name:
+      document.getElementById("nameInput").value,
+
+    dob:
+      document.getElementById("dobInput").value,
+
+    gender:
+      document.getElementById("genderInput").value,
+
+    deity:
+      document.getElementById("deityInput").value
+
   };
 
   localStorage.setItem(
@@ -2268,33 +2808,59 @@ function saveProfile(){
   renderProfile();
 
   alert("પ્રોફાઇલ સાચવાઈ.");
+
 }
+
 
 function renderProfile(){
 
-  var data=
-    JSON.parse(localStorage.getItem("brahmanshProfile") || "null");
+  var data =
+    JSON.parse(
+      localStorage.getItem(
+        "brahmanshProfile"
+      ) || "null"
+    );
 
-  if(!data) return;
+  if(!data)return;
 
-  var name=document.getElementById("nameInput");
-  var dob=document.getElementById("dobInput");
-  var gender=document.getElementById("genderInput");
-  var deity=document.getElementById("deityInput");
+  var name =
+    document.getElementById("nameInput");
 
-  if(name) name.value=data.name || "";
-  if(dob) dob.value=data.dob || "";
-  if(gender) gender.value=data.gender || "";
+  var dob =
+    document.getElementById("dobInput");
+
+  var gender =
+    document.getElementById("genderInput");
+
+  var deity =
+    document.getElementById("deityInput");
+
+  if(name)name.value=data.name || "";
+  if(dob)dob.value=data.dob || "";
+  if(gender)gender.value=data.gender || "";
+
   if(deity){
-    deity.value=data.deity || "shiva";
+
+    deity.value=
+      data.deity || "shiva";
+
     changeDeity();
+
   }
 
-  var profileName=document.getElementById("profileName");
+  var profileName =
+    document.getElementById("profileName");
 
-  if(profileName && data.name){
-    profileName.textContent=data.name;
+  if(
+    profileName &&
+    data.name
+  ){
+
+    profileName.textContent=
+      data.name;
+
   }
+
 }
 
 
@@ -2305,46 +2871,65 @@ function knowledge(title){
   var text="";
 
   if(title==="ધર્મ"){
-    text="ધર્મનો અર્થ માત્ર ધાર્મિક વિધિ નથી. ધર્મ એટલે કર્તવ્ય, સદાચાર, સત્ય અને યોગ્ય આચરણ.";
+
+    text=
+      "ધર્મ એટલે કર્તવ્ય, સદાચાર, સત્ય અને યોગ્ય આચરણ.";
+
   }
 
   if(title==="કર્મ"){
-    text="ભગવદ્ ગીતામાં કર્મયોગ દ્વારા પોતાના કર્તવ્યને નિષ્ઠાપૂર્વક કરવાનો ઉપદેશ આપવામાં આવ્યો છે.";
+
+    text=
+      "ભગવદ્ ગીતામાં કર્મયોગ દ્વારા પોતાના કર્તવ્યને નિષ્ઠાપૂર્વક કરવાનો ઉપદેશ આપવામાં આવ્યો છે.";
+
   }
 
   if(title==="યોગ"){
-    text="યોગનો મૂળ અર્થ જોડાણ છે — શરીર, મન અને આત્માના સંતુલન તરફની સાધના.";
+
+    text=
+      "યોગ શરીર, મન અને આત્માના સંતુલન તરફની સાધના છે.";
+
   }
 
   if(title==="તહેવારો"){
-    text="સનાતન પરંપરામાં તહેવારો આધ્યાત્મિક, સાંસ્કૃતિક અને સામાજિક જીવન સાથે જોડાયેલા છે.";
+
+    text=
+      "સનાતન પરંપરામાં તહેવારો આધ્યાત્મિક અને સાંસ્કૃતિક જીવન સાથે જોડાયેલા છે.";
+
   }
 
-  alert(title+"\\n\\n"+text);
+  alert(title+"\n\n"+text);
+
 }
+
 
 function templeInfo(title){
 
   alert(
     title+
-    "\\n\\nઆ વિભાગમાં આગળ વિગતવાર મંદિર માહિતી, સ્થાન, ઇતિહાસ અને દર્શન માહિતી ઉમેરવામાં આવી શકે છે."
+    "\n\nઆ વિભાગમાં આગળ મંદિરનું સ્થાન, ઇતિહાસ અને દર્શન માહિતી ઉમેરાશે."
   );
+
 }
+
 
 function galleryMessage(title){
 
   alert(
     title+
-    " ગેલેરી\\n\\nઆ વિભાગમાં devotional images અને full-screen viewer ઉમેરવામાં આવી શકે છે."
+    " ગેલેરી\n\nઆ વિભાગમાં devotional images ઉમેરાશે."
   );
+
 }
+
 
 function comingSoon(title){
 
   alert(
     title+
-    "\\n\\nઆ ગ્રંથનો વિભાગ આગળ ઉમેરવામાં આવશે."
+    "\n\nઆ ગ્રંથનો વિભાગ આગળ ઉમેરાશે."
   );
+
 }
 
 
@@ -2353,36 +2938,32 @@ function comingSoon(title){
 function speakDaily(){
 
   if(!window.speechSynthesis){
-    alert("આ device માં Text to Speech ઉપલબ્ધ નથી.");
+
+    alert(
+      "આ device માં Text to Speech ઉપલબ્ધ નથી."
+    );
+
     return;
+
   }
 
-  var text=
-    document.getElementById("dailyQuote").textContent+
+  var text =
+    document.getElementById(
+      "dailyQuote"
+    ).textContent+
     ". "+
-    document.getElementById("dailyMeaning").textContent;
+    document.getElementById(
+      "dailyMeaning"
+    ).textContent;
 
-  var utterance=new SpeechSynthesisUtterance(text);
+  var u =
+    new SpeechSynthesisUtterance(text);
 
-  utterance.lang="gu-IN";
-
-  speechSynthesis.cancel();
-  speechSynthesis.speak(utterance);
-}
-
-function speakCurrentVerse(){
-
-  var box=document.getElementById("readerBox");
-
-  if(!box || !window.speechSynthesis) return;
-
-  var utterance=
-    new SpeechSynthesisUtterance(box.innerText);
-
-  utterance.lang="hi-IN";
+  u.lang="gu-IN";
 
   speechSynthesis.cancel();
-  speechSynthesis.speak(utterance);
+  speechSynthesis.speak(u);
+
 }
 
 
@@ -2395,18 +2976,25 @@ function toggleTheme(){
   localStorage.setItem(
     "brahmanshTheme",
     document.body.classList.contains("light")
-    ? "light"
-    : "dark"
+      ? "light"
+      : "dark"
   );
+
 }
+
 
 function loadTheme(){
 
-  var theme=localStorage.getItem("brahmanshTheme");
+  if(
+    localStorage.getItem(
+      "brahmanshTheme"
+    )==="light"
+  ){
 
-  if(theme==="light"){
     document.body.classList.add("light");
+
   }
+
 }
 
 
@@ -2415,77 +3003,152 @@ function loadTheme(){
 var translations={
 
   gu:{
-    welcomeSmall:"સનાતન જ્ઞાન અને આધ્યાત્મિક જીવન",
-    welcomeTitle:"સ્વાગત છે",
-    welcomeText:"શ્લોક, મંત્ર, સ્તોત્ર, ગ્રંથ અને સનાતન જ્ઞાન — એક જ સ્થાને.",
-    today:"આજની વાણી",
-    quick:"ઝડપી પ્રવેશ"
+    welcomeSmall:
+      "સનાતન જ્ઞાન અને આધ્યાત્મિક જીવન",
+
+    welcomeTitle:
+      "સ્વાગત છે",
+
+    welcomeText:
+      "શ્લોક, મંત્ર, સ્તોત્ર, ગ્રંથ અને સનાતન જ્ઞાન — એક જ સ્થાને.",
+
+    today:
+      "આજની વાણી",
+
+    quick:
+      "ઝડપી પ્રવેશ"
+
   },
 
   hi:{
-    welcomeSmall:"सनातन ज्ञान और आध्यात्मिक जीवन",
-    welcomeTitle:"स्वागत है",
-    welcomeText:"श्लोक, मंत्र, स्तोत्र, ग्रंथ और सनातन ज्ञान — एक ही स्थान पर।",
-    today:"आज की वाणी",
-    quick:"त्वरित प्रवेश"
+    welcomeSmall:
+      "सनातन ज्ञान और आध्यात्मिक जीवन",
+
+    welcomeTitle:
+      "स्वागत है",
+
+    welcomeText:
+      "श्लोक, मंत्र, स्तोत्र, ग्रंथ और सनातन ज्ञान — एक ही स्थान पर।",
+
+    today:
+      "आज की वाणी",
+
+    quick:
+      "त्वरित प्रवेश"
+
   },
 
   en:{
-    welcomeSmall:"Sanatan wisdom and spiritual life",
-    welcomeTitle:"Welcome",
-    welcomeText:"Shlokas, mantras, stotras, scriptures and Sanatan wisdom — all in one place.",
-    today:"Today's Wisdom",
-    quick:"Quick Access"
+    welcomeSmall:
+      "Sanatan wisdom and spiritual life",
+
+    welcomeTitle:
+      "Welcome",
+
+    welcomeText:
+      "Shlokas, mantras, stotras, scriptures and Sanatan wisdom — all in one place.",
+
+    today:
+      "Today's Wisdom",
+
+    quick:
+      "Quick Access"
+
   }
+
 };
+
 
 function changeLanguage(){
 
-  var select=document.getElementById("languageSelect");
+  var select =
+    document.getElementById(
+      "languageSelect"
+    );
 
-  if(!select) return;
+  if(!select)return;
 
   var lang=select.value;
 
-  localStorage.setItem("brahmanshLanguage",lang);
+  localStorage.setItem(
+    "brahmanshLanguage",
+    lang
+  );
 
   var t=translations[lang];
 
-  if(!t) return;
+  if(!t)return;
 
-  document.getElementById("welcomeSmall").textContent=t.welcomeSmall;
-  document.getElementById("welcomeTitle").textContent=t.welcomeTitle;
-  document.getElementById("welcomeText").textContent=t.welcomeText;
-  document.getElementById("todayLabel").textContent=t.today;
-  document.getElementById("quickTitle").textContent=t.quick;
+  document.getElementById(
+    "welcomeSmall"
+  ).textContent=t.welcomeSmall;
+
+  document.getElementById(
+    "welcomeTitle"
+  ).textContent=t.welcomeTitle;
+
+  document.getElementById(
+    "welcomeText"
+  ).textContent=t.welcomeText;
+
+  document.getElementById(
+    "todayLabel"
+  ).textContent=t.today;
+
+  document.getElementById(
+    "quickTitle"
+  ).textContent=t.quick;
 
   if(lang==="gu"){
-    document.getElementById("dailyMeaning").textContent=
+
+    document.getElementById(
+      "dailyMeaning"
+    ).textContent=
       "કર્મ કરવામાં તારો અધિકાર છે, પરંતુ તેના ફળ પર નથી.";
+
   }
 
   if(lang==="hi"){
-    document.getElementById("dailyMeaning").textContent=
+
+    document.getElementById(
+      "dailyMeaning"
+    ).textContent=
       "तुम्हारा अधिकार केवल कर्म करने में है, उसके फल में नहीं।";
+
   }
 
   if(lang==="en"){
-    document.getElementById("dailyMeaning").textContent=
+
+    document.getElementById(
+      "dailyMeaning"
+    ).textContent=
       "You have a right to action, but not to the fruits of action.";
+
   }
+
 }
+
 
 function loadLanguage(){
 
-  var lang=
-    localStorage.getItem("brahmanshLanguage") || "gu";
+  var lang =
+    localStorage.getItem(
+      "brahmanshLanguage"
+    ) || "gu";
 
-  var select=document.getElementById("languageSelect");
+  var select =
+    document.getElementById(
+      "languageSelect"
+    );
 
   if(select){
+
     select.value=lang;
+
     changeLanguage();
+
   }
+
 }
 
 
@@ -2495,41 +3158,1548 @@ function renderDate(){
 
   var date=new Date();
 
-  var dateEl=document.getElementById("dateToday");
-  var dayEl=document.getElementById("dayToday");
+  var dateEl =
+    document.getElementById(
+      "dateToday"
+    );
+
+  var dayEl =
+    document.getElementById(
+      "dayToday"
+    );
 
   if(dateEl){
-    dateEl.textContent=
-      date.toLocaleDateString("gu-IN",{
-        day:"numeric",
-        month:"long",
-        year:"numeric"
-      });
+
+    dateEl.textContent =
+      date.toLocaleDateString(
+        "gu-IN",
+        {
+          day:"numeric",
+          month:"long",
+          year:"numeric"
+        }
+      );
+
   }
 
   if(dayEl){
-    dayEl.textContent=
-      date.toLocaleDateString("gu-IN",{
-        weekday:"long"
-      });
+
+    dayEl.textContent =
+      date.toLocaleDateString(
+        "gu-IN",
+        {
+          weekday:"long"
+        }
+      );
+
   }
+
+}
+
+
+/* ESCAPE */
+
+function escapeHTML(str){
+
+  var div =
+    document.createElement("div");
+
+  div.textContent =
+    String(str);
+
+  return div.innerHTML;
+
 }
 
 
 /* INIT */
 
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
-  renderJapa();
-  renderChapters();
-  renderFavorites();
-  loadNotes();
-  renderProfile();
-  loadTheme();
-  loadLanguage();
-  renderDate();
+    renderJapa();
+    renderFavorites();
+    loadNotes();
+    renderProfile();
+    loadTheme();
+    loadLanguage();
+    renderDate();
 
-});
+  }
+);
+
+</script>
+
+
+<!-- =====================================================
+     GITA ENGINE
+     તમારી આપેલી gita.js અહીં જ embed કરેલી છે
+===================================================== -->
+
+<script>
+
+const GITA_CONFIG = {
+
+  DATA_URL:
+    "https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json",
+
+  HINDI_URL:
+    "https://raw.githubusercontent.com/kashishkhullar/gita_json/master/dataset_hindi.json",
+
+  MYMEMORY_URL:
+    "https://api.mymemory.translated.net/get",
+
+  GOOGLE_URL:
+    "https://translate.googleapis.com/translate_a/single",
+
+  CACHE_KEY:
+    "brahmansh_gita_gujarati_v1"
+
+};
+
+
+const GITA_CHAPTERS = [
+
+  [1,"अर्जुनविषादयोग",47],
+  [2,"सांख्ययोग",72],
+  [3,"कर्मयोग",43],
+  [4,"ज्ञानकर्मसंन्यासयोग",42],
+  [5,"कर्मसंन्यासयोग",29],
+  [6,"आत्मसंयमयोग",47],
+  [7,"ज्ञानविज्ञानयोग",30],
+  [8,"अक्षरब्रह्मयोग",28],
+  [9,"राजविद्याराजगुह्ययोग",34],
+  [10,"विभूतियोग",42],
+  [11,"विश्वरूपदर्शनयोग",55],
+  [12,"भक्तियोग",20],
+  [13,"क्षेत्रक्षेत्रज्ञविभागयोग",34],
+  [14,"गुणत्रयविभागयोग",27],
+  [15,"पुरुषोत्तमयोग",20],
+  [16,"दैवासुरसम्पद्विभागयोग",24],
+  [17,"श्रद्धात्रयविभागयोग",28],
+  [18,"मोक्षसंन्यासयोग",78]
+
+];
+
+
+let gita={};
+let allVerses=[];
+let hindiData=null;
+let currentVerse=null;
+
+
+function gq(id){
+
+  return document.getElementById(id);
+
+}
+
+
+function gClean(v){
+
+  return String(v || "")
+    .replace(/\r/g,"")
+    .replace(/\n{3,}/g,"\n\n")
+    .trim();
+
+}
+
+
+function gValue(obj,keys){
+
+  if(
+    !obj ||
+    typeof obj!=="object"
+  ){
+
+    return "";
+
+  }
+
+  for(
+    let i=0;
+    i<keys.length;
+    i++
+  ){
+
+    let k=keys[i];
+
+    if(
+      obj[k]!==undefined &&
+      obj[k]!==null &&
+      obj[k]!==""
+    ){
+
+      return obj[k];
+
+    }
+
+  }
+
+  return "";
+
+}
+
+
+function normalizeVerse(row){
+
+  if(
+    !row ||
+    typeof row!=="object"
+  ){
+
+    return null;
+
+  }
+
+  const chapter =
+    Number(
+      gValue(
+        row,
+        [
+          "chapter",
+          "chapter_number",
+          "chapterNumber",
+          "chapter_id"
+        ]
+      )
+    );
+
+  const verse =
+    Number(
+      gValue(
+        row,
+        [
+          "verse",
+          "verse_number",
+          "verseNumber",
+          "verse_id"
+        ]
+      )
+    );
+
+  const sanskrit =
+    gClean(
+      gValue(
+        row,
+        [
+          "sanskrit",
+          "devanagari",
+          "slok",
+          "shloka",
+          "verse_text",
+          "text"
+        ]
+      )
+    );
+
+  const english =
+    gClean(
+      gValue(
+        row,
+        [
+          "english",
+          "translation",
+          "translation_en",
+          "meaning",
+          "english_meaning"
+        ]
+      )
+    );
+
+  if(
+    !chapter ||
+    !verse ||
+    !sanskrit
+  ){
+
+    return null;
+
+  }
+
+  return {
+
+    chapter:chapter,
+
+    verse:verse,
+
+    key:
+      chapter+"-"+verse,
+
+    sanskrit:sanskrit,
+
+    english:english,
+
+    hindi:""
+
+  };
+
+}
+
+
+function normalizeData(data){
+
+  let rows=[];
+
+  if(Array.isArray(data)){
+
+    rows=data;
+
+  }else if(
+    data &&
+    Array.isArray(data.data)
+  ){
+
+    rows=data.data;
+
+  }else if(
+    data &&
+    Array.isArray(data.verses)
+  ){
+
+    rows=data.verses;
+
+  }else if(
+    data &&
+    Array.isArray(data.chapters)
+  ){
+
+    data.chapters.forEach(function(ch){
+
+      const list=ch.verses;
+
+      if(Array.isArray(list)){
+
+        list.forEach(function(v){
+
+          rows.push({
+
+            ...v,
+
+            chapter:
+              v.chapter ||
+              ch.chapter ||
+              ch.chapter_number
+
+          });
+
+        });
+
+      }
+
+    });
+
+  }else if(
+    data &&
+    typeof data==="object"
+  ){
+
+    Object.entries(data)
+      .forEach(function(entry){
+
+        const key=entry[0];
+        const value=entry[1];
+
+        if(
+          /^\d+-\d+$/.test(key) &&
+          value &&
+          typeof value==="object"
+        ){
+
+          const parts=key.split("-");
+
+          rows.push({
+
+            ...value,
+
+            chapter:
+              value.chapter ||
+              parts[0],
+
+            verse:
+              value.verse ||
+              parts[1]
+
+          });
+
+        }
+
+      });
+
+  }
+
+
+  const map=new Map();
+
+  rows
+    .map(normalizeVerse)
+    .filter(Boolean)
+    .forEach(function(v){
+
+      if(!map.has(v.key)){
+
+        map.set(v.key,v);
+
+      }
+
+    });
+
+
+  return Array.from(
+    map.values()
+  ).sort(function(a,b){
+
+    return(
+      a.chapter-b.chapter ||
+      a.verse-b.verse
+    );
+
+  });
+
+}
+
+
+function findHindi(chapter,verse){
+
+  if(!hindiData)return "";
+
+  const key =
+    chapter+"-"+verse;
+
+  let item=null;
+
+  if(
+    hindiData &&
+    hindiData[key]
+  ){
+
+    item=hindiData[key];
+
+  }
+
+
+  if(
+    !item &&
+    Array.isArray(hindiData)
+  ){
+
+    item=
+      hindiData.find(function(row){
+
+        return(
+          Number(
+            gValue(
+              row,
+              [
+                "chapter",
+                "chapter_number",
+                "chapterNumber"
+              ]
+            )
+          )===chapter &&
+
+          Number(
+            gValue(
+              row,
+              [
+                "verse",
+                "verse_number",
+                "verseNumber"
+              ]
+            )
+          )===verse
+        );
+
+      });
+
+  }
+
+
+  if(!item)return "";
+
+  if(typeof item==="string"){
+
+    return gClean(item);
+
+  }
+
+
+  return gClean(
+    gValue(
+      item,
+      [
+        "verse_meaning_hindi",
+        "meaning_hindi",
+        "hindi_meaning",
+        "translation_hindi",
+        "translation_hi",
+        "hindi",
+        "meaning"
+      ]
+    )
+  );
+
+}
+
+
+function buildGita(){
+
+  gita={};
+
+  allVerses.forEach(function(v){
+
+    v.hindi =
+      findHindi(
+        v.chapter,
+        v.verse
+      );
+
+    gita[v.key]=v;
+
+  });
+
+  window.gita=gita;
+
+}
+
+
+/* Gujarati cache */
+
+function getGuCache(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        GITA_CONFIG.CACHE_KEY
+      ) || "{}"
+    );
+
+  }catch(e){
+
+    return {};
+
+  }
+
+}
+
+
+function saveGuCache(key,text){
+
+  try{
+
+    const c=getGuCache();
+
+    c[key]=text;
+
+    localStorage.setItem(
+      GITA_CONFIG.CACHE_KEY,
+      JSON.stringify(c)
+    );
+
+  }catch(e){}
+
+}
+
+
+function splitForTranslation(text){
+
+  const words =
+    String(text)
+      .trim()
+      .split(/\s+/);
+
+  const chunks=[];
+
+  let current="";
+
+  for(
+    let i=0;
+    i<words.length;
+    i++
+  ){
+
+    const word=words[i];
+
+    const next =
+      current
+      ? current+" "+word
+      : word;
+
+    if(
+      new TextEncoder()
+        .encode(next)
+        .length>450 &&
+      current
+    ){
+
+      chunks.push(current);
+
+      current=word;
+
+    }else{
+
+      current=next;
+
+    }
+
+  }
+
+  if(current){
+
+    chunks.push(current);
+
+  }
+
+  return chunks;
+
+}
+
+
+async function translateMyMemory(text){
+
+  const chunks =
+    splitForTranslation(text);
+
+  const out=[];
+
+  for(
+    let i=0;
+    i<chunks.length;
+    i++
+  ){
+
+    const chunk=chunks[i];
+
+    const url =
+      GITA_CONFIG.MYMEMORY_URL+
+      "?q="+
+      encodeURIComponent(chunk)+
+      "&langpair=en|gu";
+
+    const r =
+      await fetch(
+        url,
+        {cache:"no-store"}
+      );
+
+    if(!r.ok){
+
+      throw new Error(
+        "Translation HTTP "+
+        r.status
+      );
+
+    }
+
+    const data =
+      await r.json();
+
+    const translated =
+      data &&
+      data.responseData &&
+      data.responseData.translatedText
+      ?
+      data.responseData.translatedText
+      :
+      "";
+
+    if(!translated){
+
+      throw new Error(
+        "Empty translation"
+      );
+
+    }
+
+    out.push(translated);
+
+  }
+
+  return gClean(
+    out.join(" ")
+  );
+
+}
+
+
+async function translateGoogle(text){
+
+  const url =
+    GITA_CONFIG.GOOGLE_URL+
+    "?client=gtx"+
+    "&sl=en"+
+    "&tl=gu"+
+    "&dt=t"+
+    "&q="+
+    encodeURIComponent(text);
+
+  const r =
+    await fetch(
+      url,
+      {cache:"no-store"}
+    );
+
+  if(!r.ok){
+
+    throw new Error(
+      "Google HTTP "+
+      r.status
+    );
+
+  }
+
+  const data =
+    await r.json();
+
+  const result =
+    Array.isArray(data[0])
+    ?
+    data[0]
+      .map(function(x){
+        return x[0] || "";
+      })
+      .join("")
+    :
+    "";
+
+  if(!result.trim()){
+
+    throw new Error(
+      "Empty Google translation"
+    );
+
+  }
+
+  return gClean(result);
+
+}
+
+
+async function translateGujarati(key){
+
+  const verse=gita[key];
+
+  const target=
+    gq("gu-"+key);
+
+  if(
+    !verse ||
+    !target
+  ){
+
+    return;
+
+  }
+
+
+  const cache =
+    getGuCache();
+
+  if(cache[key]){
+
+    target.textContent=
+      cache[key];
+
+    return;
+
+  }
+
+
+  if(!verse.english){
+
+    target.textContent=
+      "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
+
+    return;
+
+  }
+
+
+  target.textContent=
+    "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
+
+
+  try{
+
+    const translated =
+      await translateMyMemory(
+        verse.english
+      );
+
+    saveGuCache(
+      key,
+      translated
+    );
+
+    target.textContent=
+      translated;
+
+  }catch(e1){
+
+    try{
+
+      const translated =
+        await translateGoogle(
+          verse.english
+        );
+
+      saveGuCache(
+        key,
+        translated
+      );
+
+      target.textContent=
+        translated;
+
+    }catch(e2){
+
+      target.textContent=
+        "ગુજરાતી અર્થ હાલ મેળવી શકાયો નથી.";
+
+    }
+
+  }
+
+}
+
+
+/* GITA RENDER */
+
+function renderGita(){
+
+  const box =
+    gq("gita700List");
+
+  if(!box)return;
+
+
+  if(!allVerses.length){
+
+    box.innerHTML=
+      '<div class="gita-loading">'+
+      'ભગવદ્ ગીતા લોડ થઈ રહી છે...'+
+      '</div>';
+
+    return;
+
+  }
+
+
+  const lang =
+    localStorage.getItem(
+      "brahmanshLanguage"
+    ) || "gu";
+
+
+  let html="";
+
+
+  html+=
+    '<div class="gita-card">'+
+
+      '<div class="gita-heading">'+
+
+        '<div class="gita-round">ॐ</div>'+
+
+        '<div>'+
+          '<h2>શ્રીમદ્ ભગવદ્ ગીતા</h2>'+
+          '<p>18 અધ્યાય • '+
+          allVerses.length+
+          ' શ્લોક</p>'+
+        '</div>'+
+
+      '</div>'+
+
+      '<div class="gita-language">'+
+
+        '<select onchange="changeGitaLanguage(this.value)">'+
+
+          '<option value="gu" '+
+          (lang==="gu"?"selected":"")+
+          '>ગુજરાતી</option>'+
+
+          '<option value="hi" '+
+          (lang==="hi"?"selected":"")+
+          '>हिन्दी</option>'+
+
+          '<option value="en" '+
+          (lang==="en"?"selected":"")+
+          '>English</option>'+
+
+        '</select>'+
+
+      '</div>'+
+
+      '<input '+
+        'id="gitaSearch" '+
+        'class="gita-search" '+
+        'placeholder="શ્લોક શોધો..." '+
+        'oninput="searchGita()">'+
+
+      '<div id="gitaSearchResults" '+
+        'class="gita-results"></div>'+
+
+    '</div>';
+
+
+  for(
+    let i=0;
+    i<GITA_CHAPTERS.length;
+    i++
+  ){
+
+    const chapter =
+      GITA_CHAPTERS[i][0];
+
+    const name =
+      GITA_CHAPTERS[i][1];
+
+    const count =
+      GITA_CHAPTERS[i][2];
+
+
+    html+=
+      '<div class="gita-chapter">'+
+
+        '<div class="gita-chapter-head">'+
+
+          '<div class="gita-number">'+
+            chapter+
+          '</div>'+
+
+          '<div>'+
+            '<strong>'+
+              gEsc(name)+
+            '</strong>'+
+            '<small>'+
+              count+
+              ' શ્લોક'+
+            '</small>'+
+          '</div>'+
+
+        '</div>'+
+
+        '<div class="gita-verse-grid">';
+
+
+    for(
+      let v=1;
+      v<=count;
+      v++
+    ){
+
+      const key =
+        chapter+"-"+v;
+
+      if(gita[key]){
+
+        html+=
+          '<button '+
+          'class="gita-verse-btn" '+
+          'onclick="openGitaVerse(\''+
+          key+
+          '\')">'+
+          v+
+          '</button>';
+
+      }
+
+    }
+
+
+    html+=
+        '</div>'+
+      '</div>';
+
+  }
+
+
+  box.innerHTML=html;
+
+}
+
+
+function changeGitaLanguage(lang){
+
+  localStorage.setItem(
+    "brahmanshLanguage",
+    lang
+  );
+
+  renderGita();
+
+}
+
+
+/* SEARCH */
+
+function searchGita(){
+
+  const input=
+    gq("gitaSearch");
+
+  const output=
+    gq("gitaSearchResults");
+
+  if(
+    !input ||
+    !output
+  ){
+
+    return;
+
+  }
+
+
+  const q =
+    input.value
+      .toLowerCase()
+      .trim();
+
+
+  if(!q){
+
+    output.innerHTML="";
+
+    return;
+
+  }
+
+
+  const results =
+    allVerses
+      .filter(function(v){
+
+        return(
+          v.sanskrit
+            .toLowerCase()
+            .includes(q) ||
+
+          v.english
+            .toLowerCase()
+            .includes(q) ||
+
+          v.hindi
+            .toLowerCase()
+            .includes(q) ||
+
+          v.key.includes(q)
+        );
+
+      })
+      .slice(0,20);
+
+
+  if(!results.length){
+
+    output.innerHTML=
+      '<div class="gita-result">'+
+      'કોઈ શ્લોક મળ્યો નથી.'+
+      '</div>';
+
+    return;
+
+  }
+
+
+  let html="";
+
+
+  results.forEach(function(v){
+
+    html+=
+      '<div class="gita-result" '+
+      'onclick="openGitaVerse(\''+
+      v.key+
+      '\')">'+
+
+      '<strong>'+
+      v.key+
+      '</strong>'+
+      ' — '+
+      escapeHTML(
+        v.sanskrit.substring(0,90)
+      )+
+
+      '</div>';
+
+  });
+
+
+  output.innerHTML=html;
+
+}
+
+
+/* VERSE READER */
+
+async function openGitaVerse(key){
+
+  const verse =
+    gita[key];
+
+  if(!verse)return;
+
+
+  currentVerse=key;
+
+
+  const index =
+    allVerses.findIndex(
+      function(v){
+        return v.key===key;
+      }
+    );
+
+
+  const old =
+    gq("gitaVerseReader");
+
+  if(old){
+
+    old.remove();
+
+  }
+
+
+  const lang =
+    localStorage.getItem(
+      "brahmanshLanguage"
+    ) || "gu";
+
+
+  const reader =
+    document.createElement("div");
+
+  reader.id=
+    "gitaVerseReader";
+
+  reader.className=
+    "gita-reader";
+
+
+  reader.innerHTML=
+
+    '<div class="card-actions">'+
+
+      '<button class="small-btn" '+
+      'onclick="closeGitaVerse()">'+
+      '← શ્લોકો પર પાછા'+
+      '</button>'+
+
+    '</div>'+
+
+    '<div class="gita-reader-title">'+
+      'શ્રીમદ્ ભગવદ્ ગીતા'+
+    '</div>'+
+
+    '<div class="gita-reader-meta">'+
+      'અધ્યાય '+
+      verse.chapter+
+      ' • શ્લોક '+
+      verse.verse+
+    '</div>'+
+
+    '<div class="gita-sanskrit">'+
+      escapeHTML(
+        verse.sanskrit
+      )+
+    '</div>'+
+
+    '<div class="gita-meaning">'+
+
+      '<h3>English Meaning</h3>'+
+
+      '<p>'+
+        escapeHTML(
+          verse.english ||
+          "English meaning ઉપલબ્ધ નથી."
+        )+
+      '</p>'+
+
+    '</div>'+
+
+    '<div class="gita-meaning">'+
+
+      '<h3>हिन्दी अर्थ</h3>'+
+
+      '<p id="hi-'+key+'">'+
+        escapeHTML(
+          verse.hindi ||
+          "हिन्दी अर्थ ઉપલબ્ધ નથી."
+        )+
+      '</p>'+
+
+    '</div>'+
+
+    '<div class="gita-meaning">'+
+
+      '<h3>ગુજરાતી અર્થ</h3>'+
+
+      '<p id="gu-'+key+'">'+
+        'ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...'+
+      '</p>'+
+
+    '</div>'+
+
+    '<div class="gita-reader-actions">'+
+
+      '<button onclick="saveGitaFavorite(\''+
+        key+
+      '\')">'+
+        'Favorite'+
+      '</button>'+
+
+      '<button onclick="speakGita(\''+
+        key+
+      '\')">'+
+        'સાંભળો'+
+      '</button>'+
+
+      '<button onclick="copyGita(\''+
+        key+
+      '\')">'+
+        'Copy'+
+      '</button>'+
+
+      '<button onclick="shareGita(\''+
+        key+
+      '\')">'+
+        'Share'+
+      '</button>'+
+
+    '</div>'+
+
+    '<div class="gita-navigation">'+
+
+      '<button '+
+      (index<=0?"disabled":"")+
+      ' onclick="openGitaVerse(\''+
+      (
+        index>0
+        ? allVerses[index-1].key
+        : key
+      )+
+      '\')">'+
+      '← પાછો'+
+      '</button>'+
+
+      '<button '+
+      (
+        index>=allVerses.length-1
+        ?"disabled":""
+      )+
+      ' onclick="openGitaVerse(\''+
+      (
+        index<
+        allVerses.length-1
+        ?allVerses[index+1].key
+        :key
+      )+
+      '\')">'+
+      'આગળ →'+
+      '</button>'+
+
+    '</div>';
+
+
+  const section =
+    gq("gitaPage");
+
+  const list =
+    gq("gita700List");
+
+
+  if(
+    section &&
+    list
+  ){
+
+    section.insertBefore(
+      reader,
+      list
+    );
+
+  }
+
+
+  window.scrollTo(
+    0,
+    0
+  );
+
+
+  await translateGujarati(key);
+
+}
+
+
+function closeGitaVerse(){
+
+  const reader =
+    gq("gitaVerseReader");
+
+  if(reader){
+
+    reader.remove();
+
+  }
+
+}
+
+
+function copyGita(key){
+
+  const v=gita[key];
+
+  if(!v)return;
+
+  copyText(
+
+    "ભગવદ્ ગીતા "+
+    key+
+    "\n\n"+
+    v.sanskrit+
+    "\n\n"+
+    v.english
+
+  );
+
+}
+
+
+async function shareGita(key){
+
+  const v=gita[key];
+
+  if(!v)return;
+
+  const text=
+    "ભગવદ્ ગીતા "+
+    key+
+    "\n\n"+
+    v.sanskrit+
+    "\n\n"+
+    v.english;
+
+
+  if(navigator.share){
+
+    try{
+
+      await navigator.share({
+        title:"BRAHMANSH",
+        text:text
+      });
+
+    }catch(e){}
+
+  }else{
+
+    copyText(text);
+
+  }
+
+}
+
+
+function speakGita(key){
+
+  const v=gita[key];
+
+  if(
+    !v ||
+    !window.speechSynthesis
+  ){
+
+    return;
+
+  }
+
+
+  speechSynthesis.cancel();
+
+
+  const u =
+    new SpeechSynthesisUtterance(
+      v.sanskrit
+    );
+
+  u.lang="hi-IN";
+  u.rate=.78;
+
+  speechSynthesis.speak(u);
+
+}
+
+
+/* LOAD GITA */
+
+async function loadGita(){
+
+  const box =
+    gq("gita700List");
+
+  if(
+    box &&
+    !allVerses.length
+  ){
+
+    box.innerHTML=
+      '<div class="gita-loading">'+
+      'ભગવદ્ ગીતા લોડ થઈ રહી છે...'+
+      '</div>';
+
+  }
+
+
+  try{
+
+    const r =
+      await fetch(
+        GITA_CONFIG.DATA_URL,
+        {
+          cache:"no-store"
+        }
+      );
+
+
+    if(!r.ok){
+
+      throw new Error(
+        "Gita data HTTP "+
+        r.status
+      );
+
+    }
+
+
+    const data =
+      await r.json();
+
+
+    allVerses =
+      normalizeData(data);
+
+
+    if(
+      allVerses.length>700
+    ){
+
+      allVerses =
+        allVerses.slice(0,700);
+
+    }
+
+
+    try{
+
+      const h =
+        await fetch(
+          GITA_CONFIG.HINDI_URL,
+          {
+            cache:"no-store"
+          }
+        );
+
+
+      if(h.ok){
+
+        hindiData =
+          await h.json();
+
+      }
+
+    }catch(e){
+
+      console.warn(
+        "Hindi data unavailable"
+      );
+
+    }
+
+
+    buildGita();
+
+    renderGita();
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    if(box){
+
+      box.innerHTML=
+
+        '<div class="gita-error">'+
+
+          '<strong>'+
+          'ભગવદ્ ગીતા લોડ થઈ શકી નથી.'+
+          '</strong>'+
+
+          '<br><br>'+
+
+          'Internet connection તપાસો.'+
+
+          '<br><br>'+
+
+          '<button '+
+          'class="primary" '+
+          'onclick="loadGita()">'+
+          'ફરી પ્રયાસ કરો'+
+          '</button>'+
+
+        '</div>';
+
+    }
+
+  }
+
+}
+
+
+/* GITA INIT */
+
+window.loadGita=
+  loadGita;
+
+window.openGitaVerse=
+  openGitaVerse;
+
+window.closeGitaVerse=
+  closeGitaVerse;
+
+window.saveGitaFavorite=
+  saveGitaFavorite;
+
+window.copyGita=
+  copyGita;
+
+window.shareGita=
+  shareGita;
+
+window.speakGita=
+  speakGita;
+
+window.renderGita=
+  renderGita;
+
+window.searchGita=
+  searchGita;
+
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    loadGita();
+
+  }
+);
 
 </script>
 
