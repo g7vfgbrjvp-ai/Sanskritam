@@ -3296,6 +3296,31 @@ function gq(id){
 }
 
 
+<script>
+
+const GITA_CONFIG = {
+  // તમારો existing GITA_CONFIG
+};
+
+
+const GITA_CHAPTERS = [
+  // તમારો existing GITA_CHAPTERS
+];
+
+
+let gita={};
+let allVerses=[];
+let hindiData=null;
+let currentVerse=null;
+
+
+function gq(id){
+  return document.getElementById(id);
+}
+
+
+/* અહીં તમારો નવો code */
+
 function gClean(v){
 
   return String(v || "")
@@ -3304,6 +3329,62 @@ function gClean(v){
     .trim();
 
 }
+
+
+function gEsc(str){
+
+  var div =
+    document.createElement("div");
+
+  div.textContent =
+    String(str || "");
+
+  return div.innerHTML;
+
+}
+
+
+function gValue(obj,keys){
+
+  if(
+    !obj ||
+    typeof obj!=="object"
+  ){
+
+    return "";
+
+  }
+
+  for(
+    let i=0;
+    i<keys.length;
+    i++
+  ){
+
+    let k=keys[i];
+
+    if(
+      obj[k]!==undefined &&
+      obj[k]!==null &&
+      obj[k]!==""
+    ){
+
+      return obj[k];
+
+    }
+
+  }
+
+  return "";
+
+}
+
+
+/* હવે અહીંથી તમારો જૂનો code ચાલુ રહેશે */
+
+function normalizeVerse(row){
+
+  // ...
 
 
 function gValue(obj,keys){
