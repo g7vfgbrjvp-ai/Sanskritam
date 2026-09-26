@@ -20,90 +20,648 @@
   --border:rgba(214,168,79,.25);
   --shadow:0 12px 35px rgba(0,0,0,.28);
 }
-*{box-sizing:border-box;margin:0;padding:0;}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:radial-gradient(circle at 50% -10%,#5a211d 0,#281013 32%,#17090b 70%);
+  background:
+    radial-gradient(circle at 50% -10%,#5a211d 0,#281013 32%,#17090b 70%);
   color:var(--cream);
   min-height:100vh;
 }
-button,input,textarea,select{font:inherit;}
-button{border:0;cursor:pointer;}
-.app{width:100%;max-width:620px;margin:auto;min-height:100vh;padding-bottom:86px;}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+.app{
+  width:100%;
+  max-width:620px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:86px;
+}
+
 .topbar{
-  position:sticky;top:0;z-index:50;height:66px;display:flex;align-items:center;
-  justify-content:space-between;padding:0 18px;background:rgba(23,9,11,.94);
-  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:66px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  background:rgba(23,9,11,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
 }
-.brand{display:flex;align-items:center;gap:10px;}
-.om{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--gold);color:var(--gold2);font-size:23px;}
-.brand strong{font-size:19px;letter-spacing:2px;color:var(--gold2);}
-.screen{display:none;padding:18px;animation:fade .2s ease;}
-.screen.active{display:block;}
-@keyframes fade{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:translateY(0);}}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.om{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--gold);
+  color:var(--gold2);
+  font-size:23px;
+}
+
+.brand strong{
+  font-size:19px;
+  letter-spacing:2px;
+  color:var(--gold2);
+}
+
+.screen{
+  display:none;
+  padding:18px;
+  animation:fade .2s ease;
+}
+
+.screen.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 .hero{
-  padding:25px 20px;border-radius:24px;
-  background:linear-gradient(135deg,rgba(216,120,34,.22),rgba(214,168,79,.05)),var(--card);
-  border:1px solid var(--border);box-shadow:var(--shadow);margin-bottom:16px;
+  padding:25px 20px;
+  border-radius:24px;
+  background:
+    linear-gradient(135deg,rgba(216,120,34,.22),
+    rgba(214,168,79,.05)),var(--card);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
 }
-.hero small{color:var(--gold);letter-spacing:1px;}
-.hero h1{margin-top:8px;font-size:28px;}
-.hero p{margin-top:8px;line-height:1.6;color:var(--muted);}
+
+.hero small{
+  color:var(--gold);
+  letter-spacing:1px;
+}
+
+.hero h1{
+  margin-top:8px;
+  font-size:28px;
+}
+
+.hero p{
+  margin-top:8px;
+  line-height:1.6;
+  color:var(--muted);
+}
+
 .daily{
-  padding:20px;border-radius:22px;background:linear-gradient(135deg,#432019,#291115);
-  border:1px solid var(--border);margin-bottom:18px;box-shadow:var(--shadow);
+  padding:20px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#432019,#291115);
+  border:1px solid var(--border);
+  margin-bottom:18px;
+  box-shadow:var(--shadow);
 }
-.daily-label{color:var(--gold2);font-size:13px;margin-bottom:12px;}
-.daily h2{font-family:Georgia,serif;line-height:1.65;font-size:21px;}
-.daily p{margin-top:10px;color:var(--muted);line-height:1.5;}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+
+.daily-label{
+  color:var(--gold2);
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.daily h2{
+  font-family:Georgia,serif;
+  line-height:1.65;
+  font-size:21px;
+}
+
+.daily p{
+  margin-top:10px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
 .feature{
-  min-height:118px;padding:17px;text-align:left;border-radius:18px;
-  background:linear-gradient(145deg,var(--card2),var(--card));border:1px solid var(--border);
-  color:var(--cream);box-shadow:0 7px 20px rgba(0,0,0,.18);
+  min-height:125px;
+  padding:17px;
+  text-align:left;
+  border-radius:18px;
+  background:
+    linear-gradient(145deg,var(--card2),var(--card));
+  border:1px solid var(--border);
+  color:var(--cream);
+  box-shadow:0 7px 20px rgba(0,0,0,.18);
 }
-.feature strong{display:block;font-size:15px;margin-top:8px;}
-.feature small{display:block;margin-top:5px;color:var(--muted);}
+
+.feature strong{
+  display:block;
+  font-size:15px;
+  margin-top:8px;
+}
+
+.feature small{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+}
+
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
 .list-item{
-  width:100%;display:flex;align-items:center;gap:13px;text-align:left;
-  padding:15px;border-radius:16px;background:var(--card);border:1px solid var(--border);color:var(--cream);
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  text-align:left;
+  padding:15px;
+  border-radius:16px;
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--cream);
 }
-.list-icon{flex:0 0 42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(216,120,34,.12);color:var(--gold2);}
-.list-content{flex:1;}
-.list-content strong{display:block;}
-.list-content small{display:block;margin-top:4px;color:var(--muted);}
-.chevron{color:var(--gold);}
-.back-row{display:flex;align-items:center;gap:10px;margin-bottom:17px;}
-.back{width:40px;height:40px;border-radius:12px;background:var(--card);color:var(--gold2);border:1px solid var(--border);display:grid;place-items:center;}
-.back svg{width:19px;}
-.page-title h1{font-size:23px;}
-.page-title p{color:var(--muted);margin-top:3px;font-size:13px;}
-.gita-chapter{margin-bottom:13px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--border);}
-.gita-chapter-head{display:flex;align-items:center;gap:11px;margin-bottom:13px;}
-.gita-number{width:40px;height:40px;flex:0 0 40px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#d39a2f,#a96808);color:white;font-weight:bold;}
-.gita-verse-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;}
-.gita-verse-btn{padding:10px 4px;border-radius:9px;background:rgba(214,168,79,.08);color:var(--gold2);border:1px solid var(--border);}
-.gita-reader{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;margin-bottom:20px;}
-.gita-reader-title{font-size:20px;color:var(--gold2);}
-.gita-reader-meta{margin-top:5px;color:var(--muted);font-size:12px;}
-.gita-sanskrit{margin-top:20px;font-family:Georgia,"Noto Serif Devanagari",serif;font-size:21px;line-height:1.9;color:#ffe5a7;white-space:pre-line;}
-.gita-meaning{margin-top:18px;padding-top:16px;border-top:1px solid var(--border);}
-.gita-meaning h3{color:var(--gold2);font-size:15px;margin-bottom:7px;}
-.gita-meaning p{color:var(--muted);line-height:1.7;}
-.card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px;}
-.small-btn{padding:9px 13px;border-radius:10px;background:rgba(214,168,79,.1);color:var(--gold2);border:1px solid var(--border);}
+
+.list-icon{
+  flex:0 0 42px;
+  height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:rgba(216,120,34,.12);
+  color:var(--gold2);
+  font-size:21px;
+}
+
+.list-content{
+  flex:1;
+}
+
+.list-content strong{
+  display:block;
+}
+
+.list-content small{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+}
+
+.chevron{
+  color:var(--gold);
+  font-size:24px;
+}
+
+.back-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:17px;
+}
+
+.back{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  background:var(--card);
+  color:var(--gold2);
+  border:1px solid var(--border);
+  display:grid;
+  place-items:center;
+}
+
+.back svg{
+  width:19px;
+}
+
+.page-title h1{
+  font-size:23px;
+}
+
+.page-title p{
+  color:var(--muted);
+  margin-top:3px;
+  font-size:13px;
+}
+
+/* =========================
+   GITA
+========================= */
+
+.gita-chapter{
+  margin-bottom:13px;
+  padding:16px;
+  border-radius:18px;
+  background:var(--card);
+  border:1px solid var(--border);
+}
+
+.gita-chapter-head{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:13px;
+}
+
+.gita-number{
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(145deg,#d39a2f,#a96808);
+  color:white;
+  font-weight:bold;
+}
+
+.gita-verse-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.gita-verse-btn{
+  padding:10px 4px;
+  border-radius:9px;
+  background:rgba(214,168,79,.08);
+  color:var(--gold2);
+  border:1px solid var(--border);
+}
+
+.gita-reader{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:20px;
+}
+
+.gita-reader-title{
+  font-size:20px;
+  color:var(--gold2);
+}
+
+.gita-reader-meta{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.gita-sanskrit{
+  margin-top:20px;
+  font-family:Georgia,"Noto Serif Devanagari",serif;
+  font-size:21px;
+  line-height:1.9;
+  color:#ffe5a7;
+  white-space:pre-line;
+}
+
+.gita-meaning{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+}
+
+.gita-meaning h3{
+  color:var(--gold2);
+  font-size:15px;
+  margin-bottom:7px;
+}
+
+.gita-meaning p{
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* =========================
+   COMMON BUTTON
+========================= */
+
+.card-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px;
+}
+
+.small-btn{
+  padding:9px 13px;
+  border-radius:10px;
+  background:rgba(214,168,79,.1);
+  color:var(--gold2);
+  border:1px solid var(--border);
+}
+
+/* =========================
+   JAP
+========================= */
+
+.jap-card{
+  background:
+    radial-gradient(circle at 50% 0,#512019,#32161a 60%);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:25px 18px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.jap-icon{
+  font-size:42px;
+  margin-bottom:8px;
+}
+
+.jap-mantra{
+  font-family:Georgia,"Noto Serif Devanagari",serif;
+  color:#ffe5a7;
+  font-size:25px;
+  line-height:1.7;
+  margin:12px 0 20px;
+}
+
+.jap-count{
+  font-size:54px;
+  font-weight:700;
+  color:var(--gold2);
+  line-height:1;
+}
+
+.jap-total{
+  color:var(--muted);
+  margin-top:8px;
+  font-size:13px;
+}
+
+.jap-progress{
+  height:8px;
+  border-radius:20px;
+  background:#1b0b0d;
+  overflow:hidden;
+  margin:20px 0;
+  border:1px solid var(--border);
+}
+
+.jap-progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#a96808,#f0cf79);
+  transition:.2s;
+}
+
+.jap-main-btn{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  margin:8px auto 20px;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle,#d6a84f,#a96808);
+  color:white;
+  font-size:25px;
+  font-weight:700;
+  box-shadow:
+    0 10px 35px rgba(216,120,34,.25),
+    inset 0 0 0 8px rgba(255,255,255,.08);
+  transition:.12s;
+}
+
+.jap-main-btn:active{
+  transform:scale(.94);
+}
+
+.jap-controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:8px;
+}
+
+.jap-select{
+  width:100%;
+  padding:13px;
+  border-radius:13px;
+  background:#241013;
+  color:var(--cream);
+  border:1px solid var(--border);
+  outline:none;
+  margin-bottom:18px;
+}
+
+.jap-108{
+  margin-top:20px;
+  padding:13px;
+  border-radius:14px;
+  background:rgba(214,168,79,.07);
+  border:1px solid var(--border);
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* =========================
+   DHARMIK GRANTHO
+========================= */
+
+.granth-card{
+  padding:18px;
+  border-radius:20px;
+  background:linear-gradient(145deg,var(--card2),var(--card));
+  border:1px solid var(--border);
+  margin-bottom:12px;
+}
+
+.granth-card-title{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.granth-emoji{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(214,168,79,.10);
+  font-size:25px;
+}
+
+.granth-card h3{
+  font-size:17px;
+}
+
+.granth-card p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+.granth-open{
+  width:100%;
+  margin-top:13px;
+}
+
+/* =========================
+   PANCHANG
+========================= */
+
+.panchang-date{
+  padding:22px;
+  text-align:center;
+  border-radius:22px;
+  background:linear-gradient(135deg,#432019,#291115);
+  border:1px solid var(--border);
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+
+.panchang-date .day{
+  color:var(--gold);
+  font-size:13px;
+}
+
+.panchang-date h2{
+  margin-top:7px;
+  font-size:27px;
+  color:var(--gold2);
+}
+
+.panchang-date p{
+  margin-top:5px;
+  color:var(--muted);
+}
+
+.panchang-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.panchang-item{
+  padding:16px;
+  border-radius:17px;
+  background:var(--card);
+  border:1px solid var(--border);
+}
+
+.panchang-item .pi{
+  font-size:23px;
+}
+
+.panchang-item strong{
+  display:block;
+  margin-top:8px;
+  color:var(--gold2);
+  font-size:13px;
+}
+
+.panchang-item span{
+  display:block;
+  margin-top:5px;
+  color:var(--cream);
+  font-size:14px;
+}
+
+.panchang-note{
+  margin-top:15px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(216,120,34,.08);
+  border:1px solid var(--border);
+  color:var(--muted);
+  line-height:1.6;
+  font-size:12px;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
 .bottom-nav{
-  position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(620px,100%);
-  height:72px;display:grid;grid-template-columns:repeat(2,1fr);background:rgba(25,10,12,.97);
-  border-top:1px solid var(--border);z-index:100;
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(620px,100%);
+  height:72px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  background:rgba(25,10,12,.97);
+  border-top:1px solid var(--border);
+  z-index:100;
 }
-.nav-btn{background:transparent;color:#9c806c;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;font-size:11px;}
-.nav-btn.active{color:var(--gold2);}
-.nav-btn svg{width:21px;height:21px;}
+
+.nav-btn{
+  background:transparent;
+  color:#9c806c;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  font-size:10px;
+}
+
+.nav-btn.active{
+  color:var(--gold2);
+}
+
+.nav-btn svg{
+  width:21px;
+  height:21px;
+}
+
+.section-space{
+  margin-top:20px;
+}
+
+@media(max-width:380px){
+  .jap-main-btn{
+    width:130px;
+    height:130px;
+  }
+
+  .jap-count{
+    font-size:45px;
+  }
+}
 </style>
 </head>
 
 <body>
+
 <div class="app">
 
 <header class="topbar">
@@ -113,250 +671,1059 @@ button{border:0;cursor:pointer;}
   </div>
 </header>
 
-<!-- HOME -->
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
 <section id="home" class="screen active">
+
   <div class="hero">
     <small>સનાતન જ્ઞાન અને આધ્યાત્મિક જીવન</small>
-    <h1>સ્વાગત છે</h1>
-    <p>શ્લોક, મંત્ર, સ્તોત્ર, ગ્રંથ અને સનાતન જ્ઞાન — એક જ સ્થાને.</p>
+    <h1>સ્વાગત છે 🙏</h1>
+    <p>
+      શ્લોક, મંત્ર, જપ, સ્તોત્ર, ગ્રંથ અને સનાતન જ્ઞાન —
+      એક જ સ્થાને.
+    </p>
   </div>
 
   <div class="daily">
     <div class="daily-label">આજની વાણી</div>
-    <h2>कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।</h2>
-    <p>કર્મ કરવામાં તારો અધિકાર છે, પરંતુ તેના ફળ પર નથી.</p>
+
+    <h2>
+      कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।
+    </h2>
+
+    <p>
+      કર્મ કરવામાં તારો અધિકાર છે, પરંતુ તેના ફળ પર નથી.
+    </p>
   </div>
+
 
   <div class="grid">
-    <button class="feature" onclick="show('granthPage')">
-      <div style="font-size:24px;color:var(--gold2)">📖</div>
-      <strong>ગ્રંથ</strong>
-      <small>શ્રીમદ્ ભગવદ્ ગીતા</small>
+
+    <button class="feature" onclick="openGita()">
+      <div style="font-size:24px">📖</div>
+      <strong>ભગવદ્ ગીતા</strong>
+      <small>18 અધ્યાય • 700 શ્લોક</small>
     </button>
+
+
+    <button class="feature" onclick="show('japPage')">
+      <div style="font-size:24px">📿</div>
+      <strong>જપ</strong>
+      <small>મંત્ર જપ અને 108 ગણતરી</small>
+    </button>
+
+
+    <button class="feature" onclick="show('dharmikPage')">
+      <div style="font-size:24px">📚</div>
+      <strong>ધાર્મિક ગ્રંથો</strong>
+      <small>સનાતન ગ્રંથોની માહિતી</small>
+    </button>
+
+
+    <button class="feature" onclick="show('panchangPage')">
+      <div style="font-size:24px">🗓️</div>
+      <strong>પંચાંગ</strong>
+      <small>આજનું ધાર્મિક પંચાંગ</small>
+    </button>
+
   </div>
+
 </section>
 
-<!-- GRANTH -->
+
+<!-- =====================================================
+     GRANTH PAGE
+===================================================== -->
+
 <section id="granthPage" class="screen">
+
   <div class="back-row">
+
     <button class="back" onclick="show('home')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      <svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
     </button>
+
     <div class="page-title">
       <h1>ગ્રંથ</h1>
       <p>સનાતન ગ્રંથો</p>
     </div>
+
   </div>
 
+
   <div class="list">
+
     <button class="list-item" onclick="openGita()">
+
       <div class="list-icon">ॐ</div>
+
       <div class="list-content">
         <strong>શ્રીમદ્ ભગવદ્ ગીતા</strong>
         <small>18 અધ્યાય • 700 શ્લોક</small>
       </div>
+
       <span class="chevron">›</span>
+
     </button>
+
   </div>
+
 </section>
 
-<!-- GITA -->
+
+<!-- =====================================================
+     GITA PAGE
+===================================================== -->
+
 <section id="gitaPage" class="screen">
+
   <div class="back-row">
+
     <button class="back" onclick="show('granthPage')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+      <svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
     </button>
+
     <div class="page-title">
       <h1>ભગવદ્ ગીતા</h1>
       <p>18 અધ્યાય • 700 શ્લોક</p>
     </div>
+
   </div>
 
   <div id="gitaReaderAnchor"></div>
+
   <div id="gita700List"></div>
+
 </section>
 
-<!-- BOTTOM NAV -->
+
+<!-- =====================================================
+     JAP PAGE
+===================================================== -->
+
+<section id="japPage" class="screen">
+
+  <div class="back-row">
+
+    <button class="back" onclick="show('home')">
+      <svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+    </button>
+
+    <div class="page-title">
+      <h1>📿 મંત્ર જપ</h1>
+      <p>મંત્રનું ધ્યાનપૂર્વક જપ કરો</p>
+    </div>
+
+  </div>
+
+
+  <div class="jap-card">
+
+    <div class="jap-icon">🕉️</div>
+
+    <select id="mantraSelect"
+            class="jap-select"
+            onchange="changeMantra()">
+
+      <option value="om-namah-shivaya">
+        ॐ नमः शिवाय
+      </option>
+
+      <option value="om-namo-bhagavate">
+        ॐ नमो भगवते वासुदेवाय
+      </option>
+
+      <option value="ram">
+        श्री राम जय राम जय जय राम
+      </option>
+
+      <option value="ganesh">
+        ॐ गं गणपतये नमः
+      </option>
+
+      <option value="mahamrityunjaya">
+        महामृत्युञ्जय मन्त्र
+      </option>
+
+    </select>
+
+
+    <div id="mantraText" class="jap-mantra">
+      ॐ नमः शिवाय
+    </div>
+
+
+    <div id="japCount" class="jap-count">
+      0
+    </div>
+
+    <div class="jap-total">
+      / 108 જપ
+    </div>
+
+
+    <div class="jap-progress">
+      <div id="japProgress"
+           class="jap-progress-bar"></div>
+    </div>
+
+
+    <button class="jap-main-btn"
+            onclick="doJap()">
+
+      જપ
+
+    </button>
+
+
+    <div class="jap-controls">
+
+      <button class="small-btn"
+              onclick="decreaseJap()">
+        −
+      </button>
+
+      <button class="small-btn"
+              onclick="resetJap()">
+        Reset
+      </button>
+
+      <button class="small-btn"
+              onclick="set108()">
+        108
+      </button>
+
+    </div>
+
+
+    <div class="jap-108">
+      📿 એક માળા = 108 જપ<br>
+      મંત્ર જપ કરતી વખતે મનને મંત્રમાં એકાગ્ર રાખો.
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     DHARMIK GRANTHO
+===================================================== -->
+
+<section id="dharmikPage" class="screen">
+
+  <div class="back-row">
+
+    <button class="back" onclick="show('home')">
+      <svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+    </button>
+
+    <div class="page-title">
+      <h1>📚 ધાર્મિક ગ્રંથો</h1>
+      <p>સનાતન જ્ઞાનના મહાન ગ્રંથો</p>
+    </div>
+
+  </div>
+
+
+  <div id="dharmikList"></div>
+
+</section>
+
+
+<!-- =====================================================
+     PANCHANG
+===================================================== -->
+
+<section id="panchangPage" class="screen">
+
+  <div class="back-row">
+
+    <button class="back" onclick="show('home')">
+      <svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+        <path d="m15 18-6-6 6-6"/>
+      </svg>
+    </button>
+
+    <div class="page-title">
+      <h1>🗓️ પંચાંગ</h1>
+      <p>આજનું ધાર્મિક પંચાંગ</p>
+    </div>
+
+  </div>
+
+
+  <div class="panchang-date">
+
+    <div class="day">
+      આજનો દિવસ
+    </div>
+
+    <h2 id="todayDate">
+      --
+    </h2>
+
+    <p id="todayDay">
+      --
+    </p>
+
+  </div>
+
+
+  <div class="panchang-grid">
+
+    <div class="panchang-item">
+      <div class="pi">🌙</div>
+      <strong>તિથિ</strong>
+      <span>પંચમી</span>
+    </div>
+
+
+    <div class="panchang-item">
+      <div class="pi">⭐</div>
+      <strong>નક્ષત્ર</strong>
+      <span>રોહિણી</span>
+    </div>
+
+
+    <div class="panchang-item">
+      <div class="pi">🕉️</div>
+      <strong>યોગ</strong>
+      <span>શુભ</span>
+    </div>
+
+
+    <div class="panchang-item">
+      <div class="pi">🔱</div>
+      <strong>કરણ</strong>
+      <span>બવ</span>
+    </div>
+
+
+    <div class="panchang-item">
+      <div class="pi">☀️</div>
+      <strong>સૂર્યોદય</strong>
+      <span>06:20 AM</span>
+    </div>
+
+
+    <div class="panchang-item">
+      <div class="pi">🌅</div>
+      <strong>સૂર્યાસ્ત</strong>
+      <span>06:30 PM</span>
+    </div>
+
+
+    <div class="panchang-item">
+      <div class="pi">🚫</div>
+      <strong>રાહુકાળ</strong>
+      <span>12:00 PM – 01:30 PM</span>
+    </div>
+
+
+    <div class="panchang-item">
+      <div class="pi">🙏</div>
+      <strong>શુભ સમય</strong>
+      <span>અભિજિત મુહૂર્ત</span>
+    </div>
+
+  </div>
+
+
+  <div class="panchang-note">
+
+    ℹ️ <strong>પંચાંગ નોંધ:</strong><br>
+    ઉપરનું પંચાંગ હાલમાં appનું offline/demo data છે.
+    સાચા દૈનિક તિથિ, નક્ષત્ર, યોગ, કરણ, સૂર્યોદય,
+    રાહુકાળ અને મુહૂર્ત માટે આગળ live પંચાંગ ગણતરી/API
+    જોડાઈ શકે છે.
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
 <nav class="bottom-nav">
-  <button class="nav-btn active" onclick="show('home')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+
+  <button class="nav-btn active"
+          onclick="show('home')">
+
+    <svg viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="1.8">
+
+      <path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>
+
+    </svg>
+
     <span>Home</span>
+
   </button>
-  <button class="nav-btn" onclick="show('granthPage')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22z"/><path d="M4 5.5V22"/></svg>
-    <span>Granth</span>
+
+
+  <button class="nav-btn"
+          onclick="show('japPage')">
+
+    <span style="font-size:21px">📿</span>
+    <span>જપ</span>
+
   </button>
+
+
+  <button class="nav-btn"
+          onclick="show('dharmikPage')">
+
+    <span style="font-size:21px">📚</span>
+    <span>ગ્રંથ</span>
+
+  </button>
+
+
+  <button class="nav-btn"
+          onclick="show('panchangPage')">
+
+    <span style="font-size:21px">🗓️</span>
+    <span>પંચાંગ</span>
+
+  </button>
+
 </nav>
 
 </div>
 
+
 <script>
+
 /* =========================================================
-   AUTHENTIC 100% INBUILT DATA
+   BASIC NAVIGATION
 ========================================================= */
-const GITA_DATABASE = {
-  "1-1": {
-    sanskrit: "धृतराष्ट्र उवाच |\nधर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः |\nमामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय || १ ||",
-    english: "Dhritarashtra said: O Sanjaya, assembled on the holy field of Kurukshetra, desirous to fight, what did my sons and the sons of Pandu do?",
-    hindi: "धृतराष्ट्र बोले—हे संजय! धर्मभूमि कुरुक्षेत्र में एकत्रित युद्ध की इच्छा वाले मेरे और पाण्डु के पुत्रों ने क्या किया?",
-    gujarati: "ધૃતરાષ્ટ્ર બોલ્યા: હે સંજય! ધર્મભૂમિ કુરુક્ષેત્રમાં એકઠા થયેલા યુદ્ધની ઇચ્છાવાળા મારા અને પાંડુના પુત્રોએ શું કર્યું?"
-  },
-  "1-2": {
-    sanskrit: "सञ्जय उवाच |\nदृष्ट्वा तु पाण्डवानीकं व्यूढं दुर्योधनस्तदा |\nआचार्यमुपसङ्गम्य राजा वचनमब्रवीत् || २ ||",
-    english: "Sanjaya said: Having seen the army of the Pandavas drawn up in battle array, King Duryodhana approached his teacher Drona and spoke these words.",
-    hindi: "संजय बोले—उस समय राजा दुर्योधन ने व्यूहरचनायुक्त पाण्डवों की सेना को देखकर द्रोणाचार्य के पास जाकर यह वचन कहा।",
-    gujarati: "સંજય બોલ્યા: તે સમયે રાજા દુર્યોધને વ્યૂહરચનાવાળી પાંડવોની સેના જોઈને આચાર્ય દ્રોણ પાસે જઈને આ વચન કહ્યા."
-  },
-  "1-3": {
-    sanskrit: "पश्यैतां पाण्डुपुत्राणामाचार्य महतीं चमूम् |\nव्यूढां द्रुपदपुत्रेण तव शिष्येण धीमता || ३ ||",
-    english: "Behold, O teacher, this mighty army of the sons of Pandu, arrayed by the son of Drupada, your wise disciple.",
-    hindi: "हे आचार्य! आपके बुद्धिमान् शिष्य द्रुपदपुत्र धृष्टद्युम्न द्वारा व्यूहाकार खड़ी की हुई पाण्डुपुत्रों की इस बड़ी भारी सेना को देखिए।",
-    gujarati: "હે આચાર્ય! આપના બુદ્ધિમાન શિષ્ય દ્રુપદપુત્ર ધૃષ્ટદ્યુમ્ન દ્વારા વ્યૂહાકાર ગોઠવાયેલી આ પાંડુપુત્રોની વિશાળ સેનાને જુઓ."
-  },
-  "1-4": {
-    sanskrit: "अत्र शूरा महेष्वासा भीमार्जुनसमा युधि |\nयुयुधानो विराटश्च द्रुपदश्च महारथः || ४ ||",
-    english: "Here are heroes, mighty archers, equal in battle to Bhima and Arjuna: Yuyudhana, Virata, and Drupada, of the great car.",
-    hindi: "इस सेना में बड़े-बड़े धनुषों वाले तथा युद्ध में भीम और अर्जुन के समान शूरवीर युयुधान, विराट और महारथी द्रुपद हैं।",
-    gujarati: "આ સેનામાં મોટા ધનુષવાળા તથા યુદ્ધમાં ભીમ અને અર્જુન સમાન શૂરવીર યુયુધાન, વિરાટ અને મહારથી દ્રુપદ છે."
-  },
-  "1-5": {
-    sanskrit: "धृष्टकेतुश्चेकितानः काशिराजश्च वीर्यवान् |\nपुरुजित्कुन्तिभोजश्च शैब्यश्च नरपुङ्गवः || ५ ||",
-    english: "Dhrishtaketu, Chekitana, and the valiant King of Kashi, Purujit, Kuntibhoja, and Shaibya, the best of men.",
-    hindi: "तथा धृष्टकेतु, चेकितान और पराक्रमी काशिराज, पुरुजित्, कुन्तिभोज और मनुष्यों में श्रेष्ठ शैब्य हैं।",
-    gujarati: "તેમજ ધૃષ્ટકેતુ, ચેકિતાન અને પરાક્રમી કાશીરાજ, પુરુજિત, કુંતીભોજ અને મનુષ્યોમાં શ્રેષ્ઠ શૈબ્ય છે."
-  },
-  "1-6": {
-    sanskrit: "युधामन्युश्च विक्रान्त उत्तमौजाश्च वीर्यवान् |\nसौभद्रो द्रौपदेयाश्च सर्व एव महारथाः || ६ ||",
-    english: "The strong Yudhamanyu, the brave Uttamauja, the son of Subhadra, and the sons of Draupadi, all of them great car-warriors.",
-    hindi: "पराक्रमी युधामन्यु, बलवान् उत्तमौजा, सुभद्रापुत्र अभिमन्यु और द्रौपदी के पाँचों पुत्र—ये सभी महारथी हैं।",
-    gujarati: "પરાક્રમી યુધામન્યુ, ઉત્તમૌજા, સુભદ્રાપુત્ર અભિમન્યુ અને દ્રૌપદીના પાંચેય પુત્રો - આ બધા જ મહારથીઓ છે."
-  },
-  "1-7": {
-    sanskrit: "अस्माकं तु विशिष्टा ये तान्निबोध द्विजोत्तम |\nनायका मम सैन्यस्य संज्ञार्थं तान्ब्रवीमि ते || ७ ||",
-    english: "Know also, O best among the twice-born, the distinguished ones among us, the leaders of my army; I name them for your information.",
-    hindi: "हे द्विजश्रेष्ठ! हमारे पक्ष में भी जो मुख्य हैं, उनको आप जान लीजिए। मेरी सेना के जो नायक हैं, उनको मैं आपकी जानकारी के लिए बतलाता हूँ।",
-    gujarati: "હે બ્રાહ્મણશ્રેષ્ઠ! આપણા પક્ષમાં પણ જે મુખ્ય છે તેમને આપ જાણી લો. આપની જાણકારી માટે હું મારી સેનાના નાયકો દર્શાવું છું."
-  },
-  "1-8": {
-    sanskrit: "भवान्भीष्मश्च कर्णश्च कृपश्च समितिञ्जयः |\nअश्वत्थामा विकर्णश्च सौमदत्तिस्तथैव च || ८ ||",
-    english: "Yourself, Bhishma, Karna, Kripa, the victorious in war, Ashwatthama, Vikarna, and also the son of Somadatta.",
-    hindi: "आप (द्रोणाचार्य), पितामह भीष्म, कर्ण और संग्रामविजयी कृपाचार्य तथा वैसे ही अश्वत्थामा, विकर्ण और सोमदत्त का पुत्र भूरिश्रवा हैं।",
-    gujarati: "આપ (દ્રોણાચાર્ય), પિતામહ ભીષ્મ, કર્ણ અને સંગ્રામવિજયી કૃપાચાર્ય તેમજ અશ્વત્થામા, વિકર્ણ અને સોમદત્તપુત્ર ભૂરિશ્રવા છે."
-  },
-  "1-9": {
-    sanskrit: "अन्ये च बहवः शूरा मदर्थे त्यक्तजीविताः |\nनानाशस्त्रप्रहरणाः सर्वे युद्धविशारदाः || ९ ||",
-    english: "And many other heroes also, who have offered their lives for my sake, armed with various weapons, and all skilled in warfare.",
-    hindi: "और भी बहुत-से शूरवीर मेरे लिए जीवन की आशा त्याग चुके हैं, जो अनेक प्रकार के अस्त्र-शस्त्रों से सुसज्जित और युद्ध में निपुण हैं।",
-    gujarati: "અને બીજા પણ ઘણા શૂરવીરો મારા માટે જીવ આપવા તૈયાર છે, જે વિવિધ શસ્ત્રોથી સુસજ્જ અને યુદ્ધકળામાં કુશળ છે."
-  },
-  "1-10": {
-    sanskrit: "अपर्याप्तं तदस्माकं बलं भीष्माभिरक्षितम् |\nपर्याप्तं त्विदमेतेषां बलं भीमाभिरक्षितम् || १० ||",
-    english: "Unlimited is that army of ours, marshalled by Bhishma, but limited is this army of theirs, marshalled by Bhima.",
-    hindi: "भीष्मपितामह द्वारा रक्षित हमारी वह सेना सब प्रकार से अजेય (अपरिमित) है और भीम द्वारा रक्षित इन लोगों की यह सेना जीतने में सुगम (परिमित) है।",
-    gujarati: "ભીષ્મપિતામહ દ્વારા રક્ષિત આપણું સૈન્ય અપરિમિત છે અને ભીમ દ્વારા રક્ષિત એમનું સૈન્ય પરિમિત છે."
-  },
-  "2-47": {
-    sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन |\nमा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि || ४७ ||",
-    english: "You have a right to perform your prescribed duty, but you are not entitled to the fruits of action. Never consider yourself the cause of the results of your activities, and never be attached to not doing your duty.",
-    hindi: "कर्म करने में ही तुम्हारा अधिकार है, उसके फलों में कभी नहीं। इसलिए तुम कर्मफल के हेतु मत बनो और तुम्हारी अकर्म में भी आसक्ति न हो।",
-    gujarati: "કર્મ કરવામાં જ તારો અધિકાર છે, ફળમાં ક્યારેય નહીં. કર્મફળની આસક્તિ રાખ નહીં અને કર્મ ન કરવામાં પણ આસક્તિ ન રાખ."
-  }
-};
 
-const GITA_CHAPTERS = [
-  [1,"અર્જુનવિષાદયોગ",47],[2,"સાંખ્યયોગ",72],[3,"કર્મયોગ",43],[4,"જ્ઞાનકર્મસંન્યાસયોગ",42],
-  [5,"કર્મસંન્યાસયોગ",29],[6,"આત્મસંયમયોગ",47],[7,"જ્ઞાનવિજ્ઞાનયોગ",30],[8,"અક્ષરબ્રહ્મયોગ",28],
-  [9,"રાજવિદ્યારાજગુહ્યયોગ",34],[10,"વિભૂતિયોગ",42],[11,"વિશ્વરૂપદર્શનયોગ",55],[12,"ભક્તિયોગ",20],
-  [13,"ક્ષેત્રક્ષેત્રજ્ઞવિભાગયોગ",34],[14,"ગુણત્રયવિભાગયોગ",27],[15,"પુરુષોત્તમયોગ",20],
-  [16,"દૈવાસુરસંપદ્વિભાગયોગ",24],[17,"શ્રદ્ધાત્રયવિભાગયોગ",28],[18,"મોક્ષસંન્યાસયોગ",78]
-];
+function gq(id){
+  return document.getElementById(id);
+}
 
-function gq(id){ return document.getElementById(id); }
 
 function show(id){
-  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(s => s.classList.remove("active"));
+
   const target = gq(id);
-  if(target){ target.classList.add("active"); window.scrollTo(0,0); }
+
+  if(target){
+
+    target.classList.add("active");
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }
+
 }
+
+
+/* =========================================================
+   JAP SYSTEM
+========================================================= */
+
+const MANTRAS = {
+
+  "om-namah-shivaya":{
+    text:"ॐ नमः शिवाय"
+  },
+
+  "om-namo-bhagavate":{
+    text:"ॐ नमो भगवते वासुदेवाय"
+  },
+
+  "ram":{
+    text:"श्री राम जय राम जय जय राम"
+  },
+
+  "ganesh":{
+    text:"ॐ गं गणपतये नमः"
+  },
+
+  "mahamrityunjaya":{
+    text:
+    "ॐ त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम् ।"
+  }
+
+};
+
+
+let japCount = 0;
+
+
+function updateJap(){
+
+  gq("japCount").textContent = japCount;
+
+  const percentage =
+    Math.min((japCount / 108) * 100,100);
+
+  gq("japProgress").style.width =
+    percentage + "%";
+
+}
+
+
+function doJap(){
+
+  if(japCount < 108){
+
+    japCount++;
+
+    updateJap();
+
+    if(navigator.vibrate){
+
+      navigator.vibrate(25);
+
+    }
+
+  }
+
+  if(japCount === 108){
+
+    setTimeout(() => {
+
+      alert(
+        "🙏 108 જપ પૂર્ણ થયા.\n\nૐ શાંતિઃ શાંતિઃ શાંતિઃ"
+      );
+
+    },100);
+
+  }
+
+}
+
+
+function decreaseJap(){
+
+  if(japCount > 0){
+
+    japCount--;
+
+    updateJap();
+
+  }
+
+}
+
+
+function resetJap(){
+
+  japCount = 0;
+
+  updateJap();
+
+}
+
+
+function set108(){
+
+  japCount = 108;
+
+  updateJap();
+
+}
+
+
+function changeMantra(){
+
+  const key =
+    gq("mantraSelect").value;
+
+  const mantra =
+    MANTRAS[key];
+
+  if(mantra){
+
+    gq("mantraText").textContent =
+      mantra.text;
+
+  }
+
+  resetJap();
+
+}
+
+
+/* =========================================================
+   DHARMIK GRANTH DATA
+========================================================= */
+
+const DHARMIK_GRANTHS = [
+
+  {
+    icon:"📖",
+    title:"શ્રીમદ્ ભગવદ્ ગીતા",
+    desc:"18 અધ્યાય • 700 શ્લોક",
+    action:"openGita()"
+  },
+
+  {
+    icon:"📕",
+    title:"વાલ્મીકિ રામાયણ",
+    desc:"શ્રીરામના જીવન અને ધર્મનું મહાકાવ્ય",
+    action:"openInfo('વાલ્મીકિ રામાયણ')"
+  },
+
+  {
+    icon:"📗",
+    title:"મહાભારત",
+    desc:"ધર્મ, નીતિ અને જીવનદર્શનનું મહાકાવ્ય",
+    action:"openInfo('મહાભારત')"
+  },
+
+  {
+    icon:"📘",
+    title:"ઉપનિષદ",
+    desc:"આત્મા, બ્રહ્મ અને આધ્યાત્મિક જ્ઞાન",
+    action:"openInfo('ઉપનિષદ')"
+  },
+
+  {
+    icon:"📙",
+    title:"વેદ",
+    desc:"ઋગ્વેદ, યજુર્વેદ, સામવેદ અને અથર્વવેદ",
+    action:"openInfo('વેદ')"
+  },
+
+  {
+    icon:"📔",
+    title:"પુરાણ",
+    desc:"સનાતન પરંપરા, કથા અને ધર્મજ્ઞાન",
+    action:"openInfo('પુરાણ')"
+  },
+
+  {
+    icon:"🕉️",
+    title:"શ્રીમદ્ ભાગવત",
+    desc:"ભક્તિ અને ભગવાન શ્રીકૃષ્ણની કથાઓ",
+    action:"openInfo('શ્રીમદ્ ભાગવત')"
+  }
+
+];
+
+
+function renderDharmikGranth(){
+
+  const box =
+    gq("dharmikList");
+
+  let html = "";
+
+  DHARMIK_GRANTHS.forEach(g => {
+
+    html += `
+
+      <div class="granth-card">
+
+        <div class="granth-card-title">
+
+          <div class="granth-emoji">
+            ${g.icon}
+          </div>
+
+          <div>
+
+            <h3>${g.title}</h3>
+
+            <p>${g.desc}</p>
+
+          </div>
+
+        </div>
+
+        <button
+          class="small-btn granth-open"
+          onclick="${g.action}">
+
+          ગ્રંથ ખોલો →
+
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+  box.innerHTML = html;
+
+}
+
+
+function openInfo(title){
+
+  alert(
+    title +
+    "\n\nઆ વિભાગમાં આગળ અધ્યાય, શ્લોક અને ગુજરાતી અર્થ ઉમેરવામાં આવશે."
+  );
+
+}
+
+
+/* =========================================================
+   PANCHANG DATE
+========================================================= */
+
+function updateToday(){
+
+  const now = new Date();
+
+  const date =
+    now.toLocaleDateString(
+      "gu-IN",
+      {
+        day:"numeric",
+        month:"long",
+        year:"numeric"
+      }
+    );
+
+  const day =
+    now.toLocaleDateString(
+      "gu-IN",
+      {
+        weekday:"long"
+      }
+    );
+
+  gq("todayDate").textContent =
+    date;
+
+  gq("todayDay").textContent =
+    day;
+
+}
+
+
+/* =========================================================
+   GITA DATA
+========================================================= */
+
+const GITA_DATABASE = {
+
+  "1-1":{
+    sanskrit:
+`धृतराष्ट्र उवाच ।
+धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः ।
+मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ॥ १ ॥`,
+
+    english:
+"Dhritarashtra said: O Sanjaya, assembled on the holy field of Kurukshetra, desirous to fight, what did my sons and the sons of Pandu do?",
+
+    hindi:
+"धृतराष्ट्र बोले—हे संजय! धर्मभूमि कुरुक्षेत्र में एकत्रित युद्ध की इच्छा वाले मेरे और पाण्डु के पुत्रों ने क्या किया?",
+
+    gujarati:
+"ધૃતરાષ્ટ્ર બોલ્યા: હે સંજય! ધર્મભૂમિ કુરુક્ષેત્રમાં એકઠા થયેલા યુદ્ધની ઇચ્છાવાળા મારા અને પાંડુના પુત્રોએ શું કર્યું?"
+  },
+
+
+  "2-47":{
+    sanskrit:
+`कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।
+मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ॥ ४७ ॥`,
+
+    english:
+"You have a right to perform your prescribed duty, but you are not entitled to the fruits of action.",
+
+    hindi:
+"कर्म करने में ही तुम्हारा अधिकार है, उसके फलों में कभी नहीं। इसलिए तुम कर्मफल के हेतु मत बनो और अकर्म में भी आसक्त न हो।",
+
+    gujarati:
+"કર્મ કરવામાં જ તારો અધિકાર છે, ફળમાં ક્યારેય નહીં. કર્મફળની આસક્તિ રાખ નહીં અને કર્મ ન કરવામાં પણ આસક્તિ ન રાખ."
+  }
+
+};
+
+
+const GITA_CHAPTERS = [
+
+  [1,"અર્જુનવિષાદયોગ",47],
+  [2,"સાંખ્યયોગ",72],
+  [3,"કર્મયોગ",43],
+  [4,"જ્ઞાનકર્મસંન્યાસયોગ",42],
+  [5,"કર્મસંન્યાસયોગ",29],
+  [6,"આત્મસંયમયોગ",47],
+  [7,"જ્ઞાનવિજ્ઞાનયોગ",30],
+  [8,"અક્ષરબ્રહ્મયોગ",28],
+  [9,"રાજવિદ્યારાજગુહ્યયોગ",34],
+  [10,"વિભૂતિયોગ",42],
+  [11,"વિશ્વરૂપદર્શનયોગ",55],
+  [12,"ભક્તિયોગ",20],
+  [13,"ક્ષેત્રક્ષેત્રજ્ઞવિભાગયોગ",34],
+  [14,"ગુણત્રયવિભાગયોગ",27],
+  [15,"પુરુષોત્તમયોગ",20],
+  [16,"દૈવાસુરસંપદ્વિભાગયોગ",24],
+  [17,"શ્રદ્ધાત્રયવિભાગયોગ",28],
+  [18,"મોક્ષસંન્યાસયોગ",78]
+
+];
+
 
 function openGita(){
+
   show("gitaPage");
+
   renderGitaChapters();
+
 }
+
 
 function renderGitaChapters(){
-  const box = gq("gita700List");
-  let html = "";
-  for(let i=0; i<GITA_CHAPTERS.length; i++){
-    const ch = GITA_CHAPTERS[i][0];
-    const name = GITA_CHAPTERS[i][1];
-    const count = GITA_CHAPTERS[i][2];
 
-    html += `<div class="gita-chapter">
-      <div class="gita-chapter-head">
-        <div class="gita-number">${ch}</div>
-        <div><strong>${name}</strong><small>${count} શ્લોક</small></div>
-      </div>
-      <div class="gita-verse-grid">`;
-    for(let v=1; v<=count; v++){
-      html += `<button class="gita-verse-btn" onclick="openGitaVerse(${ch}, ${v})">${v}</button>`;
+  const box =
+    gq("gita700List");
+
+  let html = "";
+
+  GITA_CHAPTERS.forEach(item => {
+
+    const ch =
+      item[0];
+
+    const name =
+      item[1];
+
+    const count =
+      item[2];
+
+
+    html += `
+
+      <div class="gita-chapter">
+
+        <div class="gita-chapter-head">
+
+          <div class="gita-number">
+            ${ch}
+          </div>
+
+          <div>
+            <strong>${name}</strong>
+            <small>${count} શ્લોક</small>
+          </div>
+
+        </div>
+
+        <div class="gita-verse-grid">
+
+    `;
+
+
+    for(let v=1;v<=count;v++){
+
+      html += `
+
+        <button
+          class="gita-verse-btn"
+          onclick="openGitaVerse(${ch},${v})">
+
+          ${v}
+
+        </button>
+
+      `;
+
     }
-    html += `</div></div>`;
-  }
-  box.innerHTML = html;
+
+
+    html += `
+
+        </div>
+      </div>
+
+    `;
+
+  });
+
+
+  box.innerHTML =
+    html;
+
 }
 
-function openGitaVerse(ch, vr){
-  const key = ch + "-" + vr;
-  const old = gq("gitaVerseReader");
-  if(old) old.remove();
 
-  const data = GITA_DATABASE[key] || {
-    sanskrit: `अध्याय ${ch} • श्लोक ${vr}\n(શ્લોક ડેટાબેઝમાંથી ઉમેરાઈ રહ્યો છે...)`,
-    english: "English meaning will be updated soon.",
-    hindi: "हिन्दी अर्थ (गीताप्रेस गोरखपुर) शीघ्र ही पूर्ण रूप से जोड़ा जाएगा।",
-    gujarati: "શુદ્ધ ગુજરાતી ભાવાનુવાદ ટૂંક સમયમાં ઉમેરાશે."
-  };
+function openGitaVerse(ch,vr){
 
-  const reader = document.createElement("div");
-  reader.id = "gitaVerseReader";
-  reader.className = "gita-reader";
+  const key =
+    ch + "-" + vr;
+
+  const old =
+    gq("gitaVerseReader");
+
+  if(old){
+    old.remove();
+  }
+
+
+  const data =
+    GITA_DATABASE[key] || {
+
+      sanskrit:
+        `अध्याय ${ch} • श्लोक ${vr}
+(આ શ્લોકનું સંપૂર્ણ data આગળ ઉમેરાશે.)`,
+
+      english:
+        "English meaning will be added.",
+
+      hindi:
+        "हिन्दी अर्थ आगे जोड़ा जाएगा।",
+
+      gujarati:
+        "ગુજરાતી અર્થ આગળ ઉમેરવામાં આવશે."
+
+    };
+
+
+  const reader =
+    document.createElement("div");
+
+  reader.id =
+    "gitaVerseReader";
+
+  reader.className =
+    "gita-reader";
+
 
   reader.innerHTML = `
-    <div class="card-actions" style="margin-top:0;margin-bottom:12px">
-      <button class="small-btn" onclick="closeGitaVerse()">← શ્લોકો પર પાછા</button>
+
+    <div class="card-actions"
+         style="margin-top:0;margin-bottom:12px">
+
+      <button
+        class="small-btn"
+        onclick="closeGitaVerse()">
+
+        ← શ્લોકો પર પાછા
+
+      </button>
+
     </div>
-    <div class="gita-reader-title">શ્રીમદ્ ભગવદ્ ગીતા</div>
-    <div class="gita-reader-meta">અધ્યાય ${ch} • શ્લોક ${vr}</div>
-    <div class="gita-sanskrit">${data.sanskrit}</div>
-    
+
+
+    <div class="gita-reader-title">
+      શ્રીમદ્ ભગવદ્ ગીતા
+    </div>
+
+    <div class="gita-reader-meta">
+      અધ્યાય ${ch} • શ્લોક ${vr}
+    </div>
+
+
+    <div class="gita-sanskrit">
+      ${data.sanskrit}
+    </div>
+
+
     <div class="gita-meaning">
+
       <h3>English Meaning</h3>
-      <p>${data.english}</p>
+
+      <p>
+        ${data.english}
+      </p>
+
     </div>
+
+
     <div class="gita-meaning">
-      <h3>हिन्दी अर्थ (गीताप्रेस गोरखपुर)</h3>
-      <p style="color:#f0cf79">${data.hindi}</p>
+
+      <h3>हिन्दी अर्थ</h3>
+
+      <p style="color:#f0cf79">
+        ${data.hindi}
+      </p>
+
     </div>
+
+
     <div class="gita-meaning">
+
       <h3>ગુજરાતી અર્થ</h3>
-      <p style="color:#f8e8c4">${data.gujarati}</p>
+
+      <p style="color:#f8e8c4">
+        ${data.gujarati}
+      </p>
+
     </div>
+
   `;
 
-  const anchor = gq("gitaReaderAnchor");
-  anchor.appendChild(reader);
-  window.scrollTo(0, 0);
+
+  gq("gitaReaderAnchor")
+    .appendChild(reader);
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
 }
+
 
 function closeGitaVerse(){
-  const reader = gq("gitaVerseReader");
-  if(reader) reader.remove();
+
+  const reader =
+    gq("gitaVerseReader");
+
+  if(reader){
+    reader.remove();
+  }
+
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderGitaChapters();
-});
+
+/* =========================================================
+   INIT
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    renderGitaChapters();
+
+    renderDharmikGranth();
+
+    updateToday();
+
+    updateJap();
+
+  }
+);
+
 </script>
+
 </body>
 </html>
