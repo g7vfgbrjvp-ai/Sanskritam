@@ -737,13 +737,13 @@ textarea{
   height:72px;
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  background:rgba(25,10,12,.97);
+  background:rgba(255,250,242,.96);
   border-top:1px solid var(--border);
   z-index:100;
 }
 
-body.light .bottom-nav{
-  background:rgba(255,250,242,.96);
+body:not(.light) .bottom-nav{
+  background:rgba(25,10,12,.97);
 }
 
 .nav-btn{
@@ -1131,7 +1131,7 @@ body.light .bottom-nav{
     </button>
 
     <button class="list-item" onclick="templeInfo('51 શક્તિપીઠ')">
-      <div class="list-icon">श</div>
+      <div class="list-icon">શ</div>
       <div class="list-content">
         <strong>51 શક્તિપીઠ</strong>
         <small>માતા શક્તિના પવિત્ર સ્થાન</small>
@@ -1140,7 +1140,7 @@ body.light .bottom-nav{
     </button>
 
     <button class="list-item" onclick="templeInfo('ચાર ધામ')">
-      <div class="list-icon">ध</div>
+      <div class="list-icon">ધ</div>
       <div class="list-content">
         <strong>ચાર ધામ</strong>
         <small>બદ્રીનાથ • દ્વારકા • પુરી • રામેશ્વરમ</small>
@@ -1193,7 +1193,7 @@ body.light .bottom-nav{
 
   <div class="list">
     <button class="list-item" onclick="knowledge('ધર્મ')">
-      <div class="list-icon">ध</div>
+      <div class="list-icon">ધ</div>
       <div class="list-content">
         <strong>ધર્મ</strong>
         <small>ધર્મ અને સદાચાર</small>
@@ -1202,7 +1202,7 @@ body.light .bottom-nav{
     </button>
 
     <button class="list-item" onclick="knowledge('કર્મ')">
-      <div class="list-icon">क</div>
+      <div class="list-icon">ક</div>
       <div class="list-content">
         <strong>કર્મ</strong>
         <small>કર્મયોગ અને કર્તવ્ય</small>
@@ -1211,7 +1211,7 @@ body.light .bottom-nav{
     </button>
 
     <button class="list-item" onclick="knowledge('યોગ')">
-      <div class="list-icon">यो</div>
+      <div class="list-icon">યો</div>
       <div class="list-content">
         <strong>યોગ</strong>
         <small>યોગ અને આધ્યાત્મિક સાધના</small>
@@ -1220,7 +1220,7 @@ body.light .bottom-nav{
     </button>
 
     <button class="list-item" onclick="knowledge('તહેવારો')">
-      <div class="list-icon">उ</div>
+      <div class="list-icon">ઉ</div>
       <div class="list-content">
         <strong>તહેવારો</strong>
         <small>સનાતન પરંપરાના પર્વો</small>
@@ -1275,14 +1275,14 @@ body.light .bottom-nav{
     <p id="dayToday"></p>
     <div class="list" style="margin-top:18px">
       <div class="list-item">
-        <div class="list-icon">ति</div>
+        <div class="list-icon">તિ</div>
         <div class="list-content">
           <strong>તિથિ</strong>
           <small>સ્થાન અનુસાર પંચાંગ માહિતી માટે Internet જરૂરી હોઈ શકે છે.</small>
         </div>
       </div>
       <div class="list-item">
-        <div class="list-icon">न</div>
+        <div class="list-icon">ન</div>
         <div class="list-content">
           <strong>નક્ષત્ર</strong>
           <small>સ્થાન આધારિત માહિતી</small>
@@ -1313,12 +1313,12 @@ body.light .bottom-nav{
       <small>Mahadev</small>
     </button>
     <button class="feature" onclick="galleryMessage('કૃષ્ણ')">
-      <div class="feature-icon">कृ</div>
+      <div class="feature-icon">કૃ</div>
       <strong>કૃષ્ણ</strong>
       <small>Shri Krishna</small>
     </button>
     <button class="feature" onclick="galleryMessage('રામ')">
-      <div class="feature-icon">रा</div>
+      <div class="feature-icon">રા</div>
       <strong>રામ</strong>
       <small>Shri Ram</small>
     </button>
@@ -1998,14 +1998,14 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <!-- =====================================================
-     GITA ENGINE (PERFECT HINDI FETCH FROM VEDIC API)
+     GITA ENGINE (ACCURATE HINDI & DIRECT GUJARATI SUPPORT)
 ===================================================== -->
 <script>
 const GITA_CONFIG = {
   DATA_URL: "https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json",
   VEDIC_API_SLOK: "https://raw.githubusercontent.com/vedicscriptures/bhagavad-gita-api/master/slok",
-  CACHE_KEY_GU: "brahmansh_gita_gu_v3",
-  CACHE_KEY_HI: "brahmansh_gita_hi_v3"
+  CACHE_KEY_GU: "brahmansh_gita_gu_v4",
+  CACHE_KEY_HI: "brahmansh_gita_hi_v4"
 };
 
 const GITA_CHAPTERS = [
@@ -2032,6 +2032,7 @@ const GITA_CHAPTERS = [
 let gita = {};
 let allVerses = [];
 let currentVerse = null;
+let gujaratiGitaData = null;
 
 function gq(id){
   return document.getElementById(id);
@@ -2124,7 +2125,20 @@ function setCache(cKey, key, val){
   } catch(e) {}
 }
 
-/* FETCH ACCURATE HINDI MEANING */
+/* લોકલ ગુજરાતી JSON ફાઈલ લોડ કરવા માટે */
+async function loadGujaratiFile(){
+  if(gujaratiGitaData) return;
+  try {
+    const res = await fetch("gita_gujarati.json");
+    if(res.ok){
+      gujaratiGitaData = await res.json();
+    }
+  } catch(e){
+    console.warn("Local Gujarati file not present yet.");
+  }
+}
+
+/* ૧૦૦% સાચો હિન્દી અર્થ મેળવવા માટે (ગીતા પ્રેસ / રામસુખદાસજી / તેજોમયાનંદજી) */
 async function fetchHindiMeaning(ch, vr, key){
   const target = gq("hi-" + key);
   if(!target) return;
@@ -2139,19 +2153,18 @@ async function fetchHindiMeaning(ch, vr, key){
   target.textContent = "हिन्दी अर्थ लोड हो रहा है...";
 
   try {
-    // Direct raw JSON per shloka from authentic Gita dataset
     const url = GITA_CONFIG.VEDIC_API_SLOK + "/" + ch + "/" + vr + "/";
     const res = await fetch(url, { cache: "force-cache" });
     if(res.ok){
       const data = await res.json();
       let hindiText = "";
 
-      // 1. Ramsukhdasji (simplest & most authentic)
+      // સ્વામી રામસુખદાસજી (ગીતા પ્રેસ - સૌથી સરળ અને સચોટ હિન્દી)
       if(data.rams && data.rams.ht){
         hindiText = data.rams.ht;
-      } else if(data.tej && data.tej.ht){ // 2. Tejomayananda
+      } else if(data.tej && data.tej.ht){
         hindiText = data.tej.ht;
-      } else if(data.chinmay && data.chinmay.hc){ // 3. Chinmayananda
+      } else if(data.chinmay && data.chinmay.hc){
         hindiText = data.chinmay.hc;
       }
 
@@ -2164,62 +2177,26 @@ async function fetchHindiMeaning(ch, vr, key){
       }
     }
   } catch(err) {
-    console.warn("Vedic API fetch error, fallback to translator:", err);
+    console.error("Vedic API fetch error:", err);
   }
-
-  // Backup fallback using MyMemory API
-  try {
-    if(gita[key] && gita[key].english){
-      const transUrl = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(gita[key].english.substring(0, 450)) + "&langpair=en|hi";
-      const trRes = await fetch(transUrl);
-      if(trRes.ok){
-        const trData = await trRes.json();
-        if(trData && trData.responseData && trData.responseData.translatedText){
-          const finalTxt = gClean(trData.responseData.translatedText);
-          setCache(GITA_CONFIG.CACHE_KEY_HI, key, finalTxt);
-          if(gita[key]) gita[key].hindi = finalTxt;
-          target.textContent = finalTxt;
-          return;
-        }
-      }
-    }
-  } catch(e) {}
 
   target.textContent = "हिन्दी अर्थ ઉપલબ્ધ નથી.";
 }
 
-/* FETCH GUJARATI MEANING */
+/* સચોટ ગુજરાતી અર્થ */
 async function fetchGujaratiMeaning(key){
   const target = gq("gu-" + key);
   if(!target) return;
 
-  const cache = getCache(GITA_CONFIG.CACHE_KEY_GU);
-  if(cache[key]){
-    target.textContent = cache[key];
+  // ૧. જો gita_gujarati.json ફાઈલ હોય તો તેમાંથી અર્થ લેવો
+  await loadGujaratiFile();
+  if(gujaratiGitaData && gujaratiGitaData[key]){
+    target.textContent = gujaratiGitaData[key];
     return;
   }
 
-  if(!gita[key] || !gita[key].english){
-    target.textContent = "ગુજરાતી અર્થ ઉપલબ્ધ નથી.";
-    return;
-  }
-
-  target.textContent = "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
-  try {
-    const url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(gita[key].english.substring(0, 450)) + "&langpair=en|gu";
-    const r = await fetch(url);
-    if(r.ok){
-      const d = await r.json();
-      if(d && d.responseData && d.responseData.translatedText){
-        const translated = gClean(d.responseData.translatedText);
-        setCache(GITA_CONFIG.CACHE_KEY_GU, key, translated);
-        target.textContent = translated;
-        return;
-      }
-    }
-  } catch(e) {}
-
-  target.textContent = "ગુજરાતી અર્થ હાલ મેળવી શકાયો નથી.";
+  // ૨. મશીન અનુવાદથી અર્થ ખરાબ ન થાય તે માટે સ્પષ્ટ મેસેજ
+  target.textContent = "શુદ્ધ ગુજરાતી ભાવાનુવાદ ટૂંક સમયમાં ઉમેરાશે. (સચોટ અર્થ માટે ઉપર દર્શાવેલ હિન્દી અર્થ વાંચો).";
 }
 
 /* GITA RENDER */
@@ -2339,7 +2316,7 @@ async function openGitaVerse(key){
   }
   window.scrollTo(0, 0);
 
-  // Directly fetch both accurately
+  // હિન્દી અને ગુજરાતી અર્થ લોડ થશે
   fetchHindiMeaning(verse.chapter, verse.verse, key);
   fetchGujaratiMeaning(key);
 }
