@@ -1,566 +1,1520 @@
-import 'package:flutter/material.dart';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 
-void main() {
-  runApp(const BrahmanshApp());
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+>
+
+<meta name="theme-color" content="#351307">
+
+<title>BRAHMANSH</title>
+
+<style>
+
+/* =====================================================
+   BRAHMANSH
+   PREMIUM CREAM + GOLD + BROWN
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-class BrahmanshApp extends StatelessWidget {
-  const BrahmanshApp({super.key});
+html{
+  scroll-behavior:smooth;
+}
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Brahmansh',
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFFBF4E8),
-        fontFamily: 'Roboto',
-      ),
-      home: const HomeScreen(),
+body{
+  min-height:100vh;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #f6e5bd 0,
+      #ead3a5 45%,
+      #d6b77e 100%
     );
+
+  color:#4a210d;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app{
+  width:100%;
+  max-width:480px;
+  min-height:100vh;
+
+  margin:auto;
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff7e4 0%,
+      #f9ecd0 42%,
+      #f0dfbb 100%
+    );
+
+  box-shadow:
+    0 0 40px rgba(61,31,10,.20);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+  padding:18px 18px 8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff8e8,
+      #f8e9c9
+    );
+}
+
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+
+/* LOGO */
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  min-width:0;
+}
+
+.om-logo{
+  width:56px;
+  height:56px;
+
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:#fff8e8;
+
+  font-family:
+    "Noto Sans Devanagari",
+    serif;
+
+  font-size:34px;
+  font-weight:bold;
+
+  background:
+    linear-gradient(
+      145deg,
+      #edc45d,
+      #a45a17
+    );
+
+  border:2px solid #f1d384;
+
+  box-shadow:
+    0 6px 15px rgba(92,45,12,.22);
+}
+
+.brand-info{
+  min-width:0;
+}
+
+.brand-name{
+  font-family:Georgia,serif;
+
+  font-size:23px;
+  font-weight:800;
+
+  letter-spacing:1.2px;
+
+  color:#4a210d;
+}
+
+.brand-tagline{
+  margin-top:4px;
+
+  font-size:9px;
+
+  font-weight:700;
+
+  letter-spacing:1.1px;
+
+  color:#94602c;
+
+  white-space:nowrap;
+}
+
+
+/* LANGUAGE */
+
+.language{
+  flex-shrink:0;
+
+  display:flex;
+  align-items:center;
+  gap:4px;
+
+  padding:9px 11px;
+
+  border-radius:22px;
+
+  background:rgba(255,255,255,.78);
+
+  border:1px solid #d8b56b;
+
+  color:#5b2b10;
+
+  font-size:11px;
+  font-weight:700;
+
+  box-shadow:
+    0 4px 10px rgba(74,33,13,.07);
+}
+
+.language span{
+  font-size:15px;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-wrapper{
+  padding:10px 18px 0;
+}
+
+.search{
+  height:54px;
+
+  display:flex;
+  align-items:center;
+
+  padding:0 16px;
+
+  border-radius:18px;
+
+  background:#fffaf0;
+
+  border:1px solid #d9b76d;
+
+  box-shadow:
+    0 7px 16px rgba(82,43,15,.09);
+}
+
+.search-icon{
+  font-size:22px;
+  color:#713715;
+
+  margin-right:11px;
+}
+
+.search input{
+  width:100%;
+
+  border:0;
+  outline:none;
+
+  background:transparent;
+
+  color:#4a210d;
+
+  font-size:13px;
+
+  font-family:inherit;
+}
+
+.search input::placeholder{
+  color:#927d68;
+}
+
+.mic{
+  font-size:21px;
+  color:#9b5a20;
+  margin-left:8px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+  position:relative;
+
+  height:235px;
+
+  margin:18px 18px 0;
+
+  overflow:hidden;
+
+  border-radius:26px;
+
+  border:1.5px solid #d5a13e;
+
+  box-shadow:
+    0 10px 24px rgba(82,42,13,.22);
+
+  background:
+    linear-gradient(
+      145deg,
+      #f3ca6d,
+      #c8732d,
+      #713314
+    );
+}
+
+
+/* Hero image */
+
+.hero-image{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+}
+
+
+/* If image unavailable */
+
+.hero-placeholder{
+  position:absolute;
+
+  inset:0;
+
+  background:
+    radial-gradient(
+      circle at 72% 22%,
+      #ffeaa8 0,
+      #edb84f 17%,
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #f2c46b 0%,
+      #d27a31 52%,
+      #693016 100%
+    );
+}
+
+
+/* Overlay */
+
+.hero-overlay{
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(38,15,5,.04) 0%,
+      rgba(38,15,5,.05) 32%,
+      rgba(38,15,5,.62) 100%
+    );
+}
+
+
+/* Sun */
+
+.hero-sun{
+  position:absolute;
+
+  width:74px;
+  height:74px;
+
+  top:22px;
+  left:52px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #fff9d5,
+      #ffd56d 50%,
+      transparent 72%
+    );
+
+  opacity:.85;
+}
+
+
+/* Temple silhouette */
+
+.temple{
+  position:absolute;
+
+  left:18px;
+  bottom:-2px;
+
+  width:175px;
+  height:105px;
+
+  opacity:.80;
+}
+
+.temple-body{
+  position:absolute;
+
+  bottom:0;
+  left:20px;
+
+  width:135px;
+  height:65px;
+
+  background:#542415;
+
+  border-radius:5px 5px 0 0;
+}
+
+.temple-dome{
+  position:absolute;
+
+  left:43px;
+  bottom:58px;
+
+  width:90px;
+  height:62px;
+
+  background:#5d2916;
+
+  border-radius:
+    100px 100px 0 0;
+}
+
+.temple-spire{
+  position:absolute;
+
+  left:77px;
+  bottom:108px;
+
+  width:25px;
+  height:40px;
+
+  background:#552313;
+
+  clip-path:
+    polygon(
+      50% 0,
+      100% 100%,
+      0 100%
+    );
+}
+
+.temple-door{
+  position:absolute;
+
+  left:75px;
+  bottom:0;
+
+  width:28px;
+  height:47px;
+
+  background:#2e1008;
+
+  border-radius:
+    18px 18px 0 0;
+}
+
+.temple-column{
+  position:absolute;
+
+  bottom:0;
+
+  width:9px;
+  height:57px;
+
+  background:#7b4120;
+
+  border-radius:4px 4px 0 0;
+}
+
+.tc1{left:29px}
+.tc2{left:53px}
+.tc3{left:117px}
+.tc4{left:139px}
+
+
+/* Hero content */
+
+.hero-content{
+  position:absolute;
+
+  top:20px;
+  right:18px;
+
+  width:57%;
+
+  text-align:right;
+
+  color:white;
+}
+
+.hero-label{
+  font-size:9px;
+
+  letter-spacing:1.8px;
+
+  color:#ffe4a1;
+
+  font-weight:700;
+}
+
+.hero-title{
+  margin-top:7px;
+
+  font-family:Georgia,serif;
+
+  font-size:18px;
+
+  line-height:1.3;
+
+  font-weight:bold;
+
+  text-shadow:
+    0 2px 5px rgba(0,0,0,.45);
+}
+
+.hero-subtitle{
+  margin-top:7px;
+
+  font-family:Georgia,serif;
+
+  font-size:12px;
+
+  line-height:1.45;
+
+  color:#fff1c9;
+}
+
+.hero-reference{
+  margin-top:5px;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  color:white;
+}
+
+.hero-button{
+  display:inline-flex;
+
+  align-items:center;
+  gap:6px;
+
+  margin-top:15px;
+
+  padding:9px 13px;
+
+  border-radius:20px;
+
+  background:#4b1e09;
+
+  border:1px solid #e8c36c;
+
+  color:white;
+
+  font-size:10px;
+
+  font-weight:700;
+}
+
+
+/* Dots */
+
+.hero-dots{
+  position:absolute;
+
+  bottom:10px;
+
+  left:0;
+  right:0;
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:6px;
+}
+
+.hero-dot{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.45);
+}
+
+.hero-dot.active{
+  width:20px;
+
+  border-radius:10px;
+
+  background:#fff;
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section{
+  padding:24px 18px 0;
+}
+
+.section-header{
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+}
+
+.section-icon{
+  color:#b87720;
+
+  font-size:24px;
+}
+
+.section-title{
+  font-family:Georgia,serif;
+
+  font-size:20px;
+
+  font-weight:bold;
+
+  color:#4a210d;
+}
+
+.section-line{
+  flex:1;
+
+  height:1px;
+
+  margin-left:4px;
+
+  background:#d7ad5d;
+}
+
+.view-all{
+  color:#9b5a20;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+
+/* =====================================================
+   FEATURE GRID
+===================================================== */
+
+.feature-grid{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+
+  margin-top:14px;
+}
+
+.feature-card{
+  min-height:132px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:12px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffaf0,
+      #f5e4c1
+    );
+
+  border:1px solid #dfc285;
+
+  box-shadow:
+    0 7px 15px rgba(75,38,13,.08);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.feature-card:active{
+  transform:scale(.97);
+}
+
+.feature-card::after{
+  content:"";
+
+  position:absolute;
+
+  right:-22px;
+  top:-25px;
+
+  width:85px;
+  height:85px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(189,140,55,.12);
+}
+
+.feature-icon{
+  width:49px;
+  height:49px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:15px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #813f17,
+      #4a1d09
+    );
+
+  color:#f4d48b;
+
+  font-size:25px;
+
+  box-shadow:
+    0 5px 10px rgba(72,29,7,.20);
+}
+
+.feature-title{
+  margin-top:8px;
+
+  font-family:Georgia,serif;
+
+  font-size:14px;
+
+  font-weight:bold;
+
+  color:#4a210d;
+}
+
+.feature-description{
+  margin-top:3px;
+
+  max-width:95%;
+
+  color:#80664e;
+
+  font-size:9.5px;
+
+  line-height:1.35;
+}
+
+.feature-arrow{
+  position:absolute;
+
+  right:10px;
+  bottom:10px;
+
+  width:27px;
+  height:27px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#ce8628;
+
+  color:white;
+
+  font-size:15px;
+}
+
+
+/* =====================================================
+   DAILY INSPIRATION
+===================================================== */
+
+.daily{
+  position:relative;
+
+  overflow:hidden;
+
+  margin:20px 18px 100px;
+
+  padding:20px;
+
+  border-radius:23px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #692f12,
+      #321004
+    );
+
+  color:white;
+
+  box-shadow:
+    0 9px 20px rgba(63,29,8,.20);
+}
+
+.daily::after{
+  content:"ॐ";
+
+  position:absolute;
+
+  right:-14px;
+  bottom:-38px;
+
+  font-family:
+    "Noto Sans Devanagari",
+    serif;
+
+  font-size:125px;
+
+  color:rgba(255,221,150,.055);
+}
+
+.daily-label{
+  display:flex;
+  align-items:center;
+
+  gap:7px;
+
+  color:#eac676;
+
+  font-size:10px;
+
+  letter-spacing:1.7px;
+
+  font-weight:bold;
+}
+
+.daily-label-icon{
+  font-size:15px;
+}
+
+.daily-quote{
+  position:relative;
+  z-index:1;
+
+  margin-top:12px;
+
+  font-family:Georgia,serif;
+
+  font-size:16px;
+
+  line-height:1.4;
+
+  font-weight:bold;
+}
+
+.daily-quote-second{
+  position:relative;
+  z-index:1;
+
+  margin-top:2px;
+
+  font-family:Georgia,serif;
+
+  font-size:14px;
+
+  color:#ffe3a0;
+}
+
+.daily-reference{
+  position:relative;
+  z-index:1;
+
+  margin-top:8px;
+
+  font-size:10px;
+
+  color:#d8bda4;
+
+  font-weight:600;
+}
+
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottom-nav{
+  position:fixed;
+
+  left:50%;
+  bottom:0;
+
+  transform:translateX(-50%);
+
+  width:100%;
+  max-width:480px;
+
+  height:76px;
+
+  z-index:100;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  padding:
+    8px 8px
+    calc(8px + env(safe-area-inset-bottom));
+
+  background:
+    linear-gradient(
+      180deg,
+      #391507,
+      #210a03
+    );
+
+  border-radius:
+    26px 26px 0 0;
+
+  box-shadow:
+    0 -8px 22px rgba(47,22,6,.25);
+}
+
+.nav-item{
+  border:0;
+
+  background:transparent;
+
+  color:#ad927b;
+
+  font-family:inherit;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:4px;
+
+  cursor:pointer;
+}
+
+.nav-icon{
+  width:43px;
+  height:32px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:15px;
+
+  font-size:21px;
+}
+
+.nav-label{
+  font-size:10px;
+}
+
+.nav-item.active{
+  color:#fff;
+}
+
+.nav-item.active .nav-icon{
+  background:#713715;
+
+  color:#f3d080;
+
+  border:1px solid #c58a37;
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media(min-width:700px){
+
+  body{
+    padding:20px 0;
+  }
+
+  .app{
+    min-height:
+      calc(100vh - 40px);
+
+    border-radius:32px;
+  }
+
+  .bottom-nav{
+    border-radius:
+      0 0 32px 32px;
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+/* =====================================================
+   SMALL SCREEN
+===================================================== */
 
-class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+@media(max-width:360px){
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Top Header Section
-              _buildTopHeader(),
-
-              const SizedBox(height: 12),
-
-              // Search Bar
-              _buildSearchBar(),
-
-              const SizedBox(height: 16),
-
-              // Hero Banner (Gita Banner)
-              _buildHeroBanner(),
-
-              const SizedBox(height: 20),
-
-              // Section Title: Aajnu Aadhyatmik Jivan
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: const [
-                        Icon(Icons.local_florist, color: Color(0xFF9E5727), size: 20),
-                        SizedBox(width: 8),
-                        Text(
-                          'આજનું આધ્યાત્મિક જીવન',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF3E1C08),
-                          ),
-                        ),
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        children: const [
-                          Text(
-                            'વધુ જુઓ',
-                            style: TextStyle(
-                              color: Color(0xFF9E5727),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Icon(Icons.arrow_forward, color: Color(0xFF9E5727), size: 16),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              // 4 Category Cards Grid
-              _buildCategoryGrid(),
-
-              const SizedBox(height: 16),
-
-              // Daily Inspiration Banner
-              _buildDailyInspiration(),
-
-              const SizedBox(height: 20),
-            ],
-          ),
-        ),
-      ),
-
-      // Custom Bottom Navigation Bar
-      bottomNavigationBar: _buildBottomNav(),
-    );
+  .brand-name{
+    font-size:20px;
   }
 
-  // 1. Top Header Widget
-  Widget _buildTopHeader() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xFF9E5727),
-                ),
-                alignment: Alignment.center,
-                child: const Text(
-                  'ॐ',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'BRAHMANSH',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5,
-                      color: Color(0xFF3E1C08),
-                    ),
-                  ),
-                  Text(
-                    'सनातनं परमं ज्ञानम्',
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF8D5328),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: const Color(0xFFD8B98B)),
-            ),
-            child: Row(
-              children: const [
-                Icon(Icons.language, size: 16, color: Color(0xFF3E1C08)),
-                SizedBox(width: 4),
-                Text(
-                  'ગુજરાતી ⌄',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFF3E1C08),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+  .brand-tagline{
+    font-size:7.5px;
   }
 
-  // 2. Search Bar Widget
-  Widget _buildSearchBar() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14),
-        height: 48,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: const Color(0xFFD6BE9F), width: 1.2),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 6,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          children: const [
-            Icon(Icons.search, color: Color(0xFF6B4527), size: 22),
-            SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                'શ્લોક, ગ્રંથ, મંત્ર અથવા વિષય શોધો...',
-                style: TextStyle(color: Color(0xFF8E7A6B), fontSize: 13),
-              ),
-            ),
-            Icon(Icons.mic_none, color: Color(0xFF6B4527), size: 22),
-          ],
-        ),
-      ),
-    );
+  .language{
+    padding:8px;
   }
 
-  // 3. Gita Hero Banner
-  Widget _buildHeroBanner() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Container(
-        height: 190,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: const LinearGradient(
-            colors: [Color(0xFFE5A65D), Color(0xFFC97637), Color(0xFF7A3611)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.brown.withOpacity(0.2),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              right: 14,
-              top: 18,
-              width: 175,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const Text(
-                    'कर्मण्येवाधिकारस्ते\nमा फलेषु कदाचन ।',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2C1306),
-                      height: 1.3,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  const Text(
-                    'કર્મ કરવામાં તારો અધિકાર છે,\nપરંતુ તેના ફળમાં ક્યારેય નહીં.',
-                    textAlign: TextAlign.right,
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF381B09),
-                      height: 1.2,
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF381404),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        Text(
-                          'આજનો શ્લોક',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(width: 4),
-                        Icon(Icons.arrow_forward, color: Colors.white, size: 12),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Carousel Indicator Dots
-            Positioned(
-              bottom: 8,
-              left: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildDot(true),
-                  _buildDot(false),
-                  _buildDot(false),
-                  _buildDot(false),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  .language span{
+    display:none;
   }
 
-  Widget _buildDot(bool isActive) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 3),
-      width: isActive ? 7 : 5,
-      height: isActive ? 7 : 5,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: isActive ? Colors.white : Colors.white.withOpacity(0.5),
-      ),
-    );
+  .hero{
+    height:220px;
   }
 
-  // 4. Grid Cards
-  Widget _buildCategoryGrid() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: _buildCardItem(
-                  title: 'ભગવદ્ ગીતા',
-                  subtitle: 'અધ્યાય • શ્લોક • અર્થ',
-                  icon: Icons.menu_book,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _buildCardItem(
-                  title: 'જપ',
-                  subtitle: 'મંત્ર જાપ અને ધ્યાન',
-                  icon: Icons.grain,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              Expanded(
-                child: _buildCardItem(
-                  title: 'ધાર્મિક ગ્રંથ',
-                  subtitle: 'ગીતા • રામાયણ\nમહાભારત • વેદ • પુરાણ',
-                  icon: Icons.library_books,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _buildCardItem(
-                  title: 'પંચાંગ',
-                  subtitle: 'તિથિ • નક્ષત્ર • મુહૂર્ત\nરાશિફળ',
-                  icon: Icons.wb_sunny,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+  .hero-content{
+    width:59%;
   }
 
-  Widget _buildCardItem({
-    required String title,
-    required String subtitle,
-    required IconData icon,
-  }) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.85),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE2C9A8)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.brown.withOpacity(0.04),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: const Color(0xFF632B0F),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Icon(icon, color: const Color(0xFFE9C587), size: 24),
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF381503),
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    fontSize: 9.5,
-                    color: Color(0xFF755E4E),
-                    height: 1.2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            width: 22,
-            height: 22,
-            decoration: const BoxDecoration(
-              color: Color(0xFFC0732E),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(Icons.arrow_forward, color: Colors.white, size: 14),
-          ),
-        ],
-      ),
-    );
+  .hero-title{
+    font-size:16px;
   }
 
-  // 5. Daily Inspiration Card
-  Widget _buildDailyInspiration() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFF3D1606),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Text(
-              '✦ DAILY INSPIRATION',
-              style: TextStyle(
-                color: Color(0xFFD19F68),
-                fontSize: 11,
-                letterSpacing: 2,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 4),
-            Text(
-              'કર્મ કરવામાં તારો અધિકાર છે, પરંતુ તેના ફળમાં ક્યારેય નહીં.',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFFD6BEAF),
-                fontSize: 10,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  .section-title{
+    font-size:18px;
   }
 
-  // 6. Bottom Navigation Bar
-  Widget _buildBottomNav() {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Color(0xFF280E03),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24),
-          topRight: Radius.circular(24),
-        ),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _buildNavItem(0, Icons.temple_hindu, 'હોમ', true),
-          _buildNavItem(1, Icons.all_inclusive, 'જપ', false),
-          _buildNavItem(2, Icons.menu_book, 'ગ્રંથ', false),
-          _buildNavItem(3, Icons.wb_sunny_outlined, 'પંચાંગ', false),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNavItem(int index, IconData icon, String label, bool isSelected) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-        decoration: isSelected
-            ? BoxDecoration(
-                color: const Color(0xFF6B2F10),
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: const Color(0xFFB57B43)),
-              )
-            : null,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: isSelected ? const Color(0xFFF6D296) : const Color(0xFFAB9484), size: 22),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 11,
-                color: isSelected ? Colors.white : const Color(0xFFAB9484),
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  .feature-card{
+    min-height:125px;
   }
 }
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+  <!-- =================================================
+       HEADER
+  ================================================== -->
+
+  <header class="header">
+
+    <div class="header-row">
+
+
+      <div class="brand">
+
+        <div class="om-logo">
+          ॐ
+        </div>
+
+        <div class="brand-info">
+
+          <div class="brand-name">
+            BRAHMANSH
+          </div>
+
+          <div class="brand-tagline">
+            SANATANA • KNOWLEDGE • DHARMA
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="language">
+
+        <span>◉</span>
+
+        English
+
+        <b>⌄</b>
+
+      </div>
+
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =================================================
+       SEARCH
+  ================================================== -->
+
+  <div class="search-wrapper">
+
+    <div class="search">
+
+      <div class="search-icon">
+        ⌕
+      </div>
+
+      <input
+        type="text"
+        placeholder="Search Shlokas, Scriptures, Mantras or Topics..."
+      >
+
+      <div class="mic">
+        ♫
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =================================================
+       HERO
+  ================================================== -->
+
+  <section class="hero">
+
+
+    <!--
+      If you have the image:
+
+      assets/krishna-arjuna.jpg
+
+      it will be displayed here.
+    -->
+
+    <div class="hero-placeholder"></div>
+
+    <img
+      class="hero-image"
+      src="assets/krishna-arjuna.jpg"
+      alt="Krishna and Arjuna"
+      onerror="this.style.display='none';"
+    >
+
+
+    <div class="hero-sun"></div>
+
+
+    <div class="temple">
+
+      <div class="temple-spire"></div>
+
+      <div class="temple-dome"></div>
+
+      <div class="temple-body"></div>
+
+      <div class="temple-door"></div>
+
+      <div class="temple-column tc1"></div>
+      <div class="temple-column tc2"></div>
+      <div class="temple-column tc3"></div>
+      <div class="temple-column tc4"></div>
+
+    </div>
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+      <div class="hero-label">
+        BHAGAVAD GITA • 2.47
+      </div>
+
+      <div class="hero-title">
+        You have the right to perform your duty,
+      </div>
+
+      <div class="hero-subtitle">
+        but never to the fruits of it.
+      </div>
+
+      <div class="hero-reference">
+        — Bhagavad Gita
+      </div>
+
+      <div class="hero-button">
+        Today's Shloka
+        <span>→</span>
+      </div>
+
+    </div>
+
+
+    <div class="hero-dots">
+
+      <div class="hero-dot active"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- =================================================
+       SPIRITUAL LIVING
+  ================================================== -->
+
+  <section class="section">
+
+    <div class="section-header">
+
+      <div class="section-icon">
+        ❈
+      </div>
+
+      <div class="section-title">
+        Spiritual Living
+      </div>
+
+      <div class="section-line"></div>
+
+      <div class="view-all">
+        View All
+      </div>
+
+      <div style="
+        color:#9b5a20;
+        font-size:15px;
+      ">
+        →
+      </div>
+
+    </div>
+
+
+    <!-- FEATURE GRID -->
+
+    <div class="feature-grid">
+
+
+      <!-- GITA -->
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          📖
+        </div>
+
+        <div class="feature-title">
+          Bhagavad Gita
+        </div>
+
+        <div class="feature-description">
+          Wisdom • Duty • Devotion
+        </div>
+
+        <div class="feature-arrow">
+          →
+        </div>
+
+      </div>
+
+
+      <!-- JAPA -->
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          ॐ
+        </div>
+
+        <div class="feature-title">
+          Japa
+        </div>
+
+        <div class="feature-description">
+          Mantra Chanting & Meditation
+        </div>
+
+        <div class="feature-arrow">
+          →
+        </div>
+
+      </div>
+
+
+      <!-- SCRIPTURES -->
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          📜
+        </div>
+
+        <div class="feature-title">
+          Scriptures
+        </div>
+
+        <div class="feature-description">
+          Gita • Ramayana • Mahabharata • Vedas
+        </div>
+
+        <div class="feature-arrow">
+          →
+        </div>
+
+      </div>
+
+
+      <!-- PANCHANG -->
+
+      <div class="feature-card">
+
+        <div class="feature-icon">
+          ☀
+        </div>
+
+        <div class="feature-title">
+          Panchang
+        </div>
+
+        <div class="feature-description">
+          Tithi • Nakshatra • Muhurat • Festivals
+        </div>
+
+        <div class="feature-arrow">
+          →
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =================================================
+       DAILY INSPIRATION
+  ================================================== -->
+
+  <section class="daily">
+
+    <div class="daily-label">
+
+      <span class="daily-label-icon">
+        ✦
+      </span>
+
+      DAILY INSPIRATION
+
+    </div>
+
+
+    <div class="daily-quote">
+      You have the right to perform your duty,
+    </div>
+
+    <div class="daily-quote-second">
+      but never to the fruits of it.
+    </div>
+
+    <div class="daily-reference">
+      — Bhagavad Gita 2.47
+    </div>
+
+  </section>
+
+
+
+</div>
+
+
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-nav">
+
+
+  <button
+    class="nav-item active"
+    onclick="setActive(this)"
+  >
+
+    <div class="nav-icon">
+      🛕
+    </div>
+
+    <div class="nav-label">
+      Home
+    </div>
+
+  </button>
+
+
+  <button
+    class="nav-item"
+    onclick="setActive(this)"
+  >
+
+    <div class="nav-icon">
+      ॐ
+    </div>
+
+    <div class="nav-label">
+      Japa
+    </div>
+
+  </button>
+
+
+  <button
+    class="nav-item"
+    onclick="setActive(this)"
+  >
+
+    <div class="nav-icon">
+      📖
+    </div>
+
+    <div class="nav-label">
+      Scriptures
+    </div>
+
+  </button>
+
+
+  <button
+    class="nav-item"
+    onclick="setActive(this)"
+  >
+
+    <div class="nav-icon">
+      ☀
+    </div>
+
+    <div class="nav-label">
+      Panchang
+    </div>
+
+  </button>
+
+
+</nav>
+
+
+
+<script>
+
+/* =====================================================
+   BOTTOM NAV ACTIVE STATE
+===================================================== */
+
+function setActive(element){
+
+  document
+    .querySelectorAll('.nav-item')
+    .forEach(function(item){
+
+      item.classList.remove('active');
+
+    });
+
+  element.classList.add('active');
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+const searchInput =
+  document.querySelector('.search input');
+
+searchInput.addEventListener(
+  'focus',
+  function(){
+
+    this.parentElement.style.boxShadow =
+      '0 0 0 3px rgba(211,160,65,.18)';
+
+  }
+);
+
+searchInput.addEventListener(
+  'blur',
+  function(){
+
+    this.parentElement.style.boxShadow =
+      '0 7px 16px rgba(82,43,15,.09)';
+
+  }
+);
+
+</script>
+
+
+</body>
+</html>
