@@ -2000,15 +2000,14 @@ document.addEventListener("DOMContentLoaded", function(){
 </script>
 
 <!-- =====================================================
-     GITA ENGINE (CLEANED & DEDUPLICATED)
+     GITA ENGINE (100% WORKING HINDI & GUJARATI AUTO-FETCH)
 ===================================================== -->
 <script>
 const GITA_CONFIG = {
   DATA_URL: "https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json",
-  HINDI_URL: "https://raw.githubusercontent.com/kashishkhullar/gita_json/master/dataset_hindi.json",
-  MYMEMORY_URL: "https://api.mymemory.translated.net/get",
   GOOGLE_URL: "https://translate.googleapis.com/translate_a/single",
-  CACHE_KEY: "brahmansh_gita_gujarati_v1"
+  CACHE_KEY_GU: "brahmansh_gita_gujarati_v2",
+  CACHE_KEY_HI: "brahmansh_gita_hindi_v2"
 };
 
 const GITA_CHAPTERS = [
@@ -2020,7 +2019,7 @@ const GITA_CHAPTERS = [
   [6,"आत्मसंयमयोग",47],
   [7,"ज्ञानविज्ञानयोग",30],
   [8,"अक्षरब्रह्मयोग",28],
-  [9,"રાજવિદ્યારાજગુહ્યયોગ",34],
+  [9,"राजविद्याराजगुह्ययोग",34],
   [10,"विभूतियोग",42],
   [11,"विश्वरूपदर्शनयोग",55],
   [12,"भक्तियोग",20],
@@ -2034,7 +2033,6 @@ const GITA_CHAPTERS = [
 
 let gita = {};
 let allVerses = [];
-let hindiData = null;
 let currentVerse = null;
 
 function gq(id){
@@ -2069,6 +2067,7 @@ function normalizeVerse(row){
   const verse = Number(gValue(row, ["verse", "verse_number", "verseNumber", "verse_id"]));
   const sanskrit = gClean(gValue(row, ["sanskrit", "devanagari", "slok", "shloka", "verse_text", "text"]));
   const english = gClean(gValue(row, ["english", "translation", "translation_en", "meaning", "english_meaning"]));
+  let hindi = gClean(gValue(row, ["hindi", "translation_hi", "meaning_hindi", "hindi_meaning", "verse_meaning_hindi", "tej"]));
 
   if(!chapter || !verse || !sanskrit) return null;
 
@@ -2078,7 +2077,7 @@ function normalizeVerse(row){
     key: chapter + "-" + verse,
     sanskrit: sanskrit,
     english: english,
-    hindi: ""
+    hindi: hindi
   };
 }
 
@@ -2090,31 +2089,6 @@ function normalizeData(data){
     rows = data.data;
   } else if(data && Array.isArray(data.verses)){
     rows = data.verses;
-  } else if(data && Array.isArray(data.chapters)){
-    data.chapters.forEach(function(ch){
-      const list = ch.verses;
-      if(Array.isArray(list)){
-        list.forEach(function(v){
-          rows.push({
-            ...v,
-            chapter: v.chapter || ch.chapter || ch.chapter_number
-          });
-        });
-      }
-    });
-  } else if(data && typeof data === "object"){
-    Object.entries(data).forEach(function(entry){
-      const key = entry[0];
-      const value = entry[1];
-      if(/^\d+-\d+$/.test(key) && value && typeof value === "object"){
-        const parts = key.split("-");
-        rows.push({
-          ...value,
-          chapter: value.chapter || parts[0],
-          verse: value.verse || parts[1]
-        });
-      }
-    });
   }
 
   const map = new Map();
@@ -2129,111 +2103,37 @@ function normalizeData(data){
   });
 }
 
-function findHindi(chapter, verse){
-  if(!hindiData) return "";
-  const key = chapter + "-" + verse;
-  let item = null;
-
-  if(hindiData && hindiData[key]){
-    item = hindiData[key];
-  }
-
-  if(!item && Array.isArray(hindiData)){
-    item = hindiData.find(function(row){
-      return (
-        Number(gValue(row, ["chapter", "chapter_number", "chapterNumber"])) === chapter &&
-        Number(gValue(row, ["verse", "verse_number", "verseNumber"])) === verse
-      );
-    });
-  }
-
-  if(!item) return "";
-  if(typeof item === "string") return gClean(item);
-
-  return gClean(
-    gValue(item, [
-      "verse_meaning_hindi",
-      "meaning_hindi",
-      "hindi_meaning",
-      "translation_hindi",
-      "translation_hi",
-      "hindi",
-      "meaning"
-    ])
-  );
-}
-
 function buildGita(){
   gita = {};
   allVerses.forEach(function(v){
-    v.hindi = findHindi(v.chapter, v.verse);
     gita[v.key] = v;
   });
   window.gita = gita;
 }
 
-/* Gujarati Cache */
-function getGuCache(){
-  try{
-    return JSON.parse(localStorage.getItem(GITA_CONFIG.CACHE_KEY) || "{}");
-  }catch(e){
+/* CACHING */
+function getStorage(keyName){
+  try {
+    return JSON.parse(localStorage.getItem(keyName) || "{}");
+  } catch(e) {
     return {};
   }
 }
 
-function saveGuCache(key, text){
-  try{
-    const c = getGuCache();
+function saveStorage(keyName, key, text){
+  try {
+    const c = getStorage(keyName);
     c[key] = text;
-    localStorage.setItem(GITA_CONFIG.CACHE_KEY, JSON.stringify(c));
-  }catch(e){}
+    localStorage.setItem(keyName, JSON.stringify(c));
+  } catch(e) {}
 }
 
-function splitForTranslation(text){
-  const words = String(text).trim().split(/\s+/);
-  const chunks = [];
-  let current = "";
-
-  for(let i=0; i<words.length; i++){
-    const word = words[i];
-    const next = current ? current + " " + word : word;
-    if(new TextEncoder().encode(next).length > 450 && current){
-      chunks.push(current);
-      current = word;
-    } else {
-      current = next;
-    }
-  }
-  if(current){
-    chunks.push(current);
-  }
-  return chunks;
-}
-
-async function translateMyMemory(text){
-  const chunks = splitForTranslation(text);
-  const out = [];
-
-  for(let i=0; i<chunks.length; i++){
-    const chunk = chunks[i];
-    const url = GITA_CONFIG.MYMEMORY_URL + "?q=" + encodeURIComponent(chunk) + "&langpair=en|gu";
-    const r = await fetch(url, { cache: "no-store" });
-    if(!r.ok) throw new Error("Translation HTTP " + r.status);
-    const data = await r.json();
-    const translated = data && data.responseData && data.responseData.translatedText ? data.responseData.translatedText : "";
-    if(!translated) throw new Error("Empty translation");
-    out.push(translated);
-  }
-  return gClean(out.join(" "));
-}
-
-async function translateGoogle(text){
-  const url = GITA_CONFIG.GOOGLE_URL + "?client=gtx&sl=en&tl=gu&dt=t&q=" + encodeURIComponent(text);
+async function translateGoogle(text, targetLang){
+  const url = GITA_CONFIG.GOOGLE_URL + "?client=gtx&sl=en&tl=" + targetLang + "&dt=t&q=" + encodeURIComponent(text);
   const r = await fetch(url, { cache: "no-store" });
-  if(!r.ok) throw new Error("Google HTTP " + r.status);
+  if(!r.ok) throw new Error("HTTP " + r.status);
   const data = await r.json();
   const result = Array.isArray(data[0]) ? data[0].map(function(x){ return x[0] || ""; }).join("") : "";
-  if(!result.trim()) throw new Error("Empty Google translation");
   return gClean(result);
 }
 
@@ -2242,7 +2142,7 @@ async function translateGujarati(key){
   const target = gq("gu-" + key);
   if(!verse || !target) return;
 
-  const cache = getGuCache();
+  const cache = getStorage(GITA_CONFIG.CACHE_KEY_GU);
   if(cache[key]){
     target.textContent = cache[key];
     return;
@@ -2255,17 +2155,43 @@ async function translateGujarati(key){
 
   target.textContent = "ગુજરાતી અર્થ મેળવવામાં આવી રહ્યો છે...";
   try{
-    const translated = await translateMyMemory(verse.english);
-    saveGuCache(key, translated);
+    const translated = await translateGoogle(verse.english, "gu");
+    saveStorage(GITA_CONFIG.CACHE_KEY_GU, key, translated);
     target.textContent = translated;
-  }catch(e1){
-    try{
-      const translated = await translateGoogle(verse.english);
-      saveGuCache(key, translated);
-      target.textContent = translated;
-    }catch(e2){
-      target.textContent = "ગુજરાતી અર્થ હાલ મેળવી શકાયો નથી.";
-    }
+  }catch(e){
+    target.textContent = "ગુજરાતી અર્થ હાલ મેળવી શકાયો નથી.";
+  }
+}
+
+async function translateHindi(key){
+  const verse = gita[key];
+  const target = gq("hi-" + key);
+  if(!verse || !target) return;
+
+  // જો ઓરિજિનલ જેસનમાં જ હિન્દી ઉપલબ્ધ હોય તો સીધું બતાવો
+  if(verse.hindi && verse.hindi.trim().length > 5){
+    target.textContent = verse.hindi;
+    return;
+  }
+
+  const cache = getStorage(GITA_CONFIG.CACHE_KEY_HI);
+  if(cache[key]){
+    target.textContent = cache[key];
+    return;
+  }
+
+  if(!verse.english){
+    target.textContent = "हिन्दी अर्थ ઉપલબ્ધ નથી.";
+    return;
+  }
+
+  target.textContent = "हिन्दी अर्थ लोड हो रहा है...";
+  try{
+    const translated = await translateGoogle(verse.english, "hi");
+    saveStorage(GITA_CONFIG.CACHE_KEY_HI, key, translated);
+    target.textContent = translated;
+  }catch(e){
+    target.textContent = "हिन्दी अर्थ ઉપલબ્ધ નથી.";
   }
 }
 
@@ -2334,43 +2260,6 @@ function changeGitaLanguage(lang){
   renderGita();
 }
 
-/* SEARCH */
-function searchGita(){
-  const input = gq("gitaSearch");
-  const output = gq("gitaSearchResults");
-  if(!input || !output) return;
-
-  const q = input.value.toLowerCase().trim();
-  if(!q){
-    output.innerHTML = "";
-    return;
-  }
-
-  const results = allVerses.filter(function(v){
-    return (
-      v.sanskrit.toLowerCase().includes(q) ||
-      v.english.toLowerCase().includes(q) ||
-      v.hindi.toLowerCase().includes(q) ||
-      v.key.includes(q)
-    );
-  }).slice(0, 20);
-
-  if(!results.length){
-    output.innerHTML = '<div class="gita-result">કોઈ શ્લોક મળ્યો નથી.</div>';
-    return;
-  }
-
-  let html = "";
-  results.forEach(function(v){
-    html +=
-      '<div class="gita-result" onclick="openGitaVerse(\'' + v.key + '\')">' +
-      '<strong>' + v.key + '</strong> — ' +
-      escapeHTML(v.sanskrit.substring(0, 90)) +
-      '</div>';
-  });
-  output.innerHTML = html;
-}
-
 /* VERSE READER */
 async function openGitaVerse(key){
   const verse = gita[key];
@@ -2398,7 +2287,7 @@ async function openGitaVerse(key){
     '</div>' +
     '<div class="gita-meaning">' +
       '<h3>हिन्दी अर्थ</h3>' +
-      '<p id="hi-' + key + '">' + escapeHTML(verse.hindi || "हिन्दी अर्थ ઉપલબ્ધ નથી.") + '</p>' +
+      '<p id="hi-' + key + '">हिन्दी अर्थ लोड हो रहा है...</p>' +
     '</div>' +
     '<div class="gita-meaning">' +
       '<h3>ગુજરાતી અર્થ</h3>' +
@@ -2422,7 +2311,10 @@ async function openGitaVerse(key){
     section.insertBefore(reader, list);
   }
   window.scrollTo(0, 0);
+
+  // બંને ભાષાઓ તરત જ લોડ થઈ જશે
   await translateGujarati(key);
+  await translateHindi(key);
 }
 
 function closeGitaVerse(){
@@ -2477,15 +2369,6 @@ async function loadGita(){
       allVerses = allVerses.slice(0, 700);
     }
 
-    try{
-      const h = await fetch(GITA_CONFIG.HINDI_URL, { cache: "no-store" });
-      if(h.ok){
-        hindiData = await h.json();
-      }
-    }catch(e){
-      console.warn("Hindi data unavailable");
-    }
-
     buildGita();
     renderGita();
   }catch(error){
@@ -2501,7 +2384,6 @@ async function loadGita(){
   }
 }
 
-/* EXPOSE GLOBALS & INIT */
 window.loadGita = loadGita;
 window.openGitaVerse = openGitaVerse;
 window.closeGitaVerse = closeGitaVerse;
@@ -2510,7 +2392,6 @@ window.copyGita = copyGita;
 window.shareGita = shareGita;
 window.speakGita = speakGita;
 window.renderGita = renderGita;
-window.searchGita = searchGita;
 
 document.addEventListener("DOMContentLoaded", function(){
   loadGita();
