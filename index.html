@@ -2,602 +2,660 @@
 <html lang="gu">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="theme-color" content="#2b0e03">
-<title>BRAHMANSH - સનાતનં પરમં જ્ઞાનમ્</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#250d03">
+<title>BRAHMANSH</title>
 
-<!-- Gujarati ane Devanagari Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Noto+Sans+Devanagari:wght@600;700&family=Noto+Sans+Gujarati:wght@400;600;700&family=Rozha+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Noto+Sans+Devanagari:wght@600;700;800&family=Noto+Sans+Gujarati:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
 body{
-  min-height:100vh;
-  background:#dfc299 url("https://www.transparenttextures.com/patterns/old-map.png");
-  color:#3e1c08;
-  font-family:'Noto Sans Gujarati', sans-serif;
+  min-height: 100vh;
+  background: #ecd5aa;
+  display: flex;
+  justify-content: center;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  color: #3b1704;
 }
 
-.app{
-  width:100%;
-  max-width:440px;
-  min-height:100vh;
-  margin:auto;
-  position:relative;
-  background:#fbf3e5 url("https://www.transparenttextures.com/patterns/paper-fibers.png");
-  box-shadow:0 0 35px rgba(50,18,5,0.3);
-  padding-bottom:100px;
+.mobile-frame{
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: #fcf4e4;
+  position: relative;
+  box-shadow: 0 0 35px rgba(45, 16, 3, 0.35);
+  display: flex;
+  flex-direction: column;
 }
 
-/* HEADER */
-.header{
-  padding:16px 16px 8px;
+/* TOP HEADER */
+.app-header{
+  padding: 14px 16px 8px;
+  background: linear-gradient(180deg, #fff7e7 0%, #f7e6c4 100%);
+  border-bottom: 1px solid #e2cba0;
 }
 
-.header-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.header-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.brand-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.om-logo{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:radial-gradient(circle, #f5d47a 0%, #bd731d 70%, #683009 100%);
-  border:2px solid #ecd391;
-  color:#fffbf2;
-  font-family:'Noto Sans Devanagari', serif;
-  font-size:30px;
-  font-weight:bold;
-  box-shadow:0 4px 12px rgba(80,30,5,0.35);
-  text-shadow:0 2px 4px rgba(0,0,0,0.4);
+.om-badge{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffde84 0%, #d88927 55%, #7a350a 100%);
+  border: 2px solid #ffecb0;
+  box-shadow: 0 4px 10px rgba(66, 26, 4, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff9ed;
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 28px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
-.brand-title{
-  font-family:'Cinzel', serif;
-  font-size:22px;
-  font-weight:800;
-  letter-spacing:1.5px;
-  color:#3e1c08;
-  line-height:1.1;
+.brand-text h1{
+  font-family: 'Cinzel', serif;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+  color: #3a1504;
+  line-height: 1.1;
 }
 
-.brand-tagline{
-  font-family:'Noto Sans Devanagari', serif;
-  font-size:12px;
-  font-weight:700;
-  color:#854919;
-  letter-spacing:0.5px;
-  margin-top:2px;
+.brand-text span{
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #8b4d1b;
+  letter-spacing: 0.8px;
 }
 
-.lang-badge{
-  display:flex;
-  align-items:center;
-  gap:5px;
-  padding:6px 12px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.7);
-  border:1px solid #d5b57f;
-  color:#421b06;
-  font-size:12px;
-  font-weight:700;
+.lang-selector{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid #d3b073;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #3a1604;
+  box-shadow: 0 2px 6px rgba(60, 20, 3, 0.08);
 }
 
-/* SEARCH */
-.search-box{
-  margin:10px 16px;
-  height:48px;
-  background:#fffdf9;
-  border:1.5px solid #d8b885;
-  border-radius:24px;
-  display:flex;
-  align-items:center;
-  padding:0 16px;
-  box-shadow:0 4px 12px rgba(70,30,5,0.06);
+/* SEARCH BAR */
+.search-container{
+  padding: 10px 16px 4px;
 }
 
-.search-box input{
-  flex:1;
-  border:none;
-  outline:none;
-  background:transparent;
-  font-family:'Noto Sans Gujarati', sans-serif;
-  font-size:13px;
-  color:#3e1c08;
-  padding:0 10px;
+.search-field{
+  height: 46px;
+  background: #ffffff;
+  border: 1.5px solid #cfaf78;
+  border-radius: 23px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  box-shadow: 0 3px 10px rgba(70, 26, 4, 0.07);
 }
 
-.search-box input::placeholder{
-  color:#917865;
+.search-field input{
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0 10px;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  font-size: 13px;
+  color: #3b1704;
+}
+
+.search-field input::placeholder{
+  color: #937d6a;
+}
+
+/* SCROLL CONTENT */
+.content-area{
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 16px 95px;
 }
 
 /* HERO BANNER */
-.hero-card{
-  margin:14px 16px 0;
-  border-radius:22px;
-  border:2px solid #dfb56c;
-  overflow:hidden;
-  position:relative;
-  height:220px;
-  background:linear-gradient(135deg, #f7d17d 0%, #d87d2b 45%, #662608 100%);
-  box-shadow:0 8px 22px rgba(60,20,5,0.28);
+.hero-box{
+  position: relative;
+  height: 200px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 2px solid #deab50;
+  box-shadow: 0 8px 20px rgba(60, 22, 4, 0.28);
+  background: #5d280e;
 }
 
-.hero-bg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.hero-svg-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg, rgba(30,10,3,0.1) 0%, rgba(30,10,3,0.3) 40%, rgba(30,10,3,0.85) 100%);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(20,5,2,0.05) 0%, rgba(20,5,2,0.45) 45%, rgba(20,5,2,0.85) 100%);
 }
 
-.hero-content{
-  position:absolute;
-  right:14px;
-  top:18px;
-  bottom:18px;
-  width:58%;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  text-align:right;
-  z-index:2;
+.hero-text{
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  bottom: 14px;
+  width: 58%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  z-index: 2;
+  color: #ffffff;
 }
 
-.shloka-sanskrit{
-  font-family:'Noto Sans Devanagari', serif;
-  font-size:14.5px;
-  font-weight:700;
-  line-height:1.35;
-  color:#ffffff;
-  text-shadow:0 2px 6px rgba(0,0,0,0.85);
+.hero-shloka{
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #ffffff;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.85);
 }
 
-.shloka-divider{
-  margin:5px 0;
-  color:#ffdf95;
-  font-size:12px;
+.hero-ornament{
+  color: #ffda82;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin: 4px 0;
 }
 
-.shloka-gujarati{
-  font-size:11px;
-  line-height:1.35;
-  color:#fff2d4;
-  font-weight:600;
-  text-shadow:0 1px 4px rgba(0,0,0,0.8);
+.hero-trans{
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #ffe8be;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
 }
 
-.btn-today{
-  margin-top:auto;
-  background:#3b1405;
-  color:#ffffff;
-  padding:7px 14px;
-  border-radius:18px;
-  font-size:11px;
-  font-weight:700;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  border:1px solid #d9a752;
-  box-shadow:0 4px 10px rgba(0,0,0,0.35);
+.hero-action{
+  margin-top: auto;
+  background: #381204;
+  border: 1px solid #e0ad52;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
 }
 
-.carousel-dots{
-  position:absolute;
-  bottom:8px;
-  left:0;
-  right:0;
-  display:flex;
-  justify-content:center;
-  gap:5px;
-  z-index:3;
+.slider-dots{
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  z-index: 3;
 }
 
-.dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.45);
+.slider-dots span{
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.45);
 }
 
-.dot.active{
-  background:#ffffff;
-  width:16px;
-  border-radius:8px;
+.slider-dots span.on{
+  width: 14px;
+  border-radius: 6px;
+  background: #ffffff;
 }
 
-/* SECTION TITLE */
-.section-title-wrap{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:20px 16px 12px;
+/* SECTION HEADING */
+.section-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0 10px;
 }
 
-.section-title-left{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.sec-title{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: 800;
+  color: #3b1704;
 }
 
-.section-heading{
-  font-size:17px;
-  font-weight:700;
-  color:#3e1c08;
+.sec-title svg{
+  fill: #a25c21;
 }
 
-.section-link{
-  font-size:12px;
-  font-weight:700;
-  color:#9c551c;
-  display:flex;
-  align-items:center;
-  gap:4px;
-  cursor:pointer;
+.sec-link{
+  font-size: 12px;
+  font-weight: 700;
+  color: #9a531d;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  text-decoration: none;
 }
 
-/* GRID CARDS */
-.grid-container{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  padding:0 16px;
+/* 4 TILES GRID */
+.cards-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
-.cat-card{
-  background:linear-gradient(135deg, #fffcf6 0%, #f6e6cb 100%);
-  border:1.5px solid #dfc394;
-  border-radius:18px;
-  padding:12px 10px;
-  display:flex;
-  align-items:center;
-  position:relative;
-  gap:10px;
-  box-shadow:0 5px 14px rgba(70,28,7,0.06);
+.gold-tile{
+  background: linear-gradient(135deg, #ffffff 0%, #f6e6cd 100%);
+  border: 1.5px solid #dcb77c;
+  border-radius: 16px;
+  padding: 10px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(60, 24, 4, 0.06);
 }
 
-.cat-thumb{
-  width:46px;
-  height:46px;
-  border-radius:12px;
-  background:linear-gradient(145deg, #6c2b09, #3d1403);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fbd88e;
-  font-size:22px;
-  flex-shrink:0;
-  box-shadow:0 4px 8px rgba(50,15,4,0.2);
-  border:1px solid #b57a3d;
+.tile-icon-box{
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #62280a, #361203);
+  border: 1px solid #bf8345;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 3px 6px rgba(45,15,3,0.3);
 }
 
-.cat-info{
-  flex:1;
-  min-width:0;
-  padding-right:14px;
+.tile-icon-box svg{
+  width: 24px;
+  height: 24px;
+  fill: #ffdf97;
 }
 
-.cat-name{
-  font-size:14px;
-  font-weight:700;
-  color:#3e1c08;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.tile-details{
+  flex: 1;
+  min-width: 0;
+  padding-right: 14px;
 }
 
-.cat-desc{
-  font-size:9.5px;
-  color:#735b49;
-  line-height:1.25;
-  margin-top:2px;
+.tile-details h4{
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #3b1604;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.cat-arrow{
-  position:absolute;
-  right:8px;
-  bottom:12px;
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  background:#c07328;
-  color:#ffffff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
+.tile-details p{
+  font-size: 9px;
+  font-weight: 600;
+  color: #7b6250;
+  line-height: 1.25;
+  margin-top: 2px;
 }
 
-/* DAILY INSPIRATION */
-.daily-box{
-  margin:18px 16px;
-  padding:16px;
-  border-radius:20px;
-  background:linear-gradient(145deg, #4f1d07 0%, #260a02 100%);
-  position:relative;
-  overflow:hidden;
-  border:1px solid #7d441f;
-  box-shadow:0 8px 20px rgba(40,10,3,0.3);
+.tile-btn{
+  position: absolute;
+  right: 6px;
+  bottom: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #bf7329;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
 }
 
-.daily-box::after{
-  content:"ॐ";
-  position:absolute;
-  right:-10px;
-  bottom:-25px;
-  font-family:'Noto Sans Devanagari', serif;
-  font-size:115px;
-  color:rgba(255,220,150,0.06);
-  pointer-events:none;
+/* DAILY INSPIRATION CARD */
+.daily-quote-card{
+  margin-top: 14px;
+  background: linear-gradient(145deg, #4b1b07 0%, #220902 100%);
+  border: 1.5px solid #7a3e1b;
+  border-radius: 18px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(40, 12, 3, 0.3);
 }
 
-.daily-tag{
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:1.8px;
-  color:#e7bf71;
-  display:flex;
-  align-items:center;
-  gap:6px;
+.daily-bg-om{
+  position: absolute;
+  right: -8px;
+  bottom: -22px;
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 110px;
+  color: rgba(255, 225, 160, 0.05);
+  pointer-events: none;
+  font-weight: 900;
 }
 
-.daily-shloka{
-  margin-top:10px;
-  font-family:'Noto Sans Devanagari', serif;
-  font-size:14px;
-  font-weight:700;
-  color:#ffffff;
-  line-height:1.4;
+.daily-badge{
+  font-size: 9.5px;
+  letter-spacing: 1.8px;
+  font-weight: 800;
+  color: #ebb963;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.daily-sans{
+  margin-top: 8px;
+  font-family: 'Noto Sans Devanagari', serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #ffffff;
 }
 
 .daily-guj{
-  margin-top:4px;
-  font-size:11px;
-  color:#ebd2be;
-  line-height:1.35;
+  margin-top: 4px;
+  font-size: 10.5px;
+  color: #ebd2ba;
+  line-height: 1.3;
 }
 
-/* BOTTOM NAVIGATION */
-.bottom-bar{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:440px;
-  height:72px;
-  background:linear-gradient(180deg, #381405 0%, #1a0601 100%);
-  border-radius:24px 24px 0 0;
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  padding:6px 10px calc(6px + env(safe-area-inset-bottom));
-  box-shadow:0 -6px 20px rgba(30,10,2,0.35);
-  border-top:1.5px solid #7d421d;
-  z-index:99;
+/* BOTTOM NAVBAR */
+.nav-bottom{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 420px;
+  height: 68px;
+  background: linear-gradient(180deg, #381507 0%, #1a0601 100%);
+  border-radius: 22px 22px 0 0;
+  border-top: 1.5px solid #844722;
+  box-shadow: 0 -4px 18px rgba(35, 10, 2, 0.4);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 4px 8px 8px;
+  z-index: 100;
 }
 
-.tab-btn{
-  border:none;
-  background:transparent;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:3px;
-  cursor:pointer;
-  color:#ab8f7b;
+.nav-tab{
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #a48b78;
+  gap: 2px;
+  cursor: pointer;
 }
 
-.tab-icon{
-  width:44px;
-  height:30px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:19px;
-  transition:all 0.2s ease;
+.nav-tab.active{
+  color: #ffffff;
 }
 
-.tab-text{
-  font-size:11px;
-  font-family:'Noto Sans Gujarati', sans-serif;
-  font-weight:600;
+.nav-tab-icon{
+  width: 44px;
+  height: 28px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.tab-btn.active{
-  color:#ffffff;
+.nav-tab.active .nav-tab-icon{
+  background: #6c2d0e;
+  border: 1px solid #cb893a;
 }
 
-.tab-btn.active .tab-icon{
-  background:#6f2d0d;
-  border:1px solid #c9883b;
-  color:#ffd985;
+.nav-tab svg{
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+.nav-tab.active svg{
+  fill: #ffd885;
+}
+
+.nav-tab span{
+  font-size: 10.5px;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  font-weight: 700;
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="mobile-frame">
 
   <!-- HEADER -->
-  <header class="header">
-    <div class="header-row">
-      <div class="brand">
-        <div class="om-logo">ॐ</div>
-        <div>
-          <div class="brand-title">BRAHMANSH</div>
-          <div class="brand-tagline">सनातनं परमં જ્ઞાનમ્</div>
+  <header class="app-header">
+    <div class="header-top">
+      <div class="brand-wrapper">
+        <div class="om-badge">ॐ</div>
+        <div class="brand-text">
+          <h1>BRAHMANSH</h1>
+          <span>सनातनं परमं ज्ञानम्</span>
         </div>
       </div>
 
-      <div class="lang-badge">
-        🌐 ગુજરાતી ▾
+      <div class="lang-selector">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#3a1604"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <span>ગુજરાતી ▾</span>
       </div>
     </div>
   </header>
 
-  <!-- SEARCH BAR -->
-  <div class="search-box">
-    <span style="font-size:18px; color:#783b15;">🔍</span>
-    <input type="text" placeholder="શ્લોક, ગ્રંથ, મંત્ર અથવા વિષય શોધો...">
-    <span style="font-size:18px; color:#99541d;">🎙️</span>
-  </div>
-
-  <!-- HERO BANNER -->
-  <div class="hero-card">
-    <img 
-      class="hero-bg" 
-      src="assets/krishna-arjuna.jpg" 
-      alt="Bhagavad Gita"
-      onerror="this.src='https://images.unsplash.com/photo-1599818463359-2c6328229b4e?q=80&w=800&auto=format&fit=crop'"
-    >
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <div class="shloka-sanskrit">
-        कर्मण्येवाधिकारस्ते<br>मा फलेषु कदाचन ।
-      </div>
-      <div class="shloka-divider">✤ ✤ ✤</div>
-      <div class="shloka-gujarati">
-        કર્મ કરવામાં તારો અધિકાર છે,<br>પરંતુ તેના ફળમાં ક્યારેય નહીં.
-      </div>
-      <div class="btn-today">
-        આજનો શ્લોક →
-      </div>
-    </div>
-
-    <div class="carousel-dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
+  <!-- SEARCH -->
+  <div class="search-container">
+    <div class="search-field">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#783c16"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" placeholder="શ્લોક, ગ્રંથ, મંત્ર અથવા વિષય શોધો...">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#9e561e"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
     </div>
   </div>
 
-  <!-- SECTION TITLE -->
-  <div class="section-title-wrap">
-    <div class="section-title-left">
-      <span style="color:#b26d25; font-size:18px;">🪷</span>
-      <span class="section-heading">આજનું આધ્યાત્મિક જીવન</span>
-    </div>
-    <div class="section-link">
-      વધુ જુઓ →
-    </div>
-  </div>
+  <!-- CONTENT -->
+  <main class="content-area">
 
-  <!-- GRID TILES -->
-  <div class="grid-container">
+    <!-- HERO BANNER -->
+    <div class="hero-box">
+      <!-- Self-rendering Divine Sunset Background -->
+      <svg class="hero-svg-bg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 400 200">
+        <defs>
+          <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fdd180"/>
+            <stop offset="40%" stop-color="#df7f2e"/>
+            <stop offset="100%" stop-color="#6e2b0b"/>
+          </linearGradient>
+          <radialGradient id="sunGlow" cx="28%" cy="40%" r="45%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+            <stop offset="35%" stop-color="#ffe39b" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#df7f2e" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#skyGrad)"/>
+        <circle cx="110" cy="80" r="55" fill="url(#sunGlow)"/>
+        <!-- Silhouettes of Temples & Battle Chariot -->
+        <path d="M-10 200 L-10 150 L20 120 L35 150 L60 110 L85 150 L110 90 L135 150 L160 130 L180 200 Z" fill="#441a07" opacity="0.45"/>
+        <path d="M30 200 Q 55 160, 80 170 Q 110 145, 140 185 Q 165 170, 190 200 Z" fill="#2d0f03" opacity="0.8"/>
+        <!-- Chariot + Flags Outline -->
+        <polygon points="50,145 75,130 70,165" fill="#ffd470" opacity="0.7"/>
+        <line x1="72" y1="125" x2="72" y2="175" stroke="#ffe59f" stroke-width="2"/>
+        <circle cx="85" cy="180" r="14" fill="none" stroke="#ffe090" stroke-width="2.5"/>
+      </svg>
 
-    <!-- Card 1 -->
-    <div class="cat-card">
-      <div class="cat-thumb">📖</div>
-      <div class="cat-info">
-        <div class="cat-name">ભગવદ્ ગીતા</div>
-        <div class="cat-desc">અધ્યાય • શ્લોક • અર્થ</div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-text">
+        <div class="hero-shloka">
+          कर्मण्येवाधिकारस्ते<br>मा फलेषु कदाचन ।
+        </div>
+        <div class="hero-ornament">✤ ✤ ✤</div>
+        <div class="hero-trans">
+          કર્મ કરવામાં તારો અધિકાર છે,<br>પરંતુ તેના ફળમાં ક્યારેય નહીં.
+        </div>
+        <div class="hero-action">
+          આજનો શ્લોક →
+        </div>
       </div>
-      <div class="cat-arrow">→</div>
-    </div>
 
-    <!-- Card 2 -->
-    <div class="cat-card">
-      <div class="cat-thumb">📿</div>
-      <div class="cat-info">
-        <div class="cat-name">જપ</div>
-        <div class="cat-desc">મંત્ર જાપ અને ધ્યાન</div>
+      <div class="slider-dots">
+        <span class="on"></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div class="cat-arrow">→</div>
     </div>
 
-    <!-- Card 3 -->
-    <div class="cat-card">
-      <div class="cat-thumb">📚</div>
-      <div class="cat-info">
-        <div class="cat-name">ધાર્મિક ગ્રંથ</div>
-        <div class="cat-desc">ગીતા • રામાયણ<br>મહાભારત • વેદ • પુરાણ</div>
+    <!-- SECTION TITLE -->
+    <div class="section-bar">
+      <div class="sec-title">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2C11.5 4 9 7 9 9.5C9 11.4 10.3 13 12 13.5C13.7 13 15 11.4 15 9.5C15 7 12.5 4 12 2M6 8C5.5 10 3.5 12.5 4 14.5C4.5 16.5 6.5 17.5 8 17C7.5 15 8 13 9.5 12C8 10.5 6.5 9.5 6 8M18 8C17.5 9.5 16 10.5 14.5 12C16 13 16.5 15 16 17C17.5 17.5 19.5 16.5 20 14.5C20.5 12.5 18.5 10 18 8M12 15C10.5 15 6 17.5 6 21H18C18 17.5 13.5 15 12 15Z"/></svg>
+        <span>આજનું આધ્યાત્મિક જીવન</span>
       </div>
-      <div class="cat-arrow">→</div>
+      <a href="#" class="sec-link">વધુ જુઓ →</a>
     </div>
 
-    <!-- Card 4 -->
-    <div class="cat-card">
-      <div class="cat-thumb">☸️</div>
-      <div class="cat-info">
-        <div class="cat-name">પંચાંગ</div>
-        <div class="cat-desc">તિથિ • નક્ષત્ર • મુહૂર્ત<br>રાશિફળ</div>
+    <!-- 4 ACTION CARDS -->
+    <div class="cards-grid">
+      
+      <!-- Gita -->
+      <div class="gold-tile">
+        <div class="tile-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+        </div>
+        <div class="tile-details">
+          <h4>ભગવદ્ ગીતા</h4>
+          <p>અધ્યાય • શ્લોક • અર્થ</p>
+        </div>
+        <div class="tile-btn">→</div>
       </div>
-      <div class="cat-arrow">→</div>
+
+      <!-- Japa -->
+      <div class="gold-tile">
+        <div class="tile-icon-box">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="17" cy="8" r="2.5"/><circle cx="19" cy="13" r="2.5"/><circle cx="17" cy="18" r="2.5"/><circle cx="12" cy="20.5" r="2.5"/><circle cx="7" cy="18" r="2.5"/><circle cx="5" cy="13" r="2.5"/><circle cx="7" cy="8" r="2.5"/></svg>
+        </div>
+        <div class="tile-details">
+          <h4>જપ</h4>
+          <p>મંત્ર જાપ અને ધ્યાન</p>
+        </div>
+        <div class="tile-btn">→</div>
+      </div>
+
+      <!-- Granth -->
+      <div class="gold-tile">
+        <div class="tile-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+        </div>
+        <div class="tile-details">
+          <h4>ધાર્મિક ગ્રંથ</h4>
+          <p>ગીતા • રામાયણ<br>મહાભારત • વેદ</p>
+        </div>
+        <div class="tile-btn">→</div>
+      </div>
+
+      <!-- Panchang -->
+      <div class="gold-tile">
+        <div class="tile-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 16.1l-4.8 2.5.9-5.3-3.8-3.7 5.3-.8L12 2zm0 5.5l-1.4 2.8-3 .5 2.2 2.1-.5 3.1L12 14.5l2.7 1.5-.5-3.1 2.2-2.1-3-.5L12 7.5z"/></svg>
+        </div>
+        <div class="tile-details">
+          <h4>પંચાંગ</h4>
+          <p>તિથિ • નક્ષત્ર • મુહૂર્ત<br>રાશિફળ</p>
+        </div>
+        <div class="tile-btn">→</div>
+      </div>
+
     </div>
 
-  </div>
+    <!-- DAILY INSPIRATION -->
+    <div class="daily-quote-card">
+      <div class="daily-bg-om">ॐ</div>
+      <div class="daily-badge">✦ DAILY INSPIRATION</div>
+      <div class="daily-sans">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।</div>
+      <div class="daily-guj">કર્મ કરવામાં તારો અધિકાર છે, પરંતુ તેના ફળમાં ક્યારેય નહીં.</div>
+    </div>
 
-  <!-- DAILY INSPIRATION -->
-  <div class="daily-box">
-    <div class="daily-tag">
-      ✦ DAILY INSPIRATION
-    </div>
-    <div class="daily-shloka">
-      कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।
-    </div>
-    <div class="daily-guj">
-      કર્મ કરવામાં તારો અધિકાર છે, પરંતુ તેના ફળમાં ક્યારેય નહીં.
-    </div>
-  </div>
+  </main>
+
+  <!-- BOTTOM BAR -->
+  <nav class="nav-bottom">
+    <button class="nav-tab active">
+      <div class="nav-tab-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
+      </div>
+      <span>હોમ</span>
+    </button>
+
+    <button class="nav-tab">
+      <div class="nav-tab-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <span>જપ</span>
+    </button>
+
+    <button class="nav-tab">
+      <div class="nav-tab-icon">
+        <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+      </div>
+      <span>ગ્રંથ</span>
+    </button>
+
+    <button class="nav-tab">
+      <div class="nav-tab-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1s-1-.45-1-1V3c0-.55.45-1 1-1zm0 16c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1s-1-.45-1-1v-2c0-.55.45-1 1-1z"/></svg>
+      </div>
+      <span>પંચાંગ</span>
+    </button>
+  </nav>
 
 </div>
-
-<!-- BOTTOM BAR -->
-<nav class="bottom-bar">
-  <button class="tab-btn active" onclick="selectTab(this)">
-    <div class="tab-icon">🛕</div>
-    <div class="tab-text">હોમ</div>
-  </button>
-  <button class="tab-btn" onclick="selectTab(this)">
-    <div class="tab-icon">ॐ</div>
-    <div class="tab-text">જપ</div>
-  </button>
-  <button class="tab-btn" onclick="selectTab(this)">
-    <div class="tab-icon">📖</div>
-    <div class="tab-text">ગ્રંથ</div>
-  </button>
-  <button class="tab-btn" onclick="selectTab(this)">
-    <div class="tab-icon">☀️</div>
-    <div class="tab-text">પંચાંગ</div>
-  </button>
-</nav>
-
-<script>
-function selectTab(btn){
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-</script>
 
 </body>
 </html>
