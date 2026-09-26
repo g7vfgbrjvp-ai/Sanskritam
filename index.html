@@ -1,36 +1,20 @@
 <!DOCTYPE html>
 <html lang="gu">
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport"
-      content="width=device-width,initial-scale=1">
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<meta name="theme-color"
-      content="#3b1115">
+<meta name="theme-color" content="#5b321c">
 
 <title>BRAHMANSH</title>
 
 <style>
 
-/* =========================================================
-   BRAHMANSH — MAIN DESIGN
-========================================================= */
-
-:root{
-  --bg:#17090b;
-  --bg2:#281013;
-  --card:#32161a;
-  --card2:#3c1b20;
-  --gold:#d6a84f;
-  --gold2:#f0cf79;
-  --saffron:#d87822;
-  --cream:#f8e8c4;
-  --muted:#c6a989;
-  --border:rgba(214,168,79,.30);
-  --shadow:0 12px 35px rgba(0,0,0,.28);
-}
+/* ================================
+   BRAHMANSH — STEP 1
+   LOCKED VISUAL DESIGN
+================================ */
 
 *{
   box-sizing:border-box;
@@ -38,1802 +22,1054 @@
   padding:0;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
+    "Noto Sans Gujarati",
+    "Noto Sans Devanagari",
     Arial,
     sans-serif;
 
-  background:
-    radial-gradient(
-      circle at 50% -10%,
-      #5a211d 0,
-      #281013 32%,
-      #17090b 70%
-    );
-
-  color:var(--cream);
+  background:#ead8b6;
+  color:#4a2918;
   min-height:100vh;
 }
 
-button,
-input,
-textarea,
-select{
-  font:inherit;
-}
 
-button{
-  border:0;
-  cursor:pointer;
-}
+/* ================================
+   APP
+================================ */
 
 .app{
   width:100%;
-  max-width:620px;
-  margin:auto;
+  max-width:480px;
   min-height:100vh;
-  padding-bottom:86px;
-}
+  margin:auto;
 
-/* =========================================================
-   TOP BAR
-========================================================= */
+  background:
+    linear-gradient(
+      180deg,
+      #f8efd9 0%,
+      #f4e5c3 45%,
+      #e9d2a7 100%
+    );
 
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-
-  height:68px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:
-    0 14px
-    0 18px;
-
-  background:rgba(23,9,11,.96);
-
-  backdrop-filter:blur(16px);
-
-  border-bottom:
-    1px solid var(--border);
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.om{
-  width:40px;
-  height:40px;
-
-  border-radius:50%;
-
-  display:grid;
-  place-items:center;
-
-  border:1px solid var(--gold);
-
-  color:var(--gold2);
-
-  font-size:23px;
-}
-
-.brand strong{
-  font-size:19px;
-  letter-spacing:2px;
-  color:var(--gold2);
-}
-
-/* =========================================================
-   LANGUAGE BUTTON
-========================================================= */
-
-.language-wrap{
   position:relative;
-  z-index:2000;
-}
-
-.language-btn{
-
-  min-width:116px;
-
-  height:42px;
-
-  padding:
-    0 12px;
-
-  border-radius:12px;
-
-  background:#32161a;
-
-  border:
-    1px solid var(--gold);
-
-  color:var(--gold2);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:6px;
-
-  font-size:13px;
-
-  box-shadow:
-    0 4px 15px
-    rgba(0,0,0,.20);
-}
-
-.language-menu{
-
-  position:absolute;
-
-  right:0;
-
-  top:50px;
-
-  width:175px;
-
-  padding:7px;
-
-  border-radius:16px;
-
-  background:#291115;
-
-  border:
-    1px solid var(--gold);
-
-  box-shadow:var(--shadow);
-
-  display:none;
-
-  z-index:5000;
-}
-
-.language-menu.show{
-  display:block;
-}
-
-.language-option{
-
-  width:100%;
-
-  padding:12px;
-
-  text-align:left;
-
-  border-radius:10px;
-
-  background:transparent;
-
-  color:var(--cream);
-
-  margin-bottom:3px;
-}
-
-.language-option:hover,
-.language-option.active{
-
-  background:
-    rgba(214,168,79,.12);
-
-  color:var(--gold2);
-}
-
-/* =========================================================
-   SCREENS
-========================================================= */
-
-.screen{
-
-  display:none;
-
-  padding:18px;
-
-  animation:
-    fade .2s ease;
-}
-
-.screen.active{
-  display:block;
-}
-
-@keyframes fade{
-
-  from{
-    opacity:0;
-    transform:translateY(5px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-}
-
-/* =========================================================
-   HOME
-========================================================= */
-
-.hero{
-
-  padding:25px 20px;
-
-  border-radius:24px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(216,120,34,.22),
-      rgba(214,168,79,.05)
-    ),
-    var(--card);
-
-  border:
-    1px solid var(--border);
-
-  box-shadow:var(--shadow);
-
-  margin-bottom:16px;
-}
-
-.hero small{
-  color:var(--gold);
-  letter-spacing:1px;
-}
-
-.hero h1{
-  margin-top:8px;
-  font-size:28px;
-}
-
-.hero p{
-  margin-top:8px;
-  line-height:1.6;
-  color:var(--muted);
-}
-
-.daily{
-
-  padding:20px;
-
-  border-radius:22px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #432019,
-      #291115
-    );
-
-  border:
-    1px solid var(--border);
-
-  margin-bottom:18px;
-
-  box-shadow:var(--shadow);
-}
-
-.daily-label{
-
-  color:var(--gold2);
-
-  font-size:13px;
-
-  margin-bottom:12px;
-}
-
-.daily h2{
-
-  font-family:
-    Georgia,
-    "Noto Serif Devanagari",
-    serif;
-
-  line-height:1.65;
-
-  font-size:21px;
-}
-
-.daily p{
-
-  margin-top:10px;
-
-  color:var(--muted);
-
-  line-height:1.5;
-}
-
-.grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:12px;
-}
-
-.feature{
-
-  min-height:125px;
-
-  padding:17px;
-
-  text-align:left;
-
-  border-radius:18px;
-
-  background:
-    linear-gradient(
-      145deg,
-      var(--card2),
-      var(--card)
-    );
-
-  border:
-    1px solid var(--border);
-
-  color:var(--cream);
-
-  box-shadow:
-    0 7px 20px
-    rgba(0,0,0,.18);
-}
-
-.feature:active{
-  transform:scale(.98);
-}
-
-.feature strong{
-
-  display:block;
-
-  font-size:15px;
-
-  margin-top:8px;
-}
-
-.feature small{
-
-  display:block;
-
-  margin-top:5px;
-
-  color:var(--muted);
-}
-
-/* =========================================================
-   LIST
-========================================================= */
-
-.list{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:10px;
-}
-
-.list-item{
-
-  width:100%;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:13px;
-
-  text-align:left;
-
-  padding:15px;
-
-  border-radius:16px;
-
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-
-  color:var(--cream);
-}
-
-.list-icon{
-
-  flex:
-    0 0 42px;
-
-  height:42px;
-
-  border-radius:12px;
-
-  display:grid;
-
-  place-items:center;
-
-  background:
-    rgba(216,120,34,.12);
-
-  color:var(--gold2);
-
-  font-size:21px;
-}
-
-.list-content{
-  flex:1;
-}
-
-.list-content strong{
-  display:block;
-}
-
-.list-content small{
-
-  display:block;
-
-  margin-top:4px;
-
-  color:var(--muted);
-}
-
-.chevron{
-
-  color:var(--gold);
-
-  font-size:24px;
-}
-
-/* =========================================================
-   BACK
-========================================================= */
-
-.back-row{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  margin-bottom:17px;
-}
-
-.back{
-
-  width:40px;
-
-  height:40px;
-
-  border-radius:12px;
-
-  background:var(--card);
-
-  color:var(--gold2);
-
-  border:
-    1px solid var(--border);
-
-  display:grid;
-
-  place-items:center;
-}
-
-.back svg{
-  width:19px;
-}
-
-.page-title h1{
-  font-size:23px;
-}
-
-.page-title p{
-
-  color:var(--muted);
-
-  margin-top:3px;
-
-  font-size:13px;
-}
-
-/* =========================================================
-   GITA
-========================================================= */
-
-.gita-chapter{
-
-  margin-bottom:13px;
-
-  padding:16px;
-
-  border-radius:18px;
-
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-}
-
-.gita-chapter-head{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:11px;
-
-  margin-bottom:13px;
-}
-
-.gita-number{
-
-  width:40px;
-
-  height:40px;
-
-  flex:
-    0 0 40px;
-
-  border-radius:50%;
-
-  display:grid;
-
-  place-items:center;
-
-  background:
-    linear-gradient(
-      145deg,
-      #d39a2f,
-      #a96808
-    );
-
-  color:white;
-
-  font-weight:bold;
-}
-
-.gita-verse-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(5,1fr);
-
-  gap:7px;
-}
-
-.gita-verse-btn{
-
-  padding:10px 4px;
-
-  border-radius:9px;
-
-  background:
-    rgba(214,168,79,.08);
-
-  color:var(--gold2);
-
-  border:
-    1px solid var(--border);
-}
-
-.gita-reader{
-
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:20px;
-
-  padding:18px;
-
-  margin-bottom:20px;
-}
-
-.gita-reader-title{
-
-  font-size:20px;
-
-  color:var(--gold2);
-}
-
-.gita-reader-meta{
-
-  margin-top:5px;
-
-  color:var(--muted);
-
-  font-size:12px;
-}
-
-.gita-sanskrit{
-
-  margin-top:20px;
-
-  font-family:
-    Georgia,
-    "Noto Serif Devanagari",
-    serif;
-
-  font-size:21px;
-
-  line-height:1.9;
-
-  color:#ffe5a7;
-
-  white-space:pre-line;
-}
-
-.gita-meaning{
-
-  margin-top:18px;
-
-  padding-top:16px;
-
-  border-top:
-    1px solid var(--border);
-}
-
-.gita-meaning h3{
-
-  color:var(--gold2);
-
-  font-size:15px;
-
-  margin-bottom:7px;
-}
-
-.gita-meaning p{
-
-  color:var(--muted);
-
-  line-height:1.7;
-}
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-.card-actions{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-
-  margin-top:15px;
-}
-
-.small-btn{
-
-  padding:9px 13px;
-
-  border-radius:10px;
-
-  background:
-    rgba(214,168,79,.1);
-
-  color:var(--gold2);
-
-  border:
-    1px solid var(--border);
-}
-
-/* =========================================================
-   JAPA
-========================================================= */
-
-.jap-card{
-
-  background:
-    radial-gradient(
-      circle at 50% 0,
-      #512019,
-      #32161a 60%
-    );
-
-  border:
-    1px solid var(--border);
-
-  border-radius:24px;
-
-  padding:25px 18px;
-
-  text-align:center;
-
-  box-shadow:var(--shadow);
-}
-
-.jap-icon{
-
-  font-size:42px;
-
-  margin-bottom:8px;
-}
-
-.jap-mantra{
-
-  font-family:
-    Georgia,
-    "Noto Serif Devanagari",
-    serif;
-
-  color:#ffe5a7;
-
-  font-size:25px;
-
-  line-height:1.7;
-
-  margin:12px 0 20px;
-}
-
-.jap-count{
-
-  font-size:54px;
-
-  font-weight:700;
-
-  color:var(--gold2);
-
-  line-height:1;
-}
-
-.jap-total{
-
-  color:var(--muted);
-
-  margin-top:8px;
-
-  font-size:13px;
-}
-
-.jap-progress{
-
-  height:8px;
-
-  border-radius:20px;
-
-  background:#1b0b0d;
 
   overflow:hidden;
 
-  margin:20px 0;
-
-  border:
-    1px solid var(--border);
+  box-shadow:
+    0 0 40px rgba(65,35,15,.18);
 }
 
-.jap-progress-bar{
 
-  height:100%;
+/* ================================
+   TOP DECORATION
+================================ */
 
-  width:0%;
+.top-glow{
+  position:absolute;
+  width:280px;
+  height:280px;
 
-  background:
-    linear-gradient(
-      90deg,
-      #a96808,
-      #f0cf79
-    );
-
-  transition:.2s;
-}
-
-.jap-main-btn{
-
-  width:150px;
-
-  height:150px;
-
-  border-radius:50%;
-
-  margin:8px auto 20px;
-
-  display:grid;
-
-  place-items:center;
+  top:-150px;
+  left:50%;
+  transform:translateX(-50%);
 
   background:
     radial-gradient(
       circle,
-      #d6a84f,
-      #a96808
+      rgba(218,166,71,.35),
+      transparent 68%
     );
 
-  color:white;
-
-  font-size:25px;
-
-  font-weight:700;
-
-  box-shadow:
-    0 10px 35px
-    rgba(216,120,34,.25),
-    inset 0 0 0 8px
-    rgba(255,255,255,.08);
+  pointer-events:none;
 }
 
-.jap-main-btn:active{
-  transform:scale(.94);
+
+/* ================================
+   HEADER
+================================ */
+
+.header{
+  padding:20px 18px 12px;
+
+  position:relative;
+  z-index:2;
 }
 
-.jap-controls{
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+
+/* LOGO */
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.om{
+  width:48px;
+  height:48px;
+
+  border-radius:50%;
 
   display:flex;
-
+  align-items:center;
   justify-content:center;
 
-  gap:10px;
+  font-family:
+    "Noto Sans Devanagari",
+    serif;
 
-  margin-top:8px;
-}
+  font-size:29px;
 
-.jap-select{
-
-  width:100%;
-
-  padding:13px;
-
-  border-radius:13px;
-
-  background:#241013;
-
-  color:var(--cream);
-
-  border:
-    1px solid var(--border);
-
-  outline:none;
-
-  margin-bottom:18px;
-}
-
-.jap-108{
-
-  margin-top:20px;
-
-  padding:13px;
-
-  border-radius:14px;
+  color:#fff7e5;
 
   background:
-    rgba(214,168,79,.07);
+    linear-gradient(
+      145deg,
+      #b57a24,
+      #e3b95c
+    );
 
-  border:
-    1px solid var(--border);
+  border:2px solid #f3d68f;
 
-  color:var(--muted);
-
-  font-size:13px;
-
-  line-height:1.6;
+  box-shadow:
+    0 5px 12px rgba(94,53,20,.22);
 }
 
-/* =========================================================
-   GRANTH
-========================================================= */
+.brand-text{
+  line-height:1.1;
+}
 
-.granth-card{
+.brand-title{
+  font-family:Georgia,serif;
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:1px;
+  color:#5a3018;
+}
 
-  padding:18px;
+.brand-sub{
+  font-size:10px;
+  margin-top:4px;
+  color:#9a6b32;
+  letter-spacing:.6px;
+}
+
+
+/* LANGUAGE */
+
+.lang{
+  border:1px solid #d4af62;
+  background:rgba(255,250,235,.78);
+
+  padding:8px 11px;
+
+  border-radius:20px;
+
+  font-size:12px;
+  font-weight:700;
+
+  color:#6b3e1d;
+
+  box-shadow:
+    0 3px 8px rgba(91,50,28,.08);
+}
+
+
+/* ================================
+   SEARCH
+================================ */
+
+.search{
+  margin:8px 18px 16px;
+
+  height:48px;
+
+  display:flex;
+  align-items:center;
+
+  padding:0 15px;
+
+  border-radius:16px;
+
+  background:#fff8e9;
+
+  border:1px solid #e1c88f;
+
+  box-shadow:
+    0 6px 16px rgba(95,58,24,.09);
+}
+
+.search-icon{
+  font-size:19px;
+  margin-right:10px;
+  color:#a8782f;
+}
+
+.search-text{
+  color:#9b815e;
+  font-size:13px;
+}
+
+
+/* ================================
+   TEMPLE HERO
+================================ */
+
+.hero{
+  margin:0 18px 17px;
+
+  height:190px;
+
+  border-radius:25px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  border:1px solid #d6af62;
+
+  background:
+    radial-gradient(
+      circle at 50% 28%,
+      #ffe8a8 0,
+      #eebd63 20%,
+      #b36c29 49%,
+      #6b351c 100%
+    );
+
+  box-shadow:
+    0 10px 25px rgba(78,42,20,.18);
+}
+
+
+/* SUN */
+
+.sun{
+  position:absolute;
+
+  width:75px;
+  height:75px;
+
+  border-radius:50%;
+
+  top:20px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:
+    radial-gradient(
+      circle,
+      #fff7c9,
+      #f5c967 55%,
+      transparent 70%
+    );
+
+  filter:blur(.3px);
+}
+
+
+/* TEMPLE SILHOUETTE */
+
+.temple{
+  position:absolute;
+
+  left:50%;
+  bottom:-2px;
+
+  transform:translateX(-50%);
+
+  width:245px;
+  height:118px;
+}
+
+
+/* Main temple */
+
+.temple-body{
+  position:absolute;
+
+  bottom:0;
+  left:35px;
+
+  width:175px;
+  height:82px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #542817,
+      #74401f,
+      #4b2416
+    );
+
+  border-radius:5px 5px 0 0;
+}
+
+
+/* Dome */
+
+.temple-dome{
+  position:absolute;
+
+  bottom:75px;
+  left:73px;
+
+  width:100px;
+  height:65px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 100%,
+      #70401f 0,
+      #572916 70%
+    );
+
+  border-radius:
+    100px 100px 0 0;
+}
+
+
+/* Shikhar */
+
+.shikhar{
+  position:absolute;
+
+  left:100px;
+  bottom:124px;
+
+  width:45px;
+  height:45px;
+
+  background:#592918;
+
+  clip-path:
+    polygon(
+      50% 0,
+      100% 100%,
+      0 100%
+    );
+}
+
+.shikhar-line{
+  position:absolute;
+
+  left:121px;
+  bottom:165px;
+
+  width:3px;
+  height:15px;
+
+  background:#522615;
+}
+
+
+/* Temple door */
+
+.door{
+  position:absolute;
+
+  left:105px;
+  bottom:0;
+
+  width:35px;
+  height:57px;
+
+  background:#30160f;
+
+  border-radius:
+    20px 20px 0 0;
+
+  border:2px solid #9a612c;
+}
+
+
+/* Temple columns */
+
+.column{
+  position:absolute;
+
+  bottom:0;
+
+  width:13px;
+  height:72px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #432017,
+      #87502a,
+      #432017
+    );
+
+  border-radius:4px 4px 0 0;
+}
+
+.c1{left:47px}
+.c2{left:77px}
+.c3{left:150px}
+.c4{left:177px}
+
+
+/* HERO TEXT */
+
+.hero-text{
+  position:absolute;
+
+  top:18px;
+  left:18px;
+  right:18px;
+
+  text-align:center;
+
+  color:#fff7e2;
+
+  text-shadow:
+    0 2px 6px rgba(60,25,8,.5);
+}
+
+.hero-sanskrit{
+  font-family:
+    "Noto Sans Devanagari",
+    serif;
+
+  font-size:17px;
+  font-weight:700;
+
+  letter-spacing:.5px;
+}
+
+.hero-small{
+  margin-top:4px;
+
+  font-size:10px;
+
+  letter-spacing:1.5px;
+
+  opacity:.9;
+}
+
+
+/* ================================
+   SECTION TITLE
+================================ */
+
+.section-title{
+  padding:0 20px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:11px;
+}
+
+.section-title h2{
+  font-family:Georgia,serif;
+
+  font-size:18px;
+
+  color:#583018;
+}
+
+.section-title span{
+  font-size:11px;
+  color:#a27742;
+}
+
+
+/* ================================
+   FEATURE GRID
+================================ */
+
+.grid{
+  padding:0 18px;
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:12px;
+}
+
+.card{
+  min-height:105px;
+
+  padding:15px;
 
   border-radius:20px;
 
   background:
     linear-gradient(
       145deg,
-      var(--card2),
-      var(--card)
+      #fff8e8,
+      #f4e3bd
     );
 
-  border:
-    1px solid var(--border);
+  border:1px solid #dfc487;
 
-  margin-bottom:12px;
+  box-shadow:
+    0 7px 17px rgba(80,46,20,.09);
+
+  position:relative;
+
+  overflow:hidden;
 }
 
-.granth-card-title{
+.card::after{
+  content:"";
 
-  display:flex;
+  position:absolute;
 
-  align-items:center;
+  width:75px;
+  height:75px;
 
-  gap:13px;
-}
+  right:-35px;
+  bottom:-35px;
 
-.granth-emoji{
-
-  width:48px;
-
-  height:48px;
-
-  border-radius:14px;
-
-  display:grid;
-
-  place-items:center;
+  border-radius:50%;
 
   background:
-    rgba(214,168,79,.10);
-
-  font-size:25px;
+    rgba(211,166,76,.13);
 }
 
-.granth-card h3{
-  font-size:17px;
+.card-icon{
+  width:40px;
+  height:40px;
+
+  border-radius:13px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #d3a44f,
+      #edd18b
+    );
+
+  color:#573017;
+
+  font-size:21px;
+
+  margin-bottom:10px;
 }
 
-.granth-card p{
-
-  color:var(--muted);
-
-  font-size:13px;
-
-  margin-top:4px;
+.card-title{
+  font-size:14px;
+  font-weight:800;
+  color:#5b331c;
 }
 
-.granth-open{
+.card-sub{
+  margin-top:3px;
 
-  width:100%;
+  font-size:10px;
 
-  margin-top:13px;
+  color:#96734b;
 }
 
-/* =========================================================
-   PANCHANG
-========================================================= */
 
-.panchang-date{
+/* ================================
+   DAILY INSPIRATION
+================================ */
 
-  padding:22px;
+.daily{
+  margin:17px 18px 100px;
 
-  text-align:center;
+  padding:18px;
 
   border-radius:22px;
 
   background:
     linear-gradient(
-      135deg,
-      #432019,
-      #291115
+      145deg,
+      #6b3b20,
+      #4d2818
     );
 
-  border:
-    1px solid var(--border);
+  color:#fff5dd;
 
-  margin-bottom:14px;
+  position:relative;
 
-  box-shadow:var(--shadow);
+  overflow:hidden;
+
+  box-shadow:
+    0 9px 20px rgba(70,37,18,.2);
 }
 
-.panchang-date .day{
+.daily::before{
+  content:"ॐ";
 
-  color:var(--gold);
+  position:absolute;
 
-  font-size:13px;
+  right:-4px;
+  bottom:-24px;
+
+  font-size:115px;
+
+  color:rgba(255,220,145,.08);
+
+  font-family:serif;
 }
 
-.panchang-date h2{
+.daily-label{
+  font-size:10px;
 
-  margin-top:7px;
+  color:#e8c778;
 
-  font-size:27px;
+  letter-spacing:1.3px;
 
-  color:var(--gold2);
+  font-weight:700;
 }
 
-.panchang-date p{
+.daily-text{
+  margin-top:9px;
 
-  margin-top:5px;
+  font-family:
+    "Noto Sans Devanagari",
+    serif;
 
-  color:var(--muted);
-}
-
-.panchang-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:10px;
-}
-
-.panchang-item{
-
-  padding:16px;
-
-  border-radius:17px;
-
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-}
-
-.panchang-item .pi{
-  font-size:23px;
-}
-
-.panchang-item strong{
-
-  display:block;
-
-  margin-top:8px;
-
-  color:var(--gold2);
-
-  font-size:13px;
-}
-
-.panchang-item span{
-
-  display:block;
-
-  margin-top:5px;
-
-  color:var(--cream);
-
-  font-size:14px;
-}
-
-.panchang-note{
-
-  margin-top:15px;
-
-  padding:14px;
-
-  border-radius:14px;
-
-  background:
-    rgba(216,120,34,.08);
-
-  border:
-    1px solid var(--border);
-
-  color:var(--muted);
+  font-size:17px;
 
   line-height:1.6;
 
-  font-size:12px;
+  position:relative;
+  z-index:1;
 }
 
-/* =========================================================
+.daily-meaning{
+  margin-top:6px;
+
+  font-size:11px;
+
+  line-height:1.5;
+
+  color:#e7d1a6;
+
+  position:relative;
+  z-index:1;
+}
+
+
+/* ================================
    BOTTOM NAV
-========================================================= */
+================================ */
 
 .bottom-nav{
-
   position:fixed;
 
   bottom:0;
-
   left:50%;
 
   transform:translateX(-50%);
 
-  width:min(620px,100%);
+  width:100%;
+  max-width:480px;
 
   height:72px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #5b321d,
+      #442315
+    );
 
   display:grid;
 
   grid-template-columns:
     repeat(4,1fr);
 
-  background:
-    rgba(25,10,12,.97);
+  padding:
+    8px 8px
+    calc(8px + env(safe-area-inset-bottom));
 
-  border-top:
-    1px solid var(--border);
+  z-index:20;
 
-  z-index:1000;
+  box-shadow:
+    0 -7px 20px rgba(53,28,13,.22);
 }
 
-.nav-btn{
+.nav-item{
+  border:0;
 
   background:transparent;
 
-  color:#9c806c;
+  color:#d9bb83;
 
   display:flex;
 
   flex-direction:column;
 
+  align-items:center;
   justify-content:center;
 
-  align-items:center;
+  gap:3px;
 
-  gap:5px;
+  font-family:inherit;
 
   font-size:10px;
 }
 
-.nav-btn.active{
-  color:var(--gold2);
+.nav-icon{
+  font-size:21px;
+  line-height:1;
 }
 
-.nav-btn svg{
-
-  width:21px;
-
-  height:21px;
+.nav-item.active{
+  color:#ffe4a0;
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+.nav-item.active .nav-icon{
+  transform:translateY(-1px);
+}
 
-@media(max-width:380px){
 
-  .brand strong{
-    font-size:17px;
+/* ================================
+   DESKTOP
+================================ */
+
+@media(min-width:700px){
+
+  body{
+    padding:20px 0;
   }
 
-  .language-btn{
-    min-width:108px;
-    padding:0 8px;
+  .app{
+    border-radius:32px;
+    min-height:calc(100vh - 40px);
+
+    overflow:hidden;
   }
 
-  .jap-main-btn{
-    width:130px;
-    height:130px;
+  .bottom-nav{
+    border-radius:
+      0 0 32px 32px;
+  }
+}
+
+
+/* ================================
+   SMALL PHONES
+================================ */
+
+@media(max-width:360px){
+
+  .brand-title{
+    font-size:19px;
   }
 
-  .jap-count{
-    font-size:45px;
+  .hero{
+    height:175px;
   }
 
+  .card{
+    min-height:100px;
+  }
+
+  .daily-text{
+    font-size:15px;
+  }
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="app">
 
-<!-- =======================================================
-     TOP BAR
-======================================================= -->
+  <div class="top-glow"></div>
 
-<header class="topbar">
 
-  <div class="brand">
+  <!-- ============================
+       HEADER
+  ============================= -->
 
-    <div class="om">
-      ॐ
+  <header class="header">
+
+    <div class="header-row">
+
+      <div class="brand">
+
+        <div class="om">ॐ</div>
+
+        <div class="brand-text">
+
+          <div class="brand-title">
+            BRAHMANSH
+          </div>
+
+          <div class="brand-sub">
+            सनातनं परम् ज्ञानम्
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="lang">
+        ગુજરાતી ▾
+      </div>
+
     </div>
 
-    <strong>
-      BRAHMANSH
-    </strong>
-
-  </div>
+  </header>
 
 
-  <!-- LANGUAGE BUTTON -->
+  <!-- ============================
+       SEARCH
+  ============================= -->
 
-  <div class="language-wrap">
+  <div class="search">
 
-    <button
-      class="language-btn"
-      onclick="toggleLanguageMenu()">
+    <div class="search-icon">
+      🔍
+    </div>
 
-      🌐
-
-      <span id="currentLanguage">
-        ગુજરાતી
-      </span>
-
-      ▾
-
-    </button>
-
-
-    <div
-      id="languageMenu"
-      class="language-menu">
-
-      <button
-        class="language-option active"
-        data-lang="gu"
-        onclick="setLanguage('gu')">
-
-        🇮🇳 ગુજરાતી
-
-      </button>
-
-
-      <button
-        class="language-option"
-        data-lang="hi"
-        onclick="setLanguage('hi')">
-
-        🇮🇳 हिन्दी
-
-      </button>
-
-
-      <button
-        class="language-option"
-        data-lang="en"
-        onclick="setLanguage('en')">
-
-        🇬🇧 English
-
-      </button>
-
+    <div class="search-text">
+      શ્લોક, ગ્રંથ, મંત્ર અથવા વિષય શોધો...
     </div>
 
   </div>
 
-</header>
 
+  <!-- ============================
+       HERO
+  ============================= -->
 
-<!-- =======================================================
-     HOME
-======================================================= -->
+  <section class="hero">
 
-<section
-  id="home"
-  class="screen active">
+    <div class="sun"></div>
 
-  <div class="hero">
+    <div class="hero-text">
 
-    <small data-i18n="heroSmall">
+      <div class="hero-sanskrit">
+        धर्मो रक्षति रक्षितः
+      </div>
 
-      સનાતન જ્ઞાન અને આધ્યાત્મિક જીવન
-
-    </small>
-
-
-    <h1 data-i18n="welcome">
-
-      સ્વાગત છે 🙏
-
-    </h1>
-
-
-    <p data-i18n="heroText">
-
-      શ્લોક, મંત્ર, જપ, સ્તોત્ર,
-      ગ્રંથ અને સનાતન જ્ઞાન —
-      એક જ સ્થાને.
-
-    </p>
-
-  </div>
-
-
-  <!-- DAILY WISDOM -->
-
-  <div class="daily">
-
-    <div
-      class="daily-label"
-      data-i18n="dailyLabel">
-
-      આજની વાણી
+      <div class="hero-small">
+        SANATANA • JÑĀNA • DHARMA
+      </div>
 
     </div>
 
+
+    <div class="temple">
+
+      <div class="shikhar"></div>
+      <div class="shikhar-line"></div>
+
+      <div class="temple-dome"></div>
+
+      <div class="temple-body"></div>
+
+      <div class="column c1"></div>
+      <div class="column c2"></div>
+      <div class="column c3"></div>
+      <div class="column c4"></div>
+
+      <div class="door"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================
+       FEATURE TITLE
+  ============================= -->
+
+  <div class="section-title">
 
     <h2>
-
-      कर्मण्येवाधिकारस्ते
-      मा फलेषु कदाचन ।
-
+      આજનું આધ્યાત્મિક જીવન
     </h2>
 
-
-    <p id="dailyMeaning">
-
-      કર્મ કરવામાં તારો અધિકાર છે,
-      પરંતુ તેના ફળ પર નથી.
-
-    </p>
+    <span>
+      વધુ જુઓ
+    </span>
 
   </div>
 
 
-  <!-- HOME GRID -->
+  <!-- ============================
+       FEATURE CARDS
+  ============================= -->
 
-  <div class="grid">
+  <section class="grid">
 
 
-    <!-- GITA -->
+    <div class="card">
 
-    <button
-      class="feature"
-      onclick="openGita()">
-
-      <div style="font-size:24px">
-
+      <div class="card-icon">
         📖
-
       </div>
 
-
-      <strong data-i18n="gita">
-
+      <div class="card-title">
         ભગવદ્ ગીતા
-
-      </strong>
-
-
-      <small data-i18n="gitaSub">
-
-        18 અધ્યાય • 700 શ્લોક
-
-      </small>
-
-    </button>
-
-
-    <!-- JAPA -->
-
-    <button
-      class="feature"
-      onclick="show('japPage')">
-
-      <div style="font-size:24px">
-
-        📿
-
       </div>
 
+      <div class="card-sub">
+        જ્ઞાન • કર્મ • ભક્તિ
+      </div>
 
-      <strong data-i18n="japa">
+    </div>
 
+
+    <div class="card">
+
+      <div class="card-icon">
+        🕉
+      </div>
+
+      <div class="card-title">
         જપ
-
-      </strong>
-
-
-      <small data-i18n="japaSub">
-
-        મંત્ર જપ અને 108 ગણતરી
-
-      </small>
-
-    </button>
-
-
-    <!-- GRANTH -->
-
-    <button
-      class="feature"
-      onclick="show('dharmikPage')">
-
-      <div style="font-size:24px">
-
-        📚
-
       </div>
 
-
-      <strong data-i18n="granth">
-
-        ધાર્મિક ગ્રંથો
-
-      </strong>
-
-
-      <small data-i18n="granthSub">
-
-        સનાતન ગ્રંથોની માહિતી
-
-      </small>
-
-    </button>
-
-
-    <!-- PANCHANG -->
-
-    <button
-      class="feature"
-      onclick="show('panchangPage')">
-
-      <div style="font-size:24px">
-
-        🗓️
-
+      <div class="card-sub">
+        મંત્ર જાપ અને ધ્યાન
       </div>
 
+    </div>
 
-      <strong data-i18n="panchang">
 
+    <div class="card">
+
+      <div class="card-icon">
+        📜
+      </div>
+
+      <div class="card-title">
+        ધર્મિક ગ્રંથ
+      </div>
+
+      <div class="card-sub">
+        ગીતા • રામાયણ • વેદ
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">
+        ☀️
+      </div>
+
+      <div class="card-title">
         પંચાંગ
-
-      </strong>
-
-
-      <small data-i18n="panchangSub">
-
-        આજનું ધાર્મિક પંચાંગ
-
-      </small>
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     GRANTH PAGE
-======================================================= -->
-
-<section
-  id="granthPage"
-  class="screen">
-
-
-  <div class="back-row">
-
-    <button
-      class="back"
-      onclick="show('home')">
-
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-
-        <path
-          d="m15 18-6-6 6-6"/>
-
-      </svg>
-
-    </button>
-
-
-    <div class="page-title">
-
-      <h1 data-i18n="granth">
-
-        ગ્રંથ
-
-      </h1>
-
-
-      <p data-i18n="sacredTexts">
-
-        સનાતન ગ્રંથો
-
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="list">
-
-
-    <button
-      class="list-item"
-      onclick="openGita()">
-
-
-      <div class="list-icon">
-
-        ॐ
-
       </div>
 
-
-      <div class="list-content">
-
-        <strong data-i18n="gitaFull">
-
-          શ્રીમદ્ ભગવદ્ ગીતા
-
-        </strong>
-
-
-        <small data-i18n="gitaSub">
-
-          18 અધ્યાય • 700 શ્લોક
-
-        </small>
-
+      <div class="card-sub">
+        તિથિ • નક્ષત્ર • મુહૂર્ત
       </div>
 
-
-      <span class="chevron">
-
-        ›
-
-      </span>
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     GITA PAGE
-======================================================= -->
-
-<section
-  id="gitaPage"
-  class="screen">
-
-
-  <div class="back-row">
-
-
-    <button
-      class="back"
-      onclick="show('home')">
-
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-
-        <path
-          d="m15 18-6-6 6-6"/>
-
-      </svg>
-
-    </button>
-
-
-    <div class="page-title">
-
-      <h1 data-i18n="gitaFull">
-
-        શ્રીમદ્ ભગવદ્ ગીતા
-
-      </h1>
-
-
-      <p data-i18n="gitaSub">
-
-        18 અધ્યાય • 700 શ્લોક
-
-      </p>
-
     </div>
 
-  </div>
+  </section>
 
 
-  <div id="gitaReaderAnchor"></div>
+  <!-- ============================
+       DAILY INSPIRATION
+  ============================= -->
+
+  <section class="daily">
+
+    <div class="daily-label">
+      ✦ DAILY INSPIRATION
+    </div>
+
+    <div class="daily-text">
+      कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।
+    </div>
+
+    <div class="daily-meaning">
+      કર્મ કરવામાં તારો અધિકાર છે,
+      પરંતુ તેના ફળમાં ક્યારેય નહીં.
+    </div>
+
+  </section>
 
 
-  <div id="gita700List"></div>
+  <!-- ============================
+       BOTTOM NAV
+  ============================= -->
 
-</section>
+  <nav class="bottom-nav">
 
+    <button class="nav-item active">
 
-<!-- =======================================================
-     JAPA PAGE
-======================================================= -->
+      <div class="nav-icon">
+        🏠
+      </div>
 
-<section
-  id="japPage"
-  class="screen">
-
-
-  <div class="back-row">
-
-
-    <button
-      class="back"
-      onclick="show('home')">
-
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2">
-
-        <path
-          d="m15 18-6-6 6-6"/>
-
-      </svg>
+      <div>
+        હોમ
+      </div>
 
     </button>
 
 
-    <div class="page-title">
+    <button class="nav-item">
 
-      <h1>
+      <div class="nav-icon">
+        🕉
+      </div>
 
-        📿
-
-        <span data-i18n="japaTitle">
-
-          મંત્ર જપ
-
-        </span>
-
-      </h1>
-
-
-      <p data-i18n="japaDesc">
-
-        મંત્રનું ધ્યાનપૂર્વક જપ કરો
-
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="jap-card">
-
-
-    <div class="jap-icon">
-
-      🕉️
-
-    </div>
-
-
-    <select
-      id="mantraSelect"
-      class="jap-select"
-      onchange="changeMantra()">
-
-
-      <option value="om-namah-shivaya">
-
-        ॐ नमः शिवाय
-
-      </option>
-
-
-      <option value="om-namo-bhagavate">
-
-        ॐ नमो भगवते वासुदेवाय
-
-      </option>
-
-
-      <option value="ram">
-
-        श्री राम जय राम जय जय राम
-
-      </option>
-
-
-      <option value="ganesh">
-
-        ॐ गं गणपतये नमः
-
-      </option>
-
-
-      <option value="mahamrityunjaya">
-
-        महामृत्युञ्जय मन्त्र
-
-      </option>
-
-    </select>
-
-
-    <div
-      id="mantraText"
-      class="jap-mantra">
-
-      ॐ नमः शिवाय
-
-    </div>
-
-
-    <div
-      id="japCount"
-      class="jap-count">
-
-      0
-
-    </div>
-
-
-    <div class="jap-total">
-
-      / 108
-
-      <span data-i18n="japaCountText">
-
+      <div>
         જપ
-
-      </span>
-
-    </div>
-
-
-    <div class="jap-progress">
-
-      <div
-        id="japProgress"
-        class="jap-progress-bar">
       </div>
-
-    </div>
-
-
-    <button
-      class="jap-main-btn"
-      onclick="doJap()"
-      data-i18n="japaButton">
-
-      જપ
 
     </button>
 
 
-    <div class="jap-controls">
+    <button class="nav-item">
+
+      <div class="nav-icon">
+        📜
+      </div>
+
+      <div>
+        ગ્રંથ
+      </div>
+
+    </button>
 
 
-      <button
-        class="small-btn"
-        onclick="decreaseJap()">
+    <button class="nav-item">
 
-        −
+      <div class="nav-icon">
+        ☀️
+      </div>
 
-      </button>
+      <div>
+        પંચાંગ
+      </div>
 
+    </button>
 
-      <button
-        class="small-btn"
-        onclick="resetJap()"
-        data-i18n="reset">
-
-        રીસેટ
-
-      </button>
+  </nav>
 
 
-      <button
-        class="small-btn"
-        onclick="set108()">
+</div>
 
-        108
-
-      </button>
-
-    </div>
-
-
-    <div
-      class="jap-108"
-      id="japInfo">
-
-      📿 એક માળા = 108 જપ
-      <br>
-      મંત્ર જપ કરતી વખતે
-      મનને મંત્રમાં એકાગ્ર રાખો.
-
-    </div>
-
-  </div>
-
-</section>
+</body>
+</html>
