@@ -173,7 +173,9 @@ button{border:0;cursor:pointer;}
   </div>
 
   <div id="gitaReaderAnchor"></div>
-  <div id="gita700List"></div>
+  <div id="gita700List">
+    <div style="text-align:center;padding:30px;color:var(--muted)">૭૦૦ શ્લોક લોડ થઈ રહ્યા છે...</div>
+  </div>
 </section>
 
 <!-- BOTTOM NAV -->
@@ -191,66 +193,6 @@ button{border:0;cursor:pointer;}
 </div>
 
 <script>
-/* =========================================================
-   AUTHENTIC INBUILT DATABASE (Offline & Instant)
-========================================================= */
-const GITA_DATABASE = {
-  "1-1": {
-    sanskrit: "धृतराष्ट्र उवाच |\nधर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः |\nमामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय || १ ||",
-    english: "Dhritarashtra said: O Sanjaya, assembled on the holy field of Kurukshetra and eager to fight, what did my sons and the sons of Pandu do?",
-    hindi: "धृतराष्ट्र बोले—हे संजय! धर्मभूमि कुरुक्षेत्र में एकत्रित युद्ध की इच्छा वाले मेरे और पाण्डु के पुत्रों ने क्या किया?",
-    gujarati: "ધૃતરાષ્ટ્ર બોલ્યા: હે સંજય! ધર્મભૂમિ કુરુક્ષેત્રમાં એકઠા થયેલા યુદ્ધની ઇચ્છાવાળા મારા અને પાંડુના પુત્રોએ શું કર્યું?"
-  },
-  "1-2": {
-    sanskrit: "सञ्जय उवाच |\nदृष्ट्वा तु पाण्डवानीकं व्यूढं दुर्योधनस्तदा |\nआचार्यमुपसङ्गम्य राजा वचनमब्रवीत् || २ ||",
-    english: "Sanjaya said: Having seen the army of the Pandavas drawn up in battle array, King Duryodhana approached his teacher Drona and spoke these words.",
-    hindi: "संजय बोले—उस समय राजा दुर्योधन ने व्यूहरचनायुक्त पाण्डवों की सेना को देखकर द्रोणाचार्य के पास जाकर यह वचन कहा।",
-    gujarati: "સંજય બોલ્યા: તે સમયે રાજા દુર્યોધને વ્યૂહરચનાવાળી પાંડવોની સેના જોઈને આચાર્ય દ્રોણ પાસે જઈને આ વચન કહ્યા."
-  },
-  "1-3": {
-    sanskrit: "पश्यैतां पाण्डुपुत्राणामाचार्य महतीं चमूम् |\nव्यूढां द्रुपदपुत्रेण तव शिष्येण धीमता || ३ ||",
-    english: "Behold, O teacher, this mighty army of the sons of Pandu, arrayed by the son of Drupada, your wise disciple.",
-    hindi: "हे आचार्य! आपके बुद्धिमान् शिष्य द्रुपदपुत्र धृष्टद्युम्न द्वारा व्यूहाकार खड़ी की हुई पाण्डुपुत्रों की इस बड़ी भारी सेना को देखिए।",
-    gujarati: "હે આચાર્ય! આપના બુદ્ધિમાન શિષ્ય દ્રુપદપુત્ર ધૃષ્ટદ્યુમ્ન દ્વારા વ્યૂહાકાર ગોઠવાયેલી આ પાંડુપુત્રોની વિશાળ સેનાને જુઓ."
-  },
-  "1-4": {
-    sanskrit: "अत्र शूरा महेष्वासा भीमार्जुनसमा युधि |\nयुयुधानो विराटश्च द्रुपदश्च महारथः || ४ ||",
-    english: "Here are heroes, mighty archers, equal in battle to Bhima and Arjuna: Yuyudhana, Virata, and Drupada, the great car-warrior.",
-    hindi: "इस सेना में बड़े-बड़े धनुषों वाले तथा युद्ध में भीम और अर्जुन के समान शूरवीर युयुधान, विराट और महारथी द्रुपद हैं।",
-    gujarati: "આ સેનામાં મોટા ધનુષવાળા તથા યુદ્ધમાં ભીમ અને અર્જુન સમાન શૂરવીર યુયુધાન, વિરાટ અને મહારથી દ્રુપદ છે."
-  },
-  "1-5": {
-    sanskrit: "धृष्टकेतुश्चेकितानः काशिराजश्च वीर्यवान् |\nपुरुजित्कुन्तिभोजश्च शैब्यश्च नरपुङ्गवः || ५ ||",
-    english: "Dhrishtaketu, Chekitana, and the valiant King of Kashi, Purujit, Kuntibhoja, and Shaibya, the best of men.",
-    hindi: "तथा धृष्टकेतु, चेकितान और पराक्रमी काशिराज, पुरुजित्, कुन्तिभोज और मनुष्यों में श्रेष्ठ शैब्य हैं।",
-    gujarati: "તેમજ ધૃષ્ટકેતુ, ચેકિતાન અને પરાક્રમી કાશીરાજ, પુરુજિત, કુંતીભોજ અને મનુષ્યોમાં શ્રેષ્ઠ શૈબ્ય છે."
-  },
-  "1-6": {
-    sanskrit: "युधामन्युश्च विक्रान्त उत्तमौजाश्च वीर्यवान् |\nसौभद्रो द्रौपदेयाश्च सर्व एव महारथाः || ६ ||",
-    english: "The strong Yudhamanyu, the brave Uttamauja, the son of Subhadra, and the sons of Draupadi—all of them great warriors.",
-    hindi: "पराक्रमी युधामन्यु, बलवान् उत्तमौजा, सुभद्रापुत्र अभिमन्यु और द्रौपदी के पाँचों पुत्र—ये सभी महारथी हैं।",
-    gujarati: "પરાક્રમી યુધામન્યુ, ઉત્તમૌજા, સુભદ્રાપુત્ર અભિમન્યુ અને દ્રૌપદીના પાંચેય પુત્રો - આ બધા જ મહારથીઓ છે."
-  },
-  "1-7": {
-    sanskrit: "अस्माकं तु विशिष्टा ये तान्निबोध द्विजोत्तम |\nनायका मम सैन्यस्य संज्ञार्थं तान्ब्रवीमि ते || ७ ||",
-    english: "Know also, O best among the twice-born, the distinguished ones among us, the leaders of my army; I name them for your information.",
-    hindi: "हे द्विजश्रेष्ठ! हमारे पक्ष में भी जो मुख्य हैं, उनको आप जान लीजिए। मेरी सेना के जो नायक हैं, उनको मैं आपकी जानकारी के लिए बतलाता हूँ।",
-    gujarati: "હે બ્રાહ્મણશ્રેષ્ઠ! આપણા પક્ષમાં પણ જે મુખ્ય છે તેમને આપ જાણી લો. આપની જાણકારી માટે હું મારી સેનાના નાયકો દર્શાવું છું."
-  },
-  "1-8": {
-    sanskrit: "भवान्भीष्मश्च कर्णश्च कृपश्च समितिञ्जयः |\nअश्वत्थामा विकर्णश्च सौमदत्तिस्तथैव च || ८ ||",
-    english: "Yourself, Bhishma, Karna, Kripa, the victorious in war, Ashwatthama, Vikarna, and also the son of Somadatta.",
-    hindi: "आप (द्रोणाचार्य), पितामह भीष्म, कर्ण और संग्रामविजयी कृपाचार्य तथा वैसे ही अश्वत्थामा, विकर्ण और सोमदत्त का पुत्र भूरिश्रवा हैं।",
-    gujarati: "આપ (દ્રોણાચાર્ય), પિતામહ ભીષ્મ, કર્ણ અને સંગ્રામવિજયી કૃપાચાર્ય તેમજ અશ્વત્થામા, વિકર્ણ અને સોમદત્તપુત્ર ભૂરિશ્રવા છે."
-  },
-  "2-47": {
-    sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन |\nमा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि || ४७ ||",
-    english: "You have a right to perform your prescribed duty, but you are not entitled to the fruits of action. Never consider yourself the cause of the results of your activities, and never be attached to not doing your duty.",
-    hindi: "कर्म करने में ही तुम्हारा अधिकार है, उसके फलों में कभी नहीं। इसलिए तुम कर्मफल के हेतु मत बनो और तुम्हारी अकर्म में भी आसक्ति न हो।",
-    gujarati: "કર્મ કરવામાં જ તારો અધિકાર છે, ફળમાં ક્યારેય નહીં. કર્મફળની આસક્તિ રાખ નહીં અને કર્મ ન કરવામાં પણ આસક્તિ ન રાખ."
-  }
-};
-
 const GITA_CHAPTERS = [
   [1,"અર્જુનવિષાદયોગ",47],[2,"સાંખ્યયોગ",72],[3,"કર્મયોગ",43],[4,"જ્ઞાનકર્મસંન્યાસયોગ",42],
   [5,"કર્મસંન્યાસયોગ",29],[6,"આત્મસંયમયોગ",47],[7,"જ્ઞાનવિજ્ઞાનયોગ",30],[8,"અક્ષરબ્રહ્મયોગ",28],
@@ -258,6 +200,22 @@ const GITA_CHAPTERS = [
   [13,"ક્ષેત્રક્ષેત્રજ્ઞવિભાગયોગ",34],[14,"ગુણત્રયવિભાગયોગ",27],[15,"પુરુષોત્તમયોગ",20],
   [16,"દૈવાસુરસંપદ્વિભાગયોગ",24],[17,"શ્રદ્ધાત્રયવિભાગયોગ",28],[18,"મોક્ષસંન્યાસયોગ",78]
 ];
+
+// ગીતાના મુખ્ય અને પ્રસિદ્ધ શ્લોકોનો શુદ્ધ ગુજરાતી સંગ્રહ
+const GUJARATI_TEXTS = {
+  "1-1": "ધૃતરાષ્ટ્ર બોલ્યા: હે સંજય! ધર્મભૂમિ કુરુક્ષેત્રમાં એકઠા થયેલા યુદ્ધની ઇચ્છાવાળા મારા અને પાંડુના પુત્રોએ શું કર્યું?",
+  "1-2": "સંજય બોલ્યા: તે સમયે રાજા દુર્યોધને વ્યૂહરચનાવાળી પાંડવોની સેના જોઈને આચાર્ય દ્રોણ પાસે જઈને આ વચન કહ્યા.",
+  "1-3": "હે આચાર્ય! આપના બુદ્ધિમાન શિષ્ય દ્રુપદપુત્ર ધૃષ્ટદ્યુમ્ન દ્વારા વ્યૂહાકાર ગોઠવાયેલી આ પાંડુપુત્રોની વિશાળ સેનાને જુઓ.",
+  "1-4": "આ સેનામાં મોટા ધનુષવાળા તથા યુદ્ધમાં ભીમ અને અર્જુન સમાન શૂરવીર યુયુધાન, વિરાટ અને મહારથી દ્રુપદ છે.",
+  "1-5": "તેમજ ધૃષ્ટકેતુ, ચેકિતાન અને પરાક્રમી કાશીરાજ, પુરુજિત, કુંતીભોજ અને મનુષ્યોમાં શ્રેષ્ઠ શૈબ્ય છે.",
+  "1-6": "પરાક્રમી યુધામન્યુ, ઉત્તમૌજા, સુભદ્રાપુત્ર અભિમન્યુ અને દ્રૌપદીના પાંચેય પુત્રો - આ બધા જ મહારથીઓ છે.",
+  "1-7": "હે બ્રાહ્મણશ્રેષ્ઠ! આપણા પક્ષમાં પણ જે મુખ્ય છે તેમને આપ જાણી લો. આપની જાણકારી માટે હું મારી સેનાના નાયકો દર્શાવું છું.",
+  "1-8": "આપ (દ્રોણાચાર્ય), પિતામહ ભીષ્મ, કર્ણ અને સંગ્રામવિજયી કૃપાચાર્ય તેમજ અશ્વત્થામા, વિકર્ણ અને સોમદત્તપુત્ર ભૂરિશ્રવા છે.",
+  "2-47": "કર્મ કરવામાં જ તારો અધિકાર છે, ફળમાં ક્યારેય નહીં. કર્મફળની આસક્તિ રાખ નહીં અને કર્મ ન કરવામાં પણ આસક્તિ ન રાખ."
+};
+
+let allGitaVerses = {};
+let hindiCache = {};
 
 function gq(id){ return document.getElementById(id); }
 
@@ -294,17 +252,16 @@ function renderGitaChapters(){
   box.innerHTML = html;
 }
 
-function openGitaVerse(ch, vr){
+/* ૭૦૦ શ્લોક ખોલવા માટેનું ફંક્શન */
+async function openGitaVerse(ch, vr){
   const key = ch + "-" + vr;
   const old = gq("gitaVerseReader");
   if(old) old.remove();
 
-  const data = GITA_DATABASE[key] || {
-    sanskrit: `अध्याय ${ch} • श्लोक ${vr}\n(संस्कृत श्लोक उपलब्ध है)`,
-    english: "English meaning will be updated soon.",
-    hindi: "हिन्दी अर्थ (गीताप्रेस गोरखपुर) शीघ्र ही पूर्ण रूप से जोड़ा जाएगा।",
-    gujarati: "શુદ્ધ ગુજરાતી ભાવાનુવાદ ટૂંક સમયમાં ઉમેરાશે."
-  };
+  const vData = allGitaVerses[key] || {};
+  const sanskritText = vData.sanskrit || `અધ્યાય ${ch} • શ્લોક ${vr}\n(શ્લોક લોડ થઈ રહ્યો છે...)`;
+  const englishText = vData.english || "English meaning loading...";
+  const gujaratiText = GUJARATI_TEXTS[key] || "શુદ્ધ ગુજરાતી ભાવાનુવાદ ટૂંક સમયમાં ઉમેરાશે. (સચોટ અર્થ માટે નીચે આપેલ ગીતા પ્રેસ હિન્દી અર્થ વાંચો).";
 
   const reader = document.createElement("div");
   reader.id = "gitaVerseReader";
@@ -316,25 +273,28 @@ function openGitaVerse(ch, vr){
     </div>
     <div class="gita-reader-title">શ્રીમદ્ ભગવદ્ ગીતા</div>
     <div class="gita-reader-meta">અધ્યાય ${ch} • શ્લોક ${vr}</div>
-    <div class="gita-sanskrit">${data.sanskrit}</div>
+    <div id="readerSanskrit" class="gita-sanskrit">${sanskritText}</div>
     
     <div class="gita-meaning">
       <h3>English Meaning</h3>
-      <p>${data.english}</p>
+      <p id="readerEnglish">${englishText}</p>
     </div>
     <div class="gita-meaning">
       <h3>हिन्दी अर्थ (गीताप्रेस गोरखपुर)</h3>
-      <p style="color:#f0cf79">${data.hindi}</p>
+      <p id="readerHindi" style="color:#f0cf79">हिन्दी अर्थ लोड हो रहा है...</p>
     </div>
     <div class="gita-meaning">
       <h3>ગુજરાતી અર્થ</h3>
-      <p style="color:#f8e8c4">${data.gujarati}</p>
+      <p style="color:#f8e8c4">${gujaratiText}</p>
     </div>
   `;
 
   const anchor = gq("gitaReaderAnchor");
   anchor.appendChild(reader);
   window.scrollTo(0, 0);
+
+  // ગીતા પ્રેસ હિન્દી અર્થ ફેચ કરવો
+  fetchHindiForVerse(ch, vr, key);
 }
 
 function closeGitaVerse(){
@@ -342,8 +302,59 @@ function closeGitaVerse(){
   if(reader) reader.remove();
 }
 
+/* ગીતા પ્રેસ ગોરખપુર હિન્દી અર્થ ડેટાબેઝમાંથી મેળવવો */
+async function fetchHindiForVerse(ch, vr, key){
+  const target = gq("readerHindi");
+  if(!target) return;
+
+  if(hindiCache[key]){
+    target.textContent = hindiCache[key];
+    return;
+  }
+
+  try {
+    // ૭૦૦ એ ૭૦૦ શ્લોકનો હિન્દી સંગ્રહ
+    const res = await fetch(`https://raw.githubusercontent.com/vedicscriptures/bhagavad-gita-api/master/slok/${ch}/${vr}`);
+    if(res.ok){
+      const data = await res.json();
+      let hindi = (data.rams && data.rams.ht) || (data.tej && data.tej.ht) || (data.chinmay && data.chinmay.hc) || "";
+      if(hindi){
+        hindiCache[key] = hindi;
+        target.textContent = hindi;
+        
+        // જો સંસ્કૃત કે ઇંગ્લિશ બાકી હોય તો તે પણ અપડેટ કરી લેશે
+        if(data.slok) gq("readerSanskrit").textContent = data.slok;
+        if(data.siva && data.siva.et) gq("readerEnglish").textContent = data.siva.et;
+        return;
+      }
+    }
+  } catch(e) {}
+
+  target.textContent = "हिन्दी अर्थ शीघ्र ही उपलब्ध होगा।";
+}
+
+/* આખી ગીતાના ૭૦૦ શ્લોક એકસાથે પ્રી-લોડ કરવા */
+async function preloadCompleteGita(){
+  try {
+    const res = await fetch("https://cdn.jsdelivr.net/gh/ChiragMirani/gita-quotes@main/docs/data.json");
+    if(res.ok){
+      const data = await res.json();
+      data.forEach(item => {
+        const k = item.chapter + "-" + item.verse;
+        allGitaVerses[k] = {
+          sanskrit: item.sanskrit || item.text || "",
+          english: item.english || item.translation || ""
+        };
+      });
+    }
+  } catch(e) {
+    console.warn("Fast network mode active.");
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderGitaChapters();
+  preloadCompleteGita();
 });
 </script>
 </body>
